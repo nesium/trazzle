@@ -1,0 +1,118 @@
+// !$*UTF8*$!
+{
+	2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 490874430D0554E9002D0EF3 /* Trazzle */;
+		activeTarget = 8D15AC270486D014006FF6A4 /* Trazzle */;
+		addToTargets = (
+			8D15AC270486D014006FF6A4 /* Trazzle */,
+		);
+		codeSenseManager = 4908745B0D055502002D0EF3 /* Code sense */;
+		executables = (
+			490874430D0554E9002D0EF3 /* Trazzle */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 254936034;
+			PBXWorkspaceStateSaveDate = 254936034;
+		};
+		sourceControlManager = 4908745A0D055502002D0EF3 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	2C2EC39F0ECE303F005785E2 /* PlugInController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {774, 1195}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 585}";
+			sepNavWindowFrame = "{{65, 264}, {821, 1267}}";
+		};
+	};
+	2C2EC3DB0ECE36EE005785E2 /* AbstractPlugin.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {694, 768}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 342}";
+			sepNavWindowFrame = "{{65, 691}, {741, 840}}";
+		};
+	};
+	2C2EC3DC0ECE36EE005785E2 /* AbstractPlugin.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {774, 1195}}";
+			sepNavSelRange = "{165, 31}";
+			sepNavVisRange = "{0, 232}";
+			sepNavWindowFrame = "{{42, 285}, {821, 1267}}";
+		};
+	};
+	2CF39FF40CF8E5CA00A1B9A9 /* Controller.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1060, 887}}";
+			sepNavSelRange = "{461, 0}";
+			sepNavVisRange = "{0, 467}";
+			sepNavWindowFrame = "{{42, 193}, {1107, 959}}";
+		};
+	};
+	2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {694, 1134}}";
+			sepNavSelRange = "{1559, 0}";
+			sepNavVisRange = "{488, 1333}";
+			sepNavWindowFrame = "{{297, 145}, {741, 840}}";
+		};
+	};
+	2CFA54E20D6B8D5F00F5DFE5 /* Tests */ = {
+		activeExec = 0;
+	};
+	490874430D0554E9002D0EF3 /* Trazzle */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Trazzle;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	4908745A0D055502002D0EF3 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	4908745B0D055502002D0EF3 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	8D15AC270486D014006FF6A4 /* Trazzle */ = {
+		activeExec = 0;
+		executables = (
+			490874430D0554E9002D0EF3 /* Trazzle */,
+		);
+	};
+	8D15AC360486D014006FF6A4 /* Info.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1048, 806}}";
+			sepNavSelRange = "{540, 0}";
+			sepNavVisRange = "{0, 1406}";
+			sepNavWindowFrame = "{{19, 0}, {1107, 878}}";
+		};
+	};
+}

@@ -1,0 +1,635 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 44;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C03583C0D1C568C007C1A48 /* Advanced Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C03583B0D1C568C007C1A48 /* Advanced Preferences.tiff */; };
+		2C19E0610EBE752F00B9BA96 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0600EBE752F00B9BA96 /* WindowController.m */; };
+		2C19E0660EBE75C100B9BA96 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C19E0650EBE75C100B9BA96 /* MainWindow.xib */; };
+		2C1A2B380D294BB600418DB7 /* reload.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C1A2B370D294BB600418DB7 /* reload.tiff */; };
+		2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC39F0ECE303F005785E2 /* PlugInController.m */; };
+		2C2EC3DD0ECE36EE005785E2 /* AbstractPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC3DC0ECE36EE005785E2 /* AbstractPlugin.m */; };
+		2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */; };
+		2C79FFAE0D42CBEB005279A6 /* FilterNameBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */; };
+		2C9CFB590D552F0100CBAA49 /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9CFB580D552F0100CBAA49 /* brick.png */; };
+		2CC26C410D1C60DC005A3AB8 /* colors.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2CC26C400D1C60DC005A3AB8 /* colors.tiff */; };
+		2CCF87090E22B19D00B8CE88 /* trazzle.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CCF87080E22B19D00B8CE88 /* trazzle.icns */; };
+		2CE309230D1EDF130092B5E0 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CE309220D1EDF130092B5E0 /* star.png */; };
+		2CEF18430D2405C6002D3C69 /* CellButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEF18420D2405C6002D3C69 /* CellButton.png */; };
+		2CF39FE30CF8E23600A1B9A9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */; };
+		2CF39FF60CF8E5CA00A1B9A9 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */; };
+		2CFCB6230D5675C900570676 /* flag.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2CFCB6220D5675C900570676 /* flag.tiff */; };
+		496AF03A0F320B3B0049FB23 /* RegexKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF0370F320B3B0049FB23 /* RegexKit.framework */; };
+		496AF03B0F320B3B0049FB23 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF0380F320B3B0049FB23 /* Sparkle.framework */; };
+		496AF03C0F320B3B0049FB23 /* PSMTabBarControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF0390F320B3B0049FB23 /* PSMTabBarControl.framework */; };
+		496AF03F0F320B4E0049FB23 /* RegexKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 496AF0370F320B3B0049FB23 /* RegexKit.framework */; };
+		496AF0400F320B4E0049FB23 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 496AF0380F320B3B0049FB23 /* Sparkle.framework */; };
+		496AF0410F320B4E0049FB23 /* PSMTabBarControl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 496AF0390F320B3B0049FB23 /* PSMTabBarControl.framework */; };
+		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
+		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
+		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2CFA552A0D6B943E00F5DFE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D15AC270486D014006FF6A4;
+			remoteInfo = Trazzle;
+		};
+		496AF0A00F321FDB0049FB23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 496AF09C0F321FDB0049FB23 /* Logger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8D5B49B6048680CD000E48DA;
+			remoteInfo = Logger;
+		};
+		496AF0A20F321FE50049FB23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 496AF09C0F321FDB0049FB23 /* Logger.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D5B49AC048680CD000E48DA;
+			remoteInfo = Logger;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2C65AC8F0F3251E5005D7A61 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C9147580D0C81C800C89FC2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				496AF03F0F320B4E0049FB23 /* RegexKit.framework in CopyFiles */,
+				496AF0400F320B4E0049FB23 /* Sparkle.framework in CopyFiles */,
+				496AF0410F320B4E0049FB23 /* PSMTabBarControl.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C1660FE840EACC02AAC07 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = Resources/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FBA07B3F13500E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2A37F4B7FDCFA73011CA2CEA /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = MainMenu.nib; path = Resources/English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Credits.rtf; path = Resources/English.lproj/Credits.rtf; sourceTree = "<group>"; };
+		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2C03583B0D1C568C007C1A48 /* Advanced Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Advanced Preferences.tiff"; sourceTree = "<group>"; };
+		2C19E05F0EBE752F00B9BA96 /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
+		2C19E0600EBE752F00B9BA96 /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
+		2C19E0650EBE75C100B9BA96 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/Xibs/MainWindow.xib; sourceTree = "<group>"; };
+		2C1A2B370D294BB600418DB7 /* reload.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = reload.tiff; sourceTree = "<group>"; };
+		2C2EC39E0ECE303F005785E2 /* PlugInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlugInController.h; sourceTree = "<group>"; };
+		2C2EC39F0ECE303F005785E2 /* PlugInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlugInController.m; sourceTree = "<group>"; };
+		2C2EC3DB0ECE36EE005785E2 /* AbstractPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPlugin.h; sourceTree = "<group>"; };
+		2C2EC3DC0ECE36EE005785E2 /* AbstractPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPlugin.m; sourceTree = "<group>"; };
+		2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tests-Info.plist"; path = "Resources/Tests-Info.plist"; sourceTree = "<group>"; };
+		2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterNameBackground.png; sourceTree = "<group>"; };
+		2C87B4570D8733F10065FC08 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2C9CFB580D552F0100CBAA49 /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
+		2CC26C400D1C60DC005A3AB8 /* colors.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = colors.tiff; sourceTree = "<group>"; };
+		2CCF87080E22B19D00B8CE88 /* trazzle.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = trazzle.icns; sourceTree = "<group>"; };
+		2CE309220D1EDF130092B5E0 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		2CEF18420D2405C6002D3C69 /* CellButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellButton.png; sourceTree = "<group>"; };
+		2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
+		2CF39FF40CF8E5CA00A1B9A9 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		2CFA54E30D6B8D5F00F5DFE5 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CFCB6220D5675C900570676 /* flag.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = flag.tiff; sourceTree = "<group>"; };
+		32DBCF750370BD2300C91783 /* Trazzle_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trazzle_Prefix.pch; sourceTree = "<group>"; };
+		496AF0370F320B3B0049FB23 /* RegexKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKit.framework; path = Frameworks/RegexKit.framework; sourceTree = "<group>"; };
+		496AF0380F320B3B0049FB23 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		496AF0390F320B3B0049FB23 /* PSMTabBarControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSMTabBarControl.framework; path = Frameworks/PSMTabBarControl.framework; sourceTree = "<group>"; };
+		496AF09C0F321FDB0049FB23 /* Logger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Logger.xcodeproj; path = ../Plugins/Logger/Logger.xcodeproj; sourceTree = SOURCE_ROOT; };
+		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		8D15AC370486D014006FF6A4 /* Trazzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trazzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2CFA54E00D6B8D5F00F5DFE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D15AC330486D014006FF6A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
+				2CF39FE30CF8E23600A1B9A9 /* WebKit.framework in Frameworks */,
+				496AF03A0F320B3B0049FB23 /* RegexKit.framework in Frameworks */,
+				496AF03B0F320B3B0049FB23 /* Sparkle.framework in Frameworks */,
+				496AF03C0F320B3B0049FB23 /* PSMTabBarControl.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				496AF0370F320B3B0049FB23 /* RegexKit.framework */,
+				496AF0380F320B3B0049FB23 /* Sparkle.framework */,
+				496AF0390F320B3B0049FB23 /* PSMTabBarControl.framework */,
+				2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */,
+				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A8FEA54F5311CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
+				13E42FBA07B3F13500E4EEF1 /* CoreData.framework */,
+				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB0FE9D524F11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D15AC370486D014006FF6A4 /* Trazzle.app */,
+				2CFA54E30D6B8D5F00F5DFE5 /* Tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A37F4AAFDCFA73011CA2CEA /* Trazzle */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4ABFDCFA73011CA2CEA /* Classes */,
+				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
+				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
+				19C28FB0FE9D524F11CA2CBB /* Products */,
+				496AF09C0F321FDB0049FB23 /* Logger.xcodeproj */,
+			);
+			name = Trazzle;
+			sourceTree = "<group>";
+		};
+		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2CF39FF40CF8E5CA00A1B9A9 /* Controller.h */,
+				2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */,
+				2C87B4570D8733F10065FC08 /* Constants.h */,
+				2C19E05F0EBE752F00B9BA96 /* WindowController.h */,
+				2C19E0600EBE752F00B9BA96 /* WindowController.m */,
+				2C2EC39E0ECE303F005785E2 /* PlugInController.h */,
+				2C2EC39F0ECE303F005785E2 /* PlugInController.m */,
+				2C2EC3DB0ECE36EE005785E2 /* AbstractPlugin.h */,
+				2C2EC3DC0ECE36EE005785E2 /* AbstractPlugin.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF750370BD2300C91783 /* Trazzle_Prefix.pch */,
+				2A37F4B0FDCFA73011CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */,
+				2C03583A0D1C568C007C1A48 /* Images */,
+				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
+				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
+				8D15AC360486D014006FF6A4 /* Info.plist */,
+				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+				2C19E0650EBE75C100B9BA96 /* MainWindow.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
+				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C03583A0D1C568C007C1A48 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2CCF87080E22B19D00B8CE88 /* trazzle.icns */,
+				2CFCB6220D5675C900570676 /* flag.tiff */,
+				2C9CFB580D552F0100CBAA49 /* brick.png */,
+				2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */,
+				2C1A2B370D294BB600418DB7 /* reload.tiff */,
+				2CEF18420D2405C6002D3C69 /* CellButton.png */,
+				2CE309220D1EDF130092B5E0 /* star.png */,
+				2CC26C400D1C60DC005A3AB8 /* colors.tiff */,
+				2C03583B0D1C568C007C1A48 /* Advanced Preferences.tiff */,
+			);
+			name = Images;
+			path = Resources/Images;
+			sourceTree = "<group>";
+		};
+		496AF09D0F321FDB0049FB23 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2CFA54E20D6B8D5F00F5DFE5 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CFA54E80D6B8D7300F5DFE5 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				2CFA54DE0D6B8D5F00F5DFE5 /* Resources */,
+				2CFA54DF0D6B8D5F00F5DFE5 /* Sources */,
+				2CFA54E00D6B8D5F00F5DFE5 /* Frameworks */,
+				2CFA54E10D6B8D5F00F5DFE5 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2CFA552B0D6B943E00F5DFE5 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 2CFA54E30D6B8D5F00F5DFE5 /* Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8D15AC270486D014006FF6A4 /* Trazzle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Trazzle" */;
+			buildPhases = (
+				8D15AC2B0486D014006FF6A4 /* Resources */,
+				8D15AC300486D014006FF6A4 /* Sources */,
+				8D15AC330486D014006FF6A4 /* Frameworks */,
+				2C9147580D0C81C800C89FC2 /* CopyFiles */,
+				2C87337D0D71E97400FEB828 /* ShellScript */,
+				2C65AC8F0F3251E5005D7A61 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				496AF0A30F321FE50049FB23 /* PBXTargetDependency */,
+			);
+			name = Trazzle;
+			productInstallPath = "$(HOME)/Applications";
+			productName = Trazzle;
+			productReference = 8D15AC370486D014006FF6A4 /* Trazzle.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
+			buildConfigurationList = C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "Trazzle" */;
+			compatibilityVersion = "Xcode 3.0";
+			hasScannedForEncodings = 1;
+			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Trazzle */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 496AF09D0F321FDB0049FB23 /* Products */;
+					ProjectRef = 496AF09C0F321FDB0049FB23 /* Logger.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				8D15AC270486D014006FF6A4 /* Trazzle */,
+				2CFA54E20D6B8D5F00F5DFE5 /* Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Logger.trazzlePlugin;
+			remoteRef = 496AF0A00F321FDB0049FB23 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2CFA54DE0D6B8D5F00F5DFE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D15AC2B0486D014006FF6A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
+				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
+				2C03583C0D1C568C007C1A48 /* Advanced Preferences.tiff in Resources */,
+				2CC26C410D1C60DC005A3AB8 /* colors.tiff in Resources */,
+				2CE309230D1EDF130092B5E0 /* star.png in Resources */,
+				2CEF18430D2405C6002D3C69 /* CellButton.png in Resources */,
+				2C1A2B380D294BB600418DB7 /* reload.tiff in Resources */,
+				2C79FFAE0D42CBEB005279A6 /* FilterNameBackground.png in Resources */,
+				2C9CFB590D552F0100CBAA49 /* brick.png in Resources */,
+				2CFCB6230D5675C900570676 /* flag.tiff in Resources */,
+				2CCF87090E22B19D00B8CE88 /* trazzle.icns in Resources */,
+				2C19E0660EBE75C100B9BA96 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C87337D0D71E97400FEB828 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#cd ~/Library/Application\\ Support/Trazzle/Themes/\n#ls | xargs -I {} rm -r {}";
+		};
+		2CFA54E10D6B8D5F00F5DFE5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n# \"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2CFA54DF0D6B8D5F00F5DFE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D15AC300486D014006FF6A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D15AC320486D014006FF6A4 /* main.m in Sources */,
+				2CF39FF60CF8E5CA00A1B9A9 /* Controller.m in Sources */,
+				2C19E0610EBE752F00B9BA96 /* WindowController.m in Sources */,
+				2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */,
+				2C2EC3DD0ECE36EE005785E2 /* AbstractPlugin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2CFA552B0D6B943E00F5DFE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D15AC270486D014006FF6A4 /* Trazzle */;
+			targetProxy = 2CFA552A0D6B943E00F5DFE5 /* PBXContainerItemProxy */;
+		};
+		496AF0A30F321FE50049FB23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Logger;
+			targetProxy = 496AF0A20F321FE50049FB23 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1660FE840EACC02AAC07 /* InfoPlist.strings */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A37F4B7FDCFA73011CA2CEA /* MainMenu.nib */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2CFA54E40D6B8D6000F5DFE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Frameworks\"",
+					"$(BUILT_PRODUCTS_DIR)/Trazzle.app/Contents/Frameworks/",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		2CFA54E50D6B8D6000F5DFE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Trazzle.app/Contents/MacOS/Trazzle";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Frameworks\"",
+					"$(BUILT_PRODUCTS_DIR)/Trazzle.app/Contents/Frameworks/",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C05733C808A9546B00998B17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/PSMTabBarControl/build/$(CONFIGURATION)\"",
+					"\"$(SRCROOT)/Frameworks/Sparkle/build/$(CONFIGURATION)\"",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Trazzle_Prefix.pch;
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_CFLAGS = "-DDEBUG";
+				PRODUCT_NAME = Trazzle;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C05733C908A9546B00998B17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/PSMTabBarControl/build/$(CONFIGURATION)\"",
+					"\"$(SRCROOT)/Frameworks/Sparkle/build/$(CONFIGURATION)\"",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Trazzle_Prefix.pch;
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = Trazzle;
+				STRIP_STYLE = debugging;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C05733CC08A9546B00998B17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Debug;
+		};
+		C05733CD08A9546B00998B17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2CFA54E80D6B8D7300F5DFE5 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CFA54E40D6B8D6000F5DFE5 /* Debug */,
+				2CFA54E50D6B8D6000F5DFE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Trazzle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C05733C808A9546B00998B17 /* Debug */,
+				C05733C908A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "Trazzle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C05733CC08A9546B00998B17 /* Debug */,
+				C05733CD08A9546B00998B17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+}
