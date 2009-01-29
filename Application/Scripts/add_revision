@@ -1,0 +1,20 @@
+#!/usr/bin/ruby
+
+sha = `/usr/local/git/bin/git rev-parse --short HEAD`.chomp
+
+source_plist = ENV['INFOPLIST_FILE']
+target_plist = ENV['BUILT_PRODUCTS_DIR'] + "/" + ENV['INFOPLIST_PATH']
+
+source_file = File.open(source_plist, "r").read
+target_file = File.open(target_plist, "r").read
+re = /([\t ]+<key>CFBundleVersion<\/key>\n[\t ]+<string>)(.*?)(<\/string>)/
+source_file =~ re
+
+open = $1
+version = $2
+close = $3
+
+# Inject the git hash into the bundle’s Info.plist
+sub = "#{open}#{version} (#{sha})#{close}"
+target_file.gsub!(re, sub)
+File.open(target_plist, "w") { |file| file.write(target_file) }

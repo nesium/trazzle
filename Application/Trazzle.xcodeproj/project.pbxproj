@@ -294,7 +294,7 @@
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				2C9147580D0C81C800C89FC2 /* CopyFiles */,
-				2C87337D0D71E97400FEB828 /* ShellScript */,
+				2C65ACD20F325A34005D7A61 /* ShellScript */,
 				2C65AC8F0F3251E5005D7A61 /* CopyFiles */,
 			);
 			buildRules = (
@@ -375,7 +375,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2C87337D0D71E97400FEB828 /* ShellScript */ = {
+		2C65ACD20F325A34005D7A61 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -386,7 +386,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#cd ~/Library/Application\\ Support/Trazzle/Themes/\n#ls | xargs -I {} rm -r {}";
+			shellScript = ./Scripts/add_revision;
 		};
 		2CFA54E10D6B8D5F00F5DFE5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
