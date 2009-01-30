@@ -51,7 +51,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"[StackTraceItem] className: %@, method: %@, file: %@, line: %@", 
+	return [NSString stringWithFormat:@"[StackTraceItem] className: %@, method: %@, file: %@, line: %d", 
 		m_className, m_method, m_file, m_line];
 }
 

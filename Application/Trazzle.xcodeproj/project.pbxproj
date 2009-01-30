@@ -36,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2C65AD9D0F32813F005D7A61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 496AF09C0F321FDB0049FB23 /* Logger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C65AD9A0F32813E005D7A61 /* Tests.octest */;
+			remoteInfo = Tests;
+		};
 		2CFA552A0D6B943E00F5DFE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -260,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */,
+				2C65AD9E0F32813F005D7A61 /* Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -336,6 +344,14 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		2C65AD9E0F32813F005D7A61 /* Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			name = Tests.octest;
+			path = build/Release/Tests.octest;
+			remoteRef = 2C65AD9D0F32813F005D7A61 /* PBXContainerItemProxy */;
+			sourceTree = "<group>";
+		};
 		496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
