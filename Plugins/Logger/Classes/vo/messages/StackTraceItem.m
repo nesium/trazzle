@@ -51,8 +51,8 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"[StackTraceItem] className: %@, method: %@, file: %@, line: %d", 
-		m_className, m_method, m_file, m_line];
+	return [NSString stringWithFormat:@"<%@: 0x%08X> className: %@, method: %@, file: %@, line: %d", 
+		[self className], (long)self, m_className, m_method, m_file, m_line];
 }
 
 
@@ -72,6 +72,24 @@
 		return YES;
 	}
 	return NO;
+}
+
++ (NSString *)webScriptNameForKey:(const char *)name
+{
+	if (name == "m_fqClassName")
+		return @"fqClassName";
+	if (name == "m_className")
+		return @"className";
+	if (name == "m_file")
+		return @"file";
+	if (name =="m_method")
+		return @"method";
+	if (name == "m_class")
+		return @"className";
+	if (name == "m_line")
+		return @"line";
+
+	return nil;
 }
 
 @end

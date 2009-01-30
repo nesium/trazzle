@@ -46,13 +46,13 @@
 		2C8D2CA00EAD3E5F0020E651 /* StackTraceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2C9E0EAD3E5F0020E651 /* StackTraceItem.m */; };
 		2CECB5570EAE930400CFA438 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB5560EAE930400CFA438 /* MessageModel.m */; };
 		2CECB55C0EAE98B900CFA438 /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB55B0EAE98B900CFA438 /* SimpleMessage.m */; };
-		2CECB56F0EAE9E5200CFA438 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB56E0EAE9E5200CFA438 /* MessageController.m */; };
-		2CECB5750EAEA1C300CFA438 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB5740EAEA1C300CFA438 /* MessageViewController.m */; };
 		2CECB5900EAEA40B00CFA438 /* MessageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB58D0EAEA40B00CFA438 /* MessageParser.m */; };
 		2CECB5910EAEA40B00CFA438 /* StackTraceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB58F0EAEA40B00CFA438 /* StackTraceParser.m */; };
-		496AF0560F3219D60049FB23 /* RegexKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF0550F3219D60049FB23 /* RegexKit.framework */; };
 		496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */; };
 		496AF0740F321D760049FB23 /* AbstractPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF0730F321D760049FB23 /* AbstractPlugin.m */; };
+		496AF12A0F333B9A0049FB23 /* SystemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF1280F333B9A0049FB23 /* SystemMessage.m */; };
+		496AF1300F333BD90049FB23 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF12F0F333BD90049FB23 /* WebKit.framework */; };
+		496AF19A0F3353870049FB23 /* functions.js in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE380F328A90005D7A61 /* functions.js */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -87,7 +87,7 @@
 		2C4CCB420EABBF1F003EE952 /* UKMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMainThreadProxy.h; sourceTree = "<group>"; };
 		2C4CCB430EABBF1F003EE952 /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMainThreadProxy.m; sourceTree = "<group>"; };
 		2C65AD9A0F32813E005D7A61 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C65AD9B0F32813E005D7A61 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.mxml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		2C65AD9B0F32813E005D7A61 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		2C65ADAF0F328187005D7A61 /* MessageParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageParserTest.h; sourceTree = "<group>"; };
 		2C65ADB00F328187005D7A61 /* MessageParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageParserTest.m; sourceTree = "<group>"; };
 		2C65ADB20F328187005D7A61 /* PredicateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredicateTest.h; sourceTree = "<group>"; };
@@ -118,20 +118,18 @@
 		2CECB5560EAE930400CFA438 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		2CECB55A0EAE98B900CFA438 /* SimpleMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMessage.h; sourceTree = "<group>"; };
 		2CECB55B0EAE98B900CFA438 /* SimpleMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleMessage.m; sourceTree = "<group>"; };
-		2CECB56D0EAE9E5200CFA438 /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
-		2CECB56E0EAE9E5200CFA438 /* MessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageController.m; sourceTree = "<group>"; };
-		2CECB5730EAEA1C300CFA438 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
-		2CECB5740EAEA1C300CFA438 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		2CECB58C0EAEA40B00CFA438 /* MessageParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageParser.h; sourceTree = "<group>"; };
 		2CECB58D0EAEA40B00CFA438 /* MessageParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageParser.m; sourceTree = "<group>"; };
 		2CECB58E0EAEA40B00CFA438 /* StackTraceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackTraceParser.h; sourceTree = "<group>"; };
 		2CECB58F0EAEA40B00CFA438 /* StackTraceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackTraceParser.m; sourceTree = "<group>"; };
 		32DBCF630370AF2F00C91783 /* Logger_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger_Prefix.pch; sourceTree = "<group>"; };
-		496AF0550F3219D60049FB23 /* RegexKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKit.framework; path = ../../Application/Frameworks/RegexKit.framework; sourceTree = SOURCE_ROOT; };
 		496AF0690F321D070049FB23 /* NSString+LPStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LPStringAdditions.h"; sourceTree = "<group>"; };
 		496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LPStringAdditions.m"; sourceTree = "<group>"; };
 		496AF0710F321D6A0049FB23 /* AbstractPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractPlugin.h; path = ../../Application/Classes/AbstractPlugin.h; sourceTree = SOURCE_ROOT; };
 		496AF0730F321D760049FB23 /* AbstractPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractPlugin.m; path = ../../Application/Classes/AbstractPlugin.m; sourceTree = SOURCE_ROOT; };
+		496AF1280F333B9A0049FB23 /* SystemMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SystemMessage.m; path = Classes/vo/messages/SystemMessage.m; sourceTree = SOURCE_ROOT; };
+		496AF1290F333B9A0049FB23 /* SystemMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SystemMessage.h; path = Classes/vo/messages/SystemMessage.h; sourceTree = SOURCE_ROOT; };
+		496AF12F0F333BD90049FB23 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = ../../../../../Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = SOURCE_ROOT; };
 		8D5B49B6048680CD000E48DA /* Logger.trazzlePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Logger.trazzlePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -150,7 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
-				496AF0560F3219D60049FB23 /* RegexKit.framework in Frameworks */,
+				496AF1300F333BD90049FB23 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,8 +199,8 @@
 				2C8D2CC70EAD49090020E651 /* Constants.h */,
 				2C4CCA940EABA5FC003EE952 /* LoggerPlugin.h */,
 				2C4CCA950EABA5FC003EE952 /* LoggerPlugin.m */,
-				2C65AE1B0F328A57005D7A61 /* LoggingViewController.m */,
 				2C65AE1C0F328A57005D7A61 /* LoggingViewController.h */,
+				2C65AE1B0F328A57005D7A61 /* LoggingViewController.m */,
 				2CECB5540EAE92F200CFA438 /* messaging */,
 				2C8D2C520EAD1E170020E651 /* vo */,
 				496AF0680F321CC90049FB23 /* categories */,
@@ -213,7 +211,7 @@
 		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				496AF0550F3219D60049FB23 /* RegexKit.framework */,
+				496AF12F0F333BD90049FB23 /* WebKit.framework */,
 				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -379,6 +377,8 @@
 				2C8D2C9E0EAD3E5F0020E651 /* StackTraceItem.m */,
 				2CECB55A0EAE98B900CFA438 /* SimpleMessage.h */,
 				2CECB55B0EAE98B900CFA438 /* SimpleMessage.m */,
+				496AF1290F333B9A0049FB23 /* SystemMessage.h */,
+				496AF1280F333B9A0049FB23 /* SystemMessage.m */,
 			);
 			path = messages;
 			sourceTree = "<group>";
@@ -388,10 +388,6 @@
 			children = (
 				2CECB5550EAE930400CFA438 /* MessageModel.h */,
 				2CECB5560EAE930400CFA438 /* MessageModel.m */,
-				2CECB56D0EAE9E5200CFA438 /* MessageController.h */,
-				2CECB56E0EAE9E5200CFA438 /* MessageController.m */,
-				2CECB5730EAEA1C300CFA438 /* MessageViewController.h */,
-				2CECB5740EAEA1C300CFA438 /* MessageViewController.m */,
 				2CECB58B0EAEA40B00CFA438 /* parser */,
 			);
 			path = messaging;
@@ -505,6 +501,7 @@
 				2C65AE3D0F328A90005D7A61 /* background.gif in Resources */,
 				2C65AE3F0F328A90005D7A61 /* output.css in Resources */,
 				2C65AE400F328A90005D7A61 /* theme.html in Resources */,
+				496AF19A0F3353870049FB23 /* functions.js in Resources */,
 				2C65AE7C0F328C26005D7A61 /* LogWindow.xib in Resources */,
 				2C65AE7D0F328C2A005D7A61 /* FilterEditor.xib in Resources */,
 			);
@@ -564,8 +561,6 @@
 				2C8D2CA00EAD3E5F0020E651 /* StackTraceItem.m in Sources */,
 				2CECB5570EAE930400CFA438 /* MessageModel.m in Sources */,
 				2CECB55C0EAE98B900CFA438 /* SimpleMessage.m in Sources */,
-				2CECB56F0EAE9E5200CFA438 /* MessageController.m in Sources */,
-				2CECB5750EAEA1C300CFA438 /* MessageViewController.m in Sources */,
 				2CECB5900EAEA40B00CFA438 /* MessageParser.m in Sources */,
 				2CECB5910EAEA40B00CFA438 /* StackTraceParser.m in Sources */,
 				2C19E0B60EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m in Sources */,
@@ -573,6 +568,7 @@
 				496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */,
 				496AF0740F321D760049FB23 /* AbstractPlugin.m in Sources */,
 				2C65AE1D0F328A57005D7A61 /* LoggingViewController.m in Sources */,
+				496AF12A0F333B9A0049FB23 /* SystemMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

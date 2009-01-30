@@ -19,6 +19,8 @@
 
 @implementation MessageModel
 
+@synthesize delegate=m_delegate;
+
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
@@ -28,8 +30,6 @@
 	{
 		m_socket = [[AsyncSocket alloc] initWithDelegate:self];
 		m_connectedClients = [[NSMutableArray alloc] init];
-		[self openSocket];
-		[self tailFlashlog];
 	}
 	return self;
 }
@@ -39,6 +39,17 @@
 	[m_socket release];
 	[m_connectedClients release];
 	[super dealloc];
+}
+
+
+
+#pragma mark -
+#pragma mark Public methods
+
+- (void)startListening
+{
+	[self openSocket];
+	[self tailFlashlog];
 }
 
 
@@ -118,7 +129,10 @@
 {
 	NSString *message = [NSString stringWithUTF8String:[data bytes]];
 	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message];
-	NSLog(@"data: %@", [parser data]);
+	if ([m_delegate respondsToSelector:@selector(messageModel:didReceiveMessage:)])
+	{
+		[m_delegate messageModel:self didReceiveMessage:[[parser data] objectAtIndex:0]];
+	}
 	[parser release];
 	[sock readDataToData:[AsyncSocket ZeroData] withTimeout:-1 tag:kLoggerReadMessageTag];
 }
@@ -152,7 +166,11 @@
 - (void)dataAvailable:(NSNotification *)notification
 {
 	NSData *data = [[notification userInfo] valueForKey:NSFileHandleNotificationDataItem];
-	NSLog(@"read data: %@", [NSString stringWithUTF8String:[data bytes]]);
+	NSString *message = [NSString stringWithUTF8String:[data bytes]];
+	if ([m_delegate respondsToSelector:@selector(messageModel:didReceiveMessage:)])
+	{
+		[m_delegate messageModel:self didReceiveMessage:[SimpleMessage messageWithString:message]];
+	}
 	[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
 }
 

@@ -1,25 +1,17 @@
 //
-//  SimpleMessage.m
-//  Logger
+//  SystemMessage.m
+//  Trazzle
 //
-//  Created by Marc Bauer on 22.10.08.
+//  Created by Marc Bauer on 13.09.08.
 //  Copyright 2008 nesiumdotcom. All rights reserved.
 //
 
-#import "SimpleMessage.h"
+#import "SystemMessage.h"
 
 
-@implementation SimpleMessage
+@implementation SystemMessage
 
 @synthesize message=m_message;
-@synthesize timestamp=m_timestamp;
-
-+ (SimpleMessage *)messageWithString:(NSString *)msgString
-{
-	SimpleMessage *msg = [[SimpleMessage alloc] init];
-	msg.message = msgString;
-	return [msg autorelease];
-}
 
 - (void)dealloc
 {
@@ -27,7 +19,10 @@
 	[super dealloc];
 }
 
-
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"[SystemMessage] %@", m_message];
+}
 
 #pragma mark -
 #pragma mark WebScripting Protocol

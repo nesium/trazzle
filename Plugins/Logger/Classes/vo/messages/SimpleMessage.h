@@ -18,4 +18,6 @@
 @property (nonatomic, retain) NSString *message;
 @property (nonatomic, assign) NSTimeInterval timestamp;
 
++ (SimpleMessage *)messageWithString:(NSString *)msgString;
+
 @end

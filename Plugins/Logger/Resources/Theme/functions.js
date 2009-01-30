@@ -8,10 +8,8 @@ onload = function()
 function appendLogMessages(messages)
 {
 	var html = '';
-	var i = 0;
-
 	// build html string
-	for (; i < messages.length; i++)
+	for (var i = 0; i < messages.length; i++)
 	{
 		var message = messages[i];
 		html += '<li class="trace' + (message.visible ? '' : ' hidden') + 
@@ -34,13 +32,14 @@ function appendLogMessages(messages)
 		html += message.className + '.' + message.method + ' (' + message.line + ') ' + 
 			message.message;
 		html += '</div></li>';
-		//window.TrazzleBridge.log(html);
+		window.TrazzleBridge.log(html);
 	}
 	// append html string
     var range = document.createRange();
     range.selectNode(logList);
     var documentFragment = range.createContextualFragment(html);
     logList.appendChild(documentFragment);
+	window.TrazzleBridge.log(logList);
 	
 	// scroll down
 	document.body.scrollTop = document.body.offsetHeight;

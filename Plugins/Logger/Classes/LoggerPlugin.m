@@ -34,15 +34,34 @@
 			bundle:[NSBundle bundleForClass:[self class]]];
 		[controller addTabWithIdentifier:@"Foo" title:@"Test Tab" 
 			view:[m_loggingViewController view]];
-		m_messageController = [[MessageController alloc] init];
+		m_messageModel = [[MessageModel alloc] init];
+		m_messageModel.delegate = self;
+		[m_messageModel startListening];
 	}
 	return self;
 }
 
 - (void)dealloc
 {
-	[m_messageController release];
+	[m_messageModel release];
 	[super dealloc];
+}
+
+
+
+#pragma mark -
+#pragma mark MessageModel delegate methods
+
+- (void)messageModel:(MessageModel *)model didReceiveMessage:(id)message
+{
+	if ([message isKindOfClass:[LogMessage class]])
+	{
+		[m_loggingViewController sendLogMessage:message];
+	}
+	else if ([message isKindOfClass:[SimpleMessage class]])
+	{
+		[m_loggingViewController sendSystemMessage:message];
+	}
 }
 
 @end

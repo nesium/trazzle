@@ -1,6 +1,20 @@
 #!/usr/bin/ruby
 
-sha = `/usr/local/git/bin/git rev-parse --short HEAD`.chomp
+common_git_paths = %w[/usr/local/bin/git /usr/local/git/bin/git /opt/local/bin/git]
+git_path = ""
+
+common_git_paths.each do |p|
+  if File.exist?(p)
+    git_path = p
+    break
+  end
+end
+
+if git_path == ""
+  puts "Path to git not found"
+  exit -1
+end
+sha = `#{git_path} rev-parse --short HEAD`.chomp
 
 source_plist = ENV['INFOPLIST_FILE']
 target_plist = ENV['BUILT_PRODUCTS_DIR'] + "/" + ENV['INFOPLIST_PATH']

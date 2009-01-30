@@ -9,14 +9,16 @@
 #import <Cocoa/Cocoa.h>
 #import "TrazzlePlugIn.h"
 #import "Constants.h"
-#import "MessageController.h"
+#import "MessageModel.h"
 #import "LoggingViewController.h"
+#import "LogMessage.h"
+#import "SimpleMessage.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn> 
 {
 	PlugInController *controller;
 
-	MessageController *m_messageController;
+	MessageModel *m_messageModel;
 	LoggingViewController *m_loggingViewController;
 }
 

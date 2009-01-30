@@ -33,8 +33,9 @@ static NSArray *g_logLevels;
 	if (!g_logLevels)
 	{
 		g_logLevels = [[NSArray alloc] initWithObjects: @"not specified", @"temp", @"debug", 
-		@"info", @"notice", @"warning", @"error", @"critical", @"fatal", nil];
+			@"info", @"notice", @"warning", @"error", @"critical", @"fatal", nil];
 	}
+	m_visible = YES;
 	self.encodeHTML = YES;
 	return self;
 }
@@ -91,6 +92,30 @@ static NSArray *g_logLevels;
 	return [date descriptionWithCalendarFormat:@"%M:%S:%F" timeZone:nil locale:nil];
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<%@: 0x%08X> visible: %d message: %@", [self className], (long)self, 
+		m_visible, m_message];
+}
+
+
+
+#pragma mark -
+#pragma mark Overriden NSObject methods
+
+- (id)valueForKey:(NSString *)key
+{
+	if ([key isEqualToString:@"m_message"])
+	{
+		return [self message];
+	}
+	else if ([key isEqualToString:@"m_timestamp"])
+	{
+		return [NSNumber numberWithDouble:m_timestamp];
+	}
+	return [super valueForKey:key];
+}
+
 
 
 #pragma mark -
@@ -108,6 +133,23 @@ static NSArray *g_logLevels;
 		return YES;
 	}
 	return [super isKeyExcludedFromWebScript:name];
+}
+
++ (NSString *)webScriptNameForKey:(const char *)name
+{
+	if (name == "m_levelName")
+		return @"levelName";
+	else if (name == "m_visible")
+		return @"visible";
+	else if (name == "m_message")
+		return @"message";
+	else if (name == "m_stacktrace")
+		return @"stacktrace";
+	else if (name == "m_index")
+		return @"index";
+	else if (name == "m_timestamp")
+		return @"timestamp";
+	return [super webScriptNameForKey:name];
 }
 
 @end
