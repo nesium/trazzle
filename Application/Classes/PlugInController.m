@@ -26,6 +26,7 @@ WindowController *m_windowController;
 
 - (void)addTabWithIdentifier:(id)ident title:(NSString *)title view:(NSView *)view
 {
+	NSLog(@"hello");
 	[m_windowController addTabWithIdentifier:ident title:title view:view];
 }
 

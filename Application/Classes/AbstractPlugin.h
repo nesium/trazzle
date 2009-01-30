@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "PlugInController.h"
 
+@class PlugInController;
 
 @interface AbstractPlugin : NSObject 
 {

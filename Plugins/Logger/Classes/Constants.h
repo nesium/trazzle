@@ -21,3 +21,11 @@
 #define kAttributeNameTimestamp @"ts"
 #define kAttributeNameLine @"line"
 #define kAttributeNameEncodeHTML @"encodehtml"
+
+typedef enum _WindowBehaviourMode
+{
+	WBMBringToTop,
+	WBMKeepOnTopWhileConnected,
+	WBMKeepAlwaysOnTop,
+	WBMDoNothing
+} WindowBehaviourMode;

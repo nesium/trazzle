@@ -1,0 +1,135 @@
+body
+{
+	font: 10px Monaco;
+	margin: 0;
+	padding: 0;
+	background: #120d0d url(background.gif) repeat-y;
+	color: #fff;
+}
+
+a
+{
+	text-decoration: none;
+	color: #fff;
+}
+
+ol, ul
+{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.trace, .system_message
+{
+	line-height: 14px;
+	margin-left: 115px;
+}
+
+.system_message
+{
+	color: #767676;
+	font-style: italic;
+}
+
+.arrow
+{
+	width: 12px;
+	height: 14px;
+}
+
+div.arrow
+{
+	float: left;
+	margin-left: -112px;
+}
+
+a.arrow
+{
+	background: transparent url(arrow_collapsed.gif) no-repeat 0 50%;
+	display: block;
+}
+
+li.trace.expanded a.arrow
+{
+	background-image: url(arrow_expanded.gif);
+}
+
+.hidden
+{
+	display: none;
+}
+
+.content
+{
+	padding-left: 5px;
+}
+
+.lineno
+{
+	width: 35px;
+	text-align: right;
+	float: left;
+	margin-left: -106px;
+	color: #454545;
+}
+
+.timestamp
+{
+	float: left;
+	margin-left: -61px;
+	color: #696969;
+	width: 63px;
+}
+
+.stacktrace
+{
+	border-top: 1px solid #2a2526;
+	border-bottom: 1px solid #2a2526;
+	background-color: #120d0d;
+	color: #d0d0d0;
+	padding: 5px 5px 5px 120px;
+	margin: 3px 0 3px -98px;
+}
+
+
+
+
+/*
+* Log level support
+*/
+.debug, .debug a
+{
+	color: #a6e22e;
+}
+
+.info, .info a
+{
+	color: #66d9ef;
+}
+
+.notice, .notice a
+{
+	color: #ae81ff;
+}
+
+.warning, .warning a
+{
+	color: #e6db74;
+}
+
+.error, .error a
+{
+	color: #fd971f;
+}
+
+.critical, .critical a
+{
+	color: #f92672;
+}
+
+.fatal, .fatal a
+{
+	color: #000;
+	background-color: #fff;
+}

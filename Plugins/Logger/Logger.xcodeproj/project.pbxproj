@@ -31,6 +31,14 @@
 		2C65ADC90F3281EE005D7A61 /* LogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2C5B0EAD28540020E651 /* LogMessage.m */; };
 		2C65ADCA0F3281F1005D7A61 /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB55B0EAE98B900CFA438 /* SimpleMessage.m */; };
 		2C65ADCF0F328222005D7A61 /* NSString+LPStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */; };
+		2C65AE1D0F328A57005D7A61 /* LoggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C65AE1B0F328A57005D7A61 /* LoggingViewController.m */; };
+		2C65AE3B0F328A90005D7A61 /* arrow_collapsed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE350F328A90005D7A61 /* arrow_collapsed.gif */; };
+		2C65AE3C0F328A90005D7A61 /* arrow_expanded.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE360F328A90005D7A61 /* arrow_expanded.gif */; };
+		2C65AE3D0F328A90005D7A61 /* background.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE370F328A90005D7A61 /* background.gif */; };
+		2C65AE3F0F328A90005D7A61 /* output.css in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE390F328A90005D7A61 /* output.css */; };
+		2C65AE400F328A90005D7A61 /* theme.html in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE3A0F328A90005D7A61 /* theme.html */; };
+		2C65AE7C0F328C26005D7A61 /* LogWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAFC0EABB501003EE952 /* LogWindow.xib */; };
+		2C65AE7D0F328C2A005D7A61 /* FilterEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAEA0EABB42B003EE952 /* FilterEditor.xib */; };
 		2C8D2C5E0EAD28540020E651 /* CommandMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2C570EAD28540020E651 /* CommandMessage.m */; };
 		2C8D2C5F0EAD28540020E651 /* ConnectionSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2C590EAD28540020E651 /* ConnectionSignature.m */; };
 		2C8D2C600EAD28540020E651 /* LogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2C5B0EAD28540020E651 /* LogMessage.m */; };
@@ -78,7 +86,7 @@
 		2C4CCB410EABBF1F003EE952 /* UKKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKKQueue.m; sourceTree = "<group>"; };
 		2C4CCB420EABBF1F003EE952 /* UKMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMainThreadProxy.h; sourceTree = "<group>"; };
 		2C4CCB430EABBF1F003EE952 /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMainThreadProxy.m; sourceTree = "<group>"; };
-		2C65AD9A0F32813E005D7A61 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Tests.octest; path = build/Release/Tests.octest; sourceTree = "<group>"; };
+		2C65AD9A0F32813E005D7A61 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C65AD9B0F32813E005D7A61 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.mxml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		2C65ADAF0F328187005D7A61 /* MessageParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageParserTest.h; sourceTree = "<group>"; };
 		2C65ADB00F328187005D7A61 /* MessageParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageParserTest.m; sourceTree = "<group>"; };
@@ -87,6 +95,14 @@
 		2C65ADB40F328187005D7A61 /* predicatetest_data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = predicatetest_data.xml; sourceTree = "<group>"; };
 		2C65ADB60F328187005D7A61 /* StackTraceParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackTraceParserTest.h; sourceTree = "<group>"; };
 		2C65ADB70F328187005D7A61 /* StackTraceParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackTraceParserTest.m; sourceTree = "<group>"; };
+		2C65AE1B0F328A57005D7A61 /* LoggingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingViewController.m; sourceTree = "<group>"; };
+		2C65AE1C0F328A57005D7A61 /* LoggingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingViewController.h; sourceTree = "<group>"; };
+		2C65AE350F328A90005D7A61 /* arrow_collapsed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = arrow_collapsed.gif; sourceTree = "<group>"; };
+		2C65AE360F328A90005D7A61 /* arrow_expanded.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = arrow_expanded.gif; sourceTree = "<group>"; };
+		2C65AE370F328A90005D7A61 /* background.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = background.gif; sourceTree = "<group>"; };
+		2C65AE380F328A90005D7A61 /* functions.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = functions.js; sourceTree = "<group>"; };
+		2C65AE390F328A90005D7A61 /* output.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = output.css; sourceTree = "<group>"; };
+		2C65AE3A0F328A90005D7A61 /* theme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = theme.html; sourceTree = "<group>"; };
 		2C8D2C560EAD28540020E651 /* CommandMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMessage.h; sourceTree = "<group>"; };
 		2C8D2C570EAD28540020E651 /* CommandMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandMessage.m; sourceTree = "<group>"; };
 		2C8D2C580EAD28540020E651 /* ConnectionSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionSignature.h; sourceTree = "<group>"; };
@@ -170,6 +186,7 @@
 			children = (
 				2C4CCAE90EABB42B003EE952 /* Xibs */,
 				2C4CCAEB0EABB42B003EE952 /* Images */,
+				2C65AE340F328A90005D7A61 /* Theme */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 			);
@@ -184,6 +201,8 @@
 				2C8D2CC70EAD49090020E651 /* Constants.h */,
 				2C4CCA940EABA5FC003EE952 /* LoggerPlugin.h */,
 				2C4CCA950EABA5FC003EE952 /* LoggerPlugin.m */,
+				2C65AE1B0F328A57005D7A61 /* LoggingViewController.m */,
+				2C65AE1C0F328A57005D7A61 /* LoggingViewController.h */,
 				2CECB5540EAE92F200CFA438 /* messaging */,
 				2C8D2C520EAD1E170020E651 /* vo */,
 				496AF0680F321CC90049FB23 /* categories */,
@@ -322,6 +341,19 @@
 				2C65ADB70F328187005D7A61 /* StackTraceParserTest.m */,
 			);
 			path = StacktraceParserTest;
+			sourceTree = "<group>";
+		};
+		2C65AE340F328A90005D7A61 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				2C65AE350F328A90005D7A61 /* arrow_collapsed.gif */,
+				2C65AE360F328A90005D7A61 /* arrow_expanded.gif */,
+				2C65AE370F328A90005D7A61 /* background.gif */,
+				2C65AE380F328A90005D7A61 /* functions.js */,
+				2C65AE390F328A90005D7A61 /* output.css */,
+				2C65AE3A0F328A90005D7A61 /* theme.html */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		2C8D2C520EAD1E170020E651 /* vo */ = {
@@ -468,6 +500,13 @@
 				2C4CCAF30EABB42B003EE952 /* led_off.png in Resources */,
 				2C4CCAF40EABB42B003EE952 /* led_on.png in Resources */,
 				2C4CCAF80EABB463003EE952 /* DuplicateIcon.png in Resources */,
+				2C65AE3B0F328A90005D7A61 /* arrow_collapsed.gif in Resources */,
+				2C65AE3C0F328A90005D7A61 /* arrow_expanded.gif in Resources */,
+				2C65AE3D0F328A90005D7A61 /* background.gif in Resources */,
+				2C65AE3F0F328A90005D7A61 /* output.css in Resources */,
+				2C65AE400F328A90005D7A61 /* theme.html in Resources */,
+				2C65AE7C0F328C26005D7A61 /* LogWindow.xib in Resources */,
+				2C65AE7D0F328C2A005D7A61 /* FilterEditor.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +572,7 @@
 				2C19E0B70EBE7C5200B9BA96 /* MGScopeBar.m in Sources */,
 				496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */,
 				496AF0740F321D760049FB23 /* AbstractPlugin.m in Sources */,
+				2C65AE1D0F328A57005D7A61 /* LoggingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

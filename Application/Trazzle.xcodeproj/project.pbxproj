@@ -40,7 +40,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 496AF09C0F321FDB0049FB23 /* Logger.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 2C65AD9A0F32813E005D7A61 /* Tests.octest */;
+			remoteGlobalIDString = 2C65AD9A0F32813E005D7A61;
 			remoteInfo = Tests;
 		};
 		2CFA552A0D6B943E00F5DFE5 /* PBXContainerItemProxy */ = {
@@ -110,6 +110,7 @@
 		2C2EC3DB0ECE36EE005785E2 /* AbstractPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPlugin.h; sourceTree = "<group>"; };
 		2C2EC3DC0ECE36EE005785E2 /* AbstractPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPlugin.m; sourceTree = "<group>"; };
 		2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tests-Info.plist"; path = "Resources/Tests-Info.plist"; sourceTree = "<group>"; };
+		2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrazzlePlugIn.h; sourceTree = "<group>"; };
 		2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterNameBackground.png; sourceTree = "<group>"; };
 		2C87B4570D8733F10065FC08 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		2C9CFB580D552F0100CBAA49 /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
@@ -201,6 +202,7 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */,
 				2CF39FF40CF8E5CA00A1B9A9 /* Controller.h */,
 				2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */,
 				2C87B4570D8733F10065FC08 /* Constants.h */,
@@ -347,10 +349,9 @@
 		2C65AD9E0F32813F005D7A61 /* Tests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			name = Tests.octest;
-			path = build/Release/Tests.octest;
+			path = Tests.octest;
 			remoteRef = 2C65AD9D0F32813F005D7A61 /* PBXContainerItemProxy */;
-			sourceTree = "<group>";
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */ = {
 			isa = PBXReferenceProxy;

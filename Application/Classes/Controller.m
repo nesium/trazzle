@@ -22,9 +22,6 @@
 {
 	if (self = [super init])
 	{
-		m_pluginController = [[PlugInController alloc] init];
-		[m_pluginController setValue:m_windowController forKey:@"windowController"];
-		[self loadPlugins];
 	}
 	return self;
 }
@@ -33,6 +30,9 @@
 {
 	m_windowController = [[WindowController alloc] initWithWindowNibName:@"MainWindow"];
 	[m_windowController showWindow:self];
+	m_pluginController = [[PlugInController alloc] init];
+	[m_pluginController setValue:m_windowController forKey:@"windowController"];
+	[self loadPlugins];
 }
 
 
@@ -62,14 +62,12 @@
 			continue;
 		}
  
-		NSLog(@"%@", [pluginBundle principalClass]);
-		Class prinClass;
-		if (prinClass = [pluginBundle principalClass]/* && 
-			[prinClass isSubclassOfClass:[AbstractPlugin class]]*/)
+		Class prinClass = [pluginBundle principalClass];
+		if (prinClass && class_conformsToProtocol(prinClass, @protocol(TrazzlePlugIn)))
 		{
 			NSLog(@"Class: %@", NSStringFromClass(prinClass));
-			AbstractPlugin *plugin = [[prinClass alloc] init];
-			plugin.plugInController = m_pluginController;
+			NSObject <TrazzlePlugIn> *plugin = [[prinClass alloc] 
+				initWithPlugInController:m_pluginController];
 			NSLog(@"%@", plugin);
 			[m_loadedPlugins addObject:plugin];
 			[plugin release];

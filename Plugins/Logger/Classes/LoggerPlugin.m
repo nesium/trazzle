@@ -25,10 +25,15 @@
 	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:dict];
 }
 
-- (id)init
+- (id)initWithPlugInController:(PlugInController *)aController
 {
 	if (self = [super init])
 	{
+		controller = aController;
+		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 
+			bundle:[NSBundle bundleForClass:[self class]]];
+		[controller addTabWithIdentifier:@"Foo" title:@"Test Tab" 
+			view:[m_loggingViewController view]];
 		m_messageController = [[MessageController alloc] init];
 	}
 	return self;

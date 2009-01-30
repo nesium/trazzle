@@ -7,20 +7,19 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "TrazzlePlugIn.h"
+#import "Constants.h"
 #import "MessageController.h"
-#import "AbstractPlugin.h"
+#import "LoggingViewController.h"
 
-typedef enum _WindowBehaviourMode
+@interface LoggerPlugin : NSObject <TrazzlePlugIn> 
 {
-	WBMBringToTop,
-	WBMKeepOnTopWhileConnected,
-	WBMKeepAlwaysOnTop,
-	WBMDoNothing
-} WindowBehaviourMode;
+	PlugInController *controller;
 
-@interface LoggerPlugin : AbstractPlugin 
-{
 	MessageController *m_messageController;
+	LoggingViewController *m_loggingViewController;
 }
+
+- (id)initWithPlugInController:(PlugInController *)controller;
 
 @end

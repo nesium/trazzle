@@ -21,6 +21,7 @@
 
 - (void)windowDidLoad
 {
+	NSLog(@"window did load");
 	while ([m_tabView numberOfTabViewItems])
 	{
 		[m_tabView removeTabViewItem:[m_tabView tabViewItemAtIndex:0]];
@@ -35,6 +36,7 @@
 	[tabViewItem setLabel:title];
 	[tabViewItem setView:view];
 	[m_tabView addTabViewItem:tabViewItem];
+	NSLog(@"add tab: %@", tabViewItem);
 	[tabViewItem release];
 }
 

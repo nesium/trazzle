@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <objc/objc-runtime.h>
 #import "WindowController.h"
 #import "PlugInController.h"
-#import "AbstractPlugin.h"
+#import "TrazzlePlugIn.h"
 
 #define SUPPORT_PATH @"~/Library/Application Support/Trazzle"
 
