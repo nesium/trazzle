@@ -12,7 +12,6 @@
 		2C19E0660EBE75C100B9BA96 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C19E0650EBE75C100B9BA96 /* MainWindow.xib */; };
 		2C1A2B380D294BB600418DB7 /* reload.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C1A2B370D294BB600418DB7 /* reload.tiff */; };
 		2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC39F0ECE303F005785E2 /* PlugInController.m */; };
-		2C2EC3DD0ECE36EE005785E2 /* AbstractPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC3DC0ECE36EE005785E2 /* AbstractPlugin.m */; };
 		2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */; };
 		2C79FFAE0D42CBEB005279A6 /* FilterNameBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */; };
 		2C9CFB590D552F0100CBAA49 /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9CFB580D552F0100CBAA49 /* brick.png */; };
@@ -107,8 +106,6 @@
 		2C1A2B370D294BB600418DB7 /* reload.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = reload.tiff; sourceTree = "<group>"; };
 		2C2EC39E0ECE303F005785E2 /* PlugInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlugInController.h; sourceTree = "<group>"; };
 		2C2EC39F0ECE303F005785E2 /* PlugInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlugInController.m; sourceTree = "<group>"; };
-		2C2EC3DB0ECE36EE005785E2 /* AbstractPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPlugin.h; sourceTree = "<group>"; };
-		2C2EC3DC0ECE36EE005785E2 /* AbstractPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPlugin.m; sourceTree = "<group>"; };
 		2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tests-Info.plist"; path = "Resources/Tests-Info.plist"; sourceTree = "<group>"; };
 		2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrazzlePlugIn.h; sourceTree = "<group>"; };
 		2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterNameBackground.png; sourceTree = "<group>"; };
@@ -202,16 +199,14 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2C87B4570D8733F10065FC08 /* Constants.h */,
 				2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */,
 				2CF39FF40CF8E5CA00A1B9A9 /* Controller.h */,
 				2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */,
-				2C87B4570D8733F10065FC08 /* Constants.h */,
 				2C19E05F0EBE752F00B9BA96 /* WindowController.h */,
 				2C19E0600EBE752F00B9BA96 /* WindowController.m */,
 				2C2EC39E0ECE303F005785E2 /* PlugInController.h */,
 				2C2EC39F0ECE303F005785E2 /* PlugInController.m */,
-				2C2EC3DB0ECE36EE005785E2 /* AbstractPlugin.h */,
-				2C2EC3DC0ECE36EE005785E2 /* AbstractPlugin.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -436,7 +431,6 @@
 				2CF39FF60CF8E5CA00A1B9A9 /* Controller.m in Sources */,
 				2C19E0610EBE752F00B9BA96 /* WindowController.m in Sources */,
 				2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */,
-				2C2EC3DD0ECE36EE005785E2 /* AbstractPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
