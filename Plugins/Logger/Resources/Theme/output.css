@@ -32,6 +32,11 @@ ol, ul
 	font-style: italic;
 }
 
+.flashlog_message
+{
+	color: #767676;
+}
+
 .arrow
 {
 	width: 12px;

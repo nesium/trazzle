@@ -8,7 +8,6 @@ onload = function()
 function appendLogMessages(messages)
 {
 	var html = '';
-	// build html string
 	for (var i = 0; i < messages.length; i++)
 	{
 		var message = messages[i];
@@ -34,15 +33,7 @@ function appendLogMessages(messages)
 		html += '</div></li>';
 		window.TrazzleBridge.log(html);
 	}
-	// append html string
-    var range = document.createRange();
-    range.selectNode(logList);
-    var documentFragment = range.createContextualFragment(html);
-    logList.appendChild(documentFragment);
-	window.TrazzleBridge.log(logList);
-	
-	// scroll down
-	document.body.scrollTop = document.body.offsetHeight;
+	appendHTML(html);
 }
 
 function appendSystemMessages(messages)
@@ -57,13 +48,16 @@ function appendSystemMessages(messages)
 		html += '<div class="content">' + message.message + '</div>';
 		html += '</li>';
 	}
-	
+	appendHTML(html);
+}
+
+function appendHTML(html)
+{
 	var range = document.createRange();
 	range.selectNode(logList);
 	var documentFragment = range.createContextualFragment(html);
 	logList.appendChild(documentFragment);
-	
-	document.body.scrollTop = document.body.offsetHeight;
+	document.body.scrollTop = document.body.offsetHeight;	
 }
 
 function showMessagesWithIndexes(indexes)

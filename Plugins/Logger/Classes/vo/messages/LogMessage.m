@@ -111,7 +111,7 @@ static NSArray *g_logLevels;
 	}
 	else if ([key isEqualToString:@"m_timestamp"])
 	{
-		return [NSNumber numberWithDouble:m_timestamp];
+		return [self formattedTimestamp];
 	}
 	return [super valueForKey:key];
 }

@@ -49,7 +49,6 @@
 		2CECB5900EAEA40B00CFA438 /* MessageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB58D0EAEA40B00CFA438 /* MessageParser.m */; };
 		2CECB5910EAEA40B00CFA438 /* StackTraceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECB58F0EAEA40B00CFA438 /* StackTraceParser.m */; };
 		496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */; };
-		496AF0740F321D760049FB23 /* AbstractPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF0730F321D760049FB23 /* AbstractPlugin.m */; };
 		496AF12A0F333B9A0049FB23 /* SystemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF1280F333B9A0049FB23 /* SystemMessage.m */; };
 		496AF1300F333BD90049FB23 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF12F0F333BD90049FB23 /* WebKit.framework */; };
 		496AF19A0F3353870049FB23 /* functions.js in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE380F328A90005D7A61 /* functions.js */; };
@@ -125,8 +124,6 @@
 		32DBCF630370AF2F00C91783 /* Logger_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger_Prefix.pch; sourceTree = "<group>"; };
 		496AF0690F321D070049FB23 /* NSString+LPStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LPStringAdditions.h"; sourceTree = "<group>"; };
 		496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LPStringAdditions.m"; sourceTree = "<group>"; };
-		496AF0710F321D6A0049FB23 /* AbstractPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractPlugin.h; path = ../../Application/Classes/AbstractPlugin.h; sourceTree = SOURCE_ROOT; };
-		496AF0730F321D760049FB23 /* AbstractPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractPlugin.m; path = ../../Application/Classes/AbstractPlugin.m; sourceTree = SOURCE_ROOT; };
 		496AF1280F333B9A0049FB23 /* SystemMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SystemMessage.m; path = Classes/vo/messages/SystemMessage.m; sourceTree = SOURCE_ROOT; };
 		496AF1290F333B9A0049FB23 /* SystemMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SystemMessage.h; path = Classes/vo/messages/SystemMessage.h; sourceTree = SOURCE_ROOT; };
 		496AF12F0F333BD90049FB23 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = ../../../../../Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = SOURCE_ROOT; };
@@ -194,8 +191,6 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				496AF0710F321D6A0049FB23 /* AbstractPlugin.h */,
-				496AF0730F321D760049FB23 /* AbstractPlugin.m */,
 				2C8D2CC70EAD49090020E651 /* Constants.h */,
 				2C4CCA940EABA5FC003EE952 /* LoggerPlugin.h */,
 				2C4CCA950EABA5FC003EE952 /* LoggerPlugin.m */,
@@ -566,7 +561,6 @@
 				2C19E0B60EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m in Sources */,
 				2C19E0B70EBE7C5200B9BA96 /* MGScopeBar.m in Sources */,
 				496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */,
-				496AF0740F321D760049FB23 /* AbstractPlugin.m in Sources */,
 				2C65AE1D0F328A57005D7A61 /* LoggingViewController.m in Sources */,
 				496AF12A0F333B9A0049FB23 /* SystemMessage.m in Sources */,
 			);

@@ -265,18 +265,11 @@
 									<array>
 										<string>089C166AFE841209C02AAC07</string>
 										<string>08FB77AFFE84173DC02AAC07</string>
-										<string>2CECB5540EAE92F200CFA438</string>
-										<string>2CECB58B0EAEA40B00CFA438</string>
-										<string>2C8D2C520EAD1E170020E651</string>
-										<string>2C8D2C550EAD28540020E651</string>
-										<string>496AF0680F321CC90049FB23</string>
-										<string>089C167CFE841241C02AAC07</string>
-										<string>2C65AE340F328A90005D7A61</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>8</integer>
+											<integer>7</integer>
 											<integer>1</integer>
 											<integer>0</integer>
 										</array>
@@ -340,16 +333,11 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 									<array>
 										<string>1C37FBAC04509CD000000102</string>
-										<string>496AF19C0F3353960049FB23</string>
-										<string>496AF19D0F3353960049FB23</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
 											<integer>3</integer>
-											<integer>2</integer>
-											<integer>1</integer>
-											<integer>0</integer>
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -449,8 +437,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>496AF0E10F3314070049FB23</string>
-				<string>496AF0E20F3314070049FB23</string>
+				<string>496AF25E0F3375010049FB23</string>
+				<string>496AF25F0F3375010049FB23</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -484,7 +472,6 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>1C530D52069F1CE1000CFCEE</string>
-		<string>496AF0FD0F331B4D0049FB23</string>
 		<string>/Projekte/Cocoa/Trazzle_2.0/Plugins/Logger/Logger.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -663,8 +650,6 @@
 							<string>414pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -704,7 +689,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>496AF12E0F333BB60049FB23</string>
+				<string>496AF2860F337D870049FB23</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
