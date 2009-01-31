@@ -9,9 +9,10 @@
 #import "MessageModel.h"
 
 @interface MessageModel (Private)
-- (void)openSocket;
-- (void)closeSocket;
-- (void)tailFlashlog;
+- (void)_openSocket;
+- (void)_closeSocket;
+- (void)_tailFlashlog;
+- (void)_didReceiveMessage:(AbstractMessage *)message;
 @end
 
 #define kLoggerReadMessageTag 1
@@ -30,6 +31,7 @@
 	{
 		m_socket = [[AsyncSocket alloc] initWithDelegate:self];
 		m_connectedClients = [[NSMutableArray alloc] init];
+		m_messages = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
@@ -38,6 +40,7 @@
 {
 	[m_socket release];
 	[m_connectedClients release];
+	[m_messages release];
 	[super dealloc];
 }
 
@@ -48,8 +51,17 @@
 
 - (void)startListening
 {
-	[self openSocket];
-	[self tailFlashlog];
+	[self _openSocket];
+	[self _tailFlashlog];
+}
+
+- (AbstractMessage *)messageAtIndex:(uint32_t)index
+{
+	if (index > [m_messages count])
+	{
+		return nil;
+	}
+	return [m_messages objectAtIndex:index];
 }
 
 
@@ -57,7 +69,7 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (void)openSocket
+- (void)_openSocket
 {
 	int port = [[[[NSUserDefaultsController sharedUserDefaultsController] values] 
 		valueForKey:@"LPServerPort"] intValue];
@@ -76,7 +88,7 @@
 	NSLog(@"started server on port %d", [m_socket localPort]);
 }
 
-- (void)closeSocket
+- (void)_closeSocket
 {
 	if (![m_socket isConnected])
 	{
@@ -89,7 +101,7 @@
 	}
 }
 
-- (void)tailFlashlog
+- (void)_tailFlashlog
 {
 	m_tailTask = [[NSTask alloc] init];
 	m_logPipe = [[NSPipe alloc] init];
@@ -106,6 +118,26 @@
 		
 	[m_tailTask launch];
 	[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
+}
+
+- (void)_didReceiveMessage:(AbstractMessage *)message
+{
+	switch (message.messageType)
+	{
+		case kLPMessageTypeConnectionSignature:
+			break;
+		case kLPMessageTypeCommand:
+			break;
+		case kLPMessageTypePolicyRequest:
+			break;
+		default:
+			message.index = [m_messages count];
+			[m_messages addObject:message];
+	}
+	if ([m_delegate respondsToSelector:@selector(messageModel:didReceiveMessage:)])
+	{
+		[m_delegate messageModel:self didReceiveMessage:message];
+	}
 }
 
 
@@ -129,10 +161,7 @@
 {
 	NSString *message = [NSString stringWithUTF8String:[data bytes]];
 	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message];
-	if ([m_delegate respondsToSelector:@selector(messageModel:didReceiveMessage:)])
-	{
-		[m_delegate messageModel:self didReceiveMessage:[[parser data] objectAtIndex:0]];
-	}
+	[self _didReceiveMessage:[[parser data] objectAtIndex:0]];
 	[parser release];
 	[sock readDataToData:[AsyncSocket ZeroData] withTimeout:-1 tag:kLoggerReadMessageTag];
 }
@@ -167,10 +196,8 @@
 {
 	NSData *data = [[notification userInfo] valueForKey:NSFileHandleNotificationDataItem];
 	NSString *message = [NSString stringWithUTF8String:[data bytes]];
-	if ([m_delegate respondsToSelector:@selector(messageModel:didReceiveMessage:)])
-	{
-		[m_delegate messageModel:self didReceiveMessage:[SimpleMessage messageWithString:message]];
-	}
+	[self _didReceiveMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
+		message:message]];
 	[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
 }
 

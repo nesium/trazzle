@@ -7,12 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AbstractMessage.h"
 
 
-@interface ConnectionSignature : NSObject 
+@interface ConnectionSignature : AbstractMessage 
 {
-	NSNumber *m_startTime;
-	NSString *m_language;
+	NSNumber *startTime;
+	NSString *language;
 }
 
 @property (nonatomic, retain) NSNumber *startTime;

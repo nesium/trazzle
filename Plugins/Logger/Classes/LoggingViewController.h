@@ -8,8 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
-#import "LogMessage.h"
-#import "SystemMessage.h"
+#import "AbstractMessage.h"
 
 @class WebViewController;
 
@@ -19,24 +18,23 @@
 	IBOutlet NSView *m_searchBar;
 	IBOutlet NSSearchField *m_searchField;
 	
+	id m_delegate;
 	BOOL m_webViewReady;
 	NSTimer *m_sendTimer;
 	NSMutableArray *m_buffer;
-	NSMutableArray *m_systemMessagesBuffer;
 }
+@property (nonatomic, assign) id delegate;
+
 - (void)loadURL:(NSURL *)url;
-- (void)sendLogMessage:(LogMessage *)message;
-- (void)sendLogMessages:(NSArray *)messages;
-- (void)sendSystemMessage:(SystemMessage *)message;
+- (void)sendMessage:(AbstractMessage *)message;
+- (void)sendMessages:(NSArray *)messages;
 - (void)hideMessagesWithIndexes:(NSArray *)indexes;
 - (void)showMessagesWithIndexes:(NSArray *)indexes;
 - (void)clearAllMessages;
 @end
 
 
-
-@interface TrazzleWindowScriptObject : NSObject 
-{
-}
-- (LogMessage *)logMessageAtIndex:(NSNumber *)index;
+@interface NSObject (LoggingViewControllerDelegate)
+- (AbstractMessage *)loggingViewController:(LoggingViewController *)controller 
+	messageAtIndex:(uint32_t)index;
 @end

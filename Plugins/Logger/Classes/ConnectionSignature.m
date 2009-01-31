@@ -11,13 +11,21 @@
 
 @implementation ConnectionSignature
 
-@synthesize startTime=m_startTime;
-@synthesize language=m_language;
+@synthesize startTime, language;
+
+- (id)init
+{
+	if (self = [super init])
+	{
+		messageType = kLPMessageTypeConnectionSignature;
+	}
+	return self;
+}
 
 - (void)dealloc
 {
-	[m_language release];
-	[m_startTime release];
+	[language release];
+	[startTime release];
 	[super dealloc];
 }
 

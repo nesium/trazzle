@@ -10,32 +10,22 @@
 #import "StackTraceItem.h"
 #import "NSString+LPStringAdditions.h"
 
-@class TraceSocketProxy;
-
 @interface LogMessage : StackTraceItem
 {
-	NSString *m_levelName;
-	NSUInteger m_level;
-	NSString *m_message;
-	BOOL m_encodeHTML;
-	BOOL m_visible;
-	NSArray *m_stacktrace;
-	NSUInteger m_index;
-	NSTimeInterval m_connectionTimestamp;
-	NSTimeInterval m_timestamp;
+	NSString *levelName;
+	uint32_t level;
+	BOOL encodeHTML;
+	BOOL visible;
+	NSArray *stacktrace;
+	NSTimeInterval connectionTimestamp;
 }
 
 @property (nonatomic, retain) NSString *levelName;
-@property (nonatomic, readonly) NSUInteger level;
+@property (nonatomic, readonly) uint32_t level;
 @property (nonatomic, retain) NSArray *stacktrace;
 @property (nonatomic, assign) BOOL encodeHTML;
-@property (nonatomic, assign) NSUInteger index;
 @property (nonatomic, assign) BOOL visible;
-@property (nonatomic, assign) NSTimeInterval timestamp;
 @property (nonatomic, assign) NSTimeInterval connectionTimestamp;
-
-- (void)setMessage:(NSString *)message;
-- (NSString *)message;
 
 - (NSString *)formattedTimestamp;
 

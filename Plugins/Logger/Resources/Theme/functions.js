@@ -1,54 +1,83 @@
 var logList;
 
+var kLPMessageTypeSystem = 0;
+var kLPMessageTypeFlashLog = 1;
+var kLPMessageTypeCommand = 2;
+var kLPMessageTypeSocket = 3;
+var kLPMessageTypePolicyRequest = 4;
+var kLPMessageTypeStackTrace = 5;
+var kLPMessageTypeConnectionSignature = 6;
+
 onload = function()
 {
 	logList = document.getElementById('logMessageList');
 }
 
-function appendLogMessages(messages)
+function appendMessages(messages)
 {
 	var html = '';
+	var addTextmateLinks = window.TrazzleBridge.textMateLinksEnabled();
 	for (var i = 0; i < messages.length; i++)
 	{
 		var message = messages[i];
-		html += '<li class="trace' + (message.visible ? '' : ' hidden') + 
-			'" id="traceItem' + message.index + '">';
-		html += '<div class="arrow">';
-		if (message.stacktrace)
+		switch (message.messageType)
 		{
-			html += '<a href="javascript:toggleStacktrace(' + message.index + ');" class="arrow">';
-			html += '&nbsp;';
-			html += '</a>';
+			case kLPMessageTypeSocket:
+				html += logMessageToHTML(message, addTextmateLinks);
+				break;
+			default:
+				html += messageToHTML(message);
 		}
-		else
-		{
-			html += '&nbsp;';
-		}
-		html += '</div>';
-		html += '<div class="lineno">' + (message.index + 1) + '</div>';
-		html += '<div class="timestamp">' + message.timestamp + '</div>';
-		html += '<div class="content ' + message.levelName + '">';
-		html += message.className + '.' + message.method + ' (' + message.line + ') ' + 
-			message.message;
-		html += '</div></li>';
-		window.TrazzleBridge.log(html);
 	}
 	appendHTML(html);
 }
 
-function appendSystemMessages(messages)
+function logMessageToHTML(message, addTextmateLinks)
 {
 	var html = '';
-	var i = 0;
-	
-	for (; i < messages.length; i++)
+	html += '<li class="trace' + (message.visible ? '' : ' hidden') + 
+		'" id="traceItem' + message.index + '">';
+	html += '<div class="arrow">';
+	if (message.stacktrace)
 	{
-		var message = messages[i];
-		html += '<li class="system_message">'
-		html += '<div class="content">' + message.message + '</div>';
-		html += '</li>';
+		html += '<a href="javascript:toggleStacktrace(' + message.index + ');" class="arrow">';
+		html += '&nbsp;';
+		html += '</a>';
 	}
-	appendHTML(html);
+	else
+	{
+		html += '&nbsp;';
+	}
+	html += '</div>';
+	html += '<div class="lineno">' + (message.index + 1) + '</div>';
+	html += '<div class="timestamp">' + message.formattedTimestamp() + '</div>';
+	html += '<div class="content ' + message.levelName + '">';
+	if (addTextmateLinks)
+	{
+		html += '<a class="tm_link" href="txmt://open/?url=file://' + escape(message.file) + 
+			'&line=' + message.line + '">';
+	}
+	html += message.shortClassName + '.' + message.method + ' (' + message.line + ') ' + 
+		message.message;
+	if (addTextmateLinks)
+	{
+		html += '</a>';
+	}
+	html += '</div></li>';
+	return html;
+}
+
+function messageToHTML(message)
+{
+	var html = '';
+	var cssClass = message.messageType == kLPMessageTypeSystem 
+		? "system_message" 
+		: "flashlog_message";
+	html += '<li class="' + cssClass + '">'
+	html += '<div class="lineno">' + (message.index + 1) + '</div>';
+	html += '<div class="content">' + message.message + '</div>';
+	html += '</li>';
+	return html;
 }
 
 function appendHTML(html)
@@ -105,12 +134,12 @@ function toggleStacktrace(id)
 		}
 	}
 
-	var message = window.TrazzleBridge.logMessageAtIndex(id);
+	var message = window.TrazzleBridge.messageAtIndex(id);
 	var html = '<ul class="stacktrace">';
 	for (i = 0; i < message.stacktrace.length; i++)
 	{
 		var stackItem = message.stacktrace[i];
-		html += '<li>' + stackItem.className + '.' + stackItem.method + 
+		html += '<li>' + stackItem.shortClassName + '.' + stackItem.method + 
 			' (' + stackItem.line + ')</li>';
 	}
 	html += '</ul>';

@@ -16,11 +16,12 @@
 
 @implementation LoggingViewController
 
+@synthesize delegate=m_delegate;
+
 - (void)awakeFromNib
 {
 	m_webViewReady = NO;
 	m_buffer = [[NSMutableArray alloc] init];
-	m_systemMessagesBuffer = [[NSMutableArray alloc] init];
 	
 	[m_webView setFrameLoadDelegate:self];
 	[m_webView setPolicyDelegate:self];
@@ -51,21 +52,15 @@
 	[[m_webView mainFrame] loadRequest:request];
 }
 
-- (void)sendLogMessage:(LogMessage *)message
+- (void)sendMessage:(AbstractMessage *)message
 {
 	[m_buffer addObject:message];
 	[self _initTimer];
 }
 
-- (void)sendLogMessages:(NSArray *)messages
+- (void)sendMessages:(NSArray *)messages
 {
 	[m_buffer addObjectsFromArray:messages];
-	[self _initTimer];
-}
-
-- (void)sendSystemMessage:(SystemMessage *)message
-{
-	[m_systemMessagesBuffer addObject:message];
 	[self _initTimer];
 }
 
@@ -107,13 +102,13 @@
 	{
 		return;
 	}
-	m_sendTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/25.0 target:self 
+	m_sendTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/35.0 target:self 
 		selector:@selector(_flushBuffer:) userInfo:nil repeats:YES];
 }
 
 - (void)_invalidateTimer
 {
-	if ([m_buffer count] || [m_systemMessagesBuffer count])
+	if ([m_buffer count])
 	{
 		return;
 	}
@@ -123,18 +118,15 @@
 
 - (void)_flushBuffer:(NSTimer *)timer
 {
-	if (!m_webViewReady || (![m_buffer count] && ![m_systemMessagesBuffer count]))
+	if (!m_webViewReady || ![m_buffer count])
 	{
 		[self _invalidateTimer];
 		return;
 	}
 	WebScriptObject *window = [m_webView windowScriptObject];
-	[window callWebScriptMethod:@"appendLogMessages" 
+	[window callWebScriptMethod:@"appendMessages" 
 		withArguments:[NSArray arrayWithObject:m_buffer]];
-	[window callWebScriptMethod:@"appendSystemMessages" 
-		withArguments:[NSArray arrayWithObject:m_systemMessagesBuffer]];
 	[m_buffer removeAllObjects];
-	[m_systemMessagesBuffer removeAllObjects];
 }
 
 
@@ -178,8 +170,7 @@
 - (void)webView:(WebView *)sender windowScriptObjectAvailable:(WebScriptObject *)windowScriptObject
 {
 	// window script object available
-	[windowScriptObject setValue:[[[TrazzleWindowScriptObject alloc] init] autorelease] 
-		forKey:@"TrazzleBridge"];
+	[windowScriptObject setValue:self forKey:@"TrazzleBridge"];
 }
 
 - (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message
@@ -193,41 +184,28 @@
 	NSLog(@"error: %@", dictionary);
 }
 
-@end
-
 
 
 #pragma mark -
+#pragma mark WebScriptObject methods
 
-
-
-@implementation TrazzleWindowScriptObject
-
-#pragma mark -
-#pragma mark Initialization & deallocation
-
-- (id)init
+- (AbstractMessage *)messageAtIndex:(NSNumber *)index
 {
-	if (self = [super init])
+	if ([m_delegate respondsToSelector:@selector(loggingViewController:messageAtIndex:)])
 	{
+		return [m_delegate loggingViewController:self messageAtIndex:[index intValue]];
 	}
-	return self;
-}
-
-
-
-#pragma mark -
-#pragma mark Public methods
-
-- (LogMessage *)logMessageAtIndex:(NSNumber *)index
-{
-	NSLog(@"someone wants logmessage at index: %d", index);
 	return nil;
 }
 
 - (void)log:(NSString *)message
 {
 	NSLog(@"Theme Log: %@", message);
+}
+
+- (BOOL)textMateLinksEnabled
+{
+	return YES;
 }
 
 
@@ -237,14 +215,15 @@
 
 + (BOOL)isSelectorExcludedFromWebScript:(SEL)sel
 {
-	return !(sel == @selector(logMessageAtIndex:) || sel == @selector(log:));
+	return !(sel == @selector(messageAtIndex:) || sel == @selector(log:) || 
+		sel == @selector(textMateLinksEnabled));
 }
 
 + (NSString *)webScriptNameForSelector:(SEL)sel
 {
-	if (sel == @selector(logMessageAtIndex:))
+	if (sel == @selector(messageAtIndex:))
 	{
-		return @"logMessageAtIndex";
+		return @"messageAtIndex";
 	}
 	else if (sel == @selector(log:))
 	{

@@ -18,39 +18,26 @@
 
 @implementation CommandMessage
 
-@synthesize type=m_type;
-@synthesize attributes=m_attributes;
+@synthesize type, attributes;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithAction:(NSString *)action attributes:(NSDictionary *)attributes
+- (id)initWithAction:(NSString *)action attributes:(NSDictionary *)actionAttributes
 {
-	self = [super init];
-	self.type = [self commandActionTypeFromString:action];
-	self.attributes = attributes;
+	if (self = [super init])
+	{
+		self.attributes = actionAttributes;
+		messageType = kLPMessageTypeCommand;
+		type = [self commandActionTypeFromString:action];
+	}
 	return self;
 }
 
 - (void)dealloc
 {
-	[m_attributes release];
+	[attributes release];
 	[super dealloc];
-}
-
-
-
-#pragma mark -
-#pragma mark Public methods
-
-- (CommandActionType)type
-{
-	return m_type;
-}
-
-- (NSDictionary *)attributes
-{
-	return m_attributes;
 }
 
 
@@ -58,17 +45,17 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (CommandActionType)commandActionTypeFromString:(NSString *)type
+- (CommandActionType)commandActionTypeFromString:(NSString *)aType
 {
-	if ([type isEqualToString:@"clear"])
+	if ([aType isEqualToString:@"clear"])
 	{
 		return kCommandActionTypeClear;
 	}
-	else if ([type isEqualToString:@"monitorFile"])
+	else if ([aType isEqualToString:@"monitorFile"])
 	{
 		return kCommandActionTypeStartFileMonitoring;
 	}
-	else if ([type isEqualToString:@"unmonitorFile"])
+	else if ([aType isEqualToString:@"unmonitorFile"])
 	{
 		return kCommandActionTypeStopFileMonitoring;
 	}

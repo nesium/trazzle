@@ -11,8 +11,7 @@
 #import "Constants.h"
 #import "MessageModel.h"
 #import "LoggingViewController.h"
-#import "LogMessage.h"
-#import "SimpleMessage.h"
+#import "AbstractMessage.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn> 
 {

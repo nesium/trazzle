@@ -32,6 +32,7 @@
 		controller = aController;
 		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 
 			bundle:[NSBundle bundleForClass:[self class]]];
+		m_loggingViewController.delegate = self;
 		[controller addTabWithIdentifier:@"Foo" title:@"Test Tab" 
 			view:[m_loggingViewController view]];
 		m_messageModel = [[MessageModel alloc] init];
@@ -52,16 +53,26 @@
 #pragma mark -
 #pragma mark MessageModel delegate methods
 
-- (void)messageModel:(MessageModel *)model didReceiveMessage:(id)message
+- (void)messageModel:(MessageModel *)model didReceiveMessage:(AbstractMessage *)message
 {
-	if ([message isKindOfClass:[LogMessage class]])
+	switch (message.messageType)
 	{
-		[m_loggingViewController sendLogMessage:message];
+		case kLPMessageTypeSocket:
+		case kLPMessageTypeFlashLog:
+			[m_loggingViewController sendMessage:message];
+			break;
 	}
-	else if ([message isKindOfClass:[SimpleMessage class]])
-	{
-		[m_loggingViewController sendSystemMessage:message];
-	}
+}
+
+
+
+#pragma mark -
+#pragma mark LoggingViewController delegate methods
+
+- (AbstractMessage *)loggingViewController:(LoggingViewController *)controller 
+	messageAtIndex:(uint32_t)index
+{
+	return [m_messageModel messageAtIndex:index];
 }
 
 @end

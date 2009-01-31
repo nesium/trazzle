@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AbstractMessage.h"
 
 typedef enum _CommandActionType
 {
@@ -17,10 +18,10 @@ typedef enum _CommandActionType
 } CommandActionType;
 
 
-@interface CommandMessage : NSObject 
+@interface CommandMessage : AbstractMessage
 {
-	CommandActionType m_type;
-	NSDictionary *m_attributes;
+	CommandActionType type;
+	NSDictionary *attributes;
 }
 
 @property (nonatomic, assign) CommandActionType type;

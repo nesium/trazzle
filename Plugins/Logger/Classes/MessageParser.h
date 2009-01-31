@@ -10,9 +10,7 @@
 #import "Constants.h"
 #import "LogMessage.h"
 #import "CommandMessage.h"
-#import "PolicyFileRequest.h"
 #import "ConnectionSignature.h"
-#import "StackTraceParser.h"
 #import "StackTraceItem.h"
 
 @interface MessageParser : NSObject 
@@ -27,5 +25,16 @@
 
 - (id)initWithXMLString:(NSString *)xmlString;
 - (NSArray *)data;
+
+@end
+
+
+@interface StackTraceParser : NSObject 
+{
+
+}
+
++ (NSArray *)parseStackTrace:(NSString *)stacktrace ofLanguageType:(NSString *)language;
++ (NSArray *)parseAS3StackTrace:(NSString *)stacktrace;
 
 @end

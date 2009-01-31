@@ -107,6 +107,7 @@
 		2C2EC39E0ECE303F005785E2 /* PlugInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlugInController.h; sourceTree = "<group>"; };
 		2C2EC39F0ECE303F005785E2 /* PlugInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlugInController.m; sourceTree = "<group>"; };
 		2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tests-Info.plist"; path = "Resources/Tests-Info.plist"; sourceTree = "<group>"; };
+		2C5581CA0F33BCB70011B31A /* libSaturn.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSaturn.dylib; path = usr/lib/libSaturn.dylib; sourceTree = SDKROOT; };
 		2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrazzlePlugIn.h; sourceTree = "<group>"; };
 		2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterNameBackground.png; sourceTree = "<group>"; };
 		2C87B4570D8733F10065FC08 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -155,6 +156,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C5581CA0F33BCB70011B31A /* libSaturn.dylib */,
 				496AF0370F320B3B0049FB23 /* RegexKit.framework */,
 				496AF0380F320B3B0049FB23 /* Sparkle.framework */,
 				496AF0390F320B3B0049FB23 /* PSMTabBarControl.framework */,
@@ -557,7 +559,7 @@
 				GCC_PREFIX_HEADER = Trazzle_Prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_CFLAGS = "-DDEBUG";
+				OTHER_CFLAGS = "";
 				PRODUCT_NAME = Trazzle;
 				WRAPPER_EXTENSION = app;
 			};

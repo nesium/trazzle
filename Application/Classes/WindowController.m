@@ -21,7 +21,6 @@
 
 - (void)windowDidLoad
 {
-	NSLog(@"window did load");
 	while ([m_tabView numberOfTabViewItems])
 	{
 		[m_tabView removeTabViewItem:[m_tabView tabViewItemAtIndex:0]];

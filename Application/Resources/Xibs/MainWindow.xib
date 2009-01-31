@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.02">
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9F33</string>
-		<string key="IBDocument.InterfaceBuilderVersion">672</string>
-		<string key="IBDocument.AppKitVersion">949.34</string>
-		<string key="IBDocument.HIToolboxVersion">352.00</string>
+		<string key="IBDocument.SystemVersion">9G55</string>
+		<string key="IBDocument.InterfaceBuilderVersion">677</string>
+		<string key="IBDocument.AppKitVersion">949.43</string>
+		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="4"/>
@@ -14,6 +14,15 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilderKit</string>
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.Metadata">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -51,7 +60,7 @@
 						<object class="NSTabView" id="584938495">
 							<reference key="NSNextResponder" ref="995987926"/>
 							<int key="NSvFlags">18</int>
-							<string key="NSFrame">{{-14, 0}, {760, 381}}</string>
+							<string key="NSFrameSize">{746, 381}</string>
 							<reference key="NSSuperview" ref="995987926"/>
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -60,7 +69,7 @@
 									<object class="NSView" key="NSView" id="61019158">
 										<reference key="NSNextResponder" ref="584938495"/>
 										<int key="NSvFlags">256</int>
-										<string key="NSFrameSize">{760, 381}</string>
+										<string key="NSFrameSize">{746, 381}</string>
 										<reference key="NSSuperview" ref="584938495"/>
 									</object>
 									<string key="NSLabel">Tab</string>
@@ -204,8 +213,8 @@
 						<reference key="object" ref="995987926"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="584938495"/>
 							<reference ref="875610375"/>
+							<reference ref="584938495"/>
 						</object>
 						<reference key="parent" ref="325943115"/>
 					</object>
@@ -263,7 +272,6 @@
 					<string>-3.IBPluginDependency</string>
 					<string>10.IBPluginDependency</string>
 					<string>3.IBEditorWindowLastContentRect</string>
-					<string>3.IBPluginDependency</string>
 					<string>3.IBWindowTemplateEditedContentRect</string>
 					<string>3.NSWindowTemplate.visibleAtLaunch</string>
 					<string>4.IBPluginDependency</string>
@@ -280,9 +288,8 @@
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{133, 417}, {746, 403}}</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{133, 417}, {746, 403}}</string>
+					<string>{{70, 223}, {746, 403}}</string>
+					<string>{{70, 223}, {746, 403}}</string>
 					<integer value="1" id="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -363,7 +370,7 @@
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">Trazzle.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../../Trazzle.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>

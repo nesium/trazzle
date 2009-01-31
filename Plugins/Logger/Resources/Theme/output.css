@@ -20,7 +20,7 @@ ol, ul
 	list-style: none;
 }
 
-.trace, .system_message
+.trace, .system_message, .flashlog_message
 {
 	line-height: 14px;
 	margin-left: 115px;
@@ -35,6 +35,11 @@ ol, ul
 .flashlog_message
 {
 	color: #767676;
+}
+
+a.tm_link:hover
+{
+	text-decoration: underline;
 }
 
 .arrow
