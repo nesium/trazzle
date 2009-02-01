@@ -20,10 +20,11 @@
 	NSMutableArray *m_data;
 	id m_parentObject;
 	id m_currentObject;
+	id m_delegate;
 	BOOL m_parsingSucceeded;	
 }
 
-- (id)initWithXMLString:(NSString *)xmlString;
+- (id)initWithXMLString:(NSString *)xmlString delegate:(id)delegate;
 - (NSArray *)data;
 
 @end
@@ -37,4 +38,9 @@
 + (NSArray *)parseStackTrace:(NSString *)stacktrace ofLanguageType:(NSString *)language;
 + (NSArray *)parseAS3StackTrace:(NSString *)stacktrace;
 
+@end
+
+
+@interface NSObject (MessageParserDelegate)
+- (void)parser:(MessageParser *)parser didParseMenuItem:(NSMenuItem *)menuItem;
 @end

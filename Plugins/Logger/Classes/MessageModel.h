@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AsyncSocket.h"
 #import "MessageParser.h"
 #import "AbstractMessage.h"
 
@@ -16,18 +15,8 @@
 {
 	id m_delegate;
 	
-	AsyncSocket *m_socket;
-	NSMutableArray *m_connectedClients;
 	NSMutableArray *m_messages;
-	NSTask *m_tailTask;
-	NSPipe *m_logPipe;
 }
 @property (nonatomic, assign) id delegate;
-- (void)startListening;
 - (AbstractMessage *)messageAtIndex:(uint32_t)index;
-@end
-
-
-@interface NSObject (MessageModelExtensions)
-- (void)messageModel:(MessageModel *)model didReceiveMessage:(AbstractMessage *)message;
 @end

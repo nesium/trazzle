@@ -14,7 +14,8 @@ typedef enum _CommandActionType
 	kCommandActionTypeUnknown,
 	kCommandActionTypeClear,
 	kCommandActionTypeStartFileMonitoring,
-	kCommandActionTypeStopFileMonitoring
+	kCommandActionTypeStopFileMonitoring,
+	kCommandActionTypeUpdateStatusBar
 } CommandActionType;
 
 
@@ -22,10 +23,12 @@ typedef enum _CommandActionType
 {
 	CommandActionType type;
 	NSDictionary *attributes;
+	NSObject *data;
 }
 
 @property (nonatomic, assign) CommandActionType type;
 @property (nonatomic, retain) NSDictionary *attributes;
+@property (nonatomic, retain) NSObject *data;
 
 - (id)initWithAction:(NSString *)action attributes:(NSDictionary *)attributes;
 

@@ -7,13 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "WindowController.h"
 
 
 @interface PlugInController : NSObject 
 {
-	
 }
 
+- (id)initWithPlugInBundle:(NSBundle *)bundle windowController:(WindowController *)controller;
+
 - (void)addTabWithIdentifier:(id)ident title:(NSString *)title view:(NSView *)view;
+- (void)addStatusMenuItem:(NSMenuItem *)item;
+- (void)removeStatusMenuItem:(NSMenuItem *)item;
 
 @end

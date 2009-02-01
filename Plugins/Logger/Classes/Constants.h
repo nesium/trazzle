@@ -13,6 +13,8 @@
 #define kNodeNameCommand @"cmd"
 #define kNodeNamePolicyFileRequest @"policy-file-request"
 #define kNodeNameSignature @"signature"
+#define kNodeNameMenu @"menu"
+#define kNodeNameMenuItem @"menuitem"
 
 #define kAttributeNameLogLevel @"level"
 #define kAttributeNameFile @"file"
@@ -21,6 +23,8 @@
 #define kAttributeNameTimestamp @"ts"
 #define kAttributeNameLine @"line"
 #define kAttributeNameEncodeHTML @"encodehtml"
+
+#define kEventStatusItemClicked @"statusItemClicked"
 
 typedef enum _WindowBehaviourMode
 {

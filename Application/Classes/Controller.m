@@ -30,8 +30,7 @@
 {
 	m_windowController = [[WindowController alloc] initWithWindowNibName:@"MainWindow"];
 	[m_windowController showWindow:self];
-	m_pluginController = [[PlugInController alloc] init];
-	[m_pluginController setValue:m_windowController forKey:@"windowController"];
+	m_plugInControllers = [[NSMutableArray alloc] init];
 	[self loadPlugins];
 }
 
@@ -61,14 +60,16 @@
 			NSLog(@"Error loading plugin: %@", error);
 			continue;
 		}
- 
+		
 		Class prinClass = [pluginBundle principalClass];
 		if (prinClass && class_conformsToProtocol(prinClass, @protocol(TrazzlePlugIn)))
 		{
-			NSLog(@"Class: %@", NSStringFromClass(prinClass));
+			PlugInController *plugInController = [[PlugInController alloc] 
+				initWithPlugInBundle:pluginBundle windowController:m_windowController];
+			[m_plugInControllers addObject:plugInController];
+			
 			NSObject <TrazzlePlugIn> *plugin = [[prinClass alloc] 
-				initWithPlugInController:m_pluginController];
-			NSLog(@"%@", plugin);
+				initWithPlugInController:plugInController];
 			[m_loadedPlugins addObject:plugin];
 			[plugin release];
 		}

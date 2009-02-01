@@ -18,7 +18,7 @@
 
 @implementation CommandMessage
 
-@synthesize type, attributes;
+@synthesize type, attributes, data;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -36,6 +36,7 @@
 
 - (void)dealloc
 {
+	[data release];
 	[attributes release];
 	[super dealloc];
 }
@@ -58,6 +59,10 @@
 	else if ([aType isEqualToString:@"unmonitorFile"])
 	{
 		return kCommandActionTypeStopFileMonitoring;
+	}
+	else if ([aType isEqualToString:@"updateStatusBar"])
+	{
+		return kCommandActionTypeUpdateStatusBar;
 	}
 	return kCommandActionTypeUnknown;
 }

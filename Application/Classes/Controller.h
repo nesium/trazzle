@@ -17,8 +17,8 @@
 @interface Controller : NSObject
 {
 	NSMutableArray *m_loadedPlugins;
+	NSMutableArray *m_plugInControllers;
 	WindowController *m_windowController;
-	PlugInController *m_pluginController;
 }
 
 @end
