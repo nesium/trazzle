@@ -8,9 +8,16 @@
 
 #import "LoggerPlugin.h"
 
+#define kMMCFG_GlobalPath @"/Library/Application Support/Macromedia/mm.cfg"
+#define kMMCFG_LocalPath @"~/mm.cfg"
+
 @interface LoggerPlugin (Private)
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client;
 - (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client;
+- (void)_checkMMCfgs;
+- (NSMutableDictionary *)_readMMCfgAtPath:(NSString *)path;
+- (BOOL)_validateMMCfg:(NSMutableDictionary *)settings;
+- (BOOL)_writeMMCfg:(NSDictionary *)settings toPath:(NSString *)path;
 @end
 
 
@@ -41,7 +48,7 @@
 		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 
 			bundle:[NSBundle bundleForClass:[self class]]];
 		m_loggingViewController.delegate = self;
-		[controller addTabWithIdentifier:@"Foo" title:@"Test Tab" 
+		[controller addTabWithIdentifier:@"Foo" title:@"New Session" 
 			view:[m_loggingViewController view]];
 		
 		// alloc model
@@ -75,6 +82,8 @@
 			
 		[m_tailTask launch];
 		[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
+		
+		[self _checkMMCfgs];
 	}
 	return self;
 }
@@ -126,6 +135,105 @@
 			[controller addStatusMenuItem:client.statusMenuItem];
 		}
 	}
+}
+
+- (void)_checkMMCfgs
+{
+	NSFileManager *fm = [NSFileManager defaultManager];
+	NSMutableDictionary *globalMMCfgContents = nil;
+	NSMutableDictionary *localMMCfgContents = nil;
+	
+	if ([fm fileExistsAtPath:kMMCFG_GlobalPath])
+	{
+		globalMMCfgContents = [self _readMMCfgAtPath:kMMCFG_GlobalPath];
+	}
+	
+	if (globalMMCfgContents == nil)
+	{
+		globalMMCfgContents = [NSMutableDictionary dictionary];
+	}
+	
+	if ([fm fileExistsAtPath:[kMMCFG_LocalPath stringByExpandingTildeInPath]])
+	{
+		localMMCfgContents = [self _readMMCfgAtPath:kMMCFG_LocalPath];
+	}
+	
+	if (localMMCfgContents == nil)
+	{
+		localMMCfgContents = [NSMutableDictionary dictionary];
+	}
+	
+	if (![self _validateMMCfg:globalMMCfgContents])
+	{
+		[self _writeMMCfg:globalMMCfgContents toPath:kMMCFG_GlobalPath];
+	}
+	if (![self _validateMMCfg:localMMCfgContents])
+	{
+		[self _writeMMCfg:localMMCfgContents toPath:kMMCFG_LocalPath];
+	}
+}
+
+- (BOOL)_validateMMCfg:(NSMutableDictionary *)settings
+{
+	NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys: 
+		@"1", @"ErrorReportingEnable", 
+		@"0", @"MaxWarnings", 
+		@"1", @"TraceOutputEnable", 
+		[@"~/Library/Preferences/Macromedia/Flash Player/Logs/flashlog.txt" 
+			stringByExpandingTildeInPath], @"TraceOutputFileName", nil];
+
+	BOOL needsSave = NO;
+	for (NSString *key in defaultSettings)
+	{
+		NSString *defaultValue = [defaultSettings objectForKey:key];
+		NSString *currentValue = [settings objectForKey:key];
+		if (currentValue == nil || ![defaultValue isEqualToString:currentValue])
+		{
+			[settings setObject:defaultValue forKey:key];
+			needsSave = YES;
+		}
+	}
+	return !needsSave;
+}
+
+- (NSMutableDictionary *)_readMMCfgAtPath:(NSString *)path
+{
+	NSError *error;
+	NSMutableString *contents = [NSMutableString stringWithContentsOfFile:path 
+		encoding:NSUTF8StringEncoding error:&error];
+	[contents replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:0 
+		range:(NSRange){0, [contents length]}];
+	if (contents == nil)
+	{
+		return nil;
+	}
+	NSArray *lines = [contents componentsSeparatedByString:@"\n"];
+	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+	for (NSString *line in lines)
+	{
+		NSRange equalSignRange = [line rangeOfString:@"="];
+		if (equalSignRange.location == NSNotFound)
+		{
+			continue;
+		}
+		NSString *key = [line substringToIndex:equalSignRange.location];
+		NSString *value = [line substringFromIndex:equalSignRange.location + equalSignRange.length];
+		[settings setObject:[value stringByTrimmingCharactersInSet:
+			[NSCharacterSet whitespaceCharacterSet]] 
+			forKey:[key stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+	}
+	return settings;
+}
+
+- (BOOL)_writeMMCfg:(NSDictionary *)settings toPath:(NSString *)path
+{
+	NSMutableString *contents = [NSMutableString string];
+	for (NSString *key in settings)
+	{
+		[contents appendFormat:@"%@=%@\n", key, [settings objectForKey:key]];
+	}
+	NSError *error;
+	return [contents writeToFile:path atomically:NO encoding:NSUTF8StringEncoding error:&error];
 }
 
 

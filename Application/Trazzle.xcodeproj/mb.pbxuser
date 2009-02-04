@@ -119,35 +119,25 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 255460968;
-			PBXWorkspaceStateSaveDate = 255460968;
+			PBXPerProjectTemplateStateSaveDate = 255465902;
+			PBXWorkspaceStateSaveDate = 255465902;
 		};
 		perUserProjectItems = {
 			2C1D6E6F0F35468600EA8975 /* PBXBookmark */ = 2C1D6E6F0F35468600EA8975 /* PBXBookmark */;
 			2C1D6E730F35468600EA8975 /* PBXTextBookmark */ = 2C1D6E730F35468600EA8975 /* PBXTextBookmark */;
 			2C1D6E740F35468600EA8975 /* PBXBookmark */ = 2C1D6E740F35468600EA8975 /* PBXBookmark */;
-			2C54D8320F3A0E6C00264CC9 /* PBXTextBookmark */ = 2C54D8320F3A0E6C00264CC9 /* PBXTextBookmark */;
-			2C54D8330F3A0E6C00264CC9 /* PBXTextBookmark */ = 2C54D8330F3A0E6C00264CC9 /* PBXTextBookmark */;
 			2C54D84D0F3A110F00264CC9 /* PBXTextBookmark */ = 2C54D84D0F3A110F00264CC9 /* PBXTextBookmark */;
 			2C54D8770F3A134600264CC9 /* PBXTextBookmark */ = 2C54D8770F3A134600264CC9 /* PBXTextBookmark */;
 			2C54D8790F3A134600264CC9 /* PBXTextBookmark */ = 2C54D8790F3A134600264CC9 /* PBXTextBookmark */;
-			2C54D87A0F3A134600264CC9 /* PBXTextBookmark */ = 2C54D87A0F3A134600264CC9 /* PBXTextBookmark */;
 			2C54D88E0F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D88E0F3A15E000264CC9 /* PBXTextBookmark */;
 			2C54D88F0F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D88F0F3A15E000264CC9 /* PBXTextBookmark */;
 			2C54D8900F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D8900F3A15E000264CC9 /* PBXTextBookmark */;
 			2C54D8920F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D8920F3A15E000264CC9 /* PBXTextBookmark */;
 			2C54D8930F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D8930F3A15E000264CC9 /* PBXTextBookmark */;
-			2C54D8950F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D8950F3A15E000264CC9 /* PBXTextBookmark */;
-			2C54D8960F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D8960F3A15E000264CC9 /* PBXTextBookmark */;
-			2C54D8970F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D8970F3A15E000264CC9 /* PBXTextBookmark */;
-			2C54D8980F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D8980F3A15E000264CC9 /* PBXTextBookmark */;
-			2C54D8990F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D8990F3A15E000264CC9 /* PBXTextBookmark */;
 			2C54D89A0F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D89A0F3A15E000264CC9 /* PBXTextBookmark */;
-			2C54D89B0F3A15E000264CC9 /* PBXTextBookmark */ = 2C54D89B0F3A15E000264CC9 /* PBXTextBookmark */;
 			2C54D8A20F3A18C500264CC9 /* PBXTextBookmark */ = 2C54D8A20F3A18C500264CC9 /* PBXTextBookmark */;
-			2C54D8A30F3A18C500264CC9 /* PBXTextBookmark */ = 2C54D8A30F3A18C500264CC9 /* PBXTextBookmark */;
-			2C54D8A40F3A18C500264CC9 /* PBXTextBookmark */ = 2C54D8A40F3A18C500264CC9 /* PBXTextBookmark */;
-			2C54D8A50F3A18C500264CC9 /* PBXTextBookmark */ = 2C54D8A50F3A18C500264CC9 /* PBXTextBookmark */;
+			2C54D8DC0F3A27D900264CC9 /* PBXTextBookmark */ = 2C54D8DC0F3A27D900264CC9 /* PBXTextBookmark */;
+			2C54D8DD0F3A27D900264CC9 /* PBXTextBookmark */ = 2C54D8DD0F3A27D900264CC9 /* PBXTextBookmark */;
 			2C5584340F33FAB60011B31A /* PBXTextBookmark */ = 2C5584340F33FAB60011B31A /* PBXTextBookmark */;
 			2C5584350F33FAB60011B31A /* PBXTextBookmark */ = 2C5584350F33FAB60011B31A /* PBXTextBookmark */;
 			2C65ACAC0F32527A005D7A61 /* PBXTextBookmark */ = 2C65ACAC0F32527A005D7A61 /* PBXTextBookmark */;
@@ -183,7 +173,7 @@
 	2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1115, 754}}";
-			sepNavSelRange = "{307, 0}";
+			sepNavSelRange = "{319, 0}";
 			sepNavVisRange = "{0, 987}";
 			sepNavWindowFrame = "{{103, 1}, {700, 869}}";
 		};
@@ -272,26 +262,6 @@
 		isa = PBXBookmark;
 		fRef = 2CF27DEE0D2578CD006C9859 /* HTMLToAttributedStringTransformer.h */;
 	};
-	2C54D8320F3A0E6C00264CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C2EC39F0ECE303F005785E2 /* PlugInController.m */;
-		name = "PlugInController.m: 71";
-		rLen = 0;
-		rLoc = 1375;
-		rType = 0;
-		vrLen = 1263;
-		vrLoc = 744;
-	};
-	2C54D8330F3A0E6C00264CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */;
-		name = "WindowController.m: 34";
-		rLen = 0;
-		rLoc = 480;
-		rType = 0;
-		vrLen = 1046;
-		vrLoc = 0;
-	};
 	2C54D84D0F3A110F00264CC9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 2C54D84E0F3A110F00264CC9 /* NSObjCRuntime.h */;
@@ -304,19 +274,23 @@
 	};
 	2C54D84E0F3A110F00264CC9 /* NSObjCRuntime.h */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
 		name = NSObjCRuntime.h;
 		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSObjCRuntime.h;
 		sourceTree = "<absolute>";
 	};
 	2C54D8690F3A126800264CC9 /* objc_exception_throw */ = {
 		isa = PBXSymbolicBreakpoint;
+		actions = (
+		);
 		breakpointStyle = 1;
 		continueAfterActions = 0;
 		countType = 0;
 		delayBeforeContinue = 0;
 		hitCount = 0;
 		ignoreCount = 0;
-		modificationTime = 255464040.121131;
+		location = libobjc.A.dylib;
+		modificationTime = 255469328.237334;
 		state = 1;
 		symbolName = objc_exception_throw;
 	};
@@ -339,16 +313,6 @@
 		rType = 0;
 		vrLen = 2153;
 		vrLoc = 16850;
-	};
-	2C54D87A0F3A134600264CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */;
-		name = "Controller.m: 46";
-		rLen = 0;
-		rLoc = 883;
-		rType = 0;
-		vrLen = 1002;
-		vrLoc = 0;
 	};
 	2C54D88E0F3A15E000264CC9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -400,56 +364,6 @@
 		vrLen = 522;
 		vrLoc = 0;
 	};
-	2C54D8950F3A15E000264CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */;
-		name = "WindowController.m: 27";
-		rLen = 0;
-		rLoc = 480;
-		rType = 0;
-		vrLen = 983;
-		vrLoc = 0;
-	};
-	2C54D8960F3A15E000264CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C19E05F0EBE752F00B9BA96 /* ZZWindowController.h */;
-		name = "ZZWindowController.h: 10";
-		rLen = 0;
-		rLoc = 200;
-		rType = 0;
-		vrLen = 449;
-		vrLoc = 0;
-	};
-	2C54D8970F3A15E000264CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CF39FF40CF8E5CA00A1B9A9 /* ZZController.h */;
-		name = "ZZController.h: 12";
-		rLen = 0;
-		rLoc = 253;
-		rType = 0;
-		vrLen = 501;
-		vrLoc = 0;
-	};
-	2C54D8980F3A15E000264CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */;
-		name = "ZZController.m: 11";
-		rLen = 0;
-		rLoc = 199;
-		rType = 0;
-		vrLen = 1010;
-		vrLoc = 0;
-	};
-	2C54D8990F3A15E000264CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */;
-		name = "ZZWindowController.m: 13";
-		rLen = 0;
-		rLoc = 206;
-		rType = 0;
-		vrLen = 987;
-		vrLoc = 0;
-	};
 	2C54D89A0F3A15E000264CC9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */;
@@ -458,16 +372,6 @@
 		rLoc = 203;
 		rType = 0;
 		vrLen = 296;
-		vrLoc = 0;
-	};
-	2C54D89B0F3A15E000264CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C2EC39E0ECE303F005785E2 /* PlugInController.h */;
-		name = "PlugInController.h: 15";
-		rLen = 0;
-		rLoc = 238;
-		rType = 0;
-		vrLen = 522;
 		vrLoc = 0;
 	};
 	2C54D8A20F3A18C500264CC9 /* PBXTextBookmark */ = {
@@ -480,32 +384,22 @@
 		vrLen = 975;
 		vrLoc = 0;
 	};
-	2C54D8A30F3A18C500264CC9 /* PBXTextBookmark */ = {
+	2C54D8DC0F3A27D900264CC9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */;
-		name = "ZZWindowController.m: 13";
+		name = "ZZWindowController.m: 12";
 		rLen = 0;
-		rLoc = 206;
+		rLoc = 205;
 		rType = 0;
 		vrLen = 987;
 		vrLoc = 0;
 	};
-	2C54D8A40F3A18C500264CC9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C2EC39F0ECE303F005785E2 /* PlugInController.m */;
-		name = "PlugInController.m: 58";
-		rLen = 0;
-		rLoc = 1090;
-		rType = 0;
-		vrLen = 975;
-		vrLoc = 0;
-	};
-	2C54D8A50F3A18C500264CC9 /* PBXTextBookmark */ = {
+	2C54D8DD0F3A27D900264CC9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */;
 		name = "ZZWindowController.m: 16";
 		rLen = 0;
-		rLoc = 307;
+		rLoc = 319;
 		rType = 0;
 		vrLen = 987;
 		vrLoc = 0;
@@ -548,10 +442,10 @@
 		continueAfterActions = 0;
 		countType = 0;
 		delayBeforeContinue = 0;
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		location = libobjc.A.dylib;
-		modificationTime = 255464046.764772;
+		modificationTime = 255469328.237325;
 		state = 1;
 		symbolName = objc_exception_throw;
 	};
