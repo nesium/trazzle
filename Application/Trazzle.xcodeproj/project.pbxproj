@@ -8,24 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		2C03583C0D1C568C007C1A48 /* Advanced Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C03583B0D1C568C007C1A48 /* Advanced Preferences.tiff */; };
-		2C19E0610EBE752F00B9BA96 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0600EBE752F00B9BA96 /* WindowController.m */; };
+		2C19E0610EBE752F00B9BA96 /* ZZWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */; };
 		2C19E0660EBE75C100B9BA96 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C19E0650EBE75C100B9BA96 /* MainWindow.xib */; };
 		2C1A2B380D294BB600418DB7 /* reload.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C1A2B370D294BB600418DB7 /* reload.tiff */; };
 		2C1D6DC70F34F82F00EA8975 /* statusbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D6DC60F34F82F00EA8975 /* statusbar_icon.png */; };
 		2C1D6DDE0F34FA4000EA8975 /* statusbar_icon_alternate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D6DDD0F34FA4000EA8975 /* statusbar_icon_alternate.png */; };
 		2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC39F0ECE303F005785E2 /* PlugInController.m */; };
+		2C54D7FD0F3A068200264CC9 /* tabbar_activetab_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FA0F3A068200264CC9 /* tabbar_activetab_right.png */; };
+		2C54D7FE0F3A068200264CC9 /* tabbar_activetab_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FB0F3A068200264CC9 /* tabbar_activetab_middle.png */; };
+		2C54D7FF0F3A068200264CC9 /* tabbar_activetab_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FC0F3A068200264CC9 /* tabbar_activetab_left.png */; };
 		2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */; };
 		2C79FFAE0D42CBEB005279A6 /* FilterNameBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */; };
 		2C93A5390F3906A60050CD51 /* ZZTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C93A5370F3906A60050CD51 /* ZZTabStyle.m */; };
 		2C93A55F0F390BD40050CD51 /* tabbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C93A55E0F390BD40050CD51 /* tabbar_background.png */; };
-		2C93A5860F3918970050CD51 /* tabbar_activetab.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C93A5850F3918970050CD51 /* tabbar_activetab.png */; };
 		2C9CFB590D552F0100CBAA49 /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9CFB580D552F0100CBAA49 /* brick.png */; };
 		2CC26C410D1C60DC005A3AB8 /* colors.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2CC26C400D1C60DC005A3AB8 /* colors.tiff */; };
 		2CCF87090E22B19D00B8CE88 /* trazzle.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CCF87080E22B19D00B8CE88 /* trazzle.icns */; };
 		2CE309230D1EDF130092B5E0 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CE309220D1EDF130092B5E0 /* star.png */; };
 		2CEF18430D2405C6002D3C69 /* CellButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEF18420D2405C6002D3C69 /* CellButton.png */; };
 		2CF39FE30CF8E23600A1B9A9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */; };
-		2CF39FF60CF8E5CA00A1B9A9 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */; };
+		2CF39FF60CF8E5CA00A1B9A9 /* ZZController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */; };
 		2CFCB6230D5675C900570676 /* flag.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2CFCB6220D5675C900570676 /* flag.tiff */; };
 		496AF03A0F320B3B0049FB23 /* RegexKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF0370F320B3B0049FB23 /* RegexKit.framework */; };
 		496AF03B0F320B3B0049FB23 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF0380F320B3B0049FB23 /* Sparkle.framework */; };
@@ -105,8 +107,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2C03583B0D1C568C007C1A48 /* Advanced Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Advanced Preferences.tiff"; sourceTree = "<group>"; };
-		2C19E05F0EBE752F00B9BA96 /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
-		2C19E0600EBE752F00B9BA96 /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
+		2C19E05F0EBE752F00B9BA96 /* ZZWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZWindowController.h; sourceTree = "<group>"; };
+		2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZWindowController.m; sourceTree = "<group>"; };
 		2C19E0650EBE75C100B9BA96 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/Xibs/MainWindow.xib; sourceTree = "<group>"; };
 		2C1A2B370D294BB600418DB7 /* reload.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = reload.tiff; sourceTree = "<group>"; };
 		2C1D6DC60F34F82F00EA8975 /* statusbar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusbar_icon.png; sourceTree = "<group>"; };
@@ -114,6 +116,9 @@
 		2C2EC39E0ECE303F005785E2 /* PlugInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlugInController.h; sourceTree = "<group>"; };
 		2C2EC39F0ECE303F005785E2 /* PlugInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlugInController.m; sourceTree = "<group>"; };
 		2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tests-Info.plist"; path = "Resources/Tests-Info.plist"; sourceTree = "<group>"; };
+		2C54D7FA0F3A068200264CC9 /* tabbar_activetab_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab_right.png; sourceTree = "<group>"; };
+		2C54D7FB0F3A068200264CC9 /* tabbar_activetab_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab_middle.png; sourceTree = "<group>"; };
+		2C54D7FC0F3A068200264CC9 /* tabbar_activetab_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab_left.png; sourceTree = "<group>"; };
 		2C5581CA0F33BCB70011B31A /* libSaturn.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSaturn.dylib; path = usr/lib/libSaturn.dylib; sourceTree = SDKROOT; };
 		2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrazzlePlugIn.h; sourceTree = "<group>"; };
 		2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterNameBackground.png; sourceTree = "<group>"; };
@@ -121,15 +126,14 @@
 		2C93A5370F3906A60050CD51 /* ZZTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZTabStyle.m; sourceTree = "<group>"; };
 		2C93A5380F3906A60050CD51 /* ZZTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZTabStyle.h; sourceTree = "<group>"; };
 		2C93A55E0F390BD40050CD51 /* tabbar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_background.png; sourceTree = "<group>"; };
-		2C93A5850F3918970050CD51 /* tabbar_activetab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab.png; sourceTree = "<group>"; };
 		2C9CFB580D552F0100CBAA49 /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
 		2CC26C400D1C60DC005A3AB8 /* colors.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = colors.tiff; sourceTree = "<group>"; };
 		2CCF87080E22B19D00B8CE88 /* trazzle.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = trazzle.icns; sourceTree = "<group>"; };
 		2CE309220D1EDF130092B5E0 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		2CEF18420D2405C6002D3C69 /* CellButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellButton.png; sourceTree = "<group>"; };
 		2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
-		2CF39FF40CF8E5CA00A1B9A9 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
-		2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		2CF39FF40CF8E5CA00A1B9A9 /* ZZController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZController.h; sourceTree = "<group>"; };
+		2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZController.m; sourceTree = "<group>"; };
 		2CFA54E30D6B8D5F00F5DFE5 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CFCB6220D5675C900570676 /* flag.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = flag.tiff; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* Trazzle_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trazzle_Prefix.pch; sourceTree = "<group>"; };
@@ -214,10 +218,10 @@
 			children = (
 				2C87B4570D8733F10065FC08 /* Constants.h */,
 				2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */,
-				2CF39FF40CF8E5CA00A1B9A9 /* Controller.h */,
-				2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */,
-				2C19E05F0EBE752F00B9BA96 /* WindowController.h */,
-				2C19E0600EBE752F00B9BA96 /* WindowController.m */,
+				2CF39FF40CF8E5CA00A1B9A9 /* ZZController.h */,
+				2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */,
+				2C19E05F0EBE752F00B9BA96 /* ZZWindowController.h */,
+				2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */,
 				2C2EC39E0ECE303F005785E2 /* PlugInController.h */,
 				2C2EC39F0ECE303F005785E2 /* PlugInController.m */,
 				2C93A5380F3906A60050CD51 /* ZZTabStyle.h */,
@@ -261,7 +265,9 @@
 		2C03583A0D1C568C007C1A48 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				2C93A5850F3918970050CD51 /* tabbar_activetab.png */,
+				2C54D7FA0F3A068200264CC9 /* tabbar_activetab_right.png */,
+				2C54D7FB0F3A068200264CC9 /* tabbar_activetab_middle.png */,
+				2C54D7FC0F3A068200264CC9 /* tabbar_activetab_left.png */,
 				2C1D6DC60F34F82F00EA8975 /* statusbar_icon.png */,
 				2C1D6DDD0F34FA4000EA8975 /* statusbar_icon_alternate.png */,
 				2CCF87080E22B19D00B8CE88 /* trazzle.icns */,
@@ -403,7 +409,9 @@
 				2C1D6DC70F34F82F00EA8975 /* statusbar_icon.png in Resources */,
 				2C1D6DDE0F34FA4000EA8975 /* statusbar_icon_alternate.png in Resources */,
 				2C93A55F0F390BD40050CD51 /* tabbar_background.png in Resources */,
-				2C93A5860F3918970050CD51 /* tabbar_activetab.png in Resources */,
+				2C54D7FD0F3A068200264CC9 /* tabbar_activetab_right.png in Resources */,
+				2C54D7FE0F3A068200264CC9 /* tabbar_activetab_middle.png in Resources */,
+				2C54D7FF0F3A068200264CC9 /* tabbar_activetab_left.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,8 +459,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				2CF39FF60CF8E5CA00A1B9A9 /* Controller.m in Sources */,
-				2C19E0610EBE752F00B9BA96 /* WindowController.m in Sources */,
+				2CF39FF60CF8E5CA00A1B9A9 /* ZZController.m in Sources */,
+				2C19E0610EBE752F00B9BA96 /* ZZWindowController.m in Sources */,
 				2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */,
 				2C93A5390F3906A60050CD51 /* ZZTabStyle.m in Sources */,
 			);

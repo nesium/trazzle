@@ -10,7 +10,7 @@
 #import <PSMTabBarControl/PSMTabBarCell.h>
 #import <PSMTabBarControl/PSMTabBarControl.h>
 
-#define Adium_CellPadding 2
+#define Adium_CellPadding 0
 #define Adium_MARGIN_X 4
 #define kPSMAdiumObjectCounterRadius 7.0
 #define kPSMAdiumCounterMinWidth 20
@@ -110,7 +110,7 @@
 
 - (float)leftMarginForTabBarControl
 {
-    return 3.0f;
+    return 0.0f;
 }
 
 - (float)rightMarginForTabBarControl
@@ -469,85 +469,9 @@
 	[counterString drawInRect:counterStringRect];
 }
 
-- (NSBezierPath *)bezierPathWithRoundedRect:(NSRect)rect radius:(float)radius
-{
-    NSBezierPath	*path = [NSBezierPath bezierPath];
-    NSPoint 		topLeft, topRight, bottomLeft, bottomRight;
-    
-    topLeft = NSMakePoint(rect.origin.x, rect.origin.y);
-    topRight = NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y);
-    bottomLeft = NSMakePoint(rect.origin.x, rect.origin.y + rect.size.height);
-    bottomRight = NSMakePoint(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
-	
-    [path appendBezierPathWithArcWithCenter:NSMakePoint(topLeft.x + radius, topLeft.y + radius)
-                                     radius:radius
-                                 startAngle:180
-                                   endAngle:270
-                                  clockwise:NO];
-    [path lineToPoint:NSMakePoint(topRight.x - radius, topRight.y)];
-    
-    [path appendBezierPathWithArcWithCenter:NSMakePoint(topRight.x - radius, topRight.y + radius)
-                                     radius:radius
-                                 startAngle:270
-                                   endAngle:0
-                                  clockwise:NO];
-    [path lineToPoint:NSMakePoint(bottomRight.x, bottomRight.y - radius)];
-    
-    [path appendBezierPathWithArcWithCenter:NSMakePoint(bottomRight.x - radius, bottomRight.y - radius)
-                                     radius:radius
-                                 startAngle:0
-                                   endAngle:90
-                                  clockwise:NO];
-    [path lineToPoint:NSMakePoint(bottomLeft.x + radius, bottomLeft.y)];
-	
-    [path appendBezierPathWithArcWithCenter:NSMakePoint(bottomLeft.x + radius, bottomLeft.y - radius)
-                                     radius:radius
-                                 startAngle:90
-                                   endAngle:180
-                                  clockwise:NO];
-    [path lineToPoint:NSMakePoint(topLeft.x, topLeft.y + radius)];
-	
-    return path;
-}
-
 - (void)drawInteriorWithTabCell:(PSMTabBarCell *)cell inView:(NSView*)controlView
 {
 	NSRect cellFrame = [cell frame];
-	
-	if ((orientation == PSMTabBarVerticalOrientation) &&
-		[cell hasLargeImage]) {
-		NSImage *image = [[[cell representedObject] identifier] largeImage];
-		cellFrame.origin.x += Adium_MARGIN_X;
-
-		NSRect imageDrawingRect = NSMakeRect(cellFrame.origin.x,
-											 cellFrame.origin.y - ((kPSMTabBarControlSourceListHeight - kPSMTabBarLargeImageHeight) / 2),
-											 kPSMTabBarLargeImageWidth, kPSMTabBarLargeImageHeight);
-
-		[NSGraphicsContext saveGraphicsState];
-		//Use a transform to draw an arbitrary image in our flipped view
-		NSAffineTransform *transform = [NSAffineTransform transform];
-		[transform translateXBy:imageDrawingRect.origin.x yBy:(imageDrawingRect.origin.y + imageDrawingRect.size.height)];
-		[transform scaleXBy:1.0 yBy:-1.0];
-		[transform concat];
-
-		imageDrawingRect.origin = NSMakePoint(0,0);
-		
-		//Create Rounding.
-		float userIconRoundingRadius = (kPSMTabBarLargeImageWidth / 4.0);
-		if (userIconRoundingRadius > 3) userIconRoundingRadius = 3;
-		NSBezierPath	*clipPath = [self bezierPathWithRoundedRect:imageDrawingRect radius:userIconRoundingRadius];
-		[clipPath addClip];
-
-		[image drawInRect:imageDrawingRect
-				 fromRect:NSMakeRect(0, 0, [image size].width, [image size].height)
-				operation:NSCompositeSourceOver
-				 fraction:1.0];
-
-		[NSGraphicsContext restoreGraphicsState];
-
-		cellFrame.origin.x += imageDrawingRect.size.width;
-		cellFrame.size.width -= imageDrawingRect.size.width;
-	}
 
 	// label rect
 	NSRect labelRect;
@@ -620,31 +544,16 @@
 		[closeButtonOrIcon compositeToPoint:drawingRect.origin operation:NSCompositeSourceOver fraction:1.0];
 		
 		// scoot label over
-		switch (orientation)
+		float oldOrigin = labelRect.origin.x;
+		if (NSWidth(iconRect) > NSWidth(closeButtonRect))
 		{
-			case PSMTabBarHorizontalOrientation:
-			{
-				float oldOrigin = labelRect.origin.x;
-				if (NSWidth(iconRect) > NSWidth(closeButtonRect)) {
-					labelRect.origin.x = (NSMaxX(iconRect) + (Adium_CellPadding * 2));
-				} else {
-					labelRect.origin.x = (NSMaxX(closeButtonRect) + (Adium_CellPadding * 2));					
-				}
-				labelRect.size.width -= (NSMinX(labelRect) - oldOrigin);
-				break;
-			}
-			case PSMTabBarVerticalOrientation:
-			{
-				//Generate the remaining label rect directly from the location of the close button, allowing for padding
-				if (NSWidth(iconRect) > NSWidth(closeButtonRect)) {
-					labelRect.size.width = NSMinX(iconRect) - Adium_CellPadding - NSMinX(labelRect);
-				} else {
-					labelRect.size.width = NSMinX(closeButtonRect) - Adium_CellPadding - NSMinX(labelRect);
-				}
-
-				break;
-			}
+			labelRect.origin.x = (NSMaxX(iconRect) + (Adium_CellPadding * 2));
+		} 
+		else 
+		{
+			labelRect.origin.x = (NSMaxX(closeButtonRect) + (Adium_CellPadding * 2));					
 		}
+		labelRect.size.width -= (NSMinX(labelRect) - oldOrigin);
 
 	} else if ([cell hasIcon]) {
 		/* The close button is disabled; the cell has an icon */
@@ -658,23 +567,12 @@
 		[icon compositeToPoint:iconRect.origin operation:NSCompositeSourceOver fraction:1.0];
 		
 		// scoot label over by the size of the standard close button
-		switch (orientation)
-		{
-			case PSMTabBarHorizontalOrientation:
-				labelRect.origin.x += (NSWidth(iconRect) + Adium_CellPadding);
-				labelRect.size.width -= (NSWidth(iconRect) + Adium_CellPadding);
-				break;
-			case PSMTabBarVerticalOrientation:
-				labelRect.size.width -= (NSWidth(iconRect) + Adium_CellPadding);
-				break;
-		}		
-	}
-
-	if ([cell state] == NSOnState) {
-		labelRect.origin.y -= 1;
+		labelRect.origin.x += (NSWidth(iconRect) + Adium_CellPadding);
+		labelRect.size.width -= (NSWidth(iconRect) + Adium_CellPadding);
 	}
 	
-	if (![[cell indicator] isHidden]) {
+	if (![[cell indicator] isHidden])
+	{
 		labelRect.size.width -= (kPSMTabBarIndicatorWidth + Adium_CellPadding);
 	}
     
@@ -690,166 +588,51 @@
 	
 	// draw label
 	NSAttributedString *attributedString = [cell attributedStringValue];
-	if (orientation == PSMTabBarVerticalOrientation) {
-		//Calculate the centered rect
-		float stringHeight = [self heightOfAttributedString:attributedString withWidth:NSWidth(labelRect)];
-		if (stringHeight < labelRect.size.height) {
-			labelRect.origin.y += (NSHeight(labelRect) - stringHeight) / 2.0;
-		}		
+	NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+	NSColor *color;
+	if ([cell state] == NSOnState)
+	{
+		color = [NSColor whiteColor];
 	}
-
-	[attributedString drawInRect:labelRect];
+	else
+	{
+		color = [NSColor colorWithCalibratedRed:0.773 green:0.773 blue:0.773 alpha:1.0];
+		if ([cell isHighlighted]) color = [NSColor whiteColor];
+		NSShadow *shadow = [[NSShadow alloc] init];
+		[shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.0 alpha:0.85]];
+		[shadow setShadowBlurRadius:2];
+		[shadow setShadowOffset:(NSSize){0.0, -1.0}];
+		[attributes setObject:shadow forKey:NSShadowAttributeName];
+		[shadow release];
+	}
+	NSFont *font = [NSFont boldSystemFontOfSize:11.0];
+	[attributes setObject:color forKey:NSForegroundColorAttributeName];
+	[attributes setObject:font forKey:NSFontAttributeName];
+	NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] 
+		initWithAttributedString:attributedString];
+	[mutableAttributedString addAttributes:attributes 
+		range:(NSRange){0, [mutableAttributedString length]}];
+	
+	labelRect.size.width = MIN(cellFrame.size.width - 10.0, [mutableAttributedString size].width);
+	labelRect.origin.x = round(cellFrame.size.width - labelRect.size.width) / 2 + cellFrame.origin.x;
+		
+	[mutableAttributedString drawInRect:labelRect];
+	[mutableAttributedString release];
 }
 
 - (void)drawTabCell:(PSMTabBarCell *)cell
 {
 	NSRect cellFrame = [cell frame];
-	
-	
-	
-	NSColor *lineColor = nil;
-    NSBezierPath *bezier = [NSBezierPath bezierPath];
-    lineColor = [NSColor grayColor];
-
-	[bezier setLineWidth:1.0];
-
-	//disable antialiasing of bezier paths
-	[NSGraphicsContext saveGraphicsState];
-	[[NSGraphicsContext currentContext] setShouldAntialias:NO];
-	
-	NSShadow *shadow = [[NSShadow alloc] init];
-	[shadow setShadowOffset:NSMakeSize(-2, -2)];
-	[shadow setShadowBlurRadius:2];
-	[shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.6 alpha:1.0]];
-
-	if ([cell state] == NSOnState) {
-		// selected tab
-		if (orientation == PSMTabBarHorizontalOrientation) {
-			NSRect aRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, NSWidth(cellFrame), cellFrame.size.height - 2.5);
-			
-			// background
-			if (_drawsUnified) {
-				if ([[[tabBar tabView] window] isKeyWindow]) {
-					[[NSColor grayColor] drawSwatchInRect:aRect];
-//					NSBezierPath *path = [NSBezierPath bezierPathWithRect:aRect];
-//					[path linearGradientFillWithStartColor:[NSColor colorWithCalibratedWhite:0.835 alpha:1.0]
-//												endColor:[NSColor colorWithCalibratedWhite:0.843 alpha:1.0]];
-				} else {
-					[[NSColor windowBackgroundColor] set];
-					NSRectFill(aRect);
-				}
-			} else {
-				[_gradientImage drawInRect:NSMakeRect(NSMinX(aRect), NSMinY(aRect), NSWidth(aRect), NSHeight(aRect)) fromRect:NSMakeRect(0, 0, [_gradientImage size].width, [_gradientImage size].height) operation:NSCompositeSourceOver fraction:1.0];
-			}
-			
-			// frame
-			[lineColor set];
-			[bezier setLineWidth:1.0];
-			[bezier moveToPoint:NSMakePoint(aRect.origin.x, aRect.origin.y)];
-			[bezier lineToPoint:NSMakePoint(aRect.origin.x, aRect.origin.y + aRect.size.height)];
-			
-			[shadow setShadowOffset:NSMakeSize(-2, -2)];
-			[shadow set];
-			[bezier stroke];
-			
-			bezier = [NSBezierPath bezierPath];
-			[bezier setLineWidth:1.0];
-			[bezier moveToPoint:NSMakePoint(NSMinX(aRect), NSMaxY(aRect))];
-			[bezier lineToPoint:NSMakePoint(NSMaxX(aRect), NSMaxY(aRect))];
-			[bezier lineToPoint:NSMakePoint(NSMaxX(aRect), NSMinY(aRect))];
-			
-			if ([[cell controlView] frame].size.height < 2) {
-				// special case of hidden control; need line across top of cell
-				[bezier moveToPoint:NSMakePoint(aRect.origin.x, aRect.origin.y + 0.5)];
-				[bezier lineToPoint:NSMakePoint(aRect.origin.x+aRect.size.width, aRect.origin.y + 0.5)];
-			}
-			
-			[shadow setShadowOffset:NSMakeSize(2, -2)];
-			[shadow set];
-			[bezier stroke];
-		} else {
-			NSRect aRect;
-			
-			if (_drawsRight) {
-				aRect = NSMakeRect(cellFrame.origin.x - 1, cellFrame.origin.y, cellFrame.size.width - 3, cellFrame.size.height);
-			} else {
-				aRect = NSMakeRect(cellFrame.origin.x + 2, cellFrame.origin.y, cellFrame.size.width - 2, cellFrame.size.height);
-			}
-			
-			// background
-			if (_drawsUnified) {
-				if ([[[tabBar tabView] window] isKeyWindow]) {
-					[[NSColor grayColor] drawSwatchInRect:aRect];
-				} else {
-					[[NSColor windowBackgroundColor] set];
-					NSRectFill(aRect);
-				}
-			} else {
-				if (_drawsRight) {
-					[[NSColor grayColor] drawSwatchInRect:aRect];
-				} else {
-					[[NSColor grayColor] drawSwatchInRect:aRect];
-				}
-			}
-			
-			// frame
-			//top line
-			[lineColor set];
-			[bezier setLineWidth:1.0];
-			[bezier moveToPoint:NSMakePoint(NSMinX(aRect), NSMinY(aRect))];
-			[bezier lineToPoint:NSMakePoint(NSMaxX(aRect), NSMinY(aRect))];
-			[bezier stroke];
-			
-			//outer edge and bottom lines
-			bezier = [NSBezierPath bezierPath];
-			[bezier setLineWidth:1.0];
-			if (_drawsRight) {
-				//Right
-				[bezier moveToPoint:NSMakePoint(NSMaxX(aRect), NSMinY(aRect))];
-				[bezier lineToPoint:NSMakePoint(NSMaxX(aRect), NSMaxY(aRect))];
-				//Bottom
-				[bezier lineToPoint:NSMakePoint(NSMinX(aRect), NSMaxY(aRect))];
-			} else {
-				//Left
-				[bezier moveToPoint:NSMakePoint(NSMinX(aRect), NSMinY(aRect))];
-				[bezier lineToPoint:NSMakePoint(NSMinX(aRect), NSMaxY(aRect))];
-				//Bottom
-				[bezier lineToPoint:NSMakePoint(NSMaxX(aRect), NSMaxY(aRect))];
-			}
-			[shadow setShadowOffset:NSMakeSize((_drawsRight ? 2 : -2), -2)];
-			[shadow set];
-			[bezier stroke];
-		}
-	} else {
-		// unselected tab
-		NSRect aRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width, cellFrame.size.height);
-		
-		// rollover
-		if ([cell isHighlighted]) {
-			[[NSColor colorWithCalibratedWhite:0.0 alpha:0.1] set];
-			NSRectFillUsingOperation(aRect, NSCompositeSourceAtop);
-		}
-		
-		// frame
-		[lineColor set];
-		
-		if (orientation == PSMTabBarHorizontalOrientation) {
-			[bezier moveToPoint:NSMakePoint(aRect.origin.x, aRect.origin.y)];
-			[bezier lineToPoint:NSMakePoint(aRect.origin.x + aRect.size.width, aRect.origin.y)];
-			if (!([cell tabState] & PSMTab_RightIsSelectedMask)) {
-				//draw the tab divider
-				[bezier lineToPoint:NSMakePoint(aRect.origin.x + aRect.size.width, aRect.origin.y + aRect.size.height)];
-			}
-			[bezier stroke];
-
-		} else {
-			//No outline for vertical
-		}
+	if ([cell state] == NSOnState)
+	{
+		NSDrawThreePartImage(cellFrame, [NSImage imageNamed:@"tabbar_activetab_left.png"], 
+			[NSImage imageNamed:@"tabbar_activetab_middle.png"], 
+			[NSImage imageNamed:@"tabbar_activetab_right.png"], 
+			NO, NSCompositeSourceAtop, 1.0, YES);
+	} 
+	else 
+	{	
 	}
-	
-	[NSGraphicsContext restoreGraphicsState];
-	[shadow release];
-	
 	[self drawInteriorWithTabCell:cell inView:[cell controlView]];
 }
 

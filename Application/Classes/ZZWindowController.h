@@ -11,7 +11,7 @@
 #import "ZZTabStyle.h"
 
 
-@interface WindowController : NSWindowController 
+@interface ZZWindowController : NSWindowController 
 {
 	IBOutlet PSMTabBarControl *m_tabBar;
 	IBOutlet NSTabView *m_tabView;

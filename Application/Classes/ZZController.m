@@ -6,14 +6,14 @@
 //  Copyright 2007 nesiumdotcom. All rights reserved.
 //
 
-#import "Controller.h"
+#import "ZZController.h"
 
-@interface Controller (Private)
+@interface ZZController (Private)
 - (void)loadPlugins;
 @end
 
 
-@implementation Controller
+@implementation ZZController
 
 #pragma mark -
 #pragma mark Initialization & deallocation
@@ -28,7 +28,7 @@
 
 - (void)awakeFromNib
 {
-	m_windowController = [[WindowController alloc] initWithWindowNibName:@"MainWindow"];
+	m_windowController = [[ZZWindowController alloc] initWithWindowNibName:@"MainWindow"];
 	[m_windowController showWindow:self];
 	m_plugInControllers = [[NSMutableArray alloc] init];
 	[self loadPlugins];

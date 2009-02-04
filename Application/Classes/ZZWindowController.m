@@ -6,10 +6,10 @@
 //  Copyright 2008 nesiumdotcom. All rights reserved.
 //
 
-#import "WindowController.h"
+#import "ZZWindowController.h"
 
 
-@implementation WindowController
+@implementation ZZWindowController
 
 - (id)initWithWindowNibName:(NSString *)windowNibName
 {
@@ -25,6 +25,11 @@
 	{
 		[m_tabView removeTabViewItem:[m_tabView tabViewItemAtIndex:0]];
 	}
+}
+
+- (IBAction)showWindow:(id)sender
+{
+	[super showWindow:sender];
 	ZZTabStyle *tabStyle = [[ZZTabStyle alloc] init];
 	[m_tabBar setStyle:tabStyle];
 	[tabStyle release];
@@ -37,7 +42,6 @@
 	[tabViewItem setLabel:title];
 	[tabViewItem setView:view];
 	[m_tabView addTabViewItem:tabViewItem];
-	NSLog(@"add tab: %@", tabViewItem);
 	[tabViewItem release];
 }
 

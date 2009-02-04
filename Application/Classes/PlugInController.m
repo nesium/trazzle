@@ -16,7 +16,7 @@
 
 NSStatusItem *m_statusItem;
 NSBundle *m_plugInBundle;
-WindowController *m_windowController;
+ZZWindowController *m_windowController;
 
 
 
@@ -25,7 +25,7 @@ WindowController *m_windowController;
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithPlugInBundle:(NSBundle *)bundle windowController:(WindowController *)controller
+- (id)initWithPlugInBundle:(NSBundle *)bundle windowController:(ZZWindowController *)controller
 {
 	if (self = [super init])
 	{

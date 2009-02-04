@@ -8,17 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 #import <objc/objc-runtime.h>
-#import "WindowController.h"
+#import "ZZWindowController.h"
 #import "PlugInController.h"
 #import "TrazzlePlugIn.h"
 
 #define SUPPORT_PATH @"~/Library/Application Support/Trazzle"
 
-@interface Controller : NSObject
+@interface ZZController : NSObject
 {
 	NSMutableArray *m_loadedPlugins;
 	NSMutableArray *m_plugInControllers;
-	WindowController *m_windowController;
+	ZZWindowController *m_windowController;
 }
 
 @end
