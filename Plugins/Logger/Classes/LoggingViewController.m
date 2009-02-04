@@ -18,6 +18,9 @@
 
 @synthesize delegate=m_delegate;
 
+#pragma mark -
+#pragma mark Initialization & Deallocation
+
 - (void)awakeFromNib
 {
 	m_webViewReady = NO;
