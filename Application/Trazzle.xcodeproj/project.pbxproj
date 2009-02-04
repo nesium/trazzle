@@ -16,6 +16,9 @@
 		2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC39F0ECE303F005785E2 /* PlugInController.m */; };
 		2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */; };
 		2C79FFAE0D42CBEB005279A6 /* FilterNameBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */; };
+		2C93A5390F3906A60050CD51 /* ZZTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C93A5370F3906A60050CD51 /* ZZTabStyle.m */; };
+		2C93A55F0F390BD40050CD51 /* tabbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C93A55E0F390BD40050CD51 /* tabbar_background.png */; };
+		2C93A5860F3918970050CD51 /* tabbar_activetab.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C93A5850F3918970050CD51 /* tabbar_activetab.png */; };
 		2C9CFB590D552F0100CBAA49 /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9CFB580D552F0100CBAA49 /* brick.png */; };
 		2CC26C410D1C60DC005A3AB8 /* colors.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2CC26C400D1C60DC005A3AB8 /* colors.tiff */; };
 		2CCF87090E22B19D00B8CE88 /* trazzle.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CCF87080E22B19D00B8CE88 /* trazzle.icns */; };
@@ -115,6 +118,10 @@
 		2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrazzlePlugIn.h; sourceTree = "<group>"; };
 		2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterNameBackground.png; sourceTree = "<group>"; };
 		2C87B4570D8733F10065FC08 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2C93A5370F3906A60050CD51 /* ZZTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZTabStyle.m; sourceTree = "<group>"; };
+		2C93A5380F3906A60050CD51 /* ZZTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZTabStyle.h; sourceTree = "<group>"; };
+		2C93A55E0F390BD40050CD51 /* tabbar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_background.png; sourceTree = "<group>"; };
+		2C93A5850F3918970050CD51 /* tabbar_activetab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab.png; sourceTree = "<group>"; };
 		2C9CFB580D552F0100CBAA49 /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
 		2CC26C400D1C60DC005A3AB8 /* colors.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = colors.tiff; sourceTree = "<group>"; };
 		2CCF87080E22B19D00B8CE88 /* trazzle.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = trazzle.icns; sourceTree = "<group>"; };
@@ -213,6 +220,8 @@
 				2C19E0600EBE752F00B9BA96 /* WindowController.m */,
 				2C2EC39E0ECE303F005785E2 /* PlugInController.h */,
 				2C2EC39F0ECE303F005785E2 /* PlugInController.m */,
+				2C93A5380F3906A60050CD51 /* ZZTabStyle.h */,
+				2C93A5370F3906A60050CD51 /* ZZTabStyle.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -252,6 +261,7 @@
 		2C03583A0D1C568C007C1A48 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2C93A5850F3918970050CD51 /* tabbar_activetab.png */,
 				2C1D6DC60F34F82F00EA8975 /* statusbar_icon.png */,
 				2C1D6DDD0F34FA4000EA8975 /* statusbar_icon_alternate.png */,
 				2CCF87080E22B19D00B8CE88 /* trazzle.icns */,
@@ -263,6 +273,7 @@
 				2CE309220D1EDF130092B5E0 /* star.png */,
 				2CC26C400D1C60DC005A3AB8 /* colors.tiff */,
 				2C03583B0D1C568C007C1A48 /* Advanced Preferences.tiff */,
+				2C93A55E0F390BD40050CD51 /* tabbar_background.png */,
 			);
 			name = Images;
 			path = Resources/Images;
@@ -391,6 +402,8 @@
 				2C19E0660EBE75C100B9BA96 /* MainWindow.xib in Resources */,
 				2C1D6DC70F34F82F00EA8975 /* statusbar_icon.png in Resources */,
 				2C1D6DDE0F34FA4000EA8975 /* statusbar_icon_alternate.png in Resources */,
+				2C93A55F0F390BD40050CD51 /* tabbar_background.png in Resources */,
+				2C93A5860F3918970050CD51 /* tabbar_activetab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +454,7 @@
 				2CF39FF60CF8E5CA00A1B9A9 /* Controller.m in Sources */,
 				2C19E0610EBE752F00B9BA96 /* WindowController.m in Sources */,
 				2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */,
+				2C93A5390F3906A60050CD51 /* ZZTabStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4"/>
+			<integer value="3"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -52,7 +52,7 @@
 						<object class="NSCustomView" id="875610375">
 							<reference key="NSNextResponder" ref="995987926"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{0, 381}, {746, 22}}</string>
+							<string key="NSFrame">{{0, 378}, {746, 25}}</string>
 							<reference key="NSSuperview" ref="995987926"/>
 							<string key="NSClassName">PSMTabBarControl</string>
 							<string key="NSExtension">NSControl</string>
@@ -60,7 +60,7 @@
 						<object class="NSTabView" id="584938495">
 							<reference key="NSNextResponder" ref="995987926"/>
 							<int key="NSvFlags">18</int>
-							<string key="NSFrameSize">{746, 381}</string>
+							<string key="NSFrameSize">{746, 378}</string>
 							<reference key="NSSuperview" ref="995987926"/>
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -69,7 +69,7 @@
 									<object class="NSView" key="NSView" id="61019158">
 										<reference key="NSNextResponder" ref="584938495"/>
 										<int key="NSvFlags">256</int>
-										<string key="NSFrameSize">{746, 381}</string>
+										<string key="NSFrameSize">{746, 378}</string>
 										<reference key="NSSuperview" ref="584938495"/>
 									</object>
 									<string key="NSLabel">Tab</string>

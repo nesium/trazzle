@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <PSMTabBarControl/PSMTabBarControl.h>
+#import "ZZTabStyle.h"
 
 
 @interface WindowController : NSWindowController 

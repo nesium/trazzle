@@ -25,7 +25,9 @@
 	{
 		[m_tabView removeTabViewItem:[m_tabView tabViewItemAtIndex:0]];
 	}
-	[m_tabBar setStyleNamed:@"Unified"];
+	ZZTabStyle *tabStyle = [[ZZTabStyle alloc] init];
+	[m_tabBar setStyle:tabStyle];
+	[tabStyle release];
 	[m_tabBar setDisableTabClose:YES];
 }
 
