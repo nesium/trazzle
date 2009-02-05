@@ -16,7 +16,8 @@
 
 - (id)initWithPlugInBundle:(NSBundle *)bundle windowController:(ZZWindowController *)controller;
 
-- (void)addTabWithIdentifier:(id)ident title:(NSString *)title view:(NSView *)view;
+- (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
+	delegate:(id <TrazzleTabViewDelegate>)delegate;
 - (void)addStatusMenuItem:(NSMenuItem *)item;
 - (void)removeStatusMenuItem:(NSMenuItem *)item;
 

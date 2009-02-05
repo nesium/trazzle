@@ -47,9 +47,10 @@ ZZWindowController *m_windowController;
 #pragma mark -
 #pragma mark Public methods
 
-- (void)addTabWithIdentifier:(id)ident title:(NSString *)title view:(NSView *)view
+- (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
+	delegate:(id <TrazzleTabViewDelegate>)delegate
 {
-	[m_windowController addTabWithIdentifier:ident title:title view:view];
+	[m_windowController addTabWithIdentifier:ident view:view delegate:delegate];
 }
 
 - (void)addStatusMenuItem:(NSMenuItem *)item
@@ -80,6 +81,7 @@ ZZWindowController *m_windowController;
 	}
 	[[NSStatusBar systemStatusBar] removeStatusItem:m_statusItem];
 	[m_statusItem release];
+	m_statusItem = nil;
 }
 
 - (NSStatusItem *)_statusItem

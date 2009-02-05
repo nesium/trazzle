@@ -16,7 +16,7 @@
 #import "AbstractMessage.h"
 #import "CommandMessage.h"
 
-@interface LoggerPlugin : NSObject <TrazzlePlugIn> 
+@interface LoggerPlugin : NSObject <TrazzlePlugIn, TrazzleTabViewDelegate> 
 {
 	PlugInController *controller;
 	

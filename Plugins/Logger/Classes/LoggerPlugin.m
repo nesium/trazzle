@@ -48,8 +48,7 @@
 		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 
 			bundle:[NSBundle bundleForClass:[self class]]];
 		m_loggingViewController.delegate = self;
-		[controller addTabWithIdentifier:@"Foo" title:@"Session 1" 
-			view:[m_loggingViewController view]];
+		[controller addTabWithIdentifier:@"Foo" view:[m_loggingViewController view] delegate:self];
 		
 		// alloc model
 		m_messageModel = [[MessageModel alloc] init];
@@ -94,6 +93,30 @@
 	[m_connectedClients release];
 	[m_messageModel release];
 	[super dealloc];
+}
+
+
+
+#pragma mark TrazzleTabViewDelegate methods
+
+- (BOOL)receivedKeyDown:(NSEvent *)event inTabWithIdentifier:(NSString *)identifier
+{
+	return [event keyCode] == 51 || [event keyCode] == 117;
+}
+
+- (BOOL)receivedKeyUp:(NSEvent *)event inTabWithIdentifier:(NSString *)identifier
+{
+	if ([event keyCode] == 51 || [event keyCode] == 117)
+	{
+		[m_messageModel clearAllMessages];
+		[m_loggingViewController clearAllMessages];
+	}
+	return YES;
+}
+
+- (NSString *)titleForTabWithIdentifier:(NSString *)identifier
+{
+	return @"New Session";
 }
 
 
@@ -262,6 +285,9 @@
 
 - (void)onSocket:(AsyncSocket *)sock didAcceptNewSocket:(AsyncSocket *)newSocket
 {
+	[m_messageModel clearAllMessages];
+	[m_loggingViewController clearAllMessages];
+	
 	LoggingClient *client = [[LoggingClient alloc] initWithSocket:newSocket];
 	client.delegate = self;
 	[m_connectedClients addObject:client];

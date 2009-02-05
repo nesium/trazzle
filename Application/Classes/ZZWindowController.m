@@ -7,6 +7,7 @@
 //
 
 #import "ZZWindowController.h"
+#import "TrazzlePlugIn.h"
 
 
 @implementation ZZWindowController
@@ -15,8 +16,15 @@
 {
 	if (self = [super initWithWindowNibName:windowNibName])
 	{
+		m_delegates = [[NSMutableArray alloc] init];
 	}
 	return self;
+}
+
+- (void)dealloc
+{
+	[m_delegates release];
+	[super dealloc];
 }
 
 - (void)windowDidLoad
@@ -36,13 +44,15 @@
 	[m_tabBar setDisableTabClose:YES];
 }
 
-- (void)addTabWithIdentifier:(id)ident title:(NSString *)title view:(NSView *)view
+- (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
+	delegate:(id <TrazzleTabViewDelegate>)delegate
 {
 	NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:ident];
-	[tabViewItem setLabel:title];
+	[tabViewItem setLabel:[delegate titleForTabWithIdentifier:ident]];
 	[tabViewItem setView:view];
 	[m_tabView addTabViewItem:tabViewItem];
 	[tabViewItem release];
+	[m_delegates addObject:delegate];
 }
 
 
@@ -52,19 +62,36 @@
 
 - (void)keyDown:(NSEvent *)event
 {
+	NSTabViewItem *selectedTab = [m_tabView selectedTabViewItem];
+	uint32_t selectedIndex = [m_tabView indexOfTabViewItem:selectedTab];
+	id delegate = [m_delegates objectAtIndex:selectedIndex];
+	id consumed = NO;
+	if ([delegate respondsToSelector:@selector(receivedKeyDown:inTabWithIdentifier:)])
+	{
+		consumed = objc_msgSend(delegate, @selector(receivedKeyDown:inTabWithIdentifier:), event, 
+			[selectedTab identifier]);
+	}
+	if (!consumed)
+	{
+		[super keyDown:event];
+	}
 }
 
 - (void)keyUp:(NSEvent *)event
 {
-	
-	// either webview or our window needs to be first responder so that we clear the output
-//	if (([event keyCode] == 51 || [event keyCode] == 117) && 
-//		(([firstResponder respondsToSelector:@selector(isDescendantOf:)] &&
-//			[(NSView *)firstResponder isDescendantOf:m_webView]) || 
-//			firstResponder == [self window]))
-//	{
-//		[m_logMessageModel clear];
-//	}
+	NSTabViewItem *selectedTab = [m_tabView selectedTabViewItem];
+	uint32_t selectedIndex = [m_tabView indexOfTabViewItem:selectedTab];
+	id delegate = [m_delegates objectAtIndex:selectedIndex];
+	id consumed = NO;
+	if ([delegate respondsToSelector:@selector(receivedKeyUp:inTabWithIdentifier:)])
+	{
+		consumed = objc_msgSend(delegate, @selector(receivedKeyUp:inTabWithIdentifier:), event, 
+			[selectedTab identifier]);
+	}
+	if (!consumed)
+	{
+		[super keyUp:event];
+	}
 }
 
 @end

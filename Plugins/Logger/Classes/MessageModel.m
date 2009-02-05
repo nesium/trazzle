@@ -50,4 +50,9 @@
 	return [m_messages objectAtIndex:index];
 }
 
+- (void)clearAllMessages
+{
+	[m_messages removeAllObjects];
+}
+
 @end

@@ -20,4 +20,5 @@
 @property (nonatomic, assign) id delegate;
 - (void)addMessage:(AbstractMessage *)message;
 - (AbstractMessage *)messageAtIndex:(uint32_t)index;
+- (void)clearAllMessages;
 @end

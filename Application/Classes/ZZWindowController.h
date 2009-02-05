@@ -10,13 +10,15 @@
 #import <PSMTabBarControl/PSMTabBarControl.h>
 #import "ZZTabStyle.h"
 
+@protocol TrazzleTabViewDelegate;
 
 @interface ZZWindowController : NSWindowController 
 {
 	IBOutlet PSMTabBarControl *m_tabBar;
 	IBOutlet NSTabView *m_tabView;
+	NSMutableArray *m_delegates;
 }
-
-- (void)addTabWithIdentifier:(id)ident title:(NSString *)title view:(NSView *)view;
-
+- (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
+	delegate:(id <TrazzleTabViewDelegate>)delegate;
 @end
+
