@@ -197,48 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>496AF2870F337D890049FB23</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>Controller.m</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>496AF2880F337D890049FB23</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>Controller.m</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>496AF2890F337D890049FB23</string>
-						<key>history</key>
-						<array>
-							<string>496AF26F0F337C630049FB23</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {741, 799}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>297 145 741 840 0 0 1200 1578 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -478,8 +437,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>496AF2550F3375010049FB23</string>
-				<string>496AF2560F3375010049FB23</string>
+				<string>49A7096D0F3B591C0062B512</string>
+				<string>49A7096E0F3B591C0062B512</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -512,11 +471,9 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
-		<string>496AF2870F337D890049FB23</string>
 		<string>/Projekte/Cocoa/Trazzle_2.0/Application/Trazzle.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -738,7 +695,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>496AF2750F337C9D0049FB23</string>
+				<string>49A709DC0F3B61310062B512</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -858,13 +815,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D54069F1CE1000CFCEE</string>
-				<string>496AF2570F3375010049FB23</string>
+				<string>49A709DD0F3B61310062B512</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>496AF2580F3375010049FB23</string>
-				<string>496AF2590F3375010049FB23</string>
-				<string>496AF25A0F3375010049FB23</string>
-				<string>496AF25B0F3375010049FB23</string>
-				<string>496AF25C0F3375010049FB23</string>
+				<string>49A709DE0F3B61310062B512</string>
+				<string>49A709DF0F3B61310062B512</string>
+				<string>49A709E00F3B61310062B512</string>
+				<string>49A709E10F3B61310062B512</string>
+				<string>49A709E20F3B61310062B512</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -983,6 +940,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1018,7 +977,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>496AF2790F337C9D0049FB23</string>
+				<string>49A709E30F3B61310062B512</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

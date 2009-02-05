@@ -12,18 +12,14 @@
 			490874430D0554E9002D0EF3 /* Trazzle */,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 255030516;
-			PBXWorkspaceStateSaveDate = 255030516;
-		};
-		perUserProjectItems = {
-			496AF26F0F337C630049FB23 /* PBXBookmark */ = 496AF26F0F337C630049FB23 /* PBXBookmark */;
-			496AF2890F337D890049FB23 /* PBXTextBookmark */ = 496AF2890F337D890049FB23 /* PBXTextBookmark */;
+			PBXPerProjectTemplateStateSaveDate = 255547670;
+			PBXWorkspaceStateSaveDate = 255547670;
 		};
 		sourceControlManager = 4908745A0D055502002D0EF3 /* Source Control */;
 		userBuildSettings = {
 		};
 	};
-	2C19E05F0EBE752F00B9BA96 /* WindowController.h */ = {
+	2C19E05F0EBE752F00B9BA96 /* ZZWindowController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {694, 768}}";
 			sepNavSelRange = "{0, 0}";
@@ -31,19 +27,19 @@
 			sepNavWindowFrame = "{{65, 691}, {741, 840}}";
 		};
 	};
-	2C19E0600EBE752F00B9BA96 /* WindowController.m */ = {
+	2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {694, 768}}";
+			sepNavIntBoundsRect = "{{0, 0}, {694, 980}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 916}";
-			sepNavWindowFrame = "{{42, 712}, {741, 840}}";
+			sepNavVisRange = "{0, 1071}";
+			sepNavWindowFrame = "{{248, 366}, {741, 840}}";
 		};
 	};
 	2C2EC39F0ECE303F005785E2 /* PlugInController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {774, 1195}}";
+			sepNavIntBoundsRect = "{{0, 0}, {774, 1414}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 603}";
+			sepNavVisRange = "{271, 1790}";
 			sepNavWindowFrame = "{{65, 264}, {821, 1267}}";
 		};
 	};
@@ -63,7 +59,7 @@
 			sepNavWindowFrame = "{{88, 670}, {741, 840}}";
 		};
 	};
-	2CF39FF40CF8E5CA00A1B9A9 /* Controller.h */ = {
+	2CF39FF40CF8E5CA00A1B9A9 /* ZZController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1060, 887}}";
 			sepNavSelRange = "{461, 0}";
@@ -71,11 +67,11 @@
 			sepNavWindowFrame = "{{42, 193}, {1107, 959}}";
 		};
 	};
-	2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */ = {
+	2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {694, 1092}}";
+			sepNavIntBoundsRect = "{{0, 0}, {694, 1176}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1081}";
+			sepNavVisRange = "{0, 1076}";
 			sepNavWindowFrame = "{{297, 145}, {741, 840}}";
 		};
 	};
@@ -120,20 +116,6 @@
 	4908745B0D055502002D0EF3 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
-	};
-	496AF26F0F337C630049FB23 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */;
-	};
-	496AF2890F337D890049FB23 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CF39FF50CF8E5CA00A1B9A9 /* Controller.m */;
-		name = "Controller.m: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1081;
-		vrLoc = 0;
 	};
 	8D15AC270486D014006FF6A4 /* Trazzle */ = {
 		activeExec = 0;

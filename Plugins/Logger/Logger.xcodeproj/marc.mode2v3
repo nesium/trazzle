@@ -437,8 +437,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>496AF25E0F3375010049FB23</string>
-				<string>496AF25F0F3375010049FB23</string>
+				<string>49A709A40F3B59D10062B512</string>
+				<string>49A709A50F3B59D10062B512</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -472,6 +472,7 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>1C530D52069F1CE1000CFCEE</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>/Projekte/Cocoa/Trazzle_2.0/Plugins/Logger/Logger.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -633,7 +634,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>&lt;No Editor&gt;</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -689,7 +690,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>496AF2860F337D870049FB23</string>
+				<string>49A709C30F3B60D10062B512</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -957,7 +958,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>496AF0C80F3227EA0049FB23</string>
+				<string>49A709B20F3B5ABA0062B512</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

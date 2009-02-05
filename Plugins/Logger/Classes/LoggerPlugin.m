@@ -48,7 +48,7 @@
 		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 
 			bundle:[NSBundle bundleForClass:[self class]]];
 		m_loggingViewController.delegate = self;
-		[controller addTabWithIdentifier:@"Foo" title:@"New Session" 
+		[controller addTabWithIdentifier:@"Foo" title:@"Session 1" 
 			view:[m_loggingViewController view]];
 		
 		// alloc model
@@ -70,7 +70,7 @@
 		m_tailTask = [[NSTask alloc] init];
 		m_logPipe = [[NSPipe alloc] init];
 		[m_tailTask setLaunchPath:@"/usr/bin/tail"];
-		[m_tailTask setArguments:[NSArray arrayWithObjects:@"-F", 
+		[m_tailTask setArguments:[NSArray arrayWithObjects:@"-F", @"-n", @"0", 
 			[@"~/Library/Preferences/Macromedia/Flash Player/Logs/flashlog.txt" 
 				stringByExpandingTildeInPath], nil]];
 		[m_tailTask setStandardOutput:m_logPipe];
@@ -103,6 +103,7 @@
 
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client
 {
+	[m_messageModel addMessage:msg];
 	[m_loggingViewController sendMessage:msg];
 }
 

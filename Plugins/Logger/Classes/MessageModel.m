@@ -35,6 +35,12 @@
 #pragma mark -
 #pragma mark Public methods
 
+- (void)addMessage:(AbstractMessage *)message
+{
+	message.index = [m_messages count];
+	[m_messages addObject:message];
+}
+
 - (AbstractMessage *)messageAtIndex:(uint32_t)index
 {
 	if (index > [m_messages count])
