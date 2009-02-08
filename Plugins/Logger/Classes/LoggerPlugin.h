@@ -15,6 +15,7 @@
 #import "LoggingViewController.h"
 #import "AbstractMessage.h"
 #import "CommandMessage.h"
+#import "LPFilterController.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn, TrazzleTabViewDelegate> 
 {
@@ -28,6 +29,7 @@
 	
 	MessageModel *m_messageModel;
 	LoggingViewController *m_loggingViewController;
+	LPFilterController *m_filterController;
 }
 
 - (id)initWithPlugInController:(PlugInController *)controller;

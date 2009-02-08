@@ -119,10 +119,12 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 255571087;
-			PBXWorkspaceStateSaveDate = 255571087;
+			PBXPerProjectTemplateStateSaveDate = 255752211;
+			PBXWorkspaceStateSaveDate = 255752211;
 		};
 		perUserProjectItems = {
+			2C04225E0F3E77F900726781 /* PBXTextBookmark */ = 2C04225E0F3E77F900726781 /* PBXTextBookmark */;
+			2C04227E0F3E781800726781 /* PBXTextBookmark */ = 2C04227E0F3E781800726781 /* PBXTextBookmark */;
 			2C1D6E6F0F35468600EA8975 /* PBXBookmark */ = 2C1D6E6F0F35468600EA8975 /* PBXBookmark */;
 			2C1D6E730F35468600EA8975 /* PBXTextBookmark */ = 2C1D6E730F35468600EA8975 /* PBXTextBookmark */;
 			2C1D6E740F35468600EA8975 /* PBXBookmark */ = 2C1D6E740F35468600EA8975 /* PBXBookmark */;
@@ -133,8 +135,6 @@
 			2C2A9B800F3B9EC400027B46 /* PBXTextBookmark */ = 2C2A9B800F3B9EC400027B46 /* PBXTextBookmark */;
 			2C2A9B810F3B9EC400027B46 /* PBXTextBookmark */ = 2C2A9B810F3B9EC400027B46 /* PBXTextBookmark */;
 			2C2A9B820F3B9EC400027B46 /* PBXTextBookmark */ = 2C2A9B820F3B9EC400027B46 /* PBXTextBookmark */;
-			2C2A9BE00F3BA96A00027B46 /* PBXTextBookmark */ = 2C2A9BE00F3BA96A00027B46 /* PBXTextBookmark */;
-			2C2A9C270F3BBEA500027B46 /* PBXTextBookmark */ = 2C2A9C270F3BBEA500027B46 /* PBXTextBookmark */;
 			2C54D84D0F3A110F00264CC9 /* PBXTextBookmark */ = 2C54D84D0F3A110F00264CC9 /* PBXTextBookmark */;
 			2C54D8770F3A134600264CC9 /* PBXTextBookmark */ = 2C54D8770F3A134600264CC9 /* PBXTextBookmark */;
 			2C54D8790F3A134600264CC9 /* PBXTextBookmark */ = 2C54D8790F3A134600264CC9 /* PBXTextBookmark */;
@@ -161,6 +161,26 @@
 			sepNavWindowFrame = "{{65, 177}, {633, 804}}";
 		};
 	};
+	2C04225E0F3E77F900726781 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */;
+		name = "ZZWindowController.m: 15";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 1178;
+		vrLoc = 0;
+	};
+	2C04227E0F3E781800726781 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */;
+		name = "ZZWindowController.m: 15";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 1178;
+		vrLoc = 0;
+	};
 	2C19E05F0EBE752F00B9BA96 /* ZZWindowController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {955, 350}}";
@@ -171,9 +191,9 @@
 	};
 	2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1115, 1358}}";
-			sepNavSelRange = "{544, 0}";
-			sepNavVisRange = "{41, 1177}";
+			sepNavIntBoundsRect = "{{0, 0}, {1115, 1484}}";
+			sepNavSelRange = "{245, 0}";
+			sepNavVisRange = "{0, 1178}";
 			sepNavWindowFrame = "{{103, 1}, {700, 869}}";
 		};
 	};
@@ -264,26 +284,6 @@
 		rType = 0;
 		vrLen = 577;
 		vrLoc = 0;
-	};
-	2C2A9BE00F3BA96A00027B46 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */;
-		name = "ZZWindowController.m: 85";
-		rLen = 0;
-		rLoc = 2002;
-		rType = 0;
-		vrLen = 1492;
-		vrLoc = 787;
-	};
-	2C2A9C270F3BBEA500027B46 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */;
-		name = "ZZWindowController.m: 32";
-		rLen = 0;
-		rLoc = 544;
-		rType = 0;
-		vrLen = 1177;
-		vrLoc = 41;
 	};
 	2C2EC39E0ECE303F005785E2 /* PlugInController.h */ = {
 		uiCtxt = {
@@ -379,7 +379,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libobjc.A.dylib;
-		modificationTime = 255567549.527305;
+		modificationTime = 255751629.073521;
 		state = 1;
 		symbolName = objc_exception_throw;
 	};
@@ -441,10 +441,10 @@
 		continueAfterActions = 0;
 		countType = 0;
 		delayBeforeContinue = 0;
-		hitCount = 0;
+		hitCount = 1;
 		ignoreCount = 0;
 		location = libobjc.A.dylib;
-		modificationTime = 255567549.527288;
+		modificationTime = 255751635.823895;
 		state = 1;
 		symbolName = objc_exception_throw;
 	};
@@ -455,11 +455,11 @@
 			sepNavVisRange = "{0, 577}";
 		};
 	};
-	2C87B4570D8733F10065FC08 /* Constants.h */ = {
+	2C87B4570D8733F10065FC08 /* ZZConstants.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {838, 777}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 166}";
+			sepNavIntBoundsRect = "{{0, 0}, {1115, 754}}";
+			sepNavSelRange = "{302, 0}";
+			sepNavVisRange = "{0, 302}";
 			sepNavWindowFrame = "{{88, 111}, {885, 849}}";
 		};
 	};

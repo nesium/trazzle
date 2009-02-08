@@ -122,7 +122,7 @@
 		2C5581CA0F33BCB70011B31A /* libSaturn.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSaturn.dylib; path = usr/lib/libSaturn.dylib; sourceTree = SDKROOT; };
 		2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrazzlePlugIn.h; sourceTree = "<group>"; };
 		2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterNameBackground.png; sourceTree = "<group>"; };
-		2C87B4570D8733F10065FC08 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2C87B4570D8733F10065FC08 /* ZZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZConstants.h; sourceTree = "<group>"; };
 		2C93A5370F3906A60050CD51 /* ZZTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZTabStyle.m; sourceTree = "<group>"; };
 		2C93A5380F3906A60050CD51 /* ZZTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZTabStyle.h; sourceTree = "<group>"; };
 		2C93A55E0F390BD40050CD51 /* tabbar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_background.png; sourceTree = "<group>"; };
@@ -216,7 +216,7 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2C87B4570D8733F10065FC08 /* Constants.h */,
+				2C87B4570D8733F10065FC08 /* ZZConstants.h */,
 				2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */,
 				2CF39FF40CF8E5CA00A1B9A9 /* ZZController.h */,
 				2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */,

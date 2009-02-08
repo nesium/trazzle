@@ -33,3 +33,10 @@ typedef enum _WindowBehaviourMode
 	WBMKeepAlwaysOnTop,
 	WBMDoNothing
 } WindowBehaviourMode;
+
+#define kLastSelectedFilterKey @"LastSelectedFilter"
+#define kFilteringEnabledKey @"FilteringEnabled"
+#define kFilterFileExtension @"trazzleFilter"
+#define kFilterName @"Name"
+#define kFilterPredicate @"Predicate"
+#define kFilterVersion @"Version"

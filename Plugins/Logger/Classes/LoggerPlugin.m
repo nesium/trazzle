@@ -44,6 +44,8 @@
 	{
 		controller = aController;
 		
+		m_filterController = [[LPFilterController alloc] init];
+		
 		// display viewcontroller
 		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 
 			bundle:[NSBundle bundleForClass:[self class]]];
@@ -92,6 +94,7 @@
 	[m_socket release];
 	[m_connectedClients release];
 	[m_messageModel release];
+	[m_filterController release];
 	[super dealloc];
 }
 
