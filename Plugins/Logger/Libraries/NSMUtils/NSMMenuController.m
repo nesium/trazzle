@@ -19,7 +19,8 @@
 
 @implementation NSMMenuController
 
-@synthesize insertionIndex=m_insertionIndex, titleKey=m_titleKey;
+@synthesize insertionIndex=m_insertionIndex, titleKey=m_titleKey, defaultAction=m_defaultAction, 
+	defaultTarget=m_defaultTarget;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -56,6 +57,8 @@
 	{
 		NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[item valueForKey:m_titleKey] 
 			action:nil keyEquivalent:@""];
+		[menuItem setAction:m_defaultAction];
+		[menuItem setTarget:m_defaultTarget];
 		[menuItem setRepresentedObject:item];
 		[m_menuItems addObject:menuItem];
 		[self _setNeedsInvalidation];

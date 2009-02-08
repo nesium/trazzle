@@ -21,5 +21,5 @@
 	NSMutableArray *m_filters;
 	NSMMenuController *m_mainMenuController;
 }
-
+- (IBAction)editFilters:(id)sender;
 @end

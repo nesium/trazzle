@@ -17,9 +17,13 @@
 	NSArrayController *m_arrayController;
 	NSMenu *m_menu;
 	NSString *m_titleKey;
+	SEL m_defaultAction;
+	id m_defaultTarget;
 }
 @property (nonatomic, assign) uint32_t insertionIndex;
 @property (nonatomic, retain) NSString *titleKey;
+@property (nonatomic, assign) SEL defaultAction;
+@property (nonatomic, retain) id defaultTarget;
 
 - (id)initWithMenu:(NSMenu *)menu;
 

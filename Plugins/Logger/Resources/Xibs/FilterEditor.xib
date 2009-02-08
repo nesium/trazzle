@@ -896,7 +896,7 @@
 																		<reference ref="78726733"/>
 																	</object>
 																</object>
-																<object class="NSMutableDictionary" id="320430782">
+																<object class="NSMutableDictionary" id="399446026">
 																	<bool key="EncodedWithXMLCoder">YES</bool>
 																	<object class="NSMutableArray" key="dict.sortedKeys">
 																		<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1293,7 +1293,7 @@
 																		<reference ref="941293061"/>
 																	</object>
 																</object>
-																<object class="NSMutableDictionary" id="900244757">
+																<object class="NSMutableDictionary" id="653748228">
 																	<bool key="EncodedWithXMLCoder">YES</bool>
 																	<object class="NSMutableArray" key="dict.sortedKeys">
 																		<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1567,7 +1567,7 @@
 																		<reference ref="332554801"/>
 																	</object>
 																</object>
-																<object class="NSMutableDictionary" id="961913468">
+																<object class="NSMutableDictionary" id="856998175">
 																	<bool key="EncodedWithXMLCoder">YES</bool>
 																	<object class="NSMutableArray" key="dict.sortedKeys">
 																		<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1664,7 +1664,7 @@
 																			<bool key="EncodedWithXMLCoder">YES</bool>
 																			<reference ref="336937375"/>
 																			<reference ref="611536326"/>
-																			<reference ref="320430782"/>
+																			<reference ref="399446026"/>
 																		</object>
 																		<object class="NSMutableArray">
 																			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1693,7 +1693,7 @@
 																			<bool key="EncodedWithXMLCoder">YES</bool>
 																			<reference ref="430291388"/>
 																			<reference ref="1056195985"/>
-																			<reference ref="900244757"/>
+																			<reference ref="653748228"/>
 																		</object>
 																		<object class="NSMutableArray">
 																			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1722,7 +1722,7 @@
 																			<bool key="EncodedWithXMLCoder">YES</bool>
 																			<reference ref="574199725"/>
 																			<reference ref="417432523"/>
-																			<reference ref="961913468"/>
+																			<reference ref="856998175"/>
 																		</object>
 																		<object class="NSMutableArray">
 																			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2410,6 +2410,14 @@ dCBBcHBsZSwgSW5jLiwgMjAwOQA</bytes>
 						<reference key="destination" ref="1001"/>
 					</object>
 					<int key="connectionID">185</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">editFilters:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="20117946"/>
+					</object>
+					<int key="connectionID">186</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3148,7 +3156,7 @@ dCBBcHBsZSwgSW5jLiwgMjAwOQA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>RSVerticallyCenteredTextFieldCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{779, 276}, {193, 83}}</string>
+					<string>{{900, 274}, {193, 83}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3196,7 +3204,7 @@ dCBBcHBsZSwgSW5jLiwgMjAwOQA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">185</int>
+			<int key="maxID">186</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3204,6 +3212,10 @@ dCBBcHBsZSwgSW5jLiwgMjAwOQA</bytes>
 				<object class="IBPartialClassDescription">
 					<string key="className">LPFilterController</string>
 					<string key="superclassName">NSWindowController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">editFilters:</string>
+						<string key="NS.object.0">id</string>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">

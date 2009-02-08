@@ -11,6 +11,7 @@
 		2C0422090F3E72B700726781 /* NumericPredicateTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0422080F3E72B700726781 /* NumericPredicateTemplate.m */; };
 		2C04220C0F3E72C400726781 /* PredicateEditorDarkBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C04220A0F3E72C400726781 /* PredicateEditorDarkBackground.m */; };
 		2C04220F0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C04220E0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.m */; };
+		2C159B340F3EF67A00321454 /* SelectedFilterToIconTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */; };
 		2C19E0B60EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0B20EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m */; };
 		2C19E0B70EBE7C5200B9BA96 /* MGScopeBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0B40EBE7C5200B9BA96 /* MGScopeBar.m */; };
 		2C4CCA900EABA3C9003EE952 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CCA8E0EABA3C9003EE952 /* AsyncSocket.m */; };
@@ -65,6 +66,8 @@
 		2C04220B0F3E72C400726781 /* PredicateEditorDarkBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredicateEditorDarkBackground.h; sourceTree = "<group>"; };
 		2C04220D0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVerticallyCenteredTextFieldCell.h; sourceTree = "<group>"; };
 		2C04220E0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVerticallyCenteredTextFieldCell.m; sourceTree = "<group>"; };
+		2C159B320F3EF67A00321454 /* SelectedFilterToIconTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedFilterToIconTransformer.h; sourceTree = "<group>"; };
+		2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedFilterToIconTransformer.m; sourceTree = "<group>"; };
 		2C19E0B10EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGRecessedPopUpButtonCell.h; sourceTree = "<group>"; };
 		2C19E0B20EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGRecessedPopUpButtonCell.m; sourceTree = "<group>"; };
 		2C19E0B30EBE7C5200B9BA96 /* MGScopeBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGScopeBar.h; sourceTree = "<group>"; };
@@ -393,6 +396,8 @@
 		2CBFEF770F3E4F6200AA982D /* filters */ = {
 			isa = PBXGroup;
 			children = (
+				2C159B320F3EF67A00321454 /* SelectedFilterToIconTransformer.h */,
+				2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */,
 				2CBFEF780F3E4F7400AA982D /* LPFilterController.h */,
 				2CBFEF790F3E4F7400AA982D /* LPFilterController.m */,
 				2CBFEFB30F3E578200AA982D /* LPFilter.h */,
@@ -565,6 +570,7 @@
 				2C0422090F3E72B700726781 /* NumericPredicateTemplate.m in Sources */,
 				2C04220C0F3E72C400726781 /* PredicateEditorDarkBackground.m in Sources */,
 				2C04220F0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.m in Sources */,
+				2C159B340F3EF67A00321454 /* SelectedFilterToIconTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

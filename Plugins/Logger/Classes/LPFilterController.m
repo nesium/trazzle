@@ -43,6 +43,8 @@
 	m_mainMenuController = [[NSMMenuController alloc] initWithMenu:m_mainMenu];
 	m_mainMenuController.insertionIndex = 5;
 	m_mainMenuController.titleKey = @"name";
+	m_mainMenuController.defaultAction = @selector(selectFilter:);
+	m_mainMenuController.defaultTarget = self;
 	[m_mainMenuController bind:@"content" toObject:m_filterArrayController 
 		withKeyPath:@"arrangedObjects" options:nil];
 }
@@ -51,6 +53,22 @@
 {
 	[m_filters release];
 	[super dealloc];
+}
+
+
+
+#pragma mark -
+#pragma mark Action methods
+
+- (void)selectFilter:(id)sender
+{
+	NSLog(@"select: %@", sender);
+}
+
+- (IBAction)editFilters:(id)sender
+{
+	NSLog(@"edit filters");
+	[[self window] makeKeyAndOrderFront:self];
 }
 
 
