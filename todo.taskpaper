@@ -8,3 +8,5 @@ Trazzle 2.0:
 - Scrollbalken anpassen
 - Pause Button
 - Nur automatisch scrollen, wenn ScrollThumb bereits ganz unten ist
+- NOT CompoundPredicates funktionieren nicht
+NOT (level == 2 AND message BEGINSWITH[c] "validation")

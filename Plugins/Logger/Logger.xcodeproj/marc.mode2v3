@@ -267,13 +267,7 @@
 										<string>08FB77AFFE84173DC02AAC07</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
-									<array>
-										<array>
-											<integer>7</integer>
-											<integer>1</integer>
-											<integer>0</integer>
-										</array>
-									</array>
+									<array/>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
 									<string>{{0, 0}, {405, 684}}</string>
 								</dict>
@@ -298,7 +292,7 @@
 									<real>43</real>
 								</array>
 								<key>RubberWindowFrame</key>
-								<string>1203 151 422 770 1200 96 1440 900 </string>
+								<string>1210 156 422 770 1200 96 1440 900 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXSmartGroupTreeModule</string>
@@ -437,8 +431,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>49A709A40F3B59D10062B512</string>
-				<string>49A709A50F3B59D10062B512</string>
+				<string>495D87670F408E5600340839</string>
+				<string>495D87680F408E5600340839</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -471,12 +465,13 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>1C530D5B069F1CE1000CFCEE</string>
+		<string>1C530D52069F1CE1000CFCEE</string>
+		<string>496AF0FD0F331B4D0049FB23</string>
 		<string>/Projekte/Cocoa/Trazzle_2.0/Plugins/Logger/Logger.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>1203 151 422 770 1200 96 1440 900 </string>
+	<string>1210 156 422 770 1200 96 1440 900 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -634,7 +629,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>&lt;No Editor&gt;</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -690,7 +685,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>49A709C30F3B60D10062B512</string>
+				<string>495D879A0F40A59200340839</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -958,7 +953,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>49A709B20F3B5ABA0062B512</string>
+				<string>495D87A40F40AAD000340839</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1434,7 +1429,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {500, 315}}</string>
 								<key>RubberWindowFrame</key>
-								<string>215 717 500 356 0 0 1200 1578 </string>
+								<string>515 544 500 356 0 0 1200 1578 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCRefactoringModule</string>
@@ -1457,11 +1452,11 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>496AF0FD0F331B4D0049FB23</string>
-				<string>496AF0FE0F331B4D0049FB23</string>
+				<string>495D87790F409F6D00340839</string>
 				<string>496AF0FC0F331B4D0049FB23</string>
 			</array>
 			<key>WindowString</key>
-			<string>215 717 500 356 0 0 1200 1578 </string>
+			<string>515 544 500 356 0 0 1200 1578 </string>
 			<key>WindowToolGUID</key>
 			<string>496AF0FD0F331B4D0049FB23</string>
 			<key>WindowToolIsVisible</key>

@@ -7,13 +7,16 @@
 		addToTargets = (
 			8D15AC270486D014006FF6A4 /* Trazzle */,
 		);
+		breakpoints = (
+			495D87A80F40AB1E00340839 /* objc_exception_throw */,
+		);
 		codeSenseManager = 4908745B0D055502002D0EF3 /* Code sense */;
 		executables = (
 			490874430D0554E9002D0EF3 /* Trazzle */,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 255869018;
-			PBXWorkspaceStateSaveDate = 255869018;
+			PBXPerProjectTemplateStateSaveDate = 255888952;
+			PBXWorkspaceStateSaveDate = 255888952;
 		};
 		sourceControlManager = 4908745A0D055502002D0EF3 /* Source Control */;
 		userBuildSettings = {
@@ -116,6 +119,20 @@
 	4908745B0D055502002D0EF3 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	495D87A80F40AB1E00340839 /* objc_exception_throw */ = {
+		isa = PBXSymbolicBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 1;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		hitCount = 1;
+		ignoreCount = 0;
+		modificationTime = 255896358.981531;
+		state = 1;
+		symbolName = objc_exception_throw;
 	};
 	8D15AC270486D014006FF6A4 /* Trazzle */ = {
 		activeExec = 0;

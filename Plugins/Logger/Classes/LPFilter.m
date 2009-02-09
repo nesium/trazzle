@@ -17,14 +17,16 @@
 
 @implementation LPFilter
 
+@synthesize predicate=m_predicate, name=m_name;
+
 #pragma mark -
 #pragma mark Initialization & deallocation
 
 - (id)initWithName:(NSString *)name predicate:(NSPredicate *)predicate
 {
 	self = [super init];
-	[self setName: name];
-	[self setPredicate: predicate];
+	self.name = name;
+	self.predicate = predicate;
 	m_isDirty = YES;
 	m_wantsRenaming = NO;
 	return self;
@@ -77,11 +79,6 @@
 	return [NSString stringWithFormat:@"<%@ = 0x%08x>", [self className], (long)self];
 }
 
-- (NSString *)name
-{
-	return m_name;
-}
-
 - (void)setName:(NSString *)name
 {
 	if ([m_name isEqualToString:name])
@@ -98,11 +95,6 @@
 - (NSString *)path
 {
 	return m_path;
-}
-
-- (NSPredicate *)predicate
-{
-	return m_predicate;
 }
 
 - (void)setPredicate:(NSPredicate *)predicate

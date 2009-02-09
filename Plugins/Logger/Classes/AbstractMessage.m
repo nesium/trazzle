@@ -11,7 +11,7 @@
 
 @implementation AbstractMessage
 
-@synthesize messageType, index, message, timestamp;
+@synthesize messageType, index, message, timestamp, visible;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -37,6 +37,7 @@
 		index = 0;
 		message = nil;
 		timestamp = 0;
+		visible = YES;
 		messageType = kLPMessageTypeSystem;
 	}
 	return self;
@@ -69,7 +70,8 @@
 	if (name == "message" || 
 		name == "timestamp" || 
 		name == "messageType" || 
-		name == "index")
+		name == "index" || 
+		name == "visible")
 	{
 		return NO;
 	}

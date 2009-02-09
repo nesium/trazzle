@@ -15,7 +15,6 @@
 	NSString *levelName;
 	uint32_t level;
 	BOOL encodeHTML;
-	BOOL visible;
 	NSArray *stacktrace;
 	NSTimeInterval connectionTimestamp;
 }
@@ -24,7 +23,6 @@
 @property (nonatomic, readonly) uint32_t level;
 @property (nonatomic, retain) NSArray *stacktrace;
 @property (nonatomic, assign) BOOL encodeHTML;
-@property (nonatomic, assign) BOOL visible;
 @property (nonatomic, assign) NSTimeInterval connectionTimestamp;
 
 - (NSString *)formattedTimestamp;

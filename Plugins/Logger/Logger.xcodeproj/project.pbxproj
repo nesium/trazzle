@@ -404,8 +404,8 @@
 				2CBFEFB40F3E578200AA982D /* LPFilter.m */,
 				2C0422070F3E72B700726781 /* NumericPredicateTemplate.h */,
 				2C0422080F3E72B700726781 /* NumericPredicateTemplate.m */,
-				2C04220A0F3E72C400726781 /* PredicateEditorDarkBackground.m */,
 				2C04220B0F3E72C400726781 /* PredicateEditorDarkBackground.h */,
+				2C04220A0F3E72C400726781 /* PredicateEditorDarkBackground.m */,
 			);
 			name = filters;
 			sourceTree = "<group>";

@@ -26,12 +26,13 @@ typedef enum _LPMessageType
 	NSString *message;
 	NSTimeInterval timestamp;
 	LPMessageType messageType;
-	
+	BOOL visible;
 }
 @property (nonatomic, assign) uint32_t index;
 @property (nonatomic, retain) NSString *message;
 @property (nonatomic, assign) NSTimeInterval timestamp;
 @property (nonatomic, assign) LPMessageType messageType;
+@property (nonatomic, assign) BOOL visible;
 
 + (AbstractMessage *)messageWithType:(LPMessageType)type;
 + (AbstractMessage *)messageWithType:(LPMessageType)type message:(NSString *)message;

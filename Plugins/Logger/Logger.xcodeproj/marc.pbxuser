@@ -6,13 +6,23 @@
 		addToTargets = (
 			8D5B49AC048680CD000E48DA /* Logger */,
 		);
+		breakpoints = (
+		);
 		codeSenseManager = 496AF00F0F3204B50049FB23 /* Code sense */;
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 255547835;
-			PBXWorkspaceStateSaveDate = 255547835;
+			PBXPerProjectTemplateStateSaveDate = 255888960;
+			PBXWorkspaceStateSaveDate = 255888960;
 		};
 		sourceControlManager = 496AF00E0F3204B50049FB23 /* Source Control */;
 		userBuildSettings = {
+		};
+	};
+	2C04220A0F3E72C400726781 /* PredicateEditorDarkBackground.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1099}}";
+			sepNavSelRange = "{2065, 0}";
+			sepNavVisRange = "{0, 2113}";
+			sepNavWindowFrame = "{{433, 184}, {755, 1171}}";
 		};
 	};
 	2C4CCA940EABA5FC003EE952 /* LoggerPlugin.h */ = {
@@ -25,26 +35,82 @@
 	};
 	2C4CCA950EABA5FC003EE952 /* LoggerPlugin.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {774, 5054}}";
+			sepNavIntBoundsRect = "{{0, 0}, {774, 5500}}";
 			sepNavSelRange = "{3255, 0}";
-			sepNavVisRange = "{4754, 2592}";
+			sepNavVisRange = "{0, 3173}";
 			sepNavWindowFrame = "{{160, 231}, {821, 1267}}";
 		};
 	};
 	2C5582560F33D6A80011B31A /* MessageModel.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {694, 768}}";
-			sepNavSelRange = "{159, 29}";
-			sepNavVisRange = "{0, 775}";
-			sepNavWindowFrame = "{{42, 712}, {741, 840}}";
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1708}}";
+			sepNavSelRange = "{951, 0}";
+			sepNavVisRange = "{620, 1964}";
+			sepNavWindowFrame = "{{362, 129}, {755, 1171}}";
 		};
 	};
 	2C5582570F33D6A80011B31A /* MessageModel.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {694, 768}}";
-			sepNavSelRange = "{351, 10}";
-			sepNavVisRange = "{0, 447}";
+			sepNavSelRange = "{607, 0}";
+			sepNavVisRange = "{0, 797}";
 			sepNavWindowFrame = "{{453, 524}, {741, 840}}";
+		};
+	};
+	2C5582610F33D6CE0011B31A /* LogMessage.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1099}}";
+			sepNavSelRange = "{326, 0}";
+			sepNavVisRange = "{0, 691}";
+			sepNavWindowFrame = "{{161, 188}, {755, 1171}}";
+		};
+	};
+	2C5582630F33D6CE0011B31A /* StackTraceItem.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1099}}";
+			sepNavSelRange = "{551, 0}";
+			sepNavVisRange = "{0, 1231}";
+			sepNavWindowFrame = "{{226, 213}, {755, 1171}}";
+		};
+	};
+	2C5582650F33D6CE0011B31A /* LogMessage.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1414}}";
+			sepNavSelRange = "{1839, 0}";
+			sepNavVisRange = "{538, 1481}";
+			sepNavWindowFrame = "{{65, 360}, {755, 1171}}";
+		};
+	};
+	2C5582680F33D6CE0011B31A /* ConnectionSignature.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1099}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 399}";
+			sepNavWindowFrame = "{{111, 318}, {755, 1171}}";
+		};
+	};
+	2C5582690F33D6CE0011B31A /* StackTraceItem.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1099}}";
+			sepNavSelRange = "{440, 14}";
+			sepNavVisRange = "{0, 599}";
+			sepNavWindowFrame = "{{249, 192}, {755, 1171}}";
+		};
+	};
+	2C5582730F33D75C0011B31A /* AbstractMessage.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1099}}";
+			sepNavSelRange = "{591, 0}";
+			sepNavVisRange = "{0, 1051}";
+			sepNavWindowFrame = "{{375, 367}, {755, 1171}}";
+		};
+	};
+	2C5582740F33D75C0011B31A /* AbstractMessage.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1134}}";
+			sepNavSelRange = "{1373, 0}";
+			sepNavVisRange = "{3, 1406}";
+			sepNavWindowFrame = "{{356, 113}, {755, 1171}}";
 		};
 	};
 	2C65AD990F32813E005D7A61 /* Tests */ = {
@@ -80,6 +146,38 @@
 			sepNavSelRange = "{386, 0}";
 			sepNavVisRange = "{124, 559}";
 			sepNavWindowFrame = "{{433, 355}, {741, 840}}";
+		};
+	};
+	2CBFEFB30F3E578200AA982D /* LPFilter.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1099}}";
+			sepNavSelRange = "{431, 0}";
+			sepNavVisRange = "{0, 695}";
+			sepNavWindowFrame = "{{157, 276}, {755, 1171}}";
+		};
+	};
+	2CBFEFB40F3E578200AA982D /* LPFilter.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 3066}}";
+			sepNavSelRange = "{556, 0}";
+			sepNavVisRange = "{0, 1937}";
+			sepNavWindowFrame = "{{444, 160}, {755, 1171}}";
+		};
+	};
+	2CD18C840F3601C9005D0CCE /* LoggingClient.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1099}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 764}";
+			sepNavWindowFrame = "{{203, 234}, {755, 1171}}";
+		};
+	};
+	2CD18C850F3601C9005D0CCE /* LoggingClient.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {708, 1610}}";
+			sepNavSelRange = "{1279, 0}";
+			sepNavVisRange = "{592, 1680}";
+			sepNavWindowFrame = "{{180, 255}, {755, 1171}}";
 		};
 	};
 	496AF00E0F3204B50049FB23 /* Source Control */ = {

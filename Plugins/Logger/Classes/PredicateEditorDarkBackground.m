@@ -18,8 +18,8 @@
 	NSRect rowsRect = aRect;
 	rowsRect.size.height = rowHeight;
 	
-	[[NSColor grayColor] drawSwatchInRect: aRect];
-	[[NSColor controlHighlightColor] drawSwatchInRect: rowsRect];
+	[[NSColor grayColor] drawSwatchInRect:aRect];
+	[[NSColor controlHighlightColor] drawSwatchInRect:rowsRect];
 	[super drawRect: rowsRect];
 }
 

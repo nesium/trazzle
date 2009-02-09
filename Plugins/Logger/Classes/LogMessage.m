@@ -10,7 +10,7 @@
 
 @implementation LogMessage
 
-@synthesize levelName, level, stacktrace, encodeHTML, index, visible, connectionTimestamp;
+@synthesize levelName, level, stacktrace, encodeHTML, index, connectionTimestamp;
 static NSArray *kLPLogLevels;
 
 #pragma mark -
@@ -26,7 +26,6 @@ static NSArray *kLPLogLevels;
 {
 	if (self = [super init])
 	{
-		visible = YES;
 		encodeHTML = YES;
 		messageType = kLPMessageTypeSocket;
 	}
@@ -87,8 +86,7 @@ static NSArray *kLPLogLevels;
 		name == "stacktrace" ||
 		name == "index" ||
 		name == "timestamp" || 
-		name == "formattedTimestamp" || 
-		name == "visible")
+		name == "formattedTimestamp")
 	{
 		return NO;
 	}

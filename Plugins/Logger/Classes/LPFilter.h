@@ -19,14 +19,13 @@
 	BOOL m_wantsRenaming;
 }
 
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSPredicate *predicate;
+
 - (id)initWithName:(NSString *)name predicate:(NSPredicate *)predicate;
 - (id)initWithContentsOfFile:(NSString *)path error:(NSError **)error;
 
-- (NSString *)name;
-- (void)setName:(NSString *)name;
 - (NSString *)path;
-- (NSPredicate *)predicate;
-- (void)setPredicate:(NSPredicate *)predicate;
 - (BOOL)isDirty;
 - (BOOL)save:(NSError **)error;
 - (BOOL)unlink:(NSError **)error;
