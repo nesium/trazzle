@@ -269,7 +269,6 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>9</integer>
 											<integer>1</integer>
 											<integer>0</integer>
 										</array>
@@ -437,8 +436,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>49A7096D0F3B591C0062B512</string>
-				<string>49A7096E0F3B591C0062B512</string>
+				<string>492AA5E80F40405F00E8E999</string>
+				<string>492AA5E90F40405F00E8E999</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -652,8 +651,6 @@
 							<string>320pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
@@ -695,7 +692,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>49A709DC0F3B61310062B512</string>
+				<string>492AA5F20F40408C00E8E999</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -815,13 +812,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D54069F1CE1000CFCEE</string>
-				<string>49A709DD0F3B61310062B512</string>
+				<string>492AA5EA0F40405F00E8E999</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>49A709DE0F3B61310062B512</string>
-				<string>49A709DF0F3B61310062B512</string>
-				<string>49A709E00F3B61310062B512</string>
-				<string>49A709E10F3B61310062B512</string>
-				<string>49A709E20F3B61310062B512</string>
+				<string>492AA5EB0F40405F00E8E999</string>
+				<string>492AA5EC0F40405F00E8E999</string>
+				<string>492AA5ED0F40405F00E8E999</string>
+				<string>492AA5EE0F40405F00E8E999</string>
+				<string>492AA5EF0F40405F00E8E999</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -940,8 +937,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -977,7 +972,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>49A709E30F3B61310062B512</string>
+				<string>492AA5F30F40408C00E8E999</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

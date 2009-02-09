@@ -12,8 +12,8 @@
 			490874430D0554E9002D0EF3 /* Trazzle */,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 255547670;
-			PBXWorkspaceStateSaveDate = 255547670;
+			PBXPerProjectTemplateStateSaveDate = 255869018;
+			PBXWorkspaceStateSaveDate = 255869018;
 		};
 		sourceControlManager = 4908745A0D055502002D0EF3 /* Source Control */;
 		userBuildSettings = {
@@ -51,7 +51,7 @@
 			sepNavWindowFrame = "{{456, 334}, {741, 840}}";
 		};
 	};
-	2C87B4570D8733F10065FC08 /* Constants.h */ = {
+	2C87B4570D8733F10065FC08 /* ZZConstants.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {694, 768}}";
 			sepNavSelRange = "{0, 0}";
