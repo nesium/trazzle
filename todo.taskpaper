@@ -7,3 +7,4 @@ Trazzle 2.0:
 - Bonjour fuer Filter
 - Scrollbalken anpassen
 - Pause Button
+- Nur automatisch scrollen, wenn ScrollThumb bereits ganz unten ist
