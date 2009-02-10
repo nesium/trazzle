@@ -265,9 +265,19 @@
 									<array>
 										<string>089C166AFE841209C02AAC07</string>
 										<string>08FB77AFFE84173DC02AAC07</string>
+										<string>2CBFEF770F3E4F6200AA982D</string>
+										<string>2C4CCA8A0EABA3C9003EE952</string>
+										<string>2C0421A80F3E625900726781</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
-									<array/>
+									<array>
+										<array>
+											<integer>20</integer>
+											<integer>16</integer>
+											<integer>1</integer>
+											<integer>0</integer>
+										</array>
+									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
 									<string>{{0, 0}, {405, 684}}</string>
 								</dict>
@@ -292,7 +302,7 @@
 									<real>43</real>
 								</array>
 								<key>RubberWindowFrame</key>
-								<string>1210 156 422 770 1200 96 1440 900 </string>
+								<string>1208 156 422 770 1200 96 1440 900 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXSmartGroupTreeModule</string>
@@ -431,8 +441,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>495D87670F408E5600340839</string>
-				<string>495D87680F408E5600340839</string>
+				<string>49589C090F41996700BA37D3</string>
+				<string>49589C0A0F41996700BA37D3</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -465,13 +475,12 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
-		<string>496AF0FD0F331B4D0049FB23</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>/Projekte/Cocoa/Trazzle_2.0/Plugins/Logger/Logger.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>1210 156 422 770 1200 96 1440 900 </string>
+	<string>1208 156 422 770 1200 96 1440 900 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -685,7 +694,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>495D879A0F40A59200340839</string>
+				<string>49589C980F41E1B100BA37D3</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -953,7 +962,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>495D87A40F40AAD000340839</string>
+				<string>49589C990F41E1B100BA37D3</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -963,7 +972,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D5B069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

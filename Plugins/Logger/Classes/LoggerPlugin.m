@@ -45,6 +45,7 @@
 		controller = aController;
 		
 		m_filterController = [[LPFilterController alloc] init];
+		m_filterController.delegate = self;
 		
 		// display viewcontroller
 		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 
@@ -347,6 +348,31 @@
 {
 	[menuItem setTarget:self];
 	[menuItem setAction:@selector(statusMenuItemWasClicked:)];
+}
+
+
+
+#pragma mark -
+#pragma mark FilterController delegate methods
+
+- (void)filterController:(LPFilterController *)controller didSelectFilter:(LPFilter *)filter
+{
+	m_messageModel.filter = filter;
+}
+
+
+
+#pragma mark -
+#pragma mark MessageModel delegate methods
+
+- (void)messageModel:(MessageModel *)model didHideMessagesWithIndexes:(NSArray *)indexes
+{
+	[m_loggingViewController hideMessagesWithIndexes:indexes];
+}
+
+- (void)messageModel:(MessageModel *)model didShowMessagesWithIndexes:(NSArray *)indexes
+{
+	[m_loggingViewController showMessagesWithIndexes:indexes];
 }
 
 

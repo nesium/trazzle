@@ -26,6 +26,6 @@
 
 
 @interface NSObject (LPMessageModelDelegate)
-- (void)messageModel:(MessageModel *)model didHideMessagesWithIndexes:(NSIndexSet *)indexes;
-- (void)messageModel:(MessageModel *)model didShowMessagesWithIndexes:(NSIndexSet *)indexes;
+- (void)messageModel:(MessageModel *)model didHideMessagesWithIndexes:(NSArray *)indexes;
+- (void)messageModel:(MessageModel *)model didShowMessagesWithIndexes:(NSArray *)indexes;
 @end

@@ -396,16 +396,16 @@
 		2CBFEF770F3E4F6200AA982D /* filters */ = {
 			isa = PBXGroup;
 			children = (
-				2C159B320F3EF67A00321454 /* SelectedFilterToIconTransformer.h */,
-				2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */,
-				2CBFEF780F3E4F7400AA982D /* LPFilterController.h */,
-				2CBFEF790F3E4F7400AA982D /* LPFilterController.m */,
 				2CBFEFB30F3E578200AA982D /* LPFilter.h */,
 				2CBFEFB40F3E578200AA982D /* LPFilter.m */,
+				2CBFEF780F3E4F7400AA982D /* LPFilterController.h */,
+				2CBFEF790F3E4F7400AA982D /* LPFilterController.m */,
 				2C0422070F3E72B700726781 /* NumericPredicateTemplate.h */,
 				2C0422080F3E72B700726781 /* NumericPredicateTemplate.m */,
 				2C04220B0F3E72C400726781 /* PredicateEditorDarkBackground.h */,
 				2C04220A0F3E72C400726781 /* PredicateEditorDarkBackground.m */,
+				2C159B320F3EF67A00321454 /* SelectedFilterToIconTransformer.h */,
+				2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */,
 			);
 			name = filters;
 			sourceTree = "<group>";

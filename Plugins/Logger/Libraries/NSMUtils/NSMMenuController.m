@@ -15,6 +15,7 @@
 - (void)_removeMenuItemsWithData:(NSArray *)data;
 - (void)_sortMenuItems;
 - (void)_setNeedsInvalidation;
+- (void)_setSelectedIndexes:(NSIndexSet *)indexes;
 @end
 
 @implementation NSMMenuController
@@ -119,6 +120,15 @@
 	}
 }
 
+- (void)_setSelectedIndexes:(NSIndexSet *)indexes
+{
+	for (uint32_t i = 0; i < [m_menuItems count]; i++)
+	{
+		NSMenuItem *item = [m_menuItems objectAtIndex:i];
+		[item setState:[indexes containsIndex:i] ? NSOnState : NSOffState];
+	}
+}
+
 
 
 #pragma mark -
@@ -129,18 +139,19 @@
 {
     if ([attribute isEqualToString:@"content"])
     {
-		NSLog(@"BIND");
         [controller addObserver:self forKeyPath:keyPath 
 			options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
 			context:kNSMMCObservationContext];
+		[controller addObserver:self forKeyPath:@"selectionIndexes" options:0 
+			context:kNSMMCObservationContext];
 			
 		NSArray *content = [(NSArrayController *)controller valueForKeyPath:keyPath];
-		//NSLog(@"CONTENT: %@");
 		if ([content count] > 0)
 		{
 			m_content = [content retain];
 			[self _createMenuItemsFromData:content];
 			[self _setNeedsInvalidation];
+			[self _setSelectedIndexes:[controller valueForKey:@"selectionIndexes"]];
 		}
     }
 	else
@@ -152,38 +163,43 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object 
 	change:(NSDictionary *)change context:(void *)context
 {
-	NSLog(@"change %@", change);
-
-    if (context != kNSMMCObservationContext)
+	if (context != kNSMMCObservationContext)
     {
 		return;
 	}
 	
-	NSArray *newContent = [[object valueForKeyPath:keyPath] retain];
-
-	if (m_content == nil)
+	if ([keyPath isEqualToString:@"content"])
 	{
-		m_content = [newContent retain];
-		[self _createMenuItemsFromData:newContent];
+		NSArray *newContent = [[object valueForKeyPath:keyPath] retain];
+
+		if (m_content == nil)
+		{
+			m_content = [newContent retain];
+			[self _createMenuItemsFromData:newContent];
+			[self _setNeedsInvalidation];
+			return;
+		}
+		
+		NSMutableArray *newItems = [newContent mutableCopy];
+		[newItems removeObjectsInArray:m_content];
+		[self _createMenuItemsFromData:newItems];
+		[newItems release];
+		
+		NSMutableArray *removedItems = [m_content mutableCopy];
+		[removedItems removeObjectsInArray:newContent];
+		[self _removeMenuItemsWithData:removedItems];
+		[removedItems release];
+		
+		[m_content release];
+		m_content = [newContent copy];
+		[newContent release];
+		[self _sortMenuItems];
 		[self _setNeedsInvalidation];
-		return;
 	}
-	
-	NSMutableArray *newItems = [newContent mutableCopy];
-	[newItems removeObjectsInArray:m_content];
-	[self _createMenuItemsFromData:newItems];
-	[newItems release];
-	
-	NSMutableArray *removedItems = [m_content mutableCopy];
-	[removedItems removeObjectsInArray:newContent];
-	[self _removeMenuItemsWithData:removedItems];
-	[removedItems release];
-	
-	[m_content release];
-	m_content = [newContent copy];
-	[newContent release];
-	[self _sortMenuItems];
-	[self _setNeedsInvalidation];
+	else if ([keyPath isEqualToString:@"selectionIndexes"])
+	{
+		[self _setSelectedIndexes:[object valueForKey:@"selectionIndexes"]];
+	}
 }
 
 @end

@@ -10,6 +10,9 @@
 
 @interface MessageModel (Private)
 - (void)_validateMessages;
+- (NSPredicate *)_applicablePredicate:(NSPredicate *)sourcePredicate 
+	forMessage:(AbstractMessage *)message;
+- (BOOL)_expression:(NSExpression *)expression isApplicableToMessage:(AbstractMessage *)message;
 @end
 
 
@@ -42,15 +45,29 @@
 
 - (void)setFilter:(LPFilter *)filter
 {
+	if (m_filter == filter)
+	{
+		return;
+	}
 	[filter retain];
 	if (m_filter) [m_filter removeObserver:self forKeyPath:@"predicate"];
 	[m_filter release];
 	m_filter = filter;
 	[m_filter addObserver:self forKeyPath:@"predicate" options:0 context:NULL];
+	[self _validateMessages];
 }
 
 - (void)addMessage:(AbstractMessage *)message
 {
+	if (m_filter == nil)
+	{
+		message.visible = YES;
+	}
+	else
+	{
+		NSPredicate *predicate = [self _applicablePredicate:m_filter.predicate forMessage:message];
+		message.visible = (predicate == nil) ? YES : [predicate evaluateWithObject:message];
+	}
 	message.index = [m_messages count];
 	[m_messages addObject:message];
 }
@@ -76,20 +93,23 @@
 
 - (void)_validateMessages
 {
-	NSMutableIndexSet *invisibleMessagesDelta = [NSMutableIndexSet indexSet];
-	NSMutableIndexSet *visibleMessagesDelta = [NSMutableIndexSet indexSet];
+	NSMutableArray *invisibleMessagesDelta = [NSMutableArray array];
+	NSMutableArray *visibleMessagesDelta = [NSMutableArray array];
 	uint32_t i = 0;
 	for (AbstractMessage *message in m_messages)
 	{
 		BOOL messageWasVisible = message.visible;
-		BOOL messageShouldBeVisible = [m_filter.predicate evaluateWithObject:message];
+		BOOL messageShouldBeVisible;
+		NSPredicate *predicate = [[self _applicablePredicate:m_filter.predicate forMessage:message] retain];
+		messageShouldBeVisible = (predicate == nil) ? YES : [predicate evaluateWithObject:message];
 		if (messageWasVisible != messageShouldBeVisible)
 		{
 			message.visible = messageShouldBeVisible;
-			if (messageShouldBeVisible) [visibleMessagesDelta addIndex:i];
-			else [invisibleMessagesDelta addIndex:i];
+			if (messageShouldBeVisible) [visibleMessagesDelta addObject:[NSNumber numberWithInt:i]];
+			else [invisibleMessagesDelta addObject:[NSNumber numberWithInt:i]];
 		}
 		i++;
+		[predicate release];
 	}
 	if ([invisibleMessagesDelta count] > 0 && 
 		[m_delegate respondsToSelector:@selector(messageModel:didHideMessagesWithIndexes:)])
@@ -101,8 +121,60 @@
 	{
 		[m_delegate messageModel:self didShowMessagesWithIndexes:visibleMessagesDelta];
 	}
-	[invisibleMessagesDelta release];
-	[visibleMessagesDelta release];
+}
+
+- (NSPredicate *)_applicablePredicate:(NSPredicate *)sourcePredicate 
+	forMessage:(AbstractMessage *)message
+{
+	if ([sourcePredicate isKindOfClass:[NSCompoundPredicate class]])
+	{
+		NSCompoundPredicate *comp = (NSCompoundPredicate *)sourcePredicate;
+		NSMutableArray *applicableSubPredicates = [NSMutableArray array];
+		BOOL needsTransform = NO;
+		for (NSPredicate *subpredicate in [comp subpredicates])
+		{
+			if ([subpredicate isKindOfClass:[NSCompoundPredicate class]])
+			{
+				NSCompoundPredicate *applicableCompoundPredicate = 
+					(NSCompoundPredicate *)[self _applicablePredicate:subpredicate forMessage:message];
+				if (applicableCompoundPredicate != nil)
+				{
+					[applicableSubPredicates addObject:applicableCompoundPredicate];
+					needsTransform = needsTransform || (applicableCompoundPredicate != subpredicate);
+				}
+				else needsTransform = YES;
+			}
+			else if ([subpredicate isKindOfClass:[NSComparisonPredicate class]])
+			{
+				NSComparisonPredicate *compa = (NSComparisonPredicate *)subpredicate;
+				if ([self _expression:[compa leftExpression] isApplicableToMessage:message])
+					[applicableSubPredicates addObject:compa];
+				else needsTransform = YES;
+			}
+			else
+			{
+				NSLog(@"WARNING! Encountered unknown (sub)predicate type!");
+			}
+		}
+		if (!needsTransform) return sourcePredicate;
+		return [[[NSCompoundPredicate alloc] initWithType:[comp compoundPredicateType] 
+			subpredicates:applicableSubPredicates] autorelease];
+	}
+	else if ([sourcePredicate isKindOfClass:[NSComparisonPredicate class]])
+	{
+		return [self _expression:[(NSComparisonPredicate *)sourcePredicate leftExpression] 
+			isApplicableToMessage:message] ? sourcePredicate : nil;
+	}
+	else
+	{
+		NSLog(@"WARNING! Encountered unknown predicate type!");
+		return nil;
+	}
+}
+
+- (BOOL)_expression:(NSExpression *)expression isApplicableToMessage:(AbstractMessage *)message
+{
+	return [message respondsToSelector:NSSelectorFromString([expression keyPath])];
 }
 
 

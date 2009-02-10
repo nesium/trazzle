@@ -16,6 +16,8 @@
 
 @implementation LPFilterController
 
+@synthesize delegate=m_delegate, activeFilter=m_activeFilter;
+
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
@@ -37,7 +39,7 @@
 	NSMenuItem *mainMenuItem = [[NSMenuItem alloc] init];
 	[m_mainMenu setTitle:@"Filters"];
 	[mainMenuItem setSubmenu:m_mainMenu];
-	[mainMenu insertItem:mainMenuItem atIndex:2];
+	[mainMenu insertItem:mainMenuItem atIndex:3];
 	[mainMenuItem release];
 	
 	m_mainMenuController = [[NSMMenuController alloc] initWithMenu:m_mainMenu];
@@ -58,11 +60,29 @@
 
 
 #pragma mark -
+#pragma mark Public methods
+
+- (void)setActiveFilter:(LPFilter *)filter
+{
+	[filter retain];
+	[m_activeFilter release];
+	m_activeFilter = filter;
+	[m_filterArrayController setSelectedObjects:(m_activeFilter == nil ? nil 
+		: [NSArray arrayWithObject:m_activeFilter])];
+	if ([m_delegate respondsToSelector:@selector(filterController:didSelectFilter:)])
+	{
+		[m_delegate filterController:self didSelectFilter:m_activeFilter];
+	}
+}
+
+
+
+#pragma mark -
 #pragma mark Action methods
 
 - (void)selectFilter:(id)sender
 {
-	NSLog(@"select: %@", sender);
+	self.activeFilter = (LPFilter *)[sender representedObject];
 }
 
 - (IBAction)editFilters:(id)sender
@@ -88,7 +108,7 @@
 		error: NULL] objectEnumerator];
 	NSString *file;
 	NSString *selectedFilterPath = [[[NSUserDefaultsController sharedUserDefaultsController] values]
-		valueForKey: kLastSelectedFilterKey];
+		valueForKey:kLastSelectedFilterKey];
 	BOOL foundSelectedFilter = NO;
 	
 	while (file = [filesEnum nextObject])
@@ -107,19 +127,18 @@
 			NSLog([error description]);
 			continue;
 		}
-		NSLog(@"%@", filter);
 		[m_filters addObject:filter];
 		BOOL currentFilterIsSelected = [[filter path] isEqualToString:selectedFilterPath];
 		if (currentFilterIsSelected)
 		{
 			foundSelectedFilter = YES;
-			//[self setActiveFilter:filter];
+			[self setActiveFilter:filter];
 		}
 	}
 	
 	if (!foundSelectedFilter && [m_filters count] > 0)
 	{
-		//[self setActiveFilter:(LPFilter *)[m_availableFilters objectAtIndex:0]];
+		[self setActiveFilter:(LPFilter *)[m_filters objectAtIndex:0]];
 	}
 }
 

@@ -60,6 +60,13 @@
 				[NSCompoundPredicate orPredicateWithSubpredicates:
 					[NSArray arrayWithObject:firstSubPredicate]]];
 		}
+		else
+		{
+			NSLog(@"compound predicate type: %d", [(NSCompoundPredicate *)firstSubPredicate 
+				compoundPredicateType]);
+			NSLog([[[(NSCompoundPredicate *)firstSubPredicate subpredicates] objectAtIndex:0] 
+				className]);
+		}
 	}
 	[super setObjectValue:object];
 }
