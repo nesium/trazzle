@@ -82,11 +82,13 @@ function messageToHTML(message)
 
 function appendHTML(html)
 {
+	var shouldScroll = document.body.scrollTop + window.innerHeight == document.body.offsetHeight || 
+		document.body.offsetHeight < window.innerHeight;
 	var range = document.createRange();
 	range.selectNode(logList);
 	var documentFragment = range.createContextualFragment(html);
 	logList.appendChild(documentFragment);
-	document.body.scrollTop = document.body.offsetHeight;	
+	if (shouldScroll) document.body.scrollTop = document.body.offsetHeight;
 }
 
 function showMessagesWithIndexes(indexes)

@@ -47,7 +47,7 @@
 	m_mainMenuController.titleKey = @"name";
 	m_mainMenuController.defaultAction = @selector(selectFilter:);
 	m_mainMenuController.defaultTarget = self;
-	[m_mainMenuController bind:@"content" toObject:m_filterArrayController 
+	[m_mainMenuController bind:@"content" toObject:m_filterMenuArrayController 
 		withKeyPath:@"arrangedObjects" options:nil];
 }
 
@@ -67,7 +67,7 @@
 	[filter retain];
 	[m_activeFilter release];
 	m_activeFilter = filter;
-	[m_filterArrayController setSelectedObjects:(m_activeFilter == nil ? nil 
+	[m_filterMenuArrayController setSelectedObjects:(m_activeFilter == nil ? nil 
 		: [NSArray arrayWithObject:m_activeFilter])];
 	if ([m_delegate respondsToSelector:@selector(filterController:didSelectFilter:)])
 	{

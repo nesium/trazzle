@@ -6,9 +6,7 @@ Trazzle 2.0:
 - Suche
 - Bonjour fuer Filter
 - Scrollbalken anpassen
-- Pause Button
-- Nur automatisch scrollen, wenn ScrollThumb bereits ganz unten ist
+- Pause Button?
 - NOT CompoundPredicates funktionieren nicht
 NOT (level == 2 AND message BEGINSWITH[c] "validation")
-- Filterselektionsproblem loesen
 - ApplicablePredicates in MessageModel cachen

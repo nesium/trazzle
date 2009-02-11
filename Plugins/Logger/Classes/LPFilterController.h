@@ -17,6 +17,7 @@
 {
 	IBOutlet NSMenu *m_mainMenu;
 	IBOutlet NSArrayController *m_filterArrayController;
+	IBOutlet NSArrayController *m_filterMenuArrayController;
 	id m_delegate;
 	LPFilter *m_activeFilter;
 	NSMutableArray *m_filters;
