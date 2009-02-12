@@ -1,10 +1,14 @@
-Trazzle 2.0:
+RC1:
 - Bilder loggen
 - Binaersocket verwenden
-- Filter reaktivieren
-- Stacktraces lazy parsen
+- Filter erstellen/duplizieren/loeschen/speichern
+- Fenstereinstellungen bei neuer Verbindung implementieren (z. B. Fenster in den Vordergrund bringen)
 - Suche
-- Bonjour fuer Filter
+- Unterstützung zur Beobachtung von Pfaden wieder einbauen
+RC2:
+- Stacktraces lazy parsen
 - Scrollbalken anpassen
-- Pause Button?
 - ApplicablePredicates in MessageModel cachen
+- Mehrere Tabs für Verbindungen verwenden
+2.1:
+- Bonjour fuer Filter
