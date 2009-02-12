@@ -16,7 +16,7 @@
 
 @implementation LPFilterController
 
-@synthesize delegate=m_delegate, activeFilter=m_activeFilter;
+@synthesize delegate=m_delegate, activeFilter=m_activeFilter, filteringIsEnabled=m_filteringIsEnabled;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -26,6 +26,7 @@
 	if (self = [super initWithWindowNibName:@"FilterEditor"])
 	{
 		m_filters = [[NSMutableArray alloc] init];
+		m_filteringIsEnabled = YES;
 		[self _loadFilters];
 		// load window
 		[self window];
@@ -75,6 +76,15 @@
 	}
 }
 
+- (void)setFilteringIsEnabled:(BOOL)bFlag
+{
+	m_filteringIsEnabled = bFlag;
+	if ([m_delegate respondsToSelector:@selector(filterController:didChangeFilteringEnabledFlag:)])
+	{
+		[m_delegate filterController:self didChangeFilteringEnabledFlag:m_filteringIsEnabled];
+	}
+}
+
 
 
 #pragma mark -
@@ -89,6 +99,11 @@
 {
 	NSLog(@"edit filters");
 	[[self window] makeKeyAndOrderFront:self];
+}
+
+- (IBAction)toggleFilteringIsEnabled:(id)sender
+{
+	self.filteringIsEnabled = !m_filteringIsEnabled;
 }
 
 

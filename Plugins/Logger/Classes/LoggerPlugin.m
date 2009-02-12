@@ -101,6 +101,7 @@
 
 
 
+#pragma mark -
 #pragma mark TrazzleTabViewDelegate methods
 
 - (BOOL)receivedKeyDown:(NSEvent *)event inTabWithIdentifier:(NSString *)identifier
@@ -358,6 +359,12 @@
 - (void)filterController:(LPFilterController *)controller didSelectFilter:(LPFilter *)filter
 {
 	m_messageModel.filter = filter;
+}
+
+- (void)filterController:(LPFilterController *)controller 
+	didChangeFilteringEnabledFlag:(BOOL)isEnabled
+{
+	[m_messageModel setFilter:(isEnabled ? [m_filterController activeFilter] : nil)];
 }
 
 

@@ -22,13 +22,18 @@
 	LPFilter *m_activeFilter;
 	NSMutableArray *m_filters;
 	NSMMenuController *m_mainMenuController;
+	BOOL m_filteringIsEnabled;
 }
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) LPFilter *activeFilter;
+@property (nonatomic, assign) BOOL filteringIsEnabled;
 - (IBAction)editFilters:(id)sender;
+- (IBAction)toggleFilteringIsEnabled:(id)sender;
 @end
 
 
 @interface NSObject (LPFilterControllerDelegate)
 - (void)filterController:(LPFilterController *)controller didSelectFilter:(LPFilter *)filter;
+- (void)filterController:(LPFilterController *)controller 
+	didChangeFilteringEnabledFlag:(BOOL)isEnabled;
 @end
