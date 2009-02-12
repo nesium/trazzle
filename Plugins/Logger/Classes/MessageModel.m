@@ -126,7 +126,11 @@
 - (NSPredicate *)_applicablePredicate:(NSPredicate *)sourcePredicate 
 	forMessage:(AbstractMessage *)message
 {
-	if ([sourcePredicate isKindOfClass:[NSCompoundPredicate class]])
+	if (sourcePredicate == nil)
+	{
+		return nil;
+	}
+	else if ([sourcePredicate isKindOfClass:[NSCompoundPredicate class]])
 	{
 		NSCompoundPredicate *comp = (NSCompoundPredicate *)sourcePredicate;
 		NSMutableArray *applicableSubPredicates = [NSMutableArray array];

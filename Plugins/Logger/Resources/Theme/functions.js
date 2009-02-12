@@ -82,31 +82,45 @@ function messageToHTML(message)
 
 function appendHTML(html)
 {
-	var shouldScroll = document.body.scrollTop + window.innerHeight == document.body.offsetHeight || 
-		document.body.offsetHeight < window.innerHeight;
+	var shouldScroll = scrollThumbIsAtBottom();
 	var range = document.createRange();
 	range.selectNode(logList);
 	var documentFragment = range.createContextualFragment(html);
 	logList.appendChild(documentFragment);
-	if (shouldScroll) document.body.scrollTop = document.body.offsetHeight;
+	if (shouldScroll) scrollToBottom();
+}
+
+function scrollThumbIsAtBottom()
+{
+	return document.body.scrollTop + window.innerHeight == document.body.offsetHeight || 
+		document.body.offsetHeight < window.innerHeight;
+}
+
+function scrollToBottom()
+{
+	document.body.scrollTop = document.body.offsetHeight;
 }
 
 function showMessagesWithIndexes(indexes)
 {
+	var shouldScroll = scrollThumbIsAtBottom();
 	var i = indexes.length;
 	while (i--)
 	{
 		logList.childNodes[indexes[i]].style.display = 'block';
 	}
+	if (shouldScroll) scrollToBottom();
 }
 
 function hideMessagesWithIndexes(indexes)
 {
+	var shouldScroll = scrollThumbIsAtBottom();
 	var i = indexes.length;
 	while (i--)
 	{
 		logList.childNodes[indexes[i]].style.display = 'none';
 	}
+	if (shouldScroll) scrollToBottom();
 }
 
 function clearAllMessages()
