@@ -7,6 +7,4 @@ Trazzle 2.0:
 - Bonjour fuer Filter
 - Scrollbalken anpassen
 - Pause Button?
-- NOT CompoundPredicates funktionieren nicht
-NOT (level == 2 AND message BEGINSWITH[c] "validation")
 - ApplicablePredicates in MessageModel cachen

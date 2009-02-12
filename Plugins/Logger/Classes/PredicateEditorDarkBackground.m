@@ -8,6 +8,10 @@
 
 #import "PredicateEditorDarkBackground.h"
 
+@interface PredicateEditorDarkBackground (Private)
+- (NSCompoundPredicate *)_validPredicate:(NSCompoundPredicate *)sourcePredicate;
+@end
+
 
 @implementation PredicateEditorDarkBackground
 
@@ -36,39 +40,53 @@
 
 - (void)setObjectValue:(id)object
 {
-	if (![object isKindOfClass:[NSCompoundPredicate class]] && 
-		[object isKindOfClass:[NSPredicate class]])
+	if ([object isMemberOfClass:[NSPredicate class]])
 	{
 		object = [NSCompoundPredicate orPredicateWithSubpredicates:
 			[NSArray arrayWithObject:object]];
 	}
 	/* 
-	* this is a hack! the problem here is, that if you create a not-compoundpredicate from a string
-	* appkit would parse the first subpredicate as a NSComparisonPredicate (if the not-compound-
-	* predicate would have only one subpredicate). the problem with that behaviour is, that the
-	* predicateeditor doesn't like not-compoundpredicates with a comparisonpredicates (actually
-	* it does not find any template, throwing a exception), so we prepare those ones here ...
+	* There is a problem with not-predicates and predicate string representation.
+	* @see http://www.cocoabuilder.com/archive/message/cocoa/2008/6/27/211281
 	*/
-	else if ([object isKindOfClass:[NSCompoundPredicate class]] && 
-		[(NSCompoundPredicate *)object compoundPredicateType] == NSNotPredicateType)
+	else if ([object isKindOfClass:[NSCompoundPredicate class]])
 	{
-		NSPredicate *firstSubPredicate = (NSPredicate *)[[(NSCompoundPredicate *)object 
-			subpredicates] objectAtIndex:0];
-		if (![firstSubPredicate isKindOfClass:[NSCompoundPredicate class]])
+		object = [self _validPredicate:object];
+	}
+	[super setObjectValue:object];
+}
+
+- (NSCompoundPredicate *)_validPredicate:(NSCompoundPredicate *)sourcePredicate
+{
+	BOOL needsTransform = NO;
+	NSMutableArray *transformedSubpredicates = [NSMutableArray array];
+	for (NSPredicate *subPredicate in [sourcePredicate subpredicates])
+	{
+		if ([subPredicate isKindOfClass:[NSCompoundPredicate class]])
 		{
-			object = [NSCompoundPredicate notPredicateWithSubpredicate:
-				[NSCompoundPredicate orPredicateWithSubpredicates:
-					[NSArray arrayWithObject:firstSubPredicate]]];
+			NSCompoundPredicate *transformedSubPredicate = 
+				[self _validPredicate:(NSCompoundPredicate *)subPredicate];
+			[transformedSubpredicates addObject:transformedSubPredicate];
+			needsTransform = needsTransform || transformedSubPredicate != subPredicate || 
+				([sourcePredicate compoundPredicateType] == NSNotPredicateType && 
+				[(NSCompoundPredicate *)subPredicate compoundPredicateType] != NSOrPredicateType);
 		}
 		else
 		{
-			NSLog(@"compound predicate type: %d", [(NSCompoundPredicate *)firstSubPredicate 
-				compoundPredicateType]);
-			NSLog([[[(NSCompoundPredicate *)firstSubPredicate subpredicates] objectAtIndex:0] 
-				className]);
+			[transformedSubpredicates addObject:subPredicate];
 		}
 	}
-	[super setObjectValue:object];
+	if (!needsTransform)
+	{
+		return sourcePredicate;
+	}
+	if ([sourcePredicate compoundPredicateType] == NSNotPredicateType)
+	{
+		return (NSCompoundPredicate *)[NSCompoundPredicate notPredicateWithSubpredicate:
+			[NSCompoundPredicate orPredicateWithSubpredicates:transformedSubpredicates]];
+	}
+	return [[[NSCompoundPredicate alloc] initWithType:[sourcePredicate compoundPredicateType] 
+		subpredicates:transformedSubpredicates] autorelease];
 }
 
 @end
