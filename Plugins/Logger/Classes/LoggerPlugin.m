@@ -131,6 +131,8 @@
 
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client
 {
+	if ([m_messageModel numberOfMessages] == 0)
+		[controller bringWindowToTop];
 	[m_messageModel addMessage:msg];
 	[m_loggingViewController sendMessage:msg];
 }

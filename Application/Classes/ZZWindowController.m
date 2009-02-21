@@ -55,6 +55,16 @@
 	[m_delegates addObject:delegate];
 }
 
+- (void)bringWindowToTop
+{
+	[[self window] orderFrontRegardless];
+}
+
+- (void)setWindowIsFloating:(BOOL)bFlag
+{
+	[[self window] setLevel:(bFlag ? NSFloatingWindowLevel : NSNormalWindowLevel)];
+}
+
 
 
 #pragma mark -

@@ -20,5 +20,6 @@
 }
 - (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
 	delegate:(id <TrazzleTabViewDelegate>)delegate;
+- (void)bringWindowToTop;
+- (void)setWindowIsFloating:(BOOL)bFlag;
 @end
-

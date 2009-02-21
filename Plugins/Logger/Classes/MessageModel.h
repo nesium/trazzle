@@ -22,6 +22,7 @@
 - (void)addMessage:(AbstractMessage *)message;
 - (AbstractMessage *)messageAtIndex:(uint32_t)index;
 - (void)clearAllMessages;
+- (NSUInteger)numberOfMessages;
 @end
 
 

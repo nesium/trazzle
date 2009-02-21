@@ -86,6 +86,11 @@
 	[m_messages removeAllObjects];
 }
 
+- (NSUInteger)numberOfMessages
+{
+	return [m_messages count];
+}
+
 
 
 #pragma mark -

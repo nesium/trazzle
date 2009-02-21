@@ -47,6 +47,16 @@ ZZWindowController *m_windowController;
 #pragma mark -
 #pragma mark Public methods
 
+- (void)bringWindowToTop
+{
+	[m_windowController bringWindowToTop];
+}
+
+- (void)setWindowIsFloating:(BOOL)bFlag
+{
+	[m_windowController setWindowIsFloating:bFlag];
+}
+
 - (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
 	delegate:(id <TrazzleTabViewDelegate>)delegate
 {
