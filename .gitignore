@@ -1,5 +1,12 @@
+# xcode noise
 */build/*
+*.pbxuser
 *.mode1v3
+*.mode2v3
+
+# SVN directories
 .svn
+
+# osx noise
 .DS_Store
 profile
