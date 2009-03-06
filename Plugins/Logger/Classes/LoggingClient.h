@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AsyncSocket.h"
+#import "FileMonitor.h"
 
-@interface LoggingClient : NSObject
+@interface LoggingClient : NSObject <FileObserver>
 {
 	AsyncSocket *m_socket;
 	id m_delegate;
@@ -23,6 +24,7 @@
 
 - (void)sendString:(NSString *)msg;
 - (void)sendEventWithType:(NSString *)type attributes:(NSDictionary *)attributes;
+- (void)fileMonitor:(FileMonitor *)fm fileDidChangeAtPath:(NSString *)path;
 @end
 
 @interface NSObject (LoggingClientDelegate)

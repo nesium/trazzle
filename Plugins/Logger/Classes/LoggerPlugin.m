@@ -166,6 +166,16 @@
 			[controller addStatusMenuItem:client.statusMenuItem];
 		}
 	}
+	else if (msg.type == kCommandActionTypeStartFileMonitoring)
+	{
+		[[FileMonitor sharedMonitor] addObserver:client 
+			forFileAtPath:[msg.attributes objectForKey:@"path"]];
+	}
+	else if (msg.type == kCommandActionTypeStopFileMonitoring)
+	{
+		[[FileMonitor sharedMonitor] removeObserver:client 
+			forFileAtPath:[msg.attributes objectForKey:@"path"]];
+	}
 }
 
 - (void)_checkMMCfgs

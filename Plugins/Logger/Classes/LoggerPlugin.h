@@ -16,6 +16,7 @@
 #import "AbstractMessage.h"
 #import "CommandMessage.h"
 #import "LPFilterController.h"
+#import "FileMonitor.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn, TrazzleTabViewDelegate> 
 {

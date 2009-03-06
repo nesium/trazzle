@@ -112,4 +112,16 @@
 	}
 }
 
+
+
+#pragma mark -
+#pragma mark FileMonitor Delegate methods
+
+- (void)fileMonitor:(FileMonitor *)fm fileDidChangeAtPath:(NSString *)path
+{
+	[self performSelectorOnMainThread:@selector(sendString:) 
+		withObject:[NSString stringWithFormat:@"<event type=\"fileChange\" path=\"%@\"/>", path] 
+		waitUntilDone:NO];
+}
+
 @end

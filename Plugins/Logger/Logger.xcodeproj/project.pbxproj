@@ -46,6 +46,7 @@
 		2CBFEF7A0F3E4F7400AA982D /* LPFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterController.m */; };
 		2CBFEFB50F3E578200AA982D /* LPFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEFB40F3E578200AA982D /* LPFilter.m */; };
 		2CD18C860F3601C9005D0CCE /* LoggingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD18C850F3601C9005D0CCE /* LoggingClient.m */; };
+		49472F300F614C410049A188 /* FileMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472F2F0F614C410049A188 /* FileMonitor.m */; };
 		496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */; };
 		496AF1300F333BD90049FB23 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF12F0F333BD90049FB23 /* WebKit.framework */; };
 		496AF19A0F3353870049FB23 /* functions.js in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE380F328A90005D7A61 /* functions.js */; };
@@ -132,6 +133,8 @@
 		2CD18C840F3601C9005D0CCE /* LoggingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingClient.h; sourceTree = "<group>"; };
 		2CD18C850F3601C9005D0CCE /* LoggingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingClient.m; sourceTree = "<group>"; };
 		32DBCF630370AF2F00C91783 /* Logger_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger_Prefix.pch; sourceTree = "<group>"; };
+		49472F2E0F614C410049A188 /* FileMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileMonitor.h; sourceTree = "<group>"; };
+		49472F2F0F614C410049A188 /* FileMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileMonitor.m; sourceTree = "<group>"; };
 		496AF0690F321D070049FB23 /* NSString+LPStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LPStringAdditions.h"; sourceTree = "<group>"; };
 		496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LPStringAdditions.m"; sourceTree = "<group>"; };
 		496AF12F0F333BD90049FB23 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = ../../../../../Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = SOURCE_ROOT; };
@@ -211,6 +214,7 @@
 				2CD18C850F3601C9005D0CCE /* LoggingClient.m */,
 				2C65AE1C0F328A57005D7A61 /* LoggingViewController.h */,
 				2C65AE1B0F328A57005D7A61 /* LoggingViewController.m */,
+				49472F310F614C450049A188 /* utils */,
 				2C55825A0F33D6AD0011B31A /* messages */,
 				496AF0680F321CC90049FB23 /* categories */,
 				2CBFEF770F3E4F6200AA982D /* filters */,
@@ -418,6 +422,15 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		49472F310F614C450049A188 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				49472F2E0F614C410049A188 /* FileMonitor.h */,
+				49472F2F0F614C410049A188 /* FileMonitor.m */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
 		496AF0680F321CC90049FB23 /* categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +584,7 @@
 				2C04220C0F3E72C400726781 /* PredicateEditorDarkBackground.m in Sources */,
 				2C04220F0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.m in Sources */,
 				2C159B340F3EF67A00321454 /* SelectedFilterToIconTransformer.m in Sources */,
+				49472F300F614C410049A188 /* FileMonitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
