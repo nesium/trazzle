@@ -17,12 +17,14 @@
 #import "CommandMessage.h"
 #import "LPFilterController.h"
 #import "FileMonitor.h"
+#import "AMFDuplexGateway.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn, TrazzleTabViewDelegate> 
 {
 	PlugInController *controller;
 	
 	AsyncSocket *m_socket;
+	AMFDuplexGateway *m_gateway;
 	NSMutableArray *m_connectedClients;
 	
 	NSTask *m_tailTask;

@@ -68,6 +68,13 @@
 			NSLog(@"Could not start server on port %d", port);
 		}
 		
+		// start AMF server
+		error = nil;
+		m_gateway = [[AMFDuplexGateway alloc] init];
+		//[m_gateway registerService:self withName:kSTPGameServiceName];
+		m_gateway.delegate = self;
+		[m_gateway startOnPort:(port + 1) error:&error];
+		
 		// tail flashlog
 		m_tailTask = [[NSTask alloc] init];
 		m_logPipe = [[NSPipe alloc] init];
@@ -185,33 +192,22 @@
 	NSMutableDictionary *localMMCfgContents = nil;
 	
 	if ([fm fileExistsAtPath:kMMCFG_GlobalPath])
-	{
 		globalMMCfgContents = [self _readMMCfgAtPath:kMMCFG_GlobalPath];
-	}
 	
 	if (globalMMCfgContents == nil)
-	{
 		globalMMCfgContents = [NSMutableDictionary dictionary];
-	}
 	
 	if ([fm fileExistsAtPath:[kMMCFG_LocalPath stringByExpandingTildeInPath]])
-	{
 		localMMCfgContents = [self _readMMCfgAtPath:kMMCFG_LocalPath];
-	}
 	
 	if (localMMCfgContents == nil)
-	{
 		localMMCfgContents = [NSMutableDictionary dictionary];
-	}
 	
 	if (![self _validateMMCfg:globalMMCfgContents])
-	{
 		[self _writeMMCfg:globalMMCfgContents toPath:kMMCFG_GlobalPath];
-	}
+
 	if (![self _validateMMCfg:localMMCfgContents])
-	{
 		[self _writeMMCfg:localMMCfgContents toPath:kMMCFG_LocalPath];
-	}
 }
 
 - (BOOL)_validateMMCfg:(NSMutableDictionary *)settings
@@ -309,6 +305,29 @@
 	client.delegate = self;
 	[m_connectedClients addObject:client];
 	[client release];
+}
+
+
+
+#pragma mark -
+#pragma mark AMFDuplexGateway delegate methods
+
+- (void)gateway:(AMFDuplexGateway *)gateway remoteGatewayDidConnect:(AMFRemoteGateway *)remote
+{
+	NSLog(@"remote gateway did connect");
+//	if (m_mode == kSTPGameModeClient)
+//	{
+//		m_remote = [remote retain];
+//		AMFInvocationResult *result = [m_remote invokeRemoteService:kSTPGameServiceName 
+//			methodName:@"registerPlayer" arguments:m_localPlayer, nil];
+//		result.target = self;
+//		result.action = @selector(server_didRegisterPlayer:);
+//	}
+}
+
+- (void)gateway:(AMFDuplexGateway *)gateway remoteGatewayDidDisconnect:(AMFRemoteGateway *)remote
+{
+	NSLog(@"remote gateway did disconnect");
 }
 
 
