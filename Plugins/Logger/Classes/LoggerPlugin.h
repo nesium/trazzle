@@ -18,6 +18,7 @@
 #import "LPFilterController.h"
 #import "FileMonitor.h"
 #import "AMFDuplexGateway.h"
+#import "LoggingService.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn, TrazzleTabViewDelegate> 
 {

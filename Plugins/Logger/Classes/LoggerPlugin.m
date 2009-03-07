@@ -70,8 +70,9 @@
 		
 		// start AMF server
 		error = nil;
-		m_gateway = [[AMFDuplexGateway alloc] init];
-		//[m_gateway registerService:self withName:kSTPGameServiceName];
+		m_gateway = [[AMFDuplexGateway alloc] init]; 
+		[m_gateway registerService:[[[LoggingService alloc] initWithDelegate:self] autorelease] 
+			withName:@"LoggingService"];
 		m_gateway.delegate = self;
 		[m_gateway startOnPort:(port + 1) error:&error];
 		
@@ -358,6 +359,26 @@
 		[controller removeStatusMenuItem:client.statusMenuItem];
 	}
 	[m_connectedClients removeObject:client];
+}
+
+
+
+#pragma mark -
+#pragma mark LoggingService Delegate methods
+
+- (void)loggingService:(LoggingService *)service didReceiveLogMessage:(LogMessage *)message 
+	fromGateway:(AMFRemoteGateway *)gateway
+{
+	[self _handleMessage:message fromClient:nil];
+}
+
+- (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path 
+	fromGateway:(AMFRemoteGateway *)gateway
+{
+	AbstractMessage *msg = [[AbstractMessage alloc] init];
+	msg.message = [NSString stringWithFormat:@"<img src='%@'/>", path];
+	[self _handleMessage:msg fromClient:nil];
+	[msg release];
 }
 
 
