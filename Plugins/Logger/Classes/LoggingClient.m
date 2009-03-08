@@ -17,7 +17,7 @@
 
 @implementation LoggingClient
 
-@synthesize delegate=m_delegate, statusMenuItem=m_statusMenuItem;
+@synthesize delegate=m_delegate, statusMenuItem=m_statusMenuItem, gateway=m_gateway;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -32,9 +32,19 @@
 	return self;
 }
 
+- (id)initWithGateway:(AMFRemoteGateway *)gateway
+{
+	if (self = [super init])
+	{
+		m_gateway = [gateway retain];
+	}
+	return self;
+}
+
 - (void)dealloc
 {
 	[m_socket release];
+	[m_gateway release];
 	[m_statusMenuItem release];
 	[super dealloc];
 }

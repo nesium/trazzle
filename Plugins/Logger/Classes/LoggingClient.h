@@ -9,17 +9,21 @@
 #import <Cocoa/Cocoa.h>
 #import "AsyncSocket.h"
 #import "FileMonitor.h"
+#import "AMFDuplexGateway.h"
 
 @interface LoggingClient : NSObject <FileObserver>
 {
 	AsyncSocket *m_socket;
+	AMFRemoteGateway *m_gateway;
 	id m_delegate;
 	NSMenuItem *m_statusMenuItem;
 }
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) NSMenuItem *statusMenuItem;
+@property (nonatomic, readonly) AMFRemoteGateway *gateway;
 
 - (id)initWithSocket:(AsyncSocket *)socket;
+- (id)initWithGateway:(AMFRemoteGateway *)gateway;
 - (void)disconnect;
 
 - (void)sendString:(NSString *)msg;

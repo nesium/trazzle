@@ -12,6 +12,7 @@
 #define kMMCFG_LocalPath @"~/mm.cfg"
 
 @interface LoggerPlugin (Private)
+- (LoggingClient *)_clientForGateway:(AMFRemoteGateway *)gateway;
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client;
 - (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client;
 - (void)_checkMMCfgs;
@@ -136,6 +137,14 @@
 
 #pragma mark -
 #pragma mark Private methods
+
+- (LoggingClient *)_clientForGateway:(AMFRemoteGateway *)gateway
+{
+	for (LoggingClient *client in m_connectedClients)
+		if (client.gateway == gateway)
+			return client;
+	return nil;
+}
 
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client
 {
@@ -315,20 +324,18 @@
 
 - (void)gateway:(AMFDuplexGateway *)gateway remoteGatewayDidConnect:(AMFRemoteGateway *)remote
 {
-	NSLog(@"remote gateway did connect");
-//	if (m_mode == kSTPGameModeClient)
-//	{
-//		m_remote = [remote retain];
-//		AMFInvocationResult *result = [m_remote invokeRemoteService:kSTPGameServiceName 
-//			methodName:@"registerPlayer" arguments:m_localPlayer, nil];
-//		result.target = self;
-//		result.action = @selector(server_didRegisterPlayer:);
-//	}
+	[m_messageModel clearAllMessages];
+	[m_loggingViewController clearAllMessages];
+	
+	LoggingClient *client = [[LoggingClient alloc] initWithGateway:remote];
+	client.delegate = self;
+	[m_connectedClients addObject:client];
+	[client release];
 }
 
 - (void)gateway:(AMFDuplexGateway *)gateway remoteGatewayDidDisconnect:(AMFRemoteGateway *)remote
 {
-	NSLog(@"remote gateway did disconnect");
+	[self clientDidDisconnect:[self _clientForGateway:remote]];
 }
 
 
@@ -342,13 +349,9 @@
 	AbstractMessage *msg = (AbstractMessage *)[[parser data] objectAtIndex:0];
 
 	if (msg.messageType == kLPMessageTypeCommand)
-	{
 		[self _handleCommandMessage:(CommandMessage *)msg fromClient:client];
-	}
 	else
-	{
 		[self _handleMessage:msg fromClient:client];
-	}
 	[parser release];
 }
 
