@@ -297,7 +297,7 @@
 	NSData *data = [[notification userInfo] valueForKey:NSFileHandleNotificationDataItem];
 	NSString *message = [NSString stringWithUTF8String:[data bytes]];
 	[self _handleMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
-		message:message] fromClient:nil];
+		message:[message htmlEncodedStringWithConvertedLinebreaks]] fromClient:nil];
 	[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
 }
 
