@@ -19,7 +19,7 @@ static NSArray *kLPLogLevels;
 + (void)initialize
 {
 	kLPLogLevels = [[NSArray alloc] initWithObjects: @"not specified", @"temp", 
-		@"debug", @"info", @"notice", @"warning", @"error", @"critical", @"fatal", nil];
+		@"debug", @"info", @"notice", @"warning", @"error", @"critical", @"fatal", @"exception", nil];
 }
 
 - (id)init

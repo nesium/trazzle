@@ -19,6 +19,7 @@
 #import "FileMonitor.h"
 #import "AMFDuplexGateway.h"
 #import "LoggingService.h"
+#import "ExceptionMessage.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn, TrazzleTabViewDelegate> 
 {
@@ -30,6 +31,9 @@
 	
 	NSTask *m_tailTask;
 	NSPipe *m_logPipe;
+	NSString *m_flashlogBuffer;
+	ExceptionMessage *m_currentException;
+	NSMutableString *m_currentExceptionStacktrace;
 	
 	MessageModel *m_messageModel;
 	LoggingViewController *m_loggingViewController;

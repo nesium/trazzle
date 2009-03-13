@@ -7,6 +7,7 @@ var kLPMessageTypeSocket = 3;
 var kLPMessageTypePolicyRequest = 4;
 var kLPMessageTypeStackTrace = 5;
 var kLPMessageTypeConnectionSignature = 6;
+var kLPMessageTypeException = 7;
 
 onload = function()
 {
@@ -23,6 +24,7 @@ function appendMessages(messages)
 		switch (message.messageType)
 		{
 			case kLPMessageTypeSocket:
+			case kLPMessageTypeException:
 				html += logMessageToHTML(message, addTextmateLinks);
 				break;
 			default:
@@ -150,13 +152,25 @@ function toggleStacktrace(id)
 		}
 	}
 
+	var addTextmateLinks = window.TrazzleBridge.textMateLinksEnabled();
 	var message = window.TrazzleBridge.messageAtIndex(id);
 	var html = '<ul class="stacktrace">';
 	for (i = 0; i < message.stacktrace.length; i++)
 	{
 		var stackItem = message.stacktrace[i];
-		html += '<li>' + stackItem.shortClassName + '.' + stackItem.method + 
-			' (' + stackItem.line + ')</li>';
+		html += '<li>';
+		if (addTextmateLinks)
+		{
+			html += '<a class="tm_link" href="txmt://open/?url=file://' + escape(stackItem.file) + 
+				'&line=' + stackItem.line + '">';
+		}
+		html += stackItem.shortClassName + '.' + stackItem.method + 
+			' (' + stackItem.line + ')';
+		if (addTextmateLinks)
+		{
+			html += '</a>';
+		}
+		html += '</li>';
 	}
 	html += '</ul>';
 	

@@ -311,7 +311,12 @@
 	NSArray *lines = [stacktrace componentsSeparatedByString:@"\n"];
 	for (int32_t i = 1; i < [lines count]; i++) // ignore first line
 	{
-		NSString *line = [[lines objectAtIndex:i] substringFromIndex:4]; // ignore @"\tat "
+		NSString *line = [lines objectAtIndex:i];
+		if ([line length] < 5)
+		{
+			continue;
+		}
+		line = [line substringFromIndex:4]; // ignore @"\tat "
 		NSString *className = nil, *package = nil, *method = nil, *file = nil, *lineNo = nil;
 		NSRange firstBracketRange = [line rangeOfString:@"["];
 		if (firstBracketRange.location != NSNotFound)

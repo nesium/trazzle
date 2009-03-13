@@ -143,3 +143,9 @@ li.trace.expanded a.arrow
 	color: #000;
 	background-color: #fff;
 }
+
+.exception, .exception a
+{
+	color: #fff;
+	background-color: #8d0017;
+}

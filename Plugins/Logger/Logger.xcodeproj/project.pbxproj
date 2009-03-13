@@ -48,6 +48,7 @@
 		2CD18C860F3601C9005D0CCE /* LoggingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD18C850F3601C9005D0CCE /* LoggingClient.m */; };
 		2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */; };
 		2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE3248C0F61CF1F004BB7CF /* libssl.dylib */; };
+		491925560F6A6A9800B95592 /* ExceptionMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 491925550F6A6A9800B95592 /* ExceptionMessage.m */; };
 		49472F300F614C410049A188 /* FileMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472F2F0F614C410049A188 /* FileMonitor.m */; };
 		496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */; };
 		496AF1300F333BD90049FB23 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF12F0F333BD90049FB23 /* WebKit.framework */; };
@@ -147,6 +148,8 @@
 		2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaCryptoHashing.m; sourceTree = "<group>"; };
 		2CE3248C0F61CF1F004BB7CF /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
 		32DBCF630370AF2F00C91783 /* Logger_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger_Prefix.pch; sourceTree = "<group>"; };
+		491925540F6A6A9800B95592 /* ExceptionMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionMessage.h; sourceTree = "<group>"; };
+		491925550F6A6A9800B95592 /* ExceptionMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionMessage.m; sourceTree = "<group>"; };
 		49472F2E0F614C410049A188 /* FileMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileMonitor.h; sourceTree = "<group>"; };
 		49472F2F0F614C410049A188 /* FileMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileMonitor.m; sourceTree = "<group>"; };
 		496AF0690F321D070049FB23 /* NSString+LPStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LPStringAdditions.h"; sourceTree = "<group>"; };
@@ -380,6 +383,8 @@
 				2C5582630F33D6CE0011B31A /* StackTraceItem.m */,
 				2C5582640F33D6CE0011B31A /* CommandMessage.h */,
 				2C5582620F33D6CE0011B31A /* CommandMessage.m */,
+				491925540F6A6A9800B95592 /* ExceptionMessage.h */,
+				491925550F6A6A9800B95592 /* ExceptionMessage.m */,
 			);
 			name = messages;
 			sourceTree = "<group>";
@@ -676,6 +681,7 @@
 				49E489FA0F617AC30034B384 /* NSInvocation-AMFExtensions.m in Sources */,
 				49E48A610F6182130034B384 /* LoggingService.m in Sources */,
 				2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */,
+				491925560F6A6A9800B95592 /* ExceptionMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

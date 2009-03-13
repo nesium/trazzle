@@ -19,6 +19,9 @@
 - (NSMutableDictionary *)_readMMCfgAtPath:(NSString *)path;
 - (BOOL)_validateMMCfg:(NSMutableDictionary *)settings;
 - (BOOL)_writeMMCfg:(NSDictionary *)settings toPath:(NSString *)path;
+- (void)_handleFlashlogLine:(NSString *)message;
+- (void)_finishFlashLogException;
+- (void)_tryFinishFlashLogException;
 @end
 
 
@@ -78,6 +81,8 @@
 		[m_gateway startOnPort:(port + 1) error:&error];
 		
 		// tail flashlog
+		m_currentException = nil;
+		m_flashlogBuffer = nil;
 		m_tailTask = [[NSTask alloc] init];
 		m_logPipe = [[NSPipe alloc] init];
 		[m_tailTask setLaunchPath:@"/usr/bin/tail"];
@@ -283,6 +288,80 @@
 	return [contents writeToFile:path atomically:NO encoding:NSUTF8StringEncoding error:&error];
 }
 
+- (void)_handleFlashlogLine:(NSString *)message
+{
+	if (m_currentException != nil)
+	{
+		if ([message hasPrefix:@"\tat "])
+		{
+			[m_currentExceptionStacktrace appendFormat:@"%@\n", message];
+			return;
+		}
+		else
+		{
+			[self _finishFlashLogException];
+		}
+	}
+	
+	if (message && [message rangeOfString:@"Error: Error #"].location != NSNotFound)
+	{
+		m_currentException = [[ExceptionMessage alloc] init];
+		m_currentExceptionStacktrace = [[NSMutableString alloc] initWithFormat:@"%@\n", message];
+		m_currentException.levelName = @"exception";
+		NSRange colonRange = [message rangeOfString:@":"];
+		m_currentException.errorType = [message substringToIndex:colonRange.location];
+		NSUInteger startIndex = colonRange.location + colonRange.length;
+		NSRange hashRange = [message rangeOfString:@"#" options:0 
+			range:(NSRange){startIndex, [message length] - startIndex}];
+		colonRange = [message rangeOfString:@":" options:0 
+			range:(NSRange){startIndex, [message length] - startIndex}];
+		m_currentException.errorNumber = [[message substringWithRange:(NSRange){hashRange.location + 
+			hashRange.length, colonRange.location - hashRange.location - hashRange.length}] intValue];
+		m_currentException.message = [NSString stringWithFormat:@"%@ (#%d): %@",
+			m_currentException.errorType, m_currentException.errorNumber, 
+			[message substringFromIndex:colonRange.location + 2]];
+		return;
+	}
+
+	[self _handleMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
+		message:[message htmlEncodedStringWithConvertedLinebreaks]] fromClient:nil];
+}
+
+- (void)_finishFlashLogException
+{
+	if (m_currentException == nil)
+		return;
+	
+	[NSObject cancelPreviousPerformRequestsWithTarget:self 
+		selector:@selector(_finishFlashLogException) object:nil];
+	
+	NSArray *stacktrace = [StackTraceParser parseAS3StackTrace:m_currentExceptionStacktrace];
+	if ([stacktrace count] > 0)
+	{
+		StackTraceItem *item = [stacktrace objectAtIndex:0];
+		m_currentException.fullClassName = item.fullClassName;
+		m_currentException.method = item.method;
+		m_currentException.file = item.file;
+		m_currentException.line = item.line;
+		[m_currentException setStacktrace:[stacktrace subarrayWithRange:
+			(NSRange){1, [stacktrace count] - 1}]];
+	}
+	[self _handleMessage:m_currentException fromClient:nil];
+	[m_currentException release];
+	[m_currentExceptionStacktrace release];
+	m_currentException = nil;
+	m_currentExceptionStacktrace = nil;
+}
+
+- (void)_tryFinishFlashLogException
+{
+	if (m_currentException == nil)
+		return;
+	[NSObject cancelPreviousPerformRequestsWithTarget:self 
+		selector:@selector(_finishFlashLogException) object:nil];
+	[self performSelector:@selector(_finishFlashLogException) withObject:nil afterDelay:1.0/10.0];
+}
+
 
 
 #pragma mark -
@@ -295,10 +374,30 @@
 - (void)dataAvailable:(NSNotification *)notification
 {
 	NSData *data = [[notification userInfo] valueForKey:NSFileHandleNotificationDataItem];
-	NSString *message = [NSString stringWithUTF8String:[data bytes]];
-	[self _handleMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
-		message:[message htmlEncodedStringWithConvertedLinebreaks]] fromClient:nil];
+	NSString *message = [[NSString alloc] initWithData:data encoding:NSMacOSRomanStringEncoding];
+	
+	if (m_flashlogBuffer != nil)
+	{
+		message = [[m_flashlogBuffer stringByAppendingString:message] retain];
+		[m_flashlogBuffer release];
+		m_flashlogBuffer = nil;
+	}
+	
+	NSArray *lines = [message componentsSeparatedByString:@"\n"];
+	for (uint32_t i = 0; i < [lines count]; i++)
+	{
+		NSString *line = [lines objectAtIndex:i];
+		if (i == [lines count] - 1)
+		{
+			if ([line length] > 0) m_flashlogBuffer = [line retain];
+			else [self _tryFinishFlashLogException];
+		}
+		else if ([line length] > 0)
+			[self _handleFlashlogLine:line];
+	}
+
 	[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
+	[message release];
 }
 
 

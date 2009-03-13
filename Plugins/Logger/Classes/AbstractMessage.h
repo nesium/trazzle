@@ -17,7 +17,8 @@ typedef enum _LPMessageType
 	kLPMessageTypeSocket = 3,
 	kLPMessageTypePolicyRequest = 4,
 	kLPMessageTypeStackTrace = 5,
-	kLPMessageTypeConnectionSignature = 6
+	kLPMessageTypeConnectionSignature = 6,
+	kLPMessageTypeException = 7
 } LPMessageType;
 
 @interface AbstractMessage : NSObject
