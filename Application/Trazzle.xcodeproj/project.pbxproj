@@ -54,14 +54,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2CAD39C80F6F059A00D390D9 /* Builder.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8D5B49B6048680CD000E48DA /* Builder.trazzlePlugin */;
+			remoteGlobalIDString = 8D5B49B6048680CD000E48DA;
 			remoteInfo = Builder;
 		};
 		2CAD39CE0F6F05A200D390D9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2CAD39C80F6F059A00D390D9 /* Builder.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8D5B49AC048680CD000E48DA /* Builder */;
+			remoteGlobalIDString = 8D5B49AC048680CD000E48DA;
 			remoteInfo = Builder;
 		};
 		2CFA552A0D6B943E00F5DFE5 /* PBXContainerItemProxy */ = {
