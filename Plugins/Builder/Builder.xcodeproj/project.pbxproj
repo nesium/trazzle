@@ -1,0 +1,355 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2CAD39910F6F030E00D390D9 /* BuilderPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39900F6F030E00D390D9 /* BuilderPlugin.m */; };
+		2CAD399B0F6F041F00D390D9 /* browseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAD39990F6F041F00D390D9 /* browseButton.png */; };
+		2CAD399C0F6F041F00D390D9 /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAD399A0F6F041F00D390D9 /* cog.png */; };
+		2CAD39E70F6F072000D390D9 /* CompilerSettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CAD39E60F6F072000D390D9 /* CompilerSettingsWindow.xib */; };
+		2CAD39EC0F6F07C700D390D9 /* AS2_CompilerSettingsConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAD39EB0F6F07C700D390D9 /* AS2_CompilerSettingsConfig.plist */; };
+		2CAD39FD0F6F07F400D390D9 /* FMTFileChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39EE0F6F07F400D390D9 /* FMTFileChooserCell.m */; };
+		2CAD39FE0F6F07F400D390D9 /* FMTColorSwatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39F00F6F07F400D390D9 /* FMTColorSwatchCell.m */; };
+		2CAD39FF0F6F07F400D390D9 /* RSVerticallyCenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39F10F6F07F400D390D9 /* RSVerticallyCenteredTextFieldCell.m */; };
+		2CAD3A000F6F07F400D390D9 /* MultiCellTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39F30F6F07F400D390D9 /* MultiCellTableColumn.m */; };
+		2CAD3A010F6F07F400D390D9 /* NSColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39F60F6F07F400D390D9 /* NSColorExtensions.m */; };
+		2CAD3A020F6F07F400D390D9 /* FMTColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39F90F6F07F400D390D9 /* FMTColorCell.m */; };
+		2CAD3A030F6F07F400D390D9 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39FA0F6F07F400D390D9 /* Model.m */; };
+		2CAD3A040F6F07F400D390D9 /* BLDCompilerSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39FC0F6F07F400D390D9 /* BLDCompilerSettingsWindowController.m */; };
+		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		2CAD398F0F6F030E00D390D9 /* BuilderPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderPlugin.h; sourceTree = "<group>"; };
+		2CAD39900F6F030E00D390D9 /* BuilderPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuilderPlugin.m; sourceTree = "<group>"; };
+		2CAD39990F6F041F00D390D9 /* browseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = browseButton.png; sourceTree = "<group>"; };
+		2CAD399A0F6F041F00D390D9 /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog.png; sourceTree = "<group>"; };
+		2CAD39E60F6F072000D390D9 /* CompilerSettingsWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompilerSettingsWindow.xib; sourceTree = "<group>"; };
+		2CAD39EB0F6F07C700D390D9 /* AS2_CompilerSettingsConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.mxml; path = AS2_CompilerSettingsConfig.plist; sourceTree = "<group>"; };
+		2CAD39ED0F6F07F400D390D9 /* FMTFileChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTFileChooserCell.h; sourceTree = "<group>"; };
+		2CAD39EE0F6F07F400D390D9 /* FMTFileChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTFileChooserCell.m; sourceTree = "<group>"; };
+		2CAD39EF0F6F07F400D390D9 /* FMTColorSwatchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTColorSwatchCell.h; sourceTree = "<group>"; };
+		2CAD39F00F6F07F400D390D9 /* FMTColorSwatchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTColorSwatchCell.m; sourceTree = "<group>"; };
+		2CAD39F10F6F07F400D390D9 /* RSVerticallyCenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVerticallyCenteredTextFieldCell.m; sourceTree = "<group>"; };
+		2CAD39F20F6F07F400D390D9 /* MultiCellTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiCellTableColumn.h; sourceTree = "<group>"; };
+		2CAD39F30F6F07F400D390D9 /* MultiCellTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiCellTableColumn.m; sourceTree = "<group>"; };
+		2CAD39F40F6F07F400D390D9 /* BLDCompilerSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLDCompilerSettingsWindowController.h; sourceTree = "<group>"; };
+		2CAD39F50F6F07F400D390D9 /* NSColorExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSColorExtensions.h; sourceTree = "<group>"; };
+		2CAD39F60F6F07F400D390D9 /* NSColorExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSColorExtensions.m; sourceTree = "<group>"; };
+		2CAD39F70F6F07F400D390D9 /* RSVerticallyCenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVerticallyCenteredTextFieldCell.h; sourceTree = "<group>"; };
+		2CAD39F80F6F07F400D390D9 /* FMTColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTColorCell.h; sourceTree = "<group>"; };
+		2CAD39F90F6F07F400D390D9 /* FMTColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTColorCell.m; sourceTree = "<group>"; };
+		2CAD39FA0F6F07F400D390D9 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		2CAD39FB0F6F07F400D390D9 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		2CAD39FC0F6F07F400D390D9 /* BLDCompilerSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLDCompilerSettingsWindowController.m; sourceTree = "<group>"; };
+		32DBCF630370AF2F00C91783 /* Builder_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Builder_Prefix.pch; sourceTree = "<group>"; };
+		8D5B49B6048680CD000E48DA /* Builder.trazzlePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Builder.trazzlePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D5B49B3048680CD000E48DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AFFE84173DC02AAC07 /* Classes */,
+				32C88E010371C26100C91783 /* Other Sources */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+			);
+			name = Builder;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
+				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,
+			);
+			name = "Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2CAD39980F6F041F00D390D9 /* Images */,
+				2CAD39E50F6F070100D390D9 /* Xibs */,
+				2CAD39EB0F6F07C700D390D9 /* AS2_CompilerSettingsConfig.plist */,
+				8D5B49B7048680CD000E48DA /* Info.plist */,
+				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2CAD398F0F6F030E00D390D9 /* BuilderPlugin.h */,
+				2CAD39900F6F030E00D390D9 /* BuilderPlugin.m */,
+				2CAD39ED0F6F07F400D390D9 /* FMTFileChooserCell.h */,
+				2CAD39EE0F6F07F400D390D9 /* FMTFileChooserCell.m */,
+				2CAD39EF0F6F07F400D390D9 /* FMTColorSwatchCell.h */,
+				2CAD39F00F6F07F400D390D9 /* FMTColorSwatchCell.m */,
+				2CAD39F10F6F07F400D390D9 /* RSVerticallyCenteredTextFieldCell.m */,
+				2CAD39F20F6F07F400D390D9 /* MultiCellTableColumn.h */,
+				2CAD39F30F6F07F400D390D9 /* MultiCellTableColumn.m */,
+				2CAD39F50F6F07F400D390D9 /* NSColorExtensions.h */,
+				2CAD39F60F6F07F400D390D9 /* NSColorExtensions.m */,
+				2CAD39F70F6F07F400D390D9 /* RSVerticallyCenteredTextFieldCell.h */,
+				2CAD39F80F6F07F400D390D9 /* FMTColorCell.h */,
+				2CAD39F90F6F07F400D390D9 /* FMTColorCell.m */,
+				2CAD39FA0F6F07F400D390D9 /* Model.m */,
+				2CAD39FB0F6F07F400D390D9 /* Model.h */,
+				2CAD39F40F6F07F400D390D9 /* BLDCompilerSettingsWindowController.h */,
+				2CAD39FC0F6F07F400D390D9 /* BLDCompilerSettingsWindowController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7AEFEA557BF11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				089C167FFE841241C02AAC07 /* AppKit.framework */,
+				D2F7E65807B2D6F200F64583 /* CoreData.framework */,
+				089C1672FE841209C02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D5B49B6048680CD000E48DA /* Builder.trazzlePlugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2CAD39980F6F041F00D390D9 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2CAD39990F6F041F00D390D9 /* browseButton.png */,
+				2CAD399A0F6F041F00D390D9 /* cog.png */,
+			);
+			name = Images;
+			path = Resources/Images;
+			sourceTree = "<group>";
+		};
+		2CAD39E50F6F070100D390D9 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				2CAD39E60F6F072000D390D9 /* CompilerSettingsWindow.xib */,
+			);
+			name = Xibs;
+			path = Resources/Xibs;
+			sourceTree = "<group>";
+		};
+		32C88E010371C26100C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF630370AF2F00C91783 /* Builder_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D5B49AC048680CD000E48DA /* Builder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "Builder" */;
+			buildPhases = (
+				8D5B49AF048680CD000E48DA /* Resources */,
+				8D5B49B1048680CD000E48DA /* Sources */,
+				8D5B49B3048680CD000E48DA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Builder;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = Builder;
+			productReference = 8D5B49B6048680CD000E48DA /* Builder.trazzlePlugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "Builder" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 089C166AFE841209C02AAC07 /* Builder */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D5B49AC048680CD000E48DA /* Builder */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D5B49AF048680CD000E48DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
+				2CAD399B0F6F041F00D390D9 /* browseButton.png in Resources */,
+				2CAD399C0F6F041F00D390D9 /* cog.png in Resources */,
+				2CAD39E70F6F072000D390D9 /* CompilerSettingsWindow.xib in Resources */,
+				2CAD39EC0F6F07C700D390D9 /* AS2_CompilerSettingsConfig.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D5B49B1048680CD000E48DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CAD39910F6F030E00D390D9 /* BuilderPlugin.m in Sources */,
+				2CAD39FD0F6F07F400D390D9 /* FMTFileChooserCell.m in Sources */,
+				2CAD39FE0F6F07F400D390D9 /* FMTColorSwatchCell.m in Sources */,
+				2CAD39FF0F6F07F400D390D9 /* RSVerticallyCenteredTextFieldCell.m in Sources */,
+				2CAD3A000F6F07F400D390D9 /* MultiCellTableColumn.m in Sources */,
+				2CAD3A010F6F07F400D390D9 /* NSColorExtensions.m in Sources */,
+				2CAD3A020F6F07F400D390D9 /* FMTColorCell.m in Sources */,
+				2CAD3A030F6F07F400D390D9 /* Model.m in Sources */,
+				2CAD3A040F6F07F400D390D9 /* BLDCompilerSettingsWindowController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C167EFE841241C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB913B08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Application/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Builder_Prefix.pch;
+				HEADER_SEARCH_PATHS = ../../Application/Classes;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				PRODUCT_NAME = Builder;
+				WRAPPER_EXTENSION = trazzlePlugin;
+			};
+			name = Debug;
+		};
+		1DEB913C08733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Builder_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				PRODUCT_NAME = Builder;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		1DEB913F08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		1DEB914008733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "Builder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913B08733D840010E9CD /* Debug */,
+				1DEB913C08733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "Builder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913F08733D840010E9CD /* Debug */,
+				1DEB914008733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}
