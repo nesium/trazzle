@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C7B3D330F71A7C400B4CBA3 /* CompilerShellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B3D320F71A7C400B4CBA3 /* CompilerShellView.xib */; };
 		2CAD39910F6F030E00D390D9 /* BuilderPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39900F6F030E00D390D9 /* BuilderPlugin.m */; };
 		2CAD399B0F6F041F00D390D9 /* browseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAD39990F6F041F00D390D9 /* browseButton.png */; };
 		2CAD399C0F6F041F00D390D9 /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAD399A0F6F041F00D390D9 /* cog.png */; };
@@ -29,6 +30,7 @@
 		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		2C7B3D320F71A7C400B4CBA3 /* CompilerShellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompilerShellView.xib; sourceTree = "<group>"; };
 		2CAD398F0F6F030E00D390D9 /* BuilderPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderPlugin.h; sourceTree = "<group>"; };
 		2CAD39900F6F030E00D390D9 /* BuilderPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuilderPlugin.m; sourceTree = "<group>"; };
 		2CAD39990F6F041F00D390D9 /* browseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = browseButton.png; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				2CAD39E60F6F072000D390D9 /* CompilerSettingsWindow.xib */,
+				2C7B3D320F71A7C400B4CBA3 /* CompilerShellView.xib */,
 			);
 			name = Xibs;
 			path = Resources/Xibs;
@@ -228,6 +231,7 @@
 				2CAD399C0F6F041F00D390D9 /* cog.png in Resources */,
 				2CAD39E70F6F072000D390D9 /* CompilerSettingsWindow.xib in Resources */,
 				2CAD39EC0F6F07C700D390D9 /* AS2_CompilerSettingsConfig.plist in Resources */,
+				2C7B3D330F71A7C400B4CBA3 /* CompilerShellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,16 @@
 {
 	PlugInController *controller;
 	BLDCompilerSettingsWindowController *m_compilerSettingsController;
+	
+	NSTask *m_fcshTask;
+	NSPipe *m_fcshInPipe;
+	NSPipe *m_fcshOutPipe;
+	NSTextView *m_compilerOutputText;
+	NSTextField *m_commandInputText;
+	NSView *m_compilerOutputView;
+	NSMutableArray *m_commandHistory;
+	NSUInteger m_historyIndex;
 }
 - (id)initWithPlugInController:(PlugInController *)controller;
+- (IBAction)sendCommand:(id)sender;
 @end
