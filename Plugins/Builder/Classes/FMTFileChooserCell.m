@@ -61,8 +61,9 @@
 		delegate: anObject event: theEvent];
 }
 
-- (BOOL) trackMouse: (NSEvent *) theEvent inRect: (NSRect) cellFrame  
-	ofView: (NSView *) controlView untilMouseUp: (BOOL) flag
+
+- (BOOL)trackMouse:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(NSView *)controlView 
+	untilMouseUp:(BOOL)flag
 {
 	NSRect swatchBounds = [self buttonCellFrameForBounds: cellFrame];
 	NSPoint locationInCell = [controlView convertPoint: [theEvent locationInWindow] 
@@ -76,6 +77,11 @@
 	}
     return [super trackMouse: theEvent inRect: cellFrame 
 		ofView: controlView untilMouseUp:flag];
+}
+
+- (NSUInteger)hitTestForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)controlView
+{
+	return NSCellHitContentArea | NSCellHitEditableTextArea | NSCellHitTrackableArea;
 }
 
 - (NSRect) buttonCellFrameForBounds: (NSRect) bounds
