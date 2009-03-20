@@ -21,6 +21,7 @@
 		2CAD3A020F6F07F400D390D9 /* FMTColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39F90F6F07F400D390D9 /* FMTColorCell.m */; };
 		2CAD3A030F6F07F400D390D9 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39FA0F6F07F400D390D9 /* Model.m */; };
 		2CAD3A040F6F07F400D390D9 /* BLDCompilerSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD39FC0F6F07F400D390D9 /* BLDCompilerSettingsWindowController.m */; };
+		499982110F73F831008C41AB /* RegexKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499982100F73F831008C41AB /* RegexKit.framework */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -36,7 +37,7 @@
 		2CAD39990F6F041F00D390D9 /* browseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = browseButton.png; sourceTree = "<group>"; };
 		2CAD399A0F6F041F00D390D9 /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog.png; sourceTree = "<group>"; };
 		2CAD39E60F6F072000D390D9 /* CompilerSettingsWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompilerSettingsWindow.xib; sourceTree = "<group>"; };
-		2CAD39EB0F6F07C700D390D9 /* AS2_CompilerSettingsConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.mxml; path = AS2_CompilerSettingsConfig.plist; sourceTree = "<group>"; };
+		2CAD39EB0F6F07C700D390D9 /* AS2_CompilerSettingsConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AS2_CompilerSettingsConfig.plist; sourceTree = "<group>"; };
 		2CAD39ED0F6F07F400D390D9 /* FMTFileChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTFileChooserCell.h; sourceTree = "<group>"; };
 		2CAD39EE0F6F07F400D390D9 /* FMTFileChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTFileChooserCell.m; sourceTree = "<group>"; };
 		2CAD39EF0F6F07F400D390D9 /* FMTColorSwatchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTColorSwatchCell.h; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		2CAD39FB0F6F07F400D390D9 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		2CAD39FC0F6F07F400D390D9 /* BLDCompilerSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLDCompilerSettingsWindowController.m; sourceTree = "<group>"; };
 		32DBCF630370AF2F00C91783 /* Builder_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Builder_Prefix.pch; sourceTree = "<group>"; };
+		499982100F73F831008C41AB /* RegexKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKit.framework; path = ../../Application/Frameworks/RegexKit.framework; sourceTree = SOURCE_ROOT; };
 		8D5B49B6048680CD000E48DA /* Builder.trazzlePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Builder.trazzlePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -65,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
+				499982110F73F831008C41AB /* RegexKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +135,7 @@
 		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				499982100F73F831008C41AB /* RegexKit.framework */,
 				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -296,6 +300,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Application/Frameworks\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Builder_Prefix.pch;

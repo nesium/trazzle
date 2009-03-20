@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <RegexKit/RegexKit.h>
 #import "TrazzlePlugIn.h"
 #import "BLDCompilerSettingsWindowController.h"
 
@@ -19,6 +20,7 @@
 	NSTask *m_fcshTask;
 	NSPipe *m_fcshInPipe;
 	NSPipe *m_fcshOutPipe;
+	NSPipe *m_fcshErrorPipe;
 	NSTextView *m_compilerOutputText;
 	NSTextField *m_commandInputText;
 	NSView *m_compilerOutputView;
