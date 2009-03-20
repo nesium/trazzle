@@ -88,6 +88,11 @@
 		ofView: controlView untilMouseUp:flag];
 }
 
+- (NSUInteger)hitTestForEvent:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)controlView
+{
+	return NSCellHitContentArea | NSCellHitEditableTextArea | NSCellHitTrackableArea;
+}
+
 - (NSRect) colorSwatchCellFrameForBounds: (NSRect) bounds
 {
 	NSRect square = bounds;
