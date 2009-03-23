@@ -156,6 +156,11 @@
 
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client
 {
+	if (msg.messageType == kLPMessageTypePolicyRequest)
+	{
+		[client sendString:@"<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\"/></cross-domain-policy>\0"];
+		return;
+	}
 	if ([m_messageModel numberOfMessages] == 0)
 		[controller bringWindowToTop];
 	[m_messageModel addMessage:msg];
