@@ -121,6 +121,9 @@
 	[m_compilerOutputText replaceCharactersInRange:endRange withString:str];
 	endRange.length = [str length];
 	
+	NSUInteger strLen = [[m_compilerOutputText string] length];
+	[m_compilerOutputText setTextColor:color range:(NSRange){strLen - [str length], [str length]}];
+	
 	RKEnumerator *enumerator = [str matchEnumeratorWithRegex:@"(\\/\\S*\\.\\w+)(?:\\((\\d+)\\): col: (\\d+))?"];
 	NSFont *font = [NSFont fontWithName:@"Monaco" size:10.0];
 	while ([enumerator nextRanges] != NULL)
@@ -139,17 +142,21 @@
 				escapedFilePath, line, col]];
 			CFRelease((CFStringRef)escapedFilePath);
 		}
+		NSColor *textColor = color;
+		if ([[[filePath pathExtension] lowercaseString] isEqual:@"swf"] && [str hasPrefix:@"/"])
+		{
+			textColor = [NSColor colorWithCalibratedRed:0.651 green:0.886 blue:0.180 alpha:1.0];
+		}
 		NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
 			url, NSLinkAttributeName, 
-			font, NSFontAttributeName, nil];
+			font, NSFontAttributeName, 
+			textColor, NSForegroundColorAttributeName, 
+			nil];
 		NSRange linkRange = [enumerator currentRange];
 		linkRange.location += endRange.location;
 		[[m_compilerOutputText textStorage] setAttributes:attributes range:linkRange];
 	}
 	[m_compilerOutputText scrollRangeToVisible:endRange];
-
-	NSUInteger strLen = [[m_compilerOutputText string] length];
-	[m_compilerOutputText setTextColor:color range:(NSRange){strLen - [str length], [str length]}];
 }
 
 - (void)_parseFileURLsInString:(NSString *)str
