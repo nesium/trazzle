@@ -32,6 +32,19 @@
 		2C55826E0F33D6CE0011B31A /* StackTraceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5582630F33D6CE0011B31A /* StackTraceItem.m */; };
 		2C55826F0F33D6CE0011B31A /* LogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5582650F33D6CE0011B31A /* LogMessage.m */; };
 		2C5582750F33D75C0011B31A /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5582740F33D75C0011B31A /* AbstractMessage.m */; };
+		2C5D6C0B0FF42C3C00DE914F /* AMF.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6BF00FF42C3C00DE914F /* AMF.m */; };
+		2C5D6C0C0FF42C3C00DE914F /* AMFActionMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6BF20FF42C3C00DE914F /* AMFActionMessage.m */; };
+		2C5D6C0D0FF42C3C00DE914F /* AMFArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6BF40FF42C3C00DE914F /* AMFArchiver.m */; };
+		2C5D6C0E0FF42C3C00DE914F /* AMFDebugUnarchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6BF60FF42C3C00DE914F /* AMFDebugUnarchiver.m */; };
+		2C5D6C0F0FF42C3C00DE914F /* AMFDuplexGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6BF80FF42C3C00DE914F /* AMFDuplexGateway.m */; };
+		2C5D6C100FF42C3C00DE914F /* AMFGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6BFA0FF42C3C00DE914F /* AMFGateway.m */; };
+		2C5D6C110FF42C3C00DE914F /* AMFRemotingCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6BFC0FF42C3C00DE914F /* AMFRemotingCall.m */; };
+		2C5D6C120FF42C3C00DE914F /* AMFUnarchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6BFE0FF42C3C00DE914F /* AMFUnarchiver.m */; };
+		2C5D6C130FF42C3C00DE914F /* ASObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6C000FF42C3C00DE914F /* ASObject.m */; };
+		2C5D6C140FF42C3C00DE914F /* FlexDataTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6C020FF42C3C00DE914F /* FlexDataTypes.m */; };
+		2C5D6C150FF42C3C00DE914F /* NSInvocation-AMFExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6C040FF42C3C00DE914F /* NSInvocation-AMFExtensions.m */; };
+		2C5D6C160FF42C3C00DE914F /* NSObject-AMFExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6C060FF42C3C00DE914F /* NSObject-AMFExtensions.m */; };
+		2C5D6C180FF42C3C00DE914F /* SODeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D6C0A0FF42C3C00DE914F /* SODeserializer.m */; };
 		2C65ADB80F328187005D7A61 /* MessageParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C65ADB00F328187005D7A61 /* MessageParserTest.m */; };
 		2C65ADBB0F328187005D7A61 /* StackTraceParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C65ADB70F328187005D7A61 /* StackTraceParserTest.m */; };
 		2C65ADCF0F328222005D7A61 /* NSString+LPStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */; };
@@ -54,14 +67,6 @@
 		496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */; };
 		496AF1300F333BD90049FB23 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF12F0F333BD90049FB23 /* WebKit.framework */; };
 		496AF19A0F3353870049FB23 /* functions.js in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE380F328A90005D7A61 /* functions.js */; };
-		49E489F30F617AC30034B384 /* AMFActionMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E489E00F617AC30034B384 /* AMFActionMessage.m */; };
-		49E489F40F617AC30034B384 /* AMFArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E489E20F617AC30034B384 /* AMFArchiver.m */; };
-		49E489F50F617AC30034B384 /* AMFDuplexGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E489E40F617AC30034B384 /* AMFDuplexGateway.m */; };
-		49E489F60F617AC30034B384 /* AMFGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E489E60F617AC30034B384 /* AMFGateway.m */; };
-		49E489F70F617AC30034B384 /* AMFRemotingCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E489E80F617AC30034B384 /* AMFRemotingCall.m */; };
-		49E489F80F617AC30034B384 /* AMFUnarchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E489EA0F617AC30034B384 /* AMFUnarchiver.m */; };
-		49E489F90F617AC30034B384 /* ASObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E489EC0F617AC30034B384 /* ASObject.m */; };
-		49E489FA0F617AC30034B384 /* NSInvocation-AMFExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E489EE0F617AC30034B384 /* NSInvocation-AMFExtensions.m */; };
 		49E48A610F6182130034B384 /* LoggingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E48A600F6182130034B384 /* LoggingService.m */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
@@ -120,6 +125,32 @@
 		2C5582690F33D6CE0011B31A /* StackTraceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackTraceItem.h; sourceTree = "<group>"; };
 		2C5582730F33D75C0011B31A /* AbstractMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage.h; sourceTree = "<group>"; };
 		2C5582740F33D75C0011B31A /* AbstractMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMessage.m; sourceTree = "<group>"; };
+		2C5D6BEF0FF42C3C00DE914F /* AMF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMF.h; sourceTree = "<group>"; };
+		2C5D6BF00FF42C3C00DE914F /* AMF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMF.m; sourceTree = "<group>"; };
+		2C5D6BF10FF42C3C00DE914F /* AMFActionMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFActionMessage.h; sourceTree = "<group>"; };
+		2C5D6BF20FF42C3C00DE914F /* AMFActionMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFActionMessage.m; sourceTree = "<group>"; };
+		2C5D6BF30FF42C3C00DE914F /* AMFArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFArchiver.h; sourceTree = "<group>"; };
+		2C5D6BF40FF42C3C00DE914F /* AMFArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFArchiver.m; sourceTree = "<group>"; };
+		2C5D6BF50FF42C3C00DE914F /* AMFDebugUnarchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFDebugUnarchiver.h; sourceTree = "<group>"; };
+		2C5D6BF60FF42C3C00DE914F /* AMFDebugUnarchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFDebugUnarchiver.m; sourceTree = "<group>"; };
+		2C5D6BF70FF42C3C00DE914F /* AMFDuplexGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFDuplexGateway.h; sourceTree = "<group>"; };
+		2C5D6BF80FF42C3C00DE914F /* AMFDuplexGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFDuplexGateway.m; sourceTree = "<group>"; };
+		2C5D6BF90FF42C3C00DE914F /* AMFGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFGateway.h; sourceTree = "<group>"; };
+		2C5D6BFA0FF42C3C00DE914F /* AMFGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFGateway.m; sourceTree = "<group>"; };
+		2C5D6BFB0FF42C3C00DE914F /* AMFRemotingCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFRemotingCall.h; sourceTree = "<group>"; };
+		2C5D6BFC0FF42C3C00DE914F /* AMFRemotingCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFRemotingCall.m; sourceTree = "<group>"; };
+		2C5D6BFD0FF42C3C00DE914F /* AMFUnarchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFUnarchiver.h; sourceTree = "<group>"; };
+		2C5D6BFE0FF42C3C00DE914F /* AMFUnarchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFUnarchiver.m; sourceTree = "<group>"; };
+		2C5D6BFF0FF42C3C00DE914F /* ASObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASObject.h; sourceTree = "<group>"; };
+		2C5D6C000FF42C3C00DE914F /* ASObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASObject.m; sourceTree = "<group>"; };
+		2C5D6C010FF42C3C00DE914F /* FlexDataTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexDataTypes.h; sourceTree = "<group>"; };
+		2C5D6C020FF42C3C00DE914F /* FlexDataTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlexDataTypes.m; sourceTree = "<group>"; };
+		2C5D6C030FF42C3C00DE914F /* NSInvocation-AMFExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation-AMFExtensions.h"; sourceTree = "<group>"; };
+		2C5D6C040FF42C3C00DE914F /* NSInvocation-AMFExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation-AMFExtensions.m"; sourceTree = "<group>"; };
+		2C5D6C050FF42C3C00DE914F /* NSObject-AMFExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-AMFExtensions.h"; sourceTree = "<group>"; };
+		2C5D6C060FF42C3C00DE914F /* NSObject-AMFExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-AMFExtensions.m"; sourceTree = "<group>"; };
+		2C5D6C090FF42C3C00DE914F /* SODeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SODeserializer.h; sourceTree = "<group>"; };
+		2C5D6C0A0FF42C3C00DE914F /* SODeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SODeserializer.m; sourceTree = "<group>"; };
 		2C65AD9A0F32813E005D7A61 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C65AD9B0F32813E005D7A61 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		2C65ADAF0F328187005D7A61 /* MessageParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageParserTest.h; sourceTree = "<group>"; };
@@ -158,23 +189,6 @@
 		496AF0690F321D070049FB23 /* NSString+LPStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LPStringAdditions.h"; sourceTree = "<group>"; };
 		496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LPStringAdditions.m"; sourceTree = "<group>"; };
 		496AF12F0F333BD90049FB23 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		49E489DE0F617AC30034B384 /* AMF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMF.h; sourceTree = "<group>"; };
-		49E489DF0F617AC30034B384 /* AMFActionMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFActionMessage.h; sourceTree = "<group>"; };
-		49E489E00F617AC30034B384 /* AMFActionMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFActionMessage.m; sourceTree = "<group>"; };
-		49E489E10F617AC30034B384 /* AMFArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFArchiver.h; sourceTree = "<group>"; };
-		49E489E20F617AC30034B384 /* AMFArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFArchiver.m; sourceTree = "<group>"; };
-		49E489E30F617AC30034B384 /* AMFDuplexGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFDuplexGateway.h; sourceTree = "<group>"; };
-		49E489E40F617AC30034B384 /* AMFDuplexGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFDuplexGateway.m; sourceTree = "<group>"; };
-		49E489E50F617AC30034B384 /* AMFGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFGateway.h; sourceTree = "<group>"; };
-		49E489E60F617AC30034B384 /* AMFGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFGateway.m; sourceTree = "<group>"; };
-		49E489E70F617AC30034B384 /* AMFRemotingCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFRemotingCall.h; sourceTree = "<group>"; };
-		49E489E80F617AC30034B384 /* AMFRemotingCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFRemotingCall.m; sourceTree = "<group>"; };
-		49E489E90F617AC30034B384 /* AMFUnarchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFUnarchiver.h; sourceTree = "<group>"; };
-		49E489EA0F617AC30034B384 /* AMFUnarchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFUnarchiver.m; sourceTree = "<group>"; };
-		49E489EB0F617AC30034B384 /* ASObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASObject.h; sourceTree = "<group>"; };
-		49E489EC0F617AC30034B384 /* ASObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASObject.m; sourceTree = "<group>"; };
-		49E489ED0F617AC30034B384 /* NSInvocation-AMFExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation-AMFExtensions.h"; sourceTree = "<group>"; };
-		49E489EE0F617AC30034B384 /* NSInvocation-AMFExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation-AMFExtensions.m"; sourceTree = "<group>"; };
 		49E48A5F0F6182130034B384 /* LoggingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingService.h; sourceTree = "<group>"; };
 		49E48A600F6182130034B384 /* LoggingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingService.m; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* Logger.trazzlePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Logger.trazzlePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -322,8 +336,8 @@
 				2C0421A80F3E625900726781 /* NSMUtils */,
 				2C19E0B00EBE7C5200B9BA96 /* MGScopeBar */,
 				2C4CCA8B0EABA3C9003EE952 /* AsyncSocket */,
+				2C5D6BEE0FF42C3C00DE914F /* CocoaAMF */,
 				2C4CCB3A0EABBF1F003EE952 /* UKKQueue */,
-				49E489DD0F617AC30034B384 /* CocoaAMF */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -390,6 +404,40 @@
 				491925550F6A6A9800B95592 /* ExceptionMessage.m */,
 			);
 			name = messages;
+			sourceTree = "<group>";
+		};
+		2C5D6BEE0FF42C3C00DE914F /* CocoaAMF */ = {
+			isa = PBXGroup;
+			children = (
+				2C5D6BEF0FF42C3C00DE914F /* AMF.h */,
+				2C5D6BF00FF42C3C00DE914F /* AMF.m */,
+				2C5D6BF10FF42C3C00DE914F /* AMFActionMessage.h */,
+				2C5D6BF20FF42C3C00DE914F /* AMFActionMessage.m */,
+				2C5D6BF30FF42C3C00DE914F /* AMFArchiver.h */,
+				2C5D6BF40FF42C3C00DE914F /* AMFArchiver.m */,
+				2C5D6BF50FF42C3C00DE914F /* AMFDebugUnarchiver.h */,
+				2C5D6BF60FF42C3C00DE914F /* AMFDebugUnarchiver.m */,
+				2C5D6BF70FF42C3C00DE914F /* AMFDuplexGateway.h */,
+				2C5D6BF80FF42C3C00DE914F /* AMFDuplexGateway.m */,
+				2C5D6BF90FF42C3C00DE914F /* AMFGateway.h */,
+				2C5D6BFA0FF42C3C00DE914F /* AMFGateway.m */,
+				2C5D6BFB0FF42C3C00DE914F /* AMFRemotingCall.h */,
+				2C5D6BFC0FF42C3C00DE914F /* AMFRemotingCall.m */,
+				2C5D6BFD0FF42C3C00DE914F /* AMFUnarchiver.h */,
+				2C5D6BFE0FF42C3C00DE914F /* AMFUnarchiver.m */,
+				2C5D6BFF0FF42C3C00DE914F /* ASObject.h */,
+				2C5D6C000FF42C3C00DE914F /* ASObject.m */,
+				2C5D6C010FF42C3C00DE914F /* FlexDataTypes.h */,
+				2C5D6C020FF42C3C00DE914F /* FlexDataTypes.m */,
+				2C5D6C030FF42C3C00DE914F /* NSInvocation-AMFExtensions.h */,
+				2C5D6C040FF42C3C00DE914F /* NSInvocation-AMFExtensions.m */,
+				2C5D6C050FF42C3C00DE914F /* NSObject-AMFExtensions.h */,
+				2C5D6C060FF42C3C00DE914F /* NSObject-AMFExtensions.m */,
+				2C5D6C090FF42C3C00DE914F /* SODeserializer.h */,
+				2C5D6C0A0FF42C3C00DE914F /* SODeserializer.m */,
+			);
+			name = CocoaAMF;
+			path = CocoaAMF/CocoaAMF;
 			sourceTree = "<group>";
 		};
 		2C65ADAD0F328187005D7A61 /* Tests */ = {
@@ -495,31 +543,6 @@
 				496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */,
 			);
 			name = categories;
-			sourceTree = "<group>";
-		};
-		49E489DD0F617AC30034B384 /* CocoaAMF */ = {
-			isa = PBXGroup;
-			children = (
-				49E489DE0F617AC30034B384 /* AMF.h */,
-				49E489DF0F617AC30034B384 /* AMFActionMessage.h */,
-				49E489E00F617AC30034B384 /* AMFActionMessage.m */,
-				49E489E10F617AC30034B384 /* AMFArchiver.h */,
-				49E489E20F617AC30034B384 /* AMFArchiver.m */,
-				49E489E30F617AC30034B384 /* AMFDuplexGateway.h */,
-				49E489E40F617AC30034B384 /* AMFDuplexGateway.m */,
-				49E489E50F617AC30034B384 /* AMFGateway.h */,
-				49E489E60F617AC30034B384 /* AMFGateway.m */,
-				49E489E70F617AC30034B384 /* AMFRemotingCall.h */,
-				49E489E80F617AC30034B384 /* AMFRemotingCall.m */,
-				49E489E90F617AC30034B384 /* AMFUnarchiver.h */,
-				49E489EA0F617AC30034B384 /* AMFUnarchiver.m */,
-				49E489EB0F617AC30034B384 /* ASObject.h */,
-				49E489EC0F617AC30034B384 /* ASObject.m */,
-				49E489ED0F617AC30034B384 /* NSInvocation-AMFExtensions.h */,
-				49E489EE0F617AC30034B384 /* NSInvocation-AMFExtensions.m */,
-			);
-			name = CocoaAMF;
-			path = CocoaAMF/CocoaAMF;
 			sourceTree = "<group>";
 		};
 		49E48A5E0F6181F70034B384 /* services */ = {
@@ -676,18 +699,23 @@
 				2C04220F0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.m in Sources */,
 				2C159B340F3EF67A00321454 /* SelectedFilterToIconTransformer.m in Sources */,
 				49472F300F614C410049A188 /* FileMonitor.m in Sources */,
-				49E489F30F617AC30034B384 /* AMFActionMessage.m in Sources */,
-				49E489F40F617AC30034B384 /* AMFArchiver.m in Sources */,
-				49E489F50F617AC30034B384 /* AMFDuplexGateway.m in Sources */,
-				49E489F60F617AC30034B384 /* AMFGateway.m in Sources */,
-				49E489F70F617AC30034B384 /* AMFRemotingCall.m in Sources */,
-				49E489F80F617AC30034B384 /* AMFUnarchiver.m in Sources */,
-				49E489F90F617AC30034B384 /* ASObject.m in Sources */,
-				49E489FA0F617AC30034B384 /* NSInvocation-AMFExtensions.m in Sources */,
 				49E48A610F6182130034B384 /* LoggingService.m in Sources */,
 				2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */,
 				491925560F6A6A9800B95592 /* ExceptionMessage.m in Sources */,
 				2CE276320F6B340F001F43F4 /* FDBServer.m in Sources */,
+				2C5D6C0B0FF42C3C00DE914F /* AMF.m in Sources */,
+				2C5D6C0C0FF42C3C00DE914F /* AMFActionMessage.m in Sources */,
+				2C5D6C0D0FF42C3C00DE914F /* AMFArchiver.m in Sources */,
+				2C5D6C0E0FF42C3C00DE914F /* AMFDebugUnarchiver.m in Sources */,
+				2C5D6C0F0FF42C3C00DE914F /* AMFDuplexGateway.m in Sources */,
+				2C5D6C100FF42C3C00DE914F /* AMFGateway.m in Sources */,
+				2C5D6C110FF42C3C00DE914F /* AMFRemotingCall.m in Sources */,
+				2C5D6C120FF42C3C00DE914F /* AMFUnarchiver.m in Sources */,
+				2C5D6C130FF42C3C00DE914F /* ASObject.m in Sources */,
+				2C5D6C140FF42C3C00DE914F /* FlexDataTypes.m in Sources */,
+				2C5D6C150FF42C3C00DE914F /* NSInvocation-AMFExtensions.m in Sources */,
+				2C5D6C160FF42C3C00DE914F /* NSObject-AMFExtensions.m in Sources */,
+				2C5D6C180FF42C3C00DE914F /* SODeserializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -98,8 +98,8 @@
 
 - (void)_validateMessages
 {
-	NSMutableArray *invisibleMessagesDelta = [NSMutableArray array];
-	NSMutableArray *visibleMessagesDelta = [NSMutableArray array];
+	NSMutableArray *invisibleMessagesDelta = [[NSMutableArray alloc] init];
+	NSMutableArray *visibleMessagesDelta = [[NSMutableArray alloc] init];
 	uint32_t i = 0;
 	for (AbstractMessage *message in m_messages)
 	{
@@ -126,6 +126,8 @@
 	{
 		[m_delegate messageModel:self didShowMessagesWithIndexes:visibleMessagesDelta];
 	}
+	[invisibleMessagesDelta release];
+	[visibleMessagesDelta release];
 }
 
 - (NSPredicate *)_applicablePredicate:(NSPredicate *)sourcePredicate 

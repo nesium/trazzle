@@ -72,6 +72,7 @@
 				initWithPlugInController:plugInController];
 			[m_loadedPlugins addObject:plugin];
 			[plugin release];
+			[plugInController release];
 		}
 	}
 }

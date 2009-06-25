@@ -44,7 +44,7 @@
 		m_fcshInPipe = [[NSPipe alloc] init];
 		m_fcshOutPipe = [[NSPipe alloc] init];
 		m_fcshErrorPipe = [[NSPipe alloc] init];
-		[m_fcshTask setLaunchPath:@"/usr/local/flex3sdk/bin/fcsh"];
+		[m_fcshTask setLaunchPath:@"/usr/local/flexsdk/bin/fcsh"];
 		[m_fcshTask setStandardInput:m_fcshOutPipe];
 		[m_fcshTask setStandardOutput:m_fcshInPipe];
 		[m_fcshTask setStandardError:m_fcshErrorPipe];
