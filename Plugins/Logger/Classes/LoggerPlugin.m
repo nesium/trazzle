@@ -311,25 +311,25 @@
 		}
 	}
 	
-	if (message && [message rangeOfString:@"Error: Error #"].location != NSNotFound)
-	{
-		m_currentException = [[ExceptionMessage alloc] init];
-		m_currentExceptionStacktrace = [[NSMutableString alloc] initWithFormat:@"%@\n", message];
-		m_currentException.levelName = @"exception";
-		NSRange colonRange = [message rangeOfString:@":"];
-		m_currentException.errorType = [message substringToIndex:colonRange.location];
-		NSUInteger startIndex = colonRange.location + colonRange.length;
-		NSRange hashRange = [message rangeOfString:@"#" options:0 
-			range:(NSRange){startIndex, [message length] - startIndex}];
-		colonRange = [message rangeOfString:@":" options:0 
-			range:(NSRange){startIndex, [message length] - startIndex}];
-		m_currentException.errorNumber = [[message substringWithRange:(NSRange){hashRange.location + 
-			hashRange.length, colonRange.location - hashRange.location - hashRange.length}] intValue];
-		m_currentException.message = [NSString stringWithFormat:@"%@ (#%d): %@",
-			m_currentException.errorType, m_currentException.errorNumber, 
-			[message substringFromIndex:colonRange.location + 2]];
-		return;
-	}
+//	if (message && [message rangeOfString:@"Error: Error #"].location != NSNotFound)
+//	{
+//		m_currentException = [[ExceptionMessage alloc] init];
+//		m_currentExceptionStacktrace = [[NSMutableString alloc] initWithFormat:@"%@\n", message];
+//		m_currentException.levelName = @"exception";
+//		NSRange colonRange = [message rangeOfString:@":"];
+//		m_currentException.errorType = [message substringToIndex:colonRange.location];
+//		NSUInteger startIndex = colonRange.location + colonRange.length;
+//		NSRange hashRange = [message rangeOfString:@"#" options:0 
+//			range:(NSRange){startIndex, [message length] - startIndex}];
+//		colonRange = [message rangeOfString:@":" options:0 
+//			range:(NSRange){startIndex, [message length] - startIndex}];
+//		m_currentException.errorNumber = [[message substringWithRange:(NSRange){hashRange.location + 
+//			hashRange.length, colonRange.location - hashRange.location - hashRange.length}] intValue];
+//		m_currentException.message = [NSString stringWithFormat:@"%@ (#%d): %@",
+//			m_currentException.errorType, m_currentException.errorNumber, 
+//			[message substringFromIndex:colonRange.location + 2]];
+//		return;
+//	}
 
 	[self _handleMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
 		message:[message htmlEncodedStringWithConvertedLinebreaks]] fromClient:nil];
@@ -383,6 +383,9 @@
 {
 	NSData *data = [[notification userInfo] valueForKey:NSFileHandleNotificationDataItem];
 	NSString *message = [[NSString alloc] initWithData:data encoding:NSMacOSRomanStringEncoding];
+
+	[self _handleMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
+		message:[message htmlEncodedStringWithConvertedLinebreaks]] fromClient:nil];
 	
 	if (m_flashlogBuffer != nil)
 	{

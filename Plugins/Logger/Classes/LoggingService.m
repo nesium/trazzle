@@ -63,6 +63,25 @@
 	if ([m_delegate respondsToSelector:@selector(loggingService:didReceivePNG:fromGateway:)])
 		[m_delegate loggingService:self didReceivePNG:filename fromGateway:gateway];
 }
+
+- (oneway void)gateway:(AMFRemoteGateway *)gateway addI18NKey:(NSString *)key 
+	toFile:(NSString *)path
+{
+	NSStringEncoding encoding;
+	path = [path stringByExpandingTildeInPath];
+	NSString *fileData = [NSString stringWithContentsOfFile:path usedEncoding:&encoding error:nil];
+	NSMutableArray *lines = [NSMutableArray array];
+	if (fileData != nil)
+	{
+		[lines addObjectsFromArray:[fileData componentsSeparatedByString:@"\n"]];
+		if ([lines containsObject:key]) return;
+	}
+	[lines addObject:key];
+	[lines sortUsingSelector:@selector(caseInsensitiveCompare:)];
+	[[lines componentsJoinedByString:@"\n"] writeToFile:path atomically:NO encoding:encoding 
+		error:nil];
+}
+
 @end
 
 
