@@ -26,7 +26,7 @@
 	if (self = [super initWithWindowNibName:@"FilterEditor"])
 	{
 		m_filters = [[NSMutableArray alloc] init];
-		m_filteringIsEnabled = YES;
+		m_filteringIsEnabled = NO;
 		[self _loadFilters];
 		// load window
 		[self window];

@@ -66,7 +66,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>ZZApplication</string>
 	<key>SUFeedURL</key>
 	<string>http://www.nesium.com/appcast/trazzle/</string>
 </dict>
