@@ -4,4 +4,10 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+	
+	#ifdef DEBUG
+		#define NDCLog(...) printf("%s (%d) %s\n", __PRETTY_FUNCTION__, __LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String]);
+	#else
+		#define NDCLog(...)
+	#endif
 #endif

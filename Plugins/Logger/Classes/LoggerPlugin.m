@@ -46,6 +46,8 @@
 {
 	if (self = [super init])
 	{
+		NDCLog(@"lets go");
+	
 		controller = aController;
 		
 		m_filterController = [[LPFilterController alloc] init];

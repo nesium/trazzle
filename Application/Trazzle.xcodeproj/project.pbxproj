@@ -57,13 +57,6 @@
 			remoteGlobalIDString = 8D5B49B6048680CD000E48DA;
 			remoteInfo = Builder;
 		};
-		2CAD39CE0F6F05A200D390D9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2CAD39C80F6F059A00D390D9 /* Builder.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D5B49AC048680CD000E48DA;
-			remoteInfo = Builder;
-		};
 		2CFA552A0D6B943E00F5DFE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -358,7 +351,6 @@
 			);
 			dependencies = (
 				496AF0A30F321FE50049FB23 /* PBXTargetDependency */,
-				2CAD39CF0F6F05A200D390D9 /* PBXTargetDependency */,
 			);
 			name = Trazzle;
 			productInstallPath = "$(HOME)/Applications";
@@ -509,11 +501,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2CAD39CF0F6F05A200D390D9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Builder;
-			targetProxy = 2CAD39CE0F6F05A200D390D9 /* PBXContainerItemProxy */;
-		};
 		2CFA552B0D6B943E00F5DFE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D15AC270486D014006FF6A4 /* Trazzle */;
@@ -667,6 +654,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
 				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;

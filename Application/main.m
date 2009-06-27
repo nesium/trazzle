@@ -8,21 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#ifdef DEBUG
-void SWLog(NSString *format, id sender, SEL cmd, ...);
-void SWLog(NSString *format, id sender, SEL cmd, ...)
-{
-	va_list args;
-	va_start(args, cmd);
-	format = [NSString stringWithFormat: @"[%@ (0x%lx)] %@ %@", 
-		[sender className], (unsigned long)sender, NSStringFromSelector(cmd), format];
-	NSLogv(format, args);
-}
-#else
-inline void SWLog(NSString *format, id sender, SEL cmd, ...) {}
-#endif
-
-
 void handleSIGPIPE(int signal)
 {
 	char *string = "\n\nSIGPIPE occurred!\n\n";
