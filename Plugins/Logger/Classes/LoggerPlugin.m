@@ -158,6 +158,7 @@
 
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client
 {
+	NDCLog(@"%@", msg);
 	if (msg.messageType == kLPMessageTypePolicyRequest)
 	{
 		[client sendString:@"<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\"/></cross-domain-policy>\0"];
@@ -389,25 +390,25 @@
 	[self _handleMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
 		message:[message htmlEncodedStringWithConvertedLinebreaks]] fromClient:nil];
 	
-	if (m_flashlogBuffer != nil)
-	{
-		message = [[m_flashlogBuffer stringByAppendingString:message] retain];
-		[m_flashlogBuffer release];
-		m_flashlogBuffer = nil;
-	}
+//	if (m_flashlogBuffer != nil)
+//	{
+//		message = [[m_flashlogBuffer stringByAppendingString:message] retain];
+//		[m_flashlogBuffer release];
+//		m_flashlogBuffer = nil;
+//	}
 	
-	NSArray *lines = [message componentsSeparatedByString:@"\n"];
-	for (uint32_t i = 0; i < [lines count]; i++)
-	{
-		NSString *line = [lines objectAtIndex:i];
-		if (i == [lines count] - 1)
-		{
-			if ([line length] > 0) m_flashlogBuffer = [line retain];
-			else [self _tryFinishFlashLogException];
-		}
-		else if ([line length] > 0)
-			[self _handleFlashlogLine:line];
-	}
+//	NSArray *lines = [message componentsSeparatedByString:@"\n"];
+//	for (uint32_t i = 0; i < [lines count]; i++)
+//	{
+//		NSString *line = [lines objectAtIndex:i];
+//		if (i == [lines count] - 1)
+//		{
+//			if ([line length] > 0) m_flashlogBuffer = [line retain];
+//			else [self _tryFinishFlashLogException];
+//		}
+//		else if ([line length] > 0)
+//			[self _handleFlashlogLine:line];
+//	}
 
 	[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
 	[message release];
