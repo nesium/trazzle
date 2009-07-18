@@ -59,6 +59,7 @@
 		2CBFEF7A0F3E4F7400AA982D /* LPFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterController.m */; };
 		2CBFEFB50F3E578200AA982D /* LPFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEFB40F3E578200AA982D /* LPFilter.m */; };
 		2CD18C860F3601C9005D0CCE /* LoggingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD18C850F3601C9005D0CCE /* LoggingClient.m */; };
+		2CD764A410123BB2005AC88C /* FDBSourceModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD764A310123BB2005AC88C /* FDBSourceModule.m */; };
 		2CE276320F6B340F001F43F4 /* FDBServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE276310F6B340F001F43F4 /* FDBServer.m */; };
 		2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */; };
 		2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE3248C0F61CF1F004BB7CF /* libssl.dylib */; };
@@ -178,6 +179,8 @@
 		2CBFEFB40F3E578200AA982D /* LPFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilter.m; sourceTree = "<group>"; };
 		2CD18C840F3601C9005D0CCE /* LoggingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingClient.h; sourceTree = "<group>"; };
 		2CD18C850F3601C9005D0CCE /* LoggingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingClient.m; sourceTree = "<group>"; };
+		2CD764A210123BB2005AC88C /* FDBSourceModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDBSourceModule.h; sourceTree = "<group>"; };
+		2CD764A310123BB2005AC88C /* FDBSourceModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDBSourceModule.m; sourceTree = "<group>"; };
 		2CE276300F6B340F001F43F4 /* FDBServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDBServer.h; sourceTree = "<group>"; };
 		2CE276310F6B340F001F43F4 /* FDBServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDBServer.m; sourceTree = "<group>"; };
 		2CE324790F61CE2C004BB7CF /* CocoaCryptoHashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaCryptoHashing.h; sourceTree = "<group>"; };
@@ -544,6 +547,8 @@
 				2CF557E110113FA900E3FA78 /* FDBMessage.h */,
 				2CF557E210113FA900E3FA78 /* FDBMessage.m */,
 				2CF55870101156C900E3FA78 /* FDB.h */,
+				2CD764A210123BB2005AC88C /* FDBSourceModule.h */,
+				2CD764A310123BB2005AC88C /* FDBSourceModule.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -730,6 +735,7 @@
 				2C5D6C180FF42C3C00DE914F /* SODeserializer.m in Sources */,
 				2CF557C910112D9000E3FA78 /* FDBConnection.m in Sources */,
 				2CF557E310113FA900E3FA78 /* FDBMessage.m in Sources */,
+				2CD764A410123BB2005AC88C /* FDBSourceModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

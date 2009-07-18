@@ -19,7 +19,11 @@
 @property (nonatomic, assign) uint32_t type;
 
 + (FDBMessage *)messageWithType:(int32_t)type;
++ (FDBMessage *)messageWithType:(int32_t)type data:(NSData *)data;
+- (id)initWithData:(NSData *)data;
+
 - (uint32_t)size;
+- (uint32_t)bytesAvailable;
 - (NSData *)plainData;
 - (NSData *)messageData;
 
@@ -30,4 +34,10 @@
 - (void)encodeUnsignedInt:(uint32_t)value;
 - (void)encodeUnsignedShort:(uint16_t)value;
 - (void)encodeUTF:(NSString *)value;
+
+- (NSString *)decodeUTF;
+- (uint32_t)decodeBytes:(uint8_t)len;
+- (uint8_t)decodeChar;
+- (uint32_t)decodeUnsignedInt;
+- (uint16_t)decodeUnsignedShort;
 @end
