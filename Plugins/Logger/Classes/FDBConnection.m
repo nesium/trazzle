@@ -73,6 +73,13 @@
 	[self _sendMessage:[FDBMessage messageWithType:kFDBOutMessageTypeStepContinue]];
 }
 
+- (void)requestSWF:(uint16_t)index
+{
+	FDBMessage *msg = [FDBMessage messageWithType:kFDBOutMessageTypeGetSWF];
+	[msg encodeUnsignedShort:index];
+	[self _sendMessage:msg];
+}
+
 - (void)requestSWFInfo:(uint16_t)swfIndex
 {
 	FDBMessage *msg = [FDBMessage messageWithType:kFDBOutMessageTypeSWFInfo];
@@ -89,6 +96,7 @@
 - (void)_initConnection
 {
 	NSLog(@"init connection");
+	[self _continueReading];
 	[self _sendOptionMessage:@"disable_script_stuck_dialog" value:@"on"];
 	[self _sendOptionMessage:@"disable_script_stuck" value:@"on"];
 	[self _sendOptionMessage:@"break_on_fault" value:@"on"];
@@ -100,7 +108,7 @@
 	[self _sendOptionMessage:@"setter_timeout" value:kFDBPrefSetVarResponseTimeout];
 	[self _sendSquelch:YES];
 	[self requestSWFInfo:0];
-	[self _continueReading];
+	[self requestSWF:0];
 }
 
 - (void)_sendMessage:(FDBMessage *)msg
@@ -194,8 +202,6 @@
 				uint32_t line = bp >> 16 & 0xffff;
 				NSLog(@"bpi: %d ptr: %d stack: %@ file: %d line: %d", bpi, ptr, stack, file, line);
 			}
-			
-			[self resume];
 			break;
 		}
 		case kFDBInMessageTypeVersion:
@@ -244,6 +250,7 @@
 		case kFDBInMessageTypeSetMenuState:
 		{
 			NSLog(@"set menu state");
+			NSLog(@"%@", [msg plainData]);
 			break;
 		}
 		case kFDBInMessageTypeDeleteVariable:
@@ -261,6 +268,8 @@
 		case kFDBInMessageTypeProcessTag:
 		{
 			NSLog(@"process tag");
+			// need to send a response to this message to keep the player going
+			[self _sendMessage:[FDBMessage messageWithType:kFDBOutMessageTypeProcessedTag]];
 			break;
 		}
 		case kFDBInMessageTypeErrorURLOpen:
@@ -324,6 +333,12 @@
 				NSLog(@"vmVersion: %d\nswfSize: %d\nswdSize: %d\nscriptCount: %d\noffsetCount: %d\nbreakpointCount: %d\nport: %d\npath: %@\nurl: %@\nhost: %@", 
 					  vmVersion, swfSize, swdSize, scriptCount, offsetCount, breakpointCount, port, path, url, host);
 			}
+			[self resume];
+			break;
+		}
+		case kFDBInMessageTypeGetSWF:
+		{
+			NSLog(@"received swf");
 			break;
 		}
 		default:
@@ -361,6 +376,7 @@
 		uint32_t cmd = CFSwapInt32BigToHost(((ch1 << 24) & 0xff000000) + ((ch2 << 16) & 0xff0000) + 
 			((ch3 << 8) & 0xff00) + (ch4 & 0xff));
 
+		NSLog(@"type: %d len: %d", cmd, len);
 		m_lastMessageType = cmd;
 
 		if (len > 0)
@@ -379,6 +395,7 @@
 	{
 		FDBMessage *msg = [FDBMessage messageWithType:m_lastMessageType data:data];
 		[self _handleMessage:msg];
+		m_lastMessageType = kFDBInMessageTypeUnknown;
 	}
 	[self _continueReading];
 }

@@ -25,5 +25,6 @@
 - (void)setBreakpointAtFileWithId:(uint32_t)fileId line:(uint32_t)line;
 - (void)resume;
 - (void)stepContinue;
+- (void)requestSWF:(uint16_t)index;
 - (void)requestSWFInfo:(uint16_t)swfIndex;
 @end
