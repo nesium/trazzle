@@ -16,6 +16,20 @@
 {
 	if (self = [super init])
 	{
+		m_preferences = [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithInt:120000], kFDBPrefAcceptTimeout, 
+			[NSNumber numberWithInt:1], kFDBPrefURIModification, 
+			[NSNumber numberWithInt:750], kFDBPrefResponseTimeout, 
+			[NSNumber numberWithInt:1000], kFDBPrefContextResponseTimeout, 
+			[NSNumber numberWithInt:1500], kFDBPrefGetVarResponseTimeout, 
+			[NSNumber numberWithInt:5000], kFDBPrefSetVarResponseTimeout, 
+			[NSNumber numberWithInt:5000], kFDBPrefSWFSWDLoadTimeout, 
+			[NSNumber numberWithInt:7000], kFDBPrefSuspendWait, 
+			[NSNumber numberWithInt:1], kFDBPrefInvokeGetters, 
+			[NSNumber numberWithInt:0], kFDBPrefHierarchicalVariables, 
+			nil];
+		
+		m_connections = [[NSMutableArray alloc] init];
 		m_socket = [[AsyncSocket alloc] initWithDelegate:self];
 		[m_socket acceptOnPort:kDEBUG_PORT error:nil];
 	}
@@ -25,14 +39,7 @@
 - (void)onSocket:(AsyncSocket *)sock didAcceptNewSocket:(AsyncSocket *)newSocket
 {
 	NSLog(@"client connected");
-	[newSocket retain];
-	[newSocket readDataWithTimeout:-1 tag:0];
-}
-
-- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
-{
-	//[data writeToFile:@"/Users/mb/Desktop/test.bin" atomically:NO];
-	NSLog(@"test: %@", [AMF3Unarchiver unarchiveObjectWithData:data encoding:kAMF3Version]);
+	[m_connections addObject:[FDBConnection connectionWithSocket:newSocket]];
 }
 
 @end

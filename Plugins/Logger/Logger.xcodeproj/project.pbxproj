@@ -62,6 +62,8 @@
 		2CE276320F6B340F001F43F4 /* FDBServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE276310F6B340F001F43F4 /* FDBServer.m */; };
 		2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */; };
 		2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE3248C0F61CF1F004BB7CF /* libssl.dylib */; };
+		2CF557C910112D9000E3FA78 /* FDBConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF557C810112D9000E3FA78 /* FDBConnection.m */; };
+		2CF557E310113FA900E3FA78 /* FDBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF557E210113FA900E3FA78 /* FDBMessage.m */; };
 		491925560F6A6A9800B95592 /* ExceptionMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 491925550F6A6A9800B95592 /* ExceptionMessage.m */; };
 		49472F300F614C410049A188 /* FileMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472F2F0F614C410049A188 /* FileMonitor.m */; };
 		496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */; };
@@ -181,6 +183,11 @@
 		2CE324790F61CE2C004BB7CF /* CocoaCryptoHashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaCryptoHashing.h; sourceTree = "<group>"; };
 		2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaCryptoHashing.m; sourceTree = "<group>"; };
 		2CE3248C0F61CF1F004BB7CF /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		2CF557C710112D9000E3FA78 /* FDBConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDBConnection.h; sourceTree = "<group>"; };
+		2CF557C810112D9000E3FA78 /* FDBConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDBConnection.m; sourceTree = "<group>"; };
+		2CF557E110113FA900E3FA78 /* FDBMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDBMessage.h; sourceTree = "<group>"; };
+		2CF557E210113FA900E3FA78 /* FDBMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDBMessage.m; sourceTree = "<group>"; };
+		2CF55870101156C900E3FA78 /* FDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDB.h; sourceTree = "<group>"; };
 		32DBCF630370AF2F00C91783 /* Logger_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger_Prefix.pch; sourceTree = "<group>"; };
 		491925540F6A6A9800B95592 /* ExceptionMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionMessage.h; sourceTree = "<group>"; };
 		491925550F6A6A9800B95592 /* ExceptionMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionMessage.m; sourceTree = "<group>"; };
@@ -532,6 +539,11 @@
 				49472F2F0F614C410049A188 /* FileMonitor.m */,
 				2CE276300F6B340F001F43F4 /* FDBServer.h */,
 				2CE276310F6B340F001F43F4 /* FDBServer.m */,
+				2CF557C710112D9000E3FA78 /* FDBConnection.h */,
+				2CF557C810112D9000E3FA78 /* FDBConnection.m */,
+				2CF557E110113FA900E3FA78 /* FDBMessage.h */,
+				2CF557E210113FA900E3FA78 /* FDBMessage.m */,
+				2CF55870101156C900E3FA78 /* FDB.h */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -716,6 +728,8 @@
 				2C5D6C150FF42C3C00DE914F /* NSInvocation-AMFExtensions.m in Sources */,
 				2C5D6C160FF42C3C00DE914F /* NSObject-AMFExtensions.m in Sources */,
 				2C5D6C180FF42C3C00DE914F /* SODeserializer.m in Sources */,
+				2CF557C910112D9000E3FA78 /* FDBConnection.m in Sources */,
+				2CF557E310113FA900E3FA78 /* FDBMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

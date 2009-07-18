@@ -8,13 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AsyncSocket.h"
-#import "AMF.h"
-#import "AMFUnarchiver.h"
-
+#import "FDBConnection.h"
+#import "FDB.h"
 
 @interface FDBServer : NSObject 
 {
 	AsyncSocket *m_socket;
+	NSDictionary *m_preferences;
+	NSMutableArray *m_connections;
 }
-
 @end
