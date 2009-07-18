@@ -139,6 +139,7 @@
 {
 	NSData *data = [value dataUsingEncoding:NSUTF8StringEncoding];
 	[self encodeDataObject:data];
+	[self encodeChar:'\0'];
 }
 
 - (NSString *)decodeUTF

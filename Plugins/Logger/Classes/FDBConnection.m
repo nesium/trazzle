@@ -243,8 +243,8 @@
 		}
 		case kFDBInMessageTypeNewObject:
 		{
-			uint32_t ptr = [msg decodeUnsignedInt];
-			NSLog(@"new object %d", ptr);
+			//uint32_t ptr = [msg decodeUnsignedInt];
+			//NSLog(@"new object %d", ptr);
 			break;
 		}
 		case kFDBInMessageTypeSetMenuState:
@@ -262,7 +262,7 @@
 		}
 		case kFDBInMessageTypeSetVariable2:
 		{
-			NSLog(@"set variable2");
+			//NSLog(@"set variable2");
 			break;
 		}
 		case kFDBInMessageTypeProcessTag:
@@ -333,6 +333,7 @@
 				NSLog(@"vmVersion: %d\nswfSize: %d\nswdSize: %d\nscriptCount: %d\noffsetCount: %d\nbreakpointCount: %d\nport: %d\npath: %@\nurl: %@\nhost: %@", 
 					  vmVersion, swfSize, swdSize, scriptCount, offsetCount, breakpointCount, port, path, url, host);
 			}
+			[self _sendMessage:[FDBMessage messageWithType:kFDBOutMessageTypePassAllExceptionsToDebugger]];
 			[self resume];
 			break;
 		}
@@ -376,7 +377,7 @@
 		uint32_t cmd = CFSwapInt32BigToHost(((ch1 << 24) & 0xff000000) + ((ch2 << 16) & 0xff0000) + 
 			((ch3 << 8) & 0xff00) + (ch4 & 0xff));
 
-		NSLog(@"type: %d len: %d", cmd, len);
+		//NSLog(@"type: %d len: %d", cmd, len);
 		m_lastMessageType = cmd;
 
 		if (len > 0)
