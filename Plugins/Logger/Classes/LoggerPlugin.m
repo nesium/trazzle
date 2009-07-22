@@ -82,9 +82,6 @@
 		m_gateway.delegate = self;
 		[m_gateway startOnPort:(port + 1) error:&error];
 		
-		// start debugger
-		m_debuggingServer = [[FDBServer alloc] init];
-		
 		// tail flashlog
 		m_currentException = nil;
 		m_flashlogBuffer = nil;
