@@ -20,7 +20,6 @@
 #import "AMFDuplexGateway.h"
 #import "LoggingService.h"
 #import "ExceptionMessage.h"
-#import "FDBServer.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn, TrazzleTabViewDelegate> 
 {
@@ -28,7 +27,6 @@
 	
 	AsyncSocket *m_socket;
 	AMFDuplexGateway *m_gateway;
-	FDBServer *m_debuggingServer;
 	NSMutableArray *m_connectedClients;
 	
 	NSTask *m_tailTask;

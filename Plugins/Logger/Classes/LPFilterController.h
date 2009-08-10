@@ -11,6 +11,7 @@
 #import "ZZConstants.h"
 #import "LPFilter.h"
 #import "NSMMenuController.h"
+#import "SelectedFilterToIconTransformer.h"
 
 
 @interface LPFilterController : NSWindowController
@@ -18,6 +19,7 @@
 	IBOutlet NSMenu *m_mainMenu;
 	IBOutlet NSArrayController *m_filterArrayController;
 	IBOutlet NSArrayController *m_filterMenuArrayController;
+	IBOutlet NSTableView *m_filtersTable;
 	id m_delegate;
 	LPFilter *m_activeFilter;
 	NSMutableArray *m_filters;

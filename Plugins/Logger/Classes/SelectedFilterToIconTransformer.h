@@ -9,10 +9,11 @@
 #import <Cocoa/Cocoa.h>
 #import "LPFilter.h"
 
+@class LPFilterController;
 
-@interface SelectedFilterToIconTransformer : NSObject 
+@interface SelectedFilterToIconTransformer : NSValueTransformer
 {
-
+	LPFilterController *m_filterController;
 }
-
+- (id)initWithFilterController:(LPFilterController *)filterController;
 @end

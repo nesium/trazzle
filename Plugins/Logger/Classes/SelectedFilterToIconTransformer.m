@@ -7,9 +7,19 @@
 //
 
 #import "SelectedFilterToIconTransformer.h"
+#import "LPFilterController.h"
 
 
 @implementation SelectedFilterToIconTransformer
+
+- (id)initWithFilterController:(LPFilterController *)filterController
+{
+	if (self = [super init])
+	{
+		m_filterController = filterController;
+	}
+	return self;
+}
 
 + (Class)transformedValueClass
 {
@@ -23,16 +33,14 @@
  
 - (id)transformedValue:(LPFilter *)filter
 {
+	NSString *imageName;
+	if (m_filterController.filteringIsEnabled && m_filterController.activeFilter == filter)
+		imageName = @"led_on";
+	else
+		imageName = @"led_off";
+	
 	return [[[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] 
-		pathForResource:@"led_off" ofType:@"png"]] autorelease];
-//	BOOL filterSelected = filter == [[FilterModel defaultModel] activeFilter];
-//	if (!filterSelected)
-//	{
-//		return nil;
-//	}
-//	return [[[FilterModel defaultModel] filteringEnabled] boolValue]
-//		? [NSImage imageNamed:@"led_on.png"]
-//		: [NSImage imageNamed:@"led_off.png"];
+		pathForResource:imageName ofType:@"png"]] autorelease];
 }
 
 @end

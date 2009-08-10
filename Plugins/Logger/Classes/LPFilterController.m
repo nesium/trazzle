@@ -16,7 +16,9 @@
 
 @implementation LPFilterController
 
-@synthesize delegate=m_delegate, activeFilter=m_activeFilter, filteringIsEnabled=m_filteringIsEnabled;
+@synthesize delegate=m_delegate, 
+			activeFilter=m_activeFilter, 
+			filteringIsEnabled=m_filteringIsEnabled;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -25,6 +27,12 @@
 {
 	if (self = [super initWithWindowNibName:@"FilterEditor"])
 	{
+		SelectedFilterToIconTransformer *transformer = [[SelectedFilterToIconTransformer alloc]
+			initWithFilterController:self];
+		[NSValueTransformer setValueTransformer:transformer 
+			forName:@"SelectedFilterToIconTransformer"];
+		[transformer release];
+		
 		m_filters = [[NSMutableArray alloc] init];
 		m_filteringIsEnabled = NO;
 		[self _loadFilters];
@@ -50,6 +58,9 @@
 	m_mainMenuController.defaultTarget = self;
 	[m_mainMenuController bind:@"content" toObject:m_filterMenuArrayController 
 		withKeyPath:@"arrangedObjects" options:nil];
+	
+	[m_filterMenuArrayController setSelectedObjects:(m_activeFilter == nil ? nil 
+		: [NSArray arrayWithObject:m_activeFilter])];
 }
 
 - (void)dealloc
@@ -65,24 +76,35 @@
 
 - (void)setActiveFilter:(LPFilter *)filter
 {
-	[filter retain];
+	if (filter == m_activeFilter)
+		return;
+	
 	[m_activeFilter release];
-	m_activeFilter = filter;
+	m_activeFilter = [filter retain];
+	
 	[m_filterMenuArrayController setSelectedObjects:(m_activeFilter == nil ? nil 
 		: [NSArray arrayWithObject:m_activeFilter])];
+	
+	[[[NSUserDefaultsController sharedUserDefaultsController] values] 
+		setValue:(filter == nil) ? @"" : [filter path] 
+		forKey:kLastSelectedFilterKey];
+	
+	[m_filtersTable reloadData];
+	
 	if ([m_delegate respondsToSelector:@selector(filterController:didSelectFilter:)])
-	{
 		[m_delegate filterController:self didSelectFilter:m_activeFilter];
-	}
 }
 
 - (void)setFilteringIsEnabled:(BOOL)bFlag
 {
+	if (m_filteringIsEnabled == bFlag)
+		return;
+	
 	m_filteringIsEnabled = bFlag;
+	[m_filtersTable reloadData];
+	
 	if ([m_delegate respondsToSelector:@selector(filterController:didChangeFilteringEnabledFlag:)])
-	{
 		[m_delegate filterController:self didChangeFilteringEnabledFlag:m_filteringIsEnabled];
-	}
 }
 
 
@@ -129,9 +151,7 @@
 	while (file = [filesEnum nextObject])
 	{
 		if (![[file pathExtension] isEqualToString:kFilterFileExtension])
-		{
 			continue;
-		}
 	
 		NSString *filterPath = [[self _filtersPath] 
 			stringByAppendingPathComponent:file];
@@ -152,9 +172,7 @@
 	}
 	
 	if (!foundSelectedFilter && [m_filters count] > 0)
-	{
 		[self setActiveFilter:(LPFilter *)[m_filters objectAtIndex:0]];
-	}
 }
 
 @end
