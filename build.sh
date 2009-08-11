@@ -41,10 +41,10 @@ fi
 cd $code_folder
  
 git pull origin master
-git pull --tags
+git fetch --tags
 git checkout $tag
  
-sed -i "" 's/__VERSION__/'$tag'/g' Info.plist
+sed -i "" 's/__VERSION__/'$tag'/g' Resources/Info.plist
  
 echo building project
 xcodebuild -target $project -configuration Release OBJROOT=$build_folder SYMROOT=$build_folder OTHER_CFLAGS=""
@@ -61,7 +61,7 @@ else
  
 	# make the zip file
 	cd $final_builds
-	hdiutil create -srcfolder $diskimage_folder -volname "$project $tag" -format UDBZ "$project_$tag.dmg"
+	hdiutil create -srcfolder $diskimage_folder -volname "$project $tag" -format UDBZ "${project}_${tag}.dmg"
  	
 	rm -rf $project.app
  
@@ -71,5 +71,5 @@ else
 fi
  
 cd $code_folder
-git checkout Info.plist
+git checkout Resources/Info.plist
 rm -rf $build_folder
