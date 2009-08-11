@@ -607,6 +607,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/PSMTabBarControl/build/$(CONFIGURATION)\"",
@@ -623,6 +624,8 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = Trazzle;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = ZZ;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -630,6 +633,7 @@
 		C05733C908A9546B00998B17 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -644,6 +648,8 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Trazzle;
 				STRIP_STYLE = debugging;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = ZZ;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
