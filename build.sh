@@ -66,6 +66,7 @@ else
 	hdiutil create -srcfolder $diskimage_folder -volname "$project $tag" -format UDBZ "${project}_${tag}.dmg"
  	
 	rm -rf $project.app
+	rm -rf $diskimage_folder
  
 	open $final_builds
 	say "done building"
