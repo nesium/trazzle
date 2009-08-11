@@ -20,8 +20,9 @@ if [ "$tag" == "" ]; then
 fi
 
 # Configuration
+current_dir=pwd
 final_builds=~/Desktop/release_builds
-code_folder=Application
+code_folder="$current_dir/Application"
 build_folder=$code_folder/build
 diskimage_folder=$final_builds/$project
  
@@ -44,9 +45,10 @@ git pull origin master
 git fetch --tags
 git checkout $tag
  
-sed -i "" 's/__VERSION__/'$tag'/g' Resources/Info.plist
+sed -i "" 's/__VERSION__/'$tag'/g' Info.plist
  
 echo building project
+xcodebuild -target $project -configuration Release OBJROOT=$build_folder SYMROOT=$build_folder clean
 xcodebuild -target $project -configuration Release OBJROOT=$build_folder SYMROOT=$build_folder OTHER_CFLAGS=""
  
 if [ $? != 0 ]; then
@@ -61,7 +63,7 @@ else
  
 	# make the zip file
 	cd $final_builds
-	hdiutil create -srcfolder $diskimage_folder -volname "$project $tag" -format UDBZ "${project}_${tag}.dmg"
+	hdiutil create -srcfolder $diskimage_folder -volname "$project $tag" -format UDBZ "$project_$tag.dmg"
  	
 	rm -rf $project.app
  
@@ -71,5 +73,5 @@ else
 fi
  
 cd $code_folder
-git checkout Resources/Info.plist
+git checkout Info.plist
 rm -rf $build_folder
