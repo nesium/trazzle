@@ -63,7 +63,7 @@ else
  
 	# make the zip file
 	cd $final_builds
-	hdiutil create -srcfolder $diskimage_folder -volname "$project $tag" -format UDBZ "$project_$tag.dmg"
+	hdiutil create -srcfolder $diskimage_folder -volname "$project $tag" -format UDBZ "${project}_${tag}.dmg"
  	
 	rm -rf $project.app
  
