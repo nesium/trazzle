@@ -9,26 +9,29 @@
 #import "LPFilter.h"
 
 @interface LPFilter (Private)
-- (BOOL)writeToFile:(NSString *)path error:(NSError **)error;
-- (NSString *)normalizedName;
-- (void)setPath:(NSString *)path;
-- (NSString *)nextAvailableFilename;
+- (BOOL)_writeToFile:(NSString *)path error:(NSError **)error;
+- (NSString *)_normalizedName;
+- (void)_setPath:(NSString *)path;
+- (NSString *)_nextAvailableFilename;
 @end
 
 @implementation LPFilter
 
-@synthesize predicate=m_predicate, name=m_name;
+@synthesize predicate=m_predicate, 
+			name=m_name;
 
 #pragma mark -
 #pragma mark Initialization & deallocation
 
 - (id)initWithName:(NSString *)name predicate:(NSPredicate *)predicate
 {
-	self = [super init];
-	self.name = name;
-	self.predicate = predicate;
-	m_isDirty = YES;
-	m_wantsRenaming = NO;
+	if (self = [super init])
+	{
+		self.name = name;
+		self.predicate = predicate;
+		m_isDirty = YES;
+		m_wantsRenaming = NO;		
+	}
 	return self;
 }
 
@@ -56,7 +59,7 @@
 		return nil;
     }
 	
-	[self setPath:path];
+	[self _setPath:path];
 	m_isDirty = NO;
 	return self;
 }
@@ -122,9 +125,9 @@
 	}
 	if ([self path] == nil)
 	{
-		[self setPath:[self nextAvailableFilename]];
+		[self _setPath:[self _nextAvailableFilename]];
 	}
-	return [self writeToFile:[self path] error:error];
+	return [self _writeToFile:[self path] error:error];
 }
 
 - (BOOL)unlink:(NSError **)error
@@ -138,7 +141,7 @@
 	BOOL success = [fm removeItemAtPath:[self path] error:error];
 	if (success)
 	{
-		[self setPath:nil];
+		[self _setPath:nil];
 		m_wantsRenaming = NO;
 	}
 	return success;
@@ -149,7 +152,7 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (BOOL)writeToFile:(NSString *)path error:(NSError **)error
+- (BOOL)_writeToFile:(NSString *)path error:(NSError **)error
 {
 	NSData *data;
 	NSMutableDictionary *doc = [NSMutableDictionary dictionary];
@@ -179,7 +182,7 @@
 	return success;
 }
 
-- (NSString *)normalizedName
+- (NSString *)_normalizedName
 {
 	NSMutableString *name = [NSMutableString stringWithString: [self name]];
 	[name replaceOccurrencesOfString:@":" withString:@"-" 
@@ -189,10 +192,10 @@
 	return [name precomposedStringWithCanonicalMapping];
 }
 
-- (NSString *)nextAvailableFilename
+- (NSString *)_nextAvailableFilename
 {
 	NSString *proposedFilename = [[TRAZZLE_APP_SUPPORT stringByAppendingPathComponent:@"Filters"] 
-		stringByAppendingPathComponent:[self normalizedName]];
+		stringByAppendingPathComponent:[self _normalizedName]];
 	NSString *usedFilename = proposedFilename;
 		
 	unsigned int i = 1;
@@ -204,7 +207,7 @@
 	return [usedFilename stringByAppendingPathExtension:kFilterFileExtension];
 }
 
-- (void)setPath:(NSString *)path
+- (void)_setPath:(NSString *)path
 {
 	[path retain];
 	[m_path release];

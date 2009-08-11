@@ -26,5 +26,5 @@
 @property (nonatomic, retain) id defaultTarget;
 
 - (id)initWithMenu:(NSMenu *)menu;
-
+- (void)setContent:(NSArrayController *)controller;
 @end

@@ -8,6 +8,7 @@
  */
 
 #import "PlugInController.h"
+#import <Foundation/NSKeyValueObserving.h>
 
 @class PlugInController;
 

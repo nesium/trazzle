@@ -20,6 +20,7 @@
 	IBOutlet NSArrayController *m_filterArrayController;
 	IBOutlet NSArrayController *m_filterMenuArrayController;
 	IBOutlet NSTableView *m_filtersTable;
+	IBOutlet NSMenuItem *m_filteringIsEnabledMenuItem;
 	id m_delegate;
 	LPFilter *m_activeFilter;
 	NSMutableArray *m_filters;
@@ -29,8 +30,12 @@
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) LPFilter *activeFilter;
 @property (nonatomic, assign) BOOL filteringIsEnabled;
+- (id)initWithDelegate:(id)delegate;
 - (IBAction)editFilters:(id)sender;
 - (IBAction)toggleFilteringIsEnabled:(id)sender;
+- (IBAction)add:(id)sender;
+- (IBAction)duplicate:(id)sender;
+- (IBAction)remove:(id)sender;
 @end
 
 

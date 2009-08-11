@@ -27,6 +27,9 @@
 
 @implementation LoggerPlugin
 
+@synthesize tabTitle=m_tabTitle, 
+			isReady=m_isReady;
+
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
@@ -47,11 +50,13 @@
 	if (self = [super init])
 	{
 		NDCLog(@"lets go");
-	
+
 		controller = aController;
 		
-		m_filterController = [[LPFilterController alloc] init];
-		m_filterController.delegate = self;
+		m_isReady = NO;
+		self.tabTitle = @"New Session";
+		
+		m_filterController = [[LPFilterController alloc] initWithDelegate:self];
 		
 		// display viewcontroller
 		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 
@@ -112,6 +117,7 @@
 	[m_connectedClients release];
 	[m_messageModel release];
 	[m_filterController release];
+	[m_tabTitle release];
 	[super dealloc];
 }
 
@@ -137,7 +143,7 @@
 
 - (NSString *)titleForTabWithIdentifier:(NSString *)identifier
 {
-	return @"New Session";
+	return m_tabTitle;
 }
 
 
@@ -505,6 +511,11 @@
 	return [m_messageModel messageAtIndex:index];
 }
 
+- (void)loggingViewControllerWebViewIsReady:(LoggingViewController *)controller
+{
+	if (!m_isReady) self.isReady = YES;
+}
+
 
 
 #pragma mark -
@@ -529,6 +540,7 @@
 - (void)filterController:(LPFilterController *)controller 
 	didChangeFilteringEnabledFlag:(BOOL)isEnabled
 {
+	self.tabTitle = isEnabled ? @"New Session*" : @"New Session";
 	[m_messageModel setFilter:(isEnabled ? [m_filterController activeFilter] : nil)];
 }
 

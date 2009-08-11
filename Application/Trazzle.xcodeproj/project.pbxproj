@@ -460,7 +460,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ./Scripts/add_revision;
+			shellScript = "#./Scripts/add_revision";
 		};
 		2CFA54E10D6B8D5F00F5DFE5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

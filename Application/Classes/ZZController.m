@@ -29,7 +29,6 @@
 - (void)awakeFromNib
 {
 	m_windowController = [[ZZWindowController alloc] initWithWindowNibName:@"MainWindow"];
-	[m_windowController showWindow:self];
 	m_plugInControllers = [[NSMutableArray alloc] init];
 	[self loadPlugins];
 }

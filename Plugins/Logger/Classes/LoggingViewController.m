@@ -97,6 +97,8 @@
 - (void)_markWebViewReady
 {
 	m_webViewReady = YES;
+	if ([m_delegate respondsToSelector:@selector(loggingViewControllerWebViewIsReady:)])
+		[m_delegate loggingViewControllerWebViewIsReady:self];
 }
 
 - (void)_initTimer

@@ -38,8 +38,11 @@
 	MessageModel *m_messageModel;
 	LoggingViewController *m_loggingViewController;
 	LPFilterController *m_filterController;
+	
+	NSString *m_tabTitle;
+	BOOL m_isReady;
 }
-
+@property (nonatomic, retain) NSString *tabTitle;
+@property (nonatomic, assign) BOOL isReady;
 - (id)initWithPlugInController:(PlugInController *)controller;
-
 @end

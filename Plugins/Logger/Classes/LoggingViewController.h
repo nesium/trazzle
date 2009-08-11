@@ -37,4 +37,5 @@
 @interface NSObject (LoggingViewControllerDelegate)
 - (AbstractMessage *)loggingViewController:(LoggingViewController *)controller 
 	messageAtIndex:(uint32_t)index;
+- (void)loggingViewControllerWebViewIsReady:(LoggingViewController *)controller;
 @end

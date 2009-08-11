@@ -40,7 +40,8 @@
 
 - (void)setObjectValue:(id)object
 {
-	if ([object isMemberOfClass:[NSPredicate class]])
+	if ([object isMemberOfClass:[NSPredicate class]] || 
+		[object isMemberOfClass:[NSComparisonPredicate class]])
 	{
 		object = [NSCompoundPredicate orPredicateWithSubpredicates:
 			[NSArray arrayWithObject:object]];

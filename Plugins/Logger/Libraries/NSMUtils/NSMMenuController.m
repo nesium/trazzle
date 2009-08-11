@@ -32,6 +32,7 @@
 	{
 		m_menu = [menu retain];
 		m_insertionIndex = 0;
+		m_arrayController = nil;
 		m_menuItems = [[NSMutableArray alloc] init];
 		m_content = nil;
 	}
@@ -45,6 +46,38 @@
 	[m_menuItems release];
 	[m_content release];
 	[super dealloc];
+}
+
+
+
+#pragma mark -
+#pragma mark Public methods
+
+- (void)setContent:(NSArrayController *)controller
+{
+	if (m_arrayController != nil)
+	{
+		[m_arrayController removeObserver:self forKeyPath:@"arrangedObjects"];
+		[m_arrayController removeObserver:self forKeyPath:@"selectionIndexes"];
+	}
+		
+	m_arrayController = controller;	
+	if (m_arrayController == nil) return;
+	
+	[controller addObserver:self forKeyPath:@"arrangedObjects" 
+					options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
+					context:kNSMMCObservationContext];
+	[controller addObserver:self forKeyPath:@"selectionIndexes" options:0 
+					context:kNSMMCObservationContext];
+	
+	NSArray *content = [controller arrangedObjects];
+	if ([content count] > 0)
+	{
+		m_content = [content copy];
+		[self _createMenuItemsFromData:content];
+		[self _setNeedsInvalidation];
+		[self _setSelectedIndexes:[controller valueForKey:@"selectionIndexes"]];
+	}
 }
 
 
@@ -74,6 +107,7 @@
 		if ([data containsObject:[menuItem representedObject]])
 		{
 			[m_menuItems removeObject:menuItem];
+			[m_menu removeItem:menuItem];
 		}
 	}
 	[menuItemsCopy release];
@@ -134,32 +168,6 @@
 #pragma mark -
 #pragma mark KVO methods
 
-- (void)bind:(NSString *)attribute toObject:(id)controller withKeyPath:(NSString *)keyPath 
-	options:(NSDictionary *)options
-{
-    if ([attribute isEqualToString:@"content"])
-    {
-        [controller addObserver:self forKeyPath:keyPath 
-			options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
-			context:kNSMMCObservationContext];
-		[controller addObserver:self forKeyPath:@"selectionIndexes" options:0 
-			context:kNSMMCObservationContext];
-			
-		NSArray *content = [(NSArrayController *)controller valueForKeyPath:keyPath];
-		if ([content count] > 0)
-		{
-			m_content = [content retain];
-			[self _createMenuItemsFromData:content];
-			[self _setNeedsInvalidation];
-			[self _setSelectedIndexes:[controller valueForKey:@"selectionIndexes"]];
-		}
-    }
-	else
-	{
-        [super bind:attribute toObject:controller withKeyPath:keyPath options:options];
-    }
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object 
 	change:(NSDictionary *)change context:(void *)context
 {
@@ -168,13 +176,13 @@
 		return;
 	}
 	
-	if ([keyPath isEqualToString:@"content"])
+	if ([keyPath isEqualToString:@"arrangedObjects"])
 	{
 		NSArray *newContent = [[object valueForKeyPath:keyPath] retain];
 
 		if (m_content == nil)
 		{
-			m_content = [newContent retain];
+			m_content = [newContent copy];
 			[self _createMenuItemsFromData:newContent];
 			[self _setNeedsInvalidation];
 			return;
