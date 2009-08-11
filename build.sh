@@ -20,7 +20,7 @@ if [ "$tag" == "" ]; then
 fi
 
 # Configuration
-current_dir=pwd
+current_dir=`pwd`
 final_builds=~/Desktop/release_builds
 code_folder="$current_dir/Application"
 build_folder=$code_folder/build
