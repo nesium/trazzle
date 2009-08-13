@@ -17,6 +17,8 @@
 	IBOutlet PSMTabBarControl *m_tabBar;
 	IBOutlet NSTabView *m_tabView;
 	NSMutableArray *m_delegates;
+	BOOL m_windowIsReady;
+	BOOL m_windowWasVisible;
 }
 - (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
 	delegate:(id <TrazzleTabViewDelegate>)delegate;

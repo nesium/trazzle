@@ -33,6 +33,11 @@
 	[self loadPlugins];
 }
 
+- (void)showTrazzleWindow:(id)sender
+{
+	[m_windowController showWindow:self];
+}
+
 
 
 #pragma mark -

@@ -24,6 +24,8 @@
 	if (self = [super initWithWindowNibName:windowNibName])
 	{
 		m_delegates = [[NSMutableArray alloc] init];
+		m_windowIsReady = NO;
+		m_windowWasVisible = NO;
 		[self window];
 	}
 	return self;
@@ -54,6 +56,13 @@
 
 - (IBAction)showWindow:(id)sender
 {
+	if (!m_windowIsReady) return;
+	if (m_windowWasVisible)
+	{
+		[super showWindow:sender];
+		return;
+	}
+	
 	NSWindow *win = [self window];
 	[win setAlphaValue:0.0];
 	[win makeKeyAndOrderFront:self];
@@ -71,6 +80,8 @@
 	[[NSAnimationContext currentContext] setDuration:0.15];
 	[[win animator] setAlphaValue:1.0];
 	[NSAnimationContext endGrouping];
+	
+	m_windowWasVisible = YES;
 }
 
 - (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
@@ -116,6 +127,7 @@
 	for (NSObject *delegate in m_delegates)
 		if (![[delegate valueForKey:@"isReady"] boolValue])
 			return;
+	m_windowIsReady = YES;
 	[self showWindow:self];
 }
 
