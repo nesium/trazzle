@@ -16,11 +16,11 @@
 	NSString *shortClassName;
 	NSString *method;
 	NSString *file;
-	uint32_t line;
+	int32_t line;
 }
 @property (nonatomic, retain) NSString *fullClassName;
 @property (nonatomic, readonly) NSString *shortClassName;
 @property (nonatomic, retain) NSString *method;
 @property (nonatomic, retain) NSString *file;
-@property (nonatomic, assign) uint32_t line;
+@property (nonatomic, assign) int32_t line;
 @end

@@ -54,14 +54,17 @@ function logMessageToHTML(message, addTextmateLinks)
 	html += '<div class="lineno">' + (message.index + 1) + '</div>';
 	html += '<div class="timestamp">' + message.formattedTimestamp() + '</div>';
 	html += '<div class="content ' + message.levelName + '">';
-	if (addTextmateLinks)
+	if (addTextmateLinks && message.line > -1)
 	{
 		html += '<a class="tm_link" href="txmt://open/?url=file://' + escape(message.file) + 
 			'&line=' + message.line + '">';
 	}
-	html += message.shortClassName + '.' + message.method + ' (' + message.line + ') ' + 
-		message.message;
-	if (addTextmateLinks)
+	if (message.shortClassName && message.method) 
+		html += message.shortClassName + '.' + message.method + ' ';
+	if (message.line > -1)
+		html += '(' + message.line + ') '; 
+	html += message.message;
+	if (addTextmateLinks && message.line > -1)
 	{
 		html += '</a>';
 	}

@@ -21,6 +21,7 @@
 	if (self = [super init])
 	{
 		messageType = kLPMessageTypeStackTrace;
+		line = -1;
 	}
 	return self;
 }
