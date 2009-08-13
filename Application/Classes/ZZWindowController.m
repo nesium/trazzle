@@ -14,6 +14,10 @@
 - (void)_showWindowIfDelegatesAreReady;
 @end
 
+@interface NSObject (ZZWindowControllerPrivate)
+- (id)_customFieldEditorForWindow:(NSWindow *)window;
+@end
+
 @implementation ZZWindowController
 
 #pragma mark -
@@ -129,6 +133,18 @@
 			return;
 	m_windowIsReady = YES;
 	[self showWindow:self];
+}
+
+
+
+#pragma mark -
+#pragma mark Window delegate methods
+
+- (id)windowWillReturnFieldEditor:(NSWindow *)sender toObject:(id)anObject
+{
+	if ([anObject respondsToSelector:@selector(_customFieldEditorForWindow:)])
+		return [(NSObject *)anObject _customFieldEditorForWindow:sender];
+	return nil;
 }
 
 

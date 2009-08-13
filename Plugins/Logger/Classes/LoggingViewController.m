@@ -9,6 +9,7 @@
 #import "LoggingViewController.h"
 
 @interface LoggingViewController (Private)
+- (void)_setSearchBarVisible:(BOOL)isVisible;
 - (void)_initTimer;
 - (void)_invalidateTimer;
 - (void)_flushBuffer:(NSTimer *)timer;
@@ -24,6 +25,7 @@
 - (void)awakeFromNib
 {
 	m_webViewReady = NO;
+	m_searchBarIsVisible = NO;
 	m_buffer = [[NSMutableArray alloc] init];
 	
 	[m_webView setFrameLoadDelegate:self];
@@ -33,6 +35,9 @@
 	[self loadURL:[NSURL URLWithString:[[[NSBundle bundleForClass:[self class]] 
 		pathForResource:@"theme" ofType:@"html"] 
 		stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+	
+	[self setNextResponder:[m_webView nextResponder]];
+	[m_webView setNextResponder:self];
 }
 
 - (void)dealloc
@@ -92,7 +97,53 @@
 
 
 #pragma mark -
+#pragma mark First responder methods
+
+- (void)performFindAction:(id)sender
+{
+	[self _setSearchBarVisible:YES];
+}
+
+- (IBAction)hideSearchBar:(id)sender
+{
+	[self _setSearchBarVisible:NO];
+}
+
+
+
+#pragma mark -
 #pragma mark Private methods
+
+- (void)_setSearchBarVisible:(BOOL)isVisible
+{
+	if (m_searchBarIsVisible == isVisible) return;
+	
+	NSRect searchBarFrame = [m_searchBar bounds];
+	searchBarFrame.size.width = [[self view] bounds].size.width;
+	searchBarFrame.origin = (NSPoint){0, [[self view] bounds].size.height};
+	NSRect newWebViewFrame = [[self view] bounds];
+	
+	if (isVisible)
+	{
+		[[self view] addSubview:m_searchBar];
+		[m_searchBar setFrame:searchBarFrame];
+		searchBarFrame.origin = (NSPoint){0, [[self view] bounds].size.height - 
+			searchBarFrame.size.height};
+		
+		newWebViewFrame.size.height -= searchBarFrame.size.height;
+	}
+	
+	[NSAnimationContext beginGrouping];
+	[[m_searchBar animator] setFrame:searchBarFrame];
+	[[m_webView animator] setFrame:newWebViewFrame];
+	[NSAnimationContext endGrouping];
+	
+	[[[self view] window] makeFirstResponder:(isVisible 
+		? m_searchField 
+		: (NSResponder *)m_webView)];
+	
+	m_searchBarIsVisible = isVisible;
+}
 
 - (void)_markWebViewReady
 {
@@ -153,7 +204,7 @@
 	{
 		[listener use];
     } 
-	else 
+	else
 	{
 		NSURL *url = [actionInformation objectForKey:WebActionOriginalURLKey];
 		//Ignore file URLs, but open anything else

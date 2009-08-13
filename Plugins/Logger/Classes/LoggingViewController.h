@@ -22,8 +22,12 @@
 	BOOL m_webViewReady;
 	NSTimer *m_sendTimer;
 	NSMutableArray *m_buffer;
+	BOOL m_searchBarIsVisible;
 }
 @property (nonatomic, assign) id delegate;
+
+- (void)performFindAction:(id)sender;
+- (IBAction)hideSearchBar:(id)sender;
 
 - (void)loadURL:(NSURL *)url;
 - (void)sendMessage:(AbstractMessage *)message;

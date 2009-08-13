@@ -61,6 +61,12 @@
 		2CD18C860F3601C9005D0CCE /* LoggingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD18C850F3601C9005D0CCE /* LoggingClient.m */; };
 		2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */; };
 		2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE3248C0F61CF1F004BB7CF /* libssl.dylib */; };
+		2CFEDA2C1034A200004375AE /* SearchBarPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFEDA2B1034A200004375AE /* SearchBarPattern.png */; };
+		2CFEDA321034A254004375AE /* SearchBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFEDA311034A254004375AE /* SearchBarViewController.m */; };
+		2CFEDAA11034B072004375AE /* SearchBarDoneButtonUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFEDA9F1034B072004375AE /* SearchBarDoneButtonUp.png */; };
+		2CFEDAA21034B072004375AE /* SearchBarDoneButtonDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFEDAA01034B072004375AE /* SearchBarDoneButtonDown.png */; };
+		2CFEDB201034C44D004375AE /* SearchBarSearchFieldBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFEDB1F1034C44D004375AE /* SearchBarSearchFieldBackground.png */; };
+		2CFEDBC31034D20C004375AE /* SearchBarSearchFieldDeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFEDBC21034D20C004375AE /* SearchBarSearchFieldDeleteButton.png */; };
 		491925560F6A6A9800B95592 /* ExceptionMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 491925550F6A6A9800B95592 /* ExceptionMessage.m */; };
 		49472F300F614C410049A188 /* FileMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472F2F0F614C410049A188 /* FileMonitor.m */; };
 		496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */; };
@@ -178,6 +184,13 @@
 		2CE324790F61CE2C004BB7CF /* CocoaCryptoHashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaCryptoHashing.h; sourceTree = "<group>"; };
 		2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaCryptoHashing.m; sourceTree = "<group>"; };
 		2CE3248C0F61CF1F004BB7CF /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		2CFEDA2B1034A200004375AE /* SearchBarPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarPattern.png; sourceTree = "<group>"; };
+		2CFEDA301034A254004375AE /* SearchBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarViewController.h; sourceTree = "<group>"; };
+		2CFEDA311034A254004375AE /* SearchBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBarViewController.m; sourceTree = "<group>"; };
+		2CFEDA9F1034B072004375AE /* SearchBarDoneButtonUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarDoneButtonUp.png; sourceTree = "<group>"; };
+		2CFEDAA01034B072004375AE /* SearchBarDoneButtonDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarDoneButtonDown.png; sourceTree = "<group>"; };
+		2CFEDB1F1034C44D004375AE /* SearchBarSearchFieldBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarSearchFieldBackground.png; sourceTree = "<group>"; };
+		2CFEDBC21034D20C004375AE /* SearchBarSearchFieldDeleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarSearchFieldDeleteButton.png; sourceTree = "<group>"; };
 		32DBCF630370AF2F00C91783 /* Logger_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger_Prefix.pch; sourceTree = "<group>"; };
 		491925540F6A6A9800B95592 /* ExceptionMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionMessage.h; sourceTree = "<group>"; };
 		491925550F6A6A9800B95592 /* ExceptionMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionMessage.m; sourceTree = "<group>"; };
@@ -263,13 +276,12 @@
 				2C5582560F33D6A80011B31A /* MessageModel.m */,
 				2CD18C840F3601C9005D0CCE /* LoggingClient.h */,
 				2CD18C850F3601C9005D0CCE /* LoggingClient.m */,
-				2C65AE1C0F328A57005D7A61 /* LoggingViewController.h */,
-				2C65AE1B0F328A57005D7A61 /* LoggingViewController.m */,
-				49E48A5E0F6181F70034B384 /* services */,
+				2CFEDA401034A274004375AE /* LoggingView */,
+				2CBFEF770F3E4F6200AA982D /* FilterWindow */,
+				49E48A5E0F6181F70034B384 /* AMF Services */,
 				49472F310F614C450049A188 /* utils */,
 				2C55825A0F33D6AD0011B31A /* messages */,
 				496AF0680F321CC90049FB23 /* categories */,
-				2CBFEF770F3E4F6200AA982D /* filters */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -360,6 +372,11 @@
 		2C4CCAEB0EABB42B003EE952 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2CFEDBC21034D20C004375AE /* SearchBarSearchFieldDeleteButton.png */,
+				2CFEDB1F1034C44D004375AE /* SearchBarSearchFieldBackground.png */,
+				2CFEDA9F1034B072004375AE /* SearchBarDoneButtonUp.png */,
+				2CFEDAA01034B072004375AE /* SearchBarDoneButtonDown.png */,
+				2CFEDA2B1034A200004375AE /* SearchBarPattern.png */,
 				2C4CCAEC0EABB42B003EE952 /* ButtonBackground.png */,
 				2C4CCAED0EABB42B003EE952 /* ButtonBackgroundRightCap.png */,
 				2C4CCAF70EABB463003EE952 /* DuplicateIcon.png */,
@@ -488,7 +505,7 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
-		2CBFEF770F3E4F6200AA982D /* filters */ = {
+		2CBFEF770F3E4F6200AA982D /* FilterWindow */ = {
 			isa = PBXGroup;
 			children = (
 				2CBFEFB30F3E578200AA982D /* LPFilter.h */,
@@ -502,7 +519,7 @@
 				2C159B320F3EF67A00321454 /* SelectedFilterToIconTransformer.h */,
 				2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */,
 			);
-			name = filters;
+			name = FilterWindow;
 			sourceTree = "<group>";
 		};
 		2CE324780F61CE2C004BB7CF /* CocoaCryptoHashing */ = {
@@ -512,6 +529,17 @@
 				2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */,
 			);
 			path = CocoaCryptoHashing;
+			sourceTree = "<group>";
+		};
+		2CFEDA401034A274004375AE /* LoggingView */ = {
+			isa = PBXGroup;
+			children = (
+				2C65AE1C0F328A57005D7A61 /* LoggingViewController.h */,
+				2C65AE1B0F328A57005D7A61 /* LoggingViewController.m */,
+				2CFEDA301034A254004375AE /* SearchBarViewController.h */,
+				2CFEDA311034A254004375AE /* SearchBarViewController.m */,
+			);
+			name = LoggingView;
 			sourceTree = "<group>";
 		};
 		32C88E010371C26100C91783 /* Other Sources */ = {
@@ -540,13 +568,13 @@
 			name = categories;
 			sourceTree = "<group>";
 		};
-		49E48A5E0F6181F70034B384 /* services */ = {
+		49E48A5E0F6181F70034B384 /* AMF Services */ = {
 			isa = PBXGroup;
 			children = (
 				49E48A5F0F6182130034B384 /* LoggingService.h */,
 				49E48A600F6182130034B384 /* LoggingService.m */,
 			);
-			name = services;
+			name = "AMF Services";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -632,6 +660,11 @@
 				496AF19A0F3353870049FB23 /* functions.js in Resources */,
 				2C65AE7C0F328C26005D7A61 /* LogWindow.xib in Resources */,
 				2C65AE7D0F328C2A005D7A61 /* FilterEditor.xib in Resources */,
+				2CFEDA2C1034A200004375AE /* SearchBarPattern.png in Resources */,
+				2CFEDAA11034B072004375AE /* SearchBarDoneButtonUp.png in Resources */,
+				2CFEDAA21034B072004375AE /* SearchBarDoneButtonDown.png in Resources */,
+				2CFEDB201034C44D004375AE /* SearchBarSearchFieldBackground.png in Resources */,
+				2CFEDBC31034D20C004375AE /* SearchBarSearchFieldDeleteButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +743,7 @@
 				2C5D6C150FF42C3C00DE914F /* NSInvocation-AMFExtensions.m in Sources */,
 				2C5D6C160FF42C3C00DE914F /* NSObject-AMFExtensions.m in Sources */,
 				2C5D6C180FF42C3C00DE914F /* SODeserializer.m in Sources */,
+				2CFEDA321034A254004375AE /* SearchBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
