@@ -30,23 +30,26 @@
 	message.timestamp = logMessage.timestamp;
 	message.encodeHTML = logMessage.encodeHTML;
 	
-	NSArray *stacktrace = [StackTraceParser parseAS3StackTrace:logMessage.stacktrace];
-	if (logMessage.stackIndex >= 0 && logMessage.stackIndex < [stacktrace count])
+	if ([logMessage.stacktrace isKindOfClass:[NSString class]])
 	{
-		StackTraceItem *item = [stacktrace objectAtIndex:logMessage.stackIndex];
-		message.fullClassName = item.fullClassName;
-		message.method = item.method;
-		message.file = item.file;
-		message.line = item.line;
+		NSArray *stacktrace = [StackTraceParser parseAS3StackTrace:logMessage.stacktrace];
+		if (logMessage.stackIndex >= 0 && logMessage.stackIndex < [stacktrace count])
+		{
+			StackTraceItem *item = [stacktrace objectAtIndex:logMessage.stackIndex];
+			message.fullClassName = item.fullClassName;
+			message.method = item.method;
+			message.file = item.file;
+			message.line = item.line;
+		}
+		else
+			NSLog(@"warning! stacktrace index is out of bounds");
+		
+		stacktrace = [stacktrace subarrayWithRange:NSMakeRange(logMessage.stackIndex + 1, 
+															   [stacktrace count] - logMessage.stackIndex - 1)];
+		
+		if ([stacktrace	count])
+			[message setStacktrace:stacktrace];		
 	}
-	else
-		NSLog(@"warning! stacktrace index is out of bounds");
-
-	stacktrace = [stacktrace subarrayWithRange:NSMakeRange(logMessage.stackIndex + 1, 
-		[stacktrace count] - logMessage.stackIndex - 1)];
-	
-	if ([stacktrace	count])
-		[message setStacktrace:stacktrace];
 	
 	if ([m_delegate respondsToSelector:@selector(loggingService:didReceiveLogMessage:fromGateway:)])
 		[m_delegate loggingService:self didReceiveLogMessage:message fromGateway:gateway];
