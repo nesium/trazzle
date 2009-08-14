@@ -20,7 +20,7 @@
 		{
 			[[[self keyWindow] windowController] keyUp:anEvent];
 			return;
-		}		
+		}	
 	}
 	[super sendEvent:anEvent];
 }

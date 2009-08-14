@@ -158,10 +158,10 @@
 	uint32_t selectedIndex = [m_tabView indexOfTabViewItem:selectedTab];
 	id delegate = [m_delegates objectAtIndex:selectedIndex];
 	id consumed = NO;
-	if ([delegate respondsToSelector:@selector(receivedKeyDown:inTabWithIdentifier:)])
+	if ([delegate respondsToSelector:@selector(receivedKeyDown:inTabWithIdentifier:window:)])
 	{
-		consumed = objc_msgSend(delegate, @selector(receivedKeyDown:inTabWithIdentifier:), event, 
-			[selectedTab identifier]);
+		consumed = objc_msgSend(delegate, @selector(receivedKeyDown:inTabWithIdentifier:window:), 
+			event, [selectedTab identifier], [self window]);
 	}
 	if (!consumed)
 	{
@@ -175,10 +175,10 @@
 	uint32_t selectedIndex = [m_tabView indexOfTabViewItem:selectedTab];
 	id delegate = [m_delegates objectAtIndex:selectedIndex];
 	id consumed = NO;
-	if ([delegate respondsToSelector:@selector(receivedKeyUp:inTabWithIdentifier:)])
+	if ([delegate respondsToSelector:@selector(receivedKeyUp:inTabWithIdentifier:window:)])
 	{
-		consumed = objc_msgSend(delegate, @selector(receivedKeyUp:inTabWithIdentifier:), event, 
-			[selectedTab identifier]);
+		consumed = objc_msgSend(delegate, @selector(receivedKeyUp:inTabWithIdentifier:window:), event, 
+			[selectedTab identifier], [self window]);
 	}
 	if (!consumed)
 	{

@@ -56,6 +56,7 @@
 		2C65AE400F328A90005D7A61 /* theme.html in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE3A0F328A90005D7A61 /* theme.html */; };
 		2C65AE7C0F328C26005D7A61 /* LogWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAFC0EABB501003EE952 /* LogWindow.xib */; };
 		2C65AE7D0F328C2A005D7A61 /* FilterEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAEA0EABB42B003EE952 /* FilterEditor.xib */; };
+		2C6A61D910358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C6A61D810358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png */; };
 		2CBFEF7A0F3E4F7400AA982D /* LPFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterController.m */; };
 		2CBFEFB50F3E578200AA982D /* LPFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEFB40F3E578200AA982D /* LPFilter.m */; };
 		2CD18C860F3601C9005D0CCE /* LoggingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD18C850F3601C9005D0CCE /* LoggingClient.m */; };
@@ -173,6 +174,7 @@
 		2C65AE380F328A90005D7A61 /* functions.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = functions.js; sourceTree = "<group>"; };
 		2C65AE390F328A90005D7A61 /* output.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = output.css; sourceTree = "<group>"; };
 		2C65AE3A0F328A90005D7A61 /* theme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = theme.html; sourceTree = "<group>"; };
+		2C6A61D810358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarSearchFieldDeleteButtonAlternate.png; sourceTree = "<group>"; };
 		2C8D2CC70EAD49090020E651 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		2CBFEF780F3E4F7400AA982D /* LPFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFilterController.h; sourceTree = "<group>"; };
 		2CBFEF790F3E4F7400AA982D /* LPFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilterController.m; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				2CFEDBC21034D20C004375AE /* SearchBarSearchFieldDeleteButton.png */,
+				2C6A61D810358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png */,
 				2CFEDB1F1034C44D004375AE /* SearchBarSearchFieldBackground.png */,
 				2CFEDA9F1034B072004375AE /* SearchBarDoneButtonUp.png */,
 				2CFEDAA01034B072004375AE /* SearchBarDoneButtonDown.png */,
@@ -665,6 +668,7 @@
 				2CFEDAA21034B072004375AE /* SearchBarDoneButtonDown.png in Resources */,
 				2CFEDB201034C44D004375AE /* SearchBarSearchFieldBackground.png in Resources */,
 				2CFEDBC31034D20C004375AE /* SearchBarSearchFieldDeleteButton.png in Resources */,
+				2C6A61D910358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

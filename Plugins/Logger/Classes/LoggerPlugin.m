@@ -126,13 +126,17 @@
 #pragma mark -
 #pragma mark TrazzleTabViewDelegate methods
 
-- (BOOL)receivedKeyDown:(NSEvent *)event inTabWithIdentifier:(NSString *)identifier
+- (BOOL)receivedKeyDown:(NSEvent *)event inTabWithIdentifier:(NSString *)identifier 
+				 window:(NSWindow *)window
 {
+	if ([[window firstResponder] isKindOfClass:[NSTextView class]]) return NO;
 	return [event keyCode] == 51 || [event keyCode] == 117;
 }
 
-- (BOOL)receivedKeyUp:(NSEvent *)event inTabWithIdentifier:(NSString *)identifier
+- (BOOL)receivedKeyUp:(NSEvent *)event inTabWithIdentifier:(NSString *)identifier 
+			   window:(NSWindow *)window
 {
+	if ([[window firstResponder] isKindOfClass:[NSTextView class]]) return NO;
 	if ([event keyCode] == 51 || [event keyCode] == 117)
 	{
 		[m_messageModel clearAllMessages];

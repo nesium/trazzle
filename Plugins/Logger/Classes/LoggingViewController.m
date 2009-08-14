@@ -104,6 +104,21 @@
 	[self _setSearchBarVisible:YES];
 }
 
+- (void)performFindNextAction:(id)sender
+{
+	[m_webView searchFor:[m_searchField stringValue] direction:YES caseSensitive:NO wrap:YES];
+}
+
+- (void)performFindPreviousAction:(id)sender
+{
+	[m_webView searchFor:[m_searchField stringValue] direction:NO caseSensitive:NO wrap:YES];
+}
+
+
+
+#pragma mark -
+#pragma mark IB Actions
+
 - (IBAction)hideSearchBar:(id)sender
 {
 	[self _setSearchBarVisible:NO];
@@ -116,7 +131,13 @@
 
 - (void)_setSearchBarVisible:(BOOL)isVisible
 {
-	if (m_searchBarIsVisible == isVisible) return;
+	if (m_searchBarIsVisible == isVisible)
+	{
+		[[[self view] window] makeFirstResponder:(isVisible 
+			? m_searchField 
+			: (NSResponder *)m_webView)];
+		return;
+	}
 	
 	NSRect searchBarFrame = [m_searchBar bounds];
 	searchBarFrame.size.width = [[self view] bounds].size.width;

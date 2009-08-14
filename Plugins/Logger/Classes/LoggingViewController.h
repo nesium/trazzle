@@ -27,6 +27,8 @@
 @property (nonatomic, assign) id delegate;
 
 - (void)performFindAction:(id)sender;
+- (void)performFindNextAction:(id)sender;
+- (void)performFindPreviousAction:(id)sender;
 - (IBAction)hideSearchBar:(id)sender;
 
 - (void)loadURL:(NSURL *)url;
