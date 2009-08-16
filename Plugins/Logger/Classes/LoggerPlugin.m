@@ -165,7 +165,7 @@
 
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client
 {
-	NDCLog(@"%@", msg);
+//	NDCLog(@"%@", msg);
 	if (msg.messageType == kLPMessageTypePolicyRequest)
 	{
 		[client sendString:@"<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\"/></cross-domain-policy>\0"];

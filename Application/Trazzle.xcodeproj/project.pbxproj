@@ -18,6 +18,7 @@
 		2C54D7FD0F3A068200264CC9 /* tabbar_activetab_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FA0F3A068200264CC9 /* tabbar_activetab_right.png */; };
 		2C54D7FE0F3A068200264CC9 /* tabbar_activetab_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FB0F3A068200264CC9 /* tabbar_activetab_middle.png */; };
 		2C54D7FF0F3A068200264CC9 /* tabbar_activetab_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FC0F3A068200264CC9 /* tabbar_activetab_left.png */; };
+		2C64CC2F1037936600D16C35 /* ZZWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C64CC2E1037936600D16C35 /* ZZWindow.m */; };
 		2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */; };
 		2C79FFAE0D42CBEB005279A6 /* FilterNameBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */; };
 		2C93A5390F3906A60050CD51 /* ZZTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C93A5370F3906A60050CD51 /* ZZTabStyle.m */; };
@@ -129,6 +130,8 @@
 		2C54D7FA0F3A068200264CC9 /* tabbar_activetab_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab_right.png; sourceTree = "<group>"; };
 		2C54D7FB0F3A068200264CC9 /* tabbar_activetab_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab_middle.png; sourceTree = "<group>"; };
 		2C54D7FC0F3A068200264CC9 /* tabbar_activetab_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab_left.png; sourceTree = "<group>"; };
+		2C64CC2D1037936600D16C35 /* ZZWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZWindow.h; sourceTree = "<group>"; };
+		2C64CC2E1037936600D16C35 /* ZZWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZWindow.m; sourceTree = "<group>"; };
 		2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrazzlePlugIn.h; sourceTree = "<group>"; };
 		2C79FFAD0D42CBEB005279A6 /* FilterNameBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilterNameBackground.png; sourceTree = "<group>"; };
 		2C87B4570D8733F10065FC08 /* ZZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZConstants.h; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 				2C93A5370F3906A60050CD51 /* ZZTabStyle.m */,
 				2C1F223A0FF57C730035F2DE /* ZZApplication.h */,
 				2C1F223B0FF57C730035F2DE /* ZZApplication.m */,
+				2C64CC2D1037936600D16C35 /* ZZWindow.h */,
+				2C64CC2E1037936600D16C35 /* ZZWindow.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -495,6 +500,7 @@
 				2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */,
 				2C93A5390F3906A60050CD51 /* ZZTabStyle.m in Sources */,
 				2C1F223C0FF57C730035F2DE /* ZZApplication.m in Sources */,
+				2C64CC2F1037936600D16C35 /* ZZWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

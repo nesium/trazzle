@@ -8,7 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="100528"/>
 			<integer value="100117"/>
+			<integer value="100534"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -33,11 +35,11 @@
 				<string key="NSClassName">FirstResponder</string>
 			</object>
 			<object class="NSView" id="723413942">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="WebView" id="495081969">
+					<object class="WebView" id="712542569">
 						<reference key="NSNextResponder" ref="723413942"/>
 						<int key="NSvFlags">274</int>
 						<object class="NSMutableSet" key="NSDragTypes">
@@ -61,8 +63,9 @@
 								<string>public.url-name</string>
 							</object>
 						</object>
-						<string key="NSFrameSize">{809, 457}</string>
+						<string key="NSFrameSize">{847, 494}</string>
 						<reference key="NSSuperview" ref="723413942"/>
+						<reference key="NSNextKeyView"/>
 						<string key="FrameName"/>
 						<string key="GroupName"/>
 						<object class="WebPreferences" key="Preferences">
@@ -87,7 +90,8 @@
 						<bool key="AllowsUndo">YES</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{809, 457}</string>
+				<string key="NSFrameSize">{847, 494}</string>
+				<reference key="NSSuperview"/>
 			</object>
 			<object class="NSCustomObject" id="796877042">
 				<string key="NSClassName">NSApplication</string>
@@ -298,14 +302,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">m_webView</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="495081969"/>
-					</object>
-					<int key="connectionID">100531</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">m_searchBar</string>
 						<reference key="source" ref="512844837"/>
 						<reference key="destination" ref="27659580"/>
@@ -335,6 +331,14 @@
 						<reference key="destination" ref="134215353"/>
 					</object>
 					<int key="connectionID">100558</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">m_webView</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="712542569"/>
+					</object>
+					<int key="connectionID">100564</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -386,14 +390,9 @@
 						<reference key="object" ref="723413942"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="495081969"/>
+							<reference ref="712542569"/>
 						</object>
 						<reference key="parent" ref="112300304"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">100529</int>
-						<reference key="object" ref="495081969"/>
-						<reference key="parent" ref="723413942"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">100534</int>
@@ -474,6 +473,11 @@
 						<reference key="object" ref="285322758"/>
 						<reference key="parent" ref="134215353"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100563</int>
+						<reference key="object" ref="712542569"/>
+						<reference key="parent" ref="723413942"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -490,7 +494,6 @@
 					<string>100528.IBEditorWindowLastContentRect</string>
 					<string>100528.IBPluginDependency</string>
 					<string>100528.ImportedFromIB2</string>
-					<string>100529.IBPluginDependency</string>
 					<string>100534.IBEditorWindowLastContentRect</string>
 					<string>100534.IBPluginDependency</string>
 					<string>100535.IBPluginDependency</string>
@@ -507,6 +510,7 @@
 					<string>100554.IBPluginDependency</string>
 					<string>100555.CustomClassName</string>
 					<string>100555.IBPluginDependency</string>
+					<string>100563.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -517,11 +521,10 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{2038, 687}, {603, 25}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{81, 207}, {809, 457}}</string>
+					<string>{{181, 300}, {847, 494}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>com.apple.WebKitIBPlugin</string>
-					<string>{{713, 1142}, {158, 123}}</string>
+					<string>{{713, 883}, {158, 123}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -537,6 +540,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>SearchBarSearchFieldCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.WebKitIBPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -559,13 +563,14 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">100558</int>
+			<int key="maxID">100564</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
 					<string key="className">FirstResponder</string>
+					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">performFindNextAction:</string>
 						<string key="NS.object.0">id</string>

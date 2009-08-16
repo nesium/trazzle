@@ -47,6 +47,7 @@
 	{
 		[m_tabView removeTabViewItem:[m_tabView tabViewItemAtIndex:0]];
 	}
+	[[self window] setBackgroundColor:[NSColor blackColor]];
 	ZZTabStyle *tabStyle = [[ZZTabStyle alloc] init];
 	[m_tabBar setStyle:tabStyle];
 	[tabStyle release];

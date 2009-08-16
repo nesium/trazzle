@@ -149,3 +149,10 @@ li.trace.expanded a.arrow
 	color: #fff;
 	background-color: #8d0017;
 }
+
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	height: 13px;
+}

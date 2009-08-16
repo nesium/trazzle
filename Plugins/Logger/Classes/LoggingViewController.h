@@ -7,8 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 #import "AbstractMessage.h"
+#import "LoggingViewScroller.h"
+#import <objc/runtime.h>
 
 @class WebViewController;
 

@@ -211,8 +211,37 @@
 #pragma mark -
 #pragma mark WebView delegate methods
 
+- (BOOL)tileReplacement
+{
+	NSLog(@"hello!");
+//	objc_msgSend(self, @selector(formerTile));
+	return YES;
+}
+
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
+	NSScrollView *scrollView = [[[[m_webView mainFrame] frameView] documentView] enclosingScrollView];
+	
+	{ // hackety hack
+		NSRect horizontalScrollerFrame = [[scrollView horizontalScroller] frame];
+		NSRect verticalScrollerFrame = [[scrollView verticalScroller] frame];
+		horizontalScrollerFrame = verticalScrollerFrame = (NSRect){0, 0, 100, 100};
+		[scrollView setVerticalScroller:[[[LoggingViewScroller alloc] initWithFrame:verticalScrollerFrame] 
+							   autorelease]];
+		[scrollView setHorizontalScroller:[[[LoggingViewScroller alloc] initWithFrame:horizontalScrollerFrame] 
+								 autorelease]];
+		
+//		class_addMethod([scrollView class], @selector(formerTile), 
+//			method_getImplementation(class_getInstanceMethod([self class], 
+//				@selector(tileReplacement))), "v@:");
+		
+		Method myReplacementMethod = class_getInstanceMethod([self class], @selector(tileReplacement));
+		Method windowDealloc = class_getInstanceMethod([scrollView class], @selector(_ownsWindowGrowBox));
+		method_exchangeImplementations(myReplacementMethod, windowDealloc);
+		
+		NSLog(@"scrollView: %@", scrollView);
+	}
+	
 	[self performSelector:@selector(_markWebViewReady) withObject:nil afterDelay:0.0];
 }
 
@@ -224,7 +253,7 @@
     if (actionKey == WebNavigationTypeOther) 
 	{
 		[listener use];
-    } 
+    }
 	else
 	{
 		NSURL *url = [actionInformation objectForKey:WebActionOriginalURLKey];
