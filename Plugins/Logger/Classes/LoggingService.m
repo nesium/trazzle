@@ -22,6 +22,12 @@
 	return self;
 }
 
+- (oneway void)gateway:(AMFRemoteGateway *)gateway setConnectionParams:(NSDictionary *)params
+{
+	if ([m_delegate respondsToSelector:@selector(loggingService:didReceiveConnectionParams:fromGateway:)])
+		[m_delegate loggingService:self didReceiveConnectionParams:params fromGateway:gateway];
+}
+
 - (oneway void)gateway:(AMFRemoteGateway *)gateway log:(FlashLogMessage *)logMessage
 {
 	LogMessage *message = [[LogMessage alloc] init];

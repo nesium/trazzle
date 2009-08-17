@@ -62,6 +62,8 @@
 		2CD18C860F3601C9005D0CCE /* LoggingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD18C850F3601C9005D0CCE /* LoggingClient.m */; };
 		2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */; };
 		2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE3248C0F61CF1F004BB7CF /* libssl.dylib */; };
+		2CF126E010389B4000F526AB /* MenuService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF126DF10389B4000F526AB /* MenuService.m */; };
+		2CF127181038A77500F526AB /* LPRemoteGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF127171038A77500F526AB /* LPRemoteGateway.m */; };
 		2CFEDA2C1034A200004375AE /* SearchBarPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFEDA2B1034A200004375AE /* SearchBarPattern.png */; };
 		2CFEDA321034A254004375AE /* SearchBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFEDA311034A254004375AE /* SearchBarViewController.m */; };
 		2CFEDAA11034B072004375AE /* SearchBarDoneButtonUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFEDA9F1034B072004375AE /* SearchBarDoneButtonUp.png */; };
@@ -186,6 +188,10 @@
 		2CE324790F61CE2C004BB7CF /* CocoaCryptoHashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaCryptoHashing.h; sourceTree = "<group>"; };
 		2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaCryptoHashing.m; sourceTree = "<group>"; };
 		2CE3248C0F61CF1F004BB7CF /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		2CF126DE10389B3F00F526AB /* MenuService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuService.h; sourceTree = "<group>"; };
+		2CF126DF10389B4000F526AB /* MenuService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuService.m; sourceTree = "<group>"; };
+		2CF127161038A77500F526AB /* LPRemoteGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPRemoteGateway.h; sourceTree = "<group>"; };
+		2CF127171038A77500F526AB /* LPRemoteGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPRemoteGateway.m; sourceTree = "<group>"; };
 		2CFEDA2B1034A200004375AE /* SearchBarPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarPattern.png; sourceTree = "<group>"; };
 		2CFEDA301034A254004375AE /* SearchBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarViewController.h; sourceTree = "<group>"; };
 		2CFEDA311034A254004375AE /* SearchBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBarViewController.m; sourceTree = "<group>"; };
@@ -576,6 +582,10 @@
 			children = (
 				49E48A5F0F6182130034B384 /* LoggingService.h */,
 				49E48A600F6182130034B384 /* LoggingService.m */,
+				2CF126DE10389B3F00F526AB /* MenuService.h */,
+				2CF126DF10389B4000F526AB /* MenuService.m */,
+				2CF127161038A77500F526AB /* LPRemoteGateway.h */,
+				2CF127171038A77500F526AB /* LPRemoteGateway.m */,
 			);
 			name = "AMF Services";
 			sourceTree = "<group>";
@@ -748,6 +758,8 @@
 				2C5D6C160FF42C3C00DE914F /* NSObject-AMFExtensions.m in Sources */,
 				2C5D6C180FF42C3C00DE914F /* SODeserializer.m in Sources */,
 				2CFEDA321034A254004375AE /* SearchBarViewController.m in Sources */,
+				2CF126E010389B4000F526AB /* MenuService.m in Sources */,
+				2CF127181038A77500F526AB /* LPRemoteGateway.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

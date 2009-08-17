@@ -22,13 +22,15 @@
 - (void)_handleFlashlogLine:(NSString *)message;
 - (void)_finishFlashLogException;
 - (void)_tryFinishFlashLogException;
+- (void)_updateTabTitle;
 @end
 
 
 @implementation LoggerPlugin
 
 @synthesize tabTitle=m_tabTitle, 
-			isReady=m_isReady;
+			isReady=m_isReady, 
+			sessionName=m_sessionName;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -54,7 +56,8 @@
 		controller = aController;
 		
 		m_isReady = NO;
-		self.tabTitle = @"New Session";
+		self.sessionName = @"New Session";
+		[self _updateTabTitle];
 		
 		m_filterController = [[LPFilterController alloc] initWithDelegate:self];
 		
@@ -81,9 +84,12 @@
 		
 		// start AMF server
 		error = nil;
-		m_gateway = [[AMFDuplexGateway alloc] init]; 
+		m_gateway = [[AMFDuplexGateway alloc] init];
+		[m_gateway setRemoteGatewayClass:[LPRemoteGateway class]];
 		[m_gateway registerService:[[[LoggingService alloc] initWithDelegate:self] autorelease] 
 			withName:@"LoggingService"];
+		[m_gateway registerService:[[[MenuService alloc] initWithDelegate:self] autorelease] 
+			withName:@"MenuService"];
 		m_gateway.delegate = self;
 		[m_gateway startOnPort:(port + 1) error:&error];
 		
@@ -118,6 +124,7 @@
 	[m_messageModel release];
 	[m_filterController release];
 	[m_tabTitle release];
+	[m_sessionName release];
 	[super dealloc];
 }
 
@@ -155,6 +162,12 @@
 #pragma mark -
 #pragma mark Private methods
 
+- (void)_updateTabTitle
+{
+	self.tabTitle = [NSString stringWithFormat:@"%@%@", m_sessionName, 
+					 m_filterController.filteringIsEnabled ? @"*" : @""];
+}
+
 - (LoggingClient *)_clientForGateway:(AMFRemoteGateway *)gateway
 {
 	for (LoggingClient *client in m_connectedClients)
@@ -165,7 +178,6 @@
 
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client
 {
-	NDCLog(@"%@", msg);
 	if (msg.messageType == kLPMessageTypePolicyRequest)
 	{
 		[client sendString:@"<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\"/></cross-domain-policy>\0"];
@@ -179,34 +191,7 @@
 
 - (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client
 {
-	if (msg.type == kCommandActionTypeUpdateStatusBar)
-	{
-		if (client.statusMenuItem)
-		{
-			[controller removeStatusMenuItem:client.statusMenuItem];
-		}
-		if (msg.data)
-		{
-			client.statusMenuItem = [[NSMenuItem alloc] init];
-			[client.statusMenuItem setTitle:@"Untitled"];
-			NSMenu *menu = [[NSMenu alloc] init];
-			[client.statusMenuItem setSubmenu:menu];
-			for (NSMenuItem *menuItem in (NSArray *)msg.data)
-			{
-				[menu addItem:menuItem];
-			}
-			[menu release];
-		}
-		else
-		{
-			client.statusMenuItem = nil;
-		}
-		if (client.statusMenuItem)
-		{
-			[controller addStatusMenuItem:client.statusMenuItem];
-		}
-	}
-	else if (msg.type == kCommandActionTypeStartFileMonitoring)
+	if (msg.type == kCommandActionTypeStartFileMonitoring)
 	{
 		[[FileMonitor sharedMonitor] addObserver:client 
 			forFileAtPath:[msg.attributes objectForKey:@"path"]];
@@ -455,6 +440,9 @@
 
 - (void)gateway:(AMFDuplexGateway *)gateway remoteGatewayDidDisconnect:(AMFRemoteGateway *)remote
 {
+	if ([(LPRemoteGateway *)remote menuItem])
+		[controller removeStatusMenuItem:[(LPRemoteGateway *)remote menuItem]];
+	
 	[self clientDidDisconnect:[self _clientForGateway:remote]];
 }
 
@@ -495,6 +483,14 @@
 	[self _handleMessage:message fromClient:nil];
 }
 
+- (void)loggingService:(LoggingService *)service didReceiveConnectionParams:(NSDictionary *)params 
+	fromGateway:(AMFRemoteGateway *)gateway
+{	
+	self.sessionName = [params objectForKey:@"applicationName"];
+	[(LPRemoteGateway *)gateway setConnectionParams:params];
+	[self _updateTabTitle];
+}
+
 - (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path 
 	fromGateway:(AMFRemoteGateway *)gateway
 {
@@ -502,6 +498,30 @@
 	msg.message = [NSString stringWithFormat:@"<img src='%@'/>", path];
 	[self _handleMessage:msg fromClient:nil];
 	[msg release];
+}
+
+
+
+#pragma mark -
+#pragma mark MenuService Delegate methods
+
+- (void)menuService:(MenuService *)service didReceiveMenu:(NSMenu *)menu 
+		fromGateway:(AMFRemoteGateway *)gateway
+{
+	LPRemoteGateway *remote = (LPRemoteGateway *)gateway;
+	
+	if (remote.menuItem)
+	{
+		[controller removeStatusMenuItem:remote.menuItem];
+		remote.menuItem = nil;
+	}
+
+	NSMenuItem *item = [[NSMenuItem alloc] init];
+	[item setTitle:m_sessionName];
+	[item setSubmenu:menu];
+	remote.menuItem = item;
+	[controller addStatusMenuItem:item];
+	[item release];
 }
 
 
@@ -544,7 +564,7 @@
 - (void)filterController:(LPFilterController *)controller 
 	didChangeFilteringEnabledFlag:(BOOL)isEnabled
 {
-	self.tabTitle = isEnabled ? @"New Session*" : @"New Session";
+	[self _updateTabTitle];
 	[m_messageModel setFilter:(isEnabled ? [m_filterController activeFilter] : nil)];
 }
 
@@ -569,20 +589,21 @@
 #pragma mark StatusMenuItem actions
 
 - (void)statusMenuItemWasClicked:(NSMenuItem *)sender
-{
+{	
 	NSMenu *lastMenu = [sender menu];
 	NSMenu *parent = [lastMenu supermenu];
 	NSMutableArray *indexes = [NSMutableArray arrayWithObject:[NSNumber numberWithInt:
 		[lastMenu indexOfItem:sender]]];
 	while (parent)
 	{
-		for (LoggingClient *client in m_connectedClients)
+		for (LPRemoteGateway *client in [m_gateway remoteGateways])
 		{
-			if ([client.statusMenuItem menu] == parent)
+			if ([client.menuItem menu] == parent)
 			{
-				[client sendEventWithType:kEventStatusItemClicked attributes:
-					[NSDictionary dictionaryWithObject:[indexes componentsJoinedByString:@"-"] 
-						forKey:@"indexes"]];
+				NSLog(@"indexes: %@", indexes);
+				[client invokeRemoteService:@"MenuService" 
+								 methodName:@"performClickOnMenuItemWithIndexPath" 
+								  arguments:indexes, nil];
 				return;
 			}
 		}

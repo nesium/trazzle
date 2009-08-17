@@ -45,4 +45,6 @@
 	fromGateway:(AMFRemoteGateway *)gateway;
 - (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path 
 	fromGateway:(AMFRemoteGateway *)gateway;
+- (void)loggingService:(LoggingService *)service didReceiveConnectionParams:(NSDictionary *)params
+	fromGateway:(AMFRemoteGateway *)gateway;
 @end

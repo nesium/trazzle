@@ -19,7 +19,9 @@
 #import "FileMonitor.h"
 #import "AMFDuplexGateway.h"
 #import "LoggingService.h"
+#import "MenuService.h"
 #import "ExceptionMessage.h"
+#import "LPRemoteGateway.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn, TrazzleTabViewDelegate> 
 {
@@ -40,9 +42,11 @@
 	LPFilterController *m_filterController;
 	
 	NSString *m_tabTitle;
+	NSString *m_sessionName;
 	BOOL m_isReady;
 }
 @property (nonatomic, retain) NSString *tabTitle;
+@property (nonatomic, retain) NSString *sessionName;
 @property (nonatomic, assign) BOOL isReady;
 - (id)initWithPlugInController:(PlugInController *)controller;
 @end
