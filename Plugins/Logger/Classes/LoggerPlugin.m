@@ -137,6 +137,7 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
+	[m_tailTask terminate];
 	for (LPRemoteGateway *remote in m_gateway.remoteGateways)
 		[self _cleanupAfterRemoteGateway:remote];
 }
