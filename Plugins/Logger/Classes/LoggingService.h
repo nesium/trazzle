@@ -12,6 +12,8 @@
 #import "LogMessage.h"
 #import "StackTraceItem.h"
 #import "MessageParser.h"
+#import "LPRemoteGateway.h"
+#import "NSObject-AMFExtensions.h"
 
 
 @interface LoggingService : NSObject
@@ -43,7 +45,7 @@
 @interface NSObject (LoggingServiceDelegate)
 - (void)loggingService:(LoggingService *)service didReceiveLogMessage:(LogMessage *)message 
 	fromGateway:(AMFRemoteGateway *)gateway;
-- (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path 
+- (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path withSize:(NSSize)size
 	fromGateway:(AMFRemoteGateway *)gateway;
 - (void)loggingService:(LoggingService *)service didReceiveConnectionParams:(NSDictionary *)params
 	fromGateway:(AMFRemoteGateway *)gateway;

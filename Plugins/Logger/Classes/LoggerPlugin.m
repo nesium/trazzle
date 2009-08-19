@@ -23,6 +23,7 @@
 - (void)_finishFlashLogException;
 - (void)_tryFinishFlashLogException;
 - (void)_updateTabTitle;
+- (void)_cleanupAfterRemoteGateway:(LPRemoteGateway *)remote;
 @end
 
 
@@ -114,6 +115,10 @@
 		[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
 		
 		[self _checkMMCfgs];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self
+			selector:@selector(applicationWillTerminate:)
+			name:NSApplicationWillTerminateNotification object:nil];
 	}
 	return self;
 }
@@ -129,6 +134,12 @@
 	[super dealloc];
 }
 
+
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
+	for (LPRemoteGateway *remote in m_gateway.remoteGateways)
+		[self _cleanupAfterRemoteGateway:remote];
+}
 
 
 #pragma mark -
@@ -366,6 +377,18 @@
 	[self performSelector:@selector(_finishFlashLogException) withObject:nil afterDelay:1.0/10.0];
 }
 
+- (void)_cleanupAfterRemoteGateway:(LPRemoteGateway *)remote
+{
+	if ([(LPRemoteGateway *)remote menuItem])
+	{
+		[controller removeStatusMenuItem:remote.menuItem];
+		remote.menuItem = nil;
+	}
+	NSFileManager *fm = [NSFileManager defaultManager];
+	for (NSString *imagePath in remote.loggedImages)
+		[fm removeItemAtPath:imagePath error:nil];
+}
+
 
 
 #pragma mark -
@@ -441,9 +464,7 @@
 
 - (void)gateway:(AMFDuplexGateway *)gateway remoteGatewayDidDisconnect:(AMFRemoteGateway *)remote
 {
-	if ([(LPRemoteGateway *)remote menuItem])
-		[controller removeStatusMenuItem:[(LPRemoteGateway *)remote menuItem]];
-	
+	[self _cleanupAfterRemoteGateway:(LPRemoteGateway *)remote];
 	[self clientDidDisconnect:[self _clientForGateway:remote]];
 }
 

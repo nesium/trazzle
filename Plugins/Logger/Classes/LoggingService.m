@@ -63,14 +63,17 @@
 	[message release];
 }
 
-- (oneway void)gateway:(AMFRemoteGateway *)gateway logPNG:(NSData *)pngData
+- (oneway void)gateway:(AMFRemoteGateway *)gateway logPNG:(NSData *)pngData width:(NSNumber *)width
+	height:(NSNumber *)height
 {
-	NSString *filename = [NSString stringWithFormat:@"/tmp/trazzle_%@.png", [pngData sha1HexHash]];
+	NSString *filename = [NSString stringWithFormat:@"/tmp/trazzle_%@.png", [NSObject uuid]];
 	NSError *error;
 	[pngData writeToFile:filename options:0 error:&error];
+	[(LPRemoteGateway *)gateway addLoggedImagePath:filename];
 	
-	if ([m_delegate respondsToSelector:@selector(loggingService:didReceivePNG:fromGateway:)])
-		[m_delegate loggingService:self didReceivePNG:filename fromGateway:gateway];
+	if ([m_delegate respondsToSelector:@selector(loggingService:didReceivePNG:withSize:fromGateway:)])
+		[m_delegate loggingService:self didReceivePNG:filename 
+			withSize:(NSSize){[width floatValue], [height floatValue]} fromGateway:gateway];
 }
 
 - (oneway void)gateway:(AMFRemoteGateway *)gateway addI18NKey:(NSString *)key 
