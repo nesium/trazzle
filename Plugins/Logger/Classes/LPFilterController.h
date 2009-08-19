@@ -31,6 +31,7 @@
 @property (nonatomic, retain) LPFilter *activeFilter;
 @property (nonatomic, assign) BOOL filteringIsEnabled;
 - (id)initWithDelegate:(id)delegate;
+- (void)load;
 - (IBAction)editFilters:(id)sender;
 - (IBAction)toggleFilteringIsEnabled:(id)sender;
 - (IBAction)add:(id)sender;

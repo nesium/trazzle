@@ -43,7 +43,6 @@
 		
 		m_filters = [[NSMutableArray alloc] init];
 		m_filteringIsEnabled = NO;
-		[self _loadFilters];
 		// load window
 		[self window];
 		
@@ -102,6 +101,11 @@
 
 #pragma mark -
 #pragma mark Public methods
+
+- (void)load
+{
+	[self _loadFilters];
+}
 
 - (void)setActiveFilter:(LPFilter *)filter
 {

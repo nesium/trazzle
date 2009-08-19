@@ -58,18 +58,19 @@
 		m_isReady = NO;
 		self.sessionName = @"New Session";
 		[self _updateTabTitle];
+
+		// alloc model
+		m_messageModel = [[MessageModel alloc] init];
+		m_messageModel.delegate = self;
 		
 		m_filterController = [[LPFilterController alloc] initWithDelegate:self];
+		[m_filterController load];
 		
 		// display viewcontroller
 		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 
 			bundle:[NSBundle bundleForClass:[self class]]];
 		m_loggingViewController.delegate = self;
 		[controller addTabWithIdentifier:@"Foo" view:[m_loggingViewController view] delegate:self];
-		
-		// alloc model
-		m_messageModel = [[MessageModel alloc] init];
-		m_messageModel.delegate = self;
 		
 		// start server
 		m_connectedClients = [[NSMutableArray alloc] init];
@@ -491,11 +492,12 @@
 	[self _updateTabTitle];
 }
 
-- (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path 
+- (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path withSize:(NSSize)size
 	fromGateway:(AMFRemoteGateway *)gateway
 {
 	AbstractMessage *msg = [[AbstractMessage alloc] init];
-	msg.message = [NSString stringWithFormat:@"<img src='%@'/>", path];
+	msg.message = [NSString stringWithFormat:@"<img src='%@' width='%d' height='%d' />", path, 
+				   (int)size.width, (int)size.height];
 	[self _handleMessage:msg fromClient:nil];
 	[msg release];
 }
