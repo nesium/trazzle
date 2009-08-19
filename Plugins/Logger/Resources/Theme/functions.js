@@ -97,8 +97,22 @@ function appendHTML(html)
 
 function scrollThumbIsAtBottom()
 {
-	return document.body.scrollTop + window.innerHeight == document.body.offsetHeight || 
-		document.body.offsetHeight < window.innerHeight;
+//	TrazzleBridge.log(
+//		'scrollTop: ' + document.body.scrollTop + 
+//		', clientHeight: ' + document.body.clientHeight + 
+//		', offsetHeight: ' + document.body.offsetHeight + 
+//		', scrollWidth: ' + document.body.scrollWidth + 
+//		', innerWidth: ' + window.innerWidth + 
+//		', innerHeight: ' + window.innerHeight + 
+//		', scrollHeight: ' + document.body.scrollHeight + 
+//		', scrollTop: ' + document.body.scrollTop + 
+//		', scrollLeft: ' + document.body.scrollLeft + 
+//		', scrollTopDif: ' + (document.body.scrollTop - window.innerHeight) + 
+//		', dings: ' + (document.body.scrollHeight - document.body.scrollTop));
+//	
+//	return document.body.scrollTop + window.innerHeight == document.body.offsetHeight || 
+//	document.body.offsetHeight < window.innerHeight;
+	return document.body.scrollHeight - window.innerHeight - document.body.scrollTop <= 0;
 }
 
 function scrollToBottom()
