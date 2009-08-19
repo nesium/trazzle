@@ -46,6 +46,7 @@
 	{
 		NSMenuItem *item = [[NSMenuItem alloc] init];
 		[item setTitle:anItem.title];
+		[item setState:(anItem.selected ? NSOnState : NSOffState)];
 		[item setSubmenu:[self _menuFromSWFMenu:anItem.submenu]];
 		[item setAction:@selector(statusMenuItemWasClicked:)];
 		[item setTarget:m_delegate];
@@ -88,7 +89,7 @@
 
 @implementation SWFMenuItem
 
-@synthesize title, submenu;
+@synthesize title, submenu, selected;
 
 - (id)initWithCoder:(NSCoder *)coder
 {
@@ -96,6 +97,7 @@
 	{
 		self.title = [coder decodeObject];
 		self.submenu = [coder decodeObject];
+		self.selected = [(AMFUnarchiver *)coder decodeBool];
 	}
 	return self;
 }
@@ -109,8 +111,8 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@ = 0x%08x> title: %@, submenu: %@", [self className], 
-			(long)self, title, submenu];
+	return [NSString stringWithFormat:@"<%@ = 0x%08x> title: %@, selected: %d, submenu: %@", [self className], 
+			(long)self, title, selected, submenu];
 }
 
 @end

@@ -29,10 +29,12 @@
 @interface SWFMenuItem : NSObject
 {
 	NSString *title;
+	BOOL selected;
 	SWFMenu *submenu;
 }
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) SWFMenu *submenu;
+@property (nonatomic, assign) BOOL selected;
 @end
 
 

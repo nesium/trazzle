@@ -600,7 +600,6 @@
 		{
 			if ([client.menuItem menu] == parent)
 			{
-				NSLog(@"indexes: %@", indexes);
 				[client invokeRemoteService:@"MenuService" 
 								 methodName:@"performClickOnMenuItemWithIndexPath" 
 								  arguments:indexes, nil];
