@@ -16,9 +16,11 @@
 	id m_delegate;
 	LPFilter *m_filter;
 	NSMutableArray *m_messages;
+	BOOL m_showsFlashLogMessages;
 }
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) LPFilter *filter;
+@property (nonatomic, assign) BOOL showsFlashLogMessages;
 - (void)addMessage:(AbstractMessage *)message;
 - (AbstractMessage *)messageAtIndex:(uint32_t)index;
 - (void)clearAllMessages;

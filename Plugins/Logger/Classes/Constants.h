@@ -34,8 +34,9 @@ typedef enum _WindowBehaviourMode
 	WBMDoNothing
 } WindowBehaviourMode;
 
-#define kLastSelectedFilterKey @"LastSelectedFilter"
-#define kFilteringEnabledKey @"FilteringEnabled"
+#define kLastSelectedFilterKey @"LPLastSelectedFilter"
+#define kFilteringEnabledKey @"LPFilteringEnabled"
+#define kShowFlashLogMessages @"LPShowFlashlogMessages"
 #define kFilterFileExtension @"trazzleFilter"
 #define kFilterName @"Name"
 #define kFilterPredicate @"Predicate"

@@ -24,7 +24,8 @@
 
 @synthesize delegate=m_delegate, 
 			activeFilter=m_activeFilter, 
-			filteringIsEnabled=m_filteringIsEnabled;
+			filteringIsEnabled=m_filteringIsEnabled,
+			showsFlashLogMessages=m_showsFlashLogMessages;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -43,8 +44,6 @@
 		
 		m_filters = [[NSMutableArray alloc] init];
 		m_filteringIsEnabled = NO;
-		// load window
-		[self window];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self
 			selector:@selector(applicationWillTerminate:)
@@ -63,7 +62,7 @@
 	[mainMenuItem release];
 	
 	m_mainMenuController = [[NSMMenuController alloc] initWithMenu:m_mainMenu];
-	m_mainMenuController.insertionIndex = 5;
+	m_mainMenuController.insertionIndex = 6;
 	m_mainMenuController.titleKey = @"name";
 	m_mainMenuController.defaultAction = @selector(selectFilter:);
 	m_mainMenuController.defaultTarget = self;
@@ -105,6 +104,8 @@
 - (void)load
 {
 	[self _loadFilters];
+	// load window
+	[self window];
 }
 
 - (void)setActiveFilter:(LPFilter *)filter
@@ -205,6 +206,14 @@
 	if ([m_filters count] == 0) self.filteringIsEnabled = NO;
 }
 
+- (void)setShowsFlashLogMessages:(BOOL)bFlag
+{
+	if (m_showsFlashLogMessages == bFlag) return;
+	[[[NSUserDefaultsController sharedUserDefaultsController]
+	  values] setValue:[NSNumber numberWithBool:bFlag] forKey:kShowFlashLogMessages];
+	m_showsFlashLogMessages = bFlag;
+}
+
 
 
 #pragma mark -
@@ -274,6 +283,9 @@
 	{
 		self.filteringIsEnabled = YES;
 	}
+	
+	self.showsFlashLogMessages = [[[[NSUserDefaultsController sharedUserDefaultsController] values]
+		valueForKey:kShowFlashLogMessages] boolValue];
 }
 
 - (void)_saveDirtyFilters

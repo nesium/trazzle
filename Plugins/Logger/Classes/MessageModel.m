@@ -13,12 +13,15 @@
 - (NSPredicate *)_applicablePredicate:(NSPredicate *)sourcePredicate 
 	forMessage:(AbstractMessage *)message;
 - (BOOL)_expression:(NSExpression *)expression isApplicableToMessage:(AbstractMessage *)message;
+- (BOOL)_evaluateMessage:(AbstractMessage *)message;
 @end
 
 
 @implementation MessageModel
 
-@synthesize delegate=m_delegate, filter=m_filter;
+@synthesize delegate=m_delegate, 
+			filter=m_filter, 
+			showsFlashLogMessages=m_showsFlashLogMessages;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -59,15 +62,7 @@
 
 - (void)addMessage:(AbstractMessage *)message
 {
-	if (m_filter == nil)
-	{
-		message.visible = YES;
-	}
-	else
-	{
-		NSPredicate *predicate = [self _applicablePredicate:m_filter.predicate forMessage:message];
-		message.visible = (predicate == nil) ? YES : [predicate evaluateWithObject:message];
-	}
+	message.visible = [self _evaluateMessage:message];
 	message.index = [m_messages count];
 	[m_messages addObject:message];
 }
@@ -91,6 +86,13 @@
 	return [m_messages count];
 }
 
+- (void)setShowsFlashLogMessages:(BOOL)bFlag
+{
+	if (m_showsFlashLogMessages == bFlag) return;
+	m_showsFlashLogMessages = bFlag;
+	[self _validateMessages];
+}
+
 
 
 #pragma mark -
@@ -104,9 +106,8 @@
 	for (AbstractMessage *message in m_messages)
 	{
 		BOOL messageWasVisible = message.visible;
-		BOOL messageShouldBeVisible;
-		NSPredicate *predicate = [[self _applicablePredicate:m_filter.predicate forMessage:message] retain];
-		messageShouldBeVisible = (predicate == nil) ? YES : [predicate evaluateWithObject:message];
+		BOOL messageShouldBeVisible = [self _evaluateMessage:message];
+		
 		if (messageWasVisible != messageShouldBeVisible)
 		{
 			message.visible = messageShouldBeVisible;
@@ -114,18 +115,20 @@
 			else [invisibleMessagesDelta addObject:[NSNumber numberWithInt:i]];
 		}
 		i++;
-		[predicate release];
 	}
+	
 	if ([invisibleMessagesDelta count] > 0 && 
 		[m_delegate respondsToSelector:@selector(messageModel:didHideMessagesWithIndexes:)])
 	{
 		[m_delegate messageModel:self didHideMessagesWithIndexes:invisibleMessagesDelta];
 	}
+	
 	if ([visibleMessagesDelta count] > 0 && 
 		[m_delegate respondsToSelector:@selector(messageModel:didShowMessagesWithIndexes:)])
 	{
 		[m_delegate messageModel:self didShowMessagesWithIndexes:visibleMessagesDelta];
 	}
+	
 	[invisibleMessagesDelta release];
 	[visibleMessagesDelta release];
 }
@@ -186,6 +189,17 @@
 - (BOOL)_expression:(NSExpression *)expression isApplicableToMessage:(AbstractMessage *)message
 {
 	return [message respondsToSelector:NSSelectorFromString([expression keyPath])];
+}
+
+- (BOOL)_evaluateMessage:(AbstractMessage *)message
+{
+	if (!m_showsFlashLogMessages && message.messageType == kLPMessageTypeFlashLog)
+		return NO;
+	if (m_filter == nil)
+		return YES;
+	
+	NSPredicate *predicate = [self _applicablePredicate:m_filter.predicate forMessage:message];
+	return (predicate == nil) ? YES : [predicate evaluateWithObject:message];
 }
 
 

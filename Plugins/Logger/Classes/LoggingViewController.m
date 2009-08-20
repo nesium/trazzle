@@ -241,7 +241,7 @@
 	defaultMenuItems:(NSArray *)defaultMenuItems
 {
 	// show custom contextmenu
-	return defaultMenuItems;
+	return nil;
 }
 
 - (void)webView:(WebView *)sender windowScriptObjectAvailable:(WebScriptObject *)windowScriptObject

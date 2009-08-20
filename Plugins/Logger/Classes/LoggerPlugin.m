@@ -40,8 +40,9 @@
 {
 	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 	[dict setObject:[NSNumber numberWithInt:3456] forKey:@"LPServerPort"];
-	[dict setObject:[NSNumber numberWithBool:NO] forKey:@"LPEnableFiltering"];
+	[dict setObject:[NSNumber numberWithBool:NO] forKey:kFilteringEnabledKey];
 	[dict setObject:[NSNumber numberWithBool:YES] forKey:@"LPClearMessagesOnConnection"];
+	[dict setObject:[NSNumber numberWithBool:YES] forKey:kShowFlashLogMessages];
 	[dict setObject:[NSNumber numberWithInt:WBMBringToTop] 
 		forKey:@"LPWindowBehaviour"];
 	[dict setObject:[NSNumber numberWithBool:NO] forKey:@"LPDebuggingMode"];
@@ -66,6 +67,10 @@
 		
 		m_filterController = [[LPFilterController alloc] initWithDelegate:self];
 		[m_filterController load];
+		
+		[m_messageModel bind:@"showsFlashLogMessages" toObject:m_filterController 
+				 withKeyPath:@"showsFlashLogMessages" options:0];
+		m_messageModel.showsFlashLogMessages = m_filterController.showsFlashLogMessages;
 		
 		// display viewcontroller
 		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 

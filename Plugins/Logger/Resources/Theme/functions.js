@@ -78,7 +78,7 @@ function messageToHTML(message)
 	var cssClass = message.messageType == kLPMessageTypeSystem 
 		? "system_message" 
 		: "flashlog_message";
-	html += '<li class="' + cssClass + '">'
+	html += '<li class="' + cssClass + (message.visible ? '' : ' hidden') + '">'
 	html += '<div class="lineno">' + (message.index + 1) + '</div>';
 	html += '<div class="content">' + message.message + '</div>';
 	html += '</li>';

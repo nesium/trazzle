@@ -26,10 +26,12 @@
 	NSMutableArray *m_filters;
 	NSMMenuController *m_mainMenuController;
 	BOOL m_filteringIsEnabled;
+	BOOL m_showsFlashLogMessages;
 }
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) LPFilter *activeFilter;
 @property (nonatomic, assign) BOOL filteringIsEnabled;
+@property (nonatomic, assign) BOOL showsFlashLogMessages;
 - (id)initWithDelegate:(id)delegate;
 - (void)load;
 - (IBAction)editFilters:(id)sender;
