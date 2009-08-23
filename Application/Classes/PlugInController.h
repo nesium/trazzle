@@ -18,7 +18,7 @@
 
 - (void)bringWindowToTop;
 - (void)setWindowIsFloating:(BOOL)bFlag;
-- (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
+- (id)addTabWithIdentifier:(id)ident view:(NSView *)view 
 	delegate:(id <TrazzleTabViewDelegate>)delegate;
 - (void)addStatusMenuItem:(NSMenuItem *)item;
 - (void)removeStatusMenuItem:(NSMenuItem *)item;

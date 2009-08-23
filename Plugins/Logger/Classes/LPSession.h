@@ -21,6 +21,8 @@
 @interface LPSession : NSObject <TrazzleTabViewDelegate>
 {
 	PlugInController *m_controller;
+	id m_tab;
+	id m_representedObject;
 	
 	MessageModel *m_messageModel;
 	LoggingViewController *m_loggingViewController;
@@ -28,12 +30,21 @@
 	
 	NSString *m_tabTitle;
 	NSString *m_sessionName;
+	NSString *m_swfURL;
 	BOOL m_isReady;
+	BOOL m_isDisconnected;
+	BOOL m_isActive;
+	
+	NSImage *m_icon;
 }
 @property (nonatomic, retain) NSString *tabTitle;
 @property (nonatomic, retain) NSString *sessionName;
+@property (nonatomic, retain) NSString *swfURL;
 @property (nonatomic, assign) BOOL isReady;
+@property (nonatomic, assign) BOOL isDisconnected;
+@property (nonatomic, retain) NSImage *icon;
 @property (nonatomic, readonly) LPFilterModel *filterModel;
+@property (nonatomic, assign) id representedObject;
 - (id)initWithPlugInController:(PlugInController *)controller;
 - (void)handleFlashlogMessage:(AbstractMessage *)msg;
 - (void)addRemoteGateway:(LPRemoteGateway *)gateway;

@@ -10,6 +10,7 @@
 
 @interface LPSession (Private)
 - (void)_updateTabTitle;
+- (void)_updateIcon;
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client;
 - (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client;
 @end
@@ -20,7 +21,11 @@
 @synthesize tabTitle=m_tabTitle, 
 			sessionName=m_sessionName, 
 			isReady=m_isReady, 
-			filterModel=m_filterModel;
+			filterModel=m_filterModel, 
+			swfURL=m_swfURL, 
+			isDisconnected=m_isDisconnected, 
+			icon=m_icon, 
+			representedObject=m_representedObject;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -32,6 +37,8 @@
 		m_controller = aController;
 		
 		m_isReady = NO;
+		m_isActive = NO;
+		m_isDisconnected = NO;
 		
 		m_filterModel = [[LPFilterModel alloc] init];
 		
@@ -53,7 +60,8 @@
 		m_loggingViewController = [[LoggingViewController alloc] initWithNibName:@"LogWindow" 
 			bundle:[NSBundle bundleForClass:[self class]]];
 		m_loggingViewController.delegate = self;
-		[m_controller addTabWithIdentifier:@"Foo" view:[m_loggingViewController view] delegate:self];
+		m_tab = [m_controller addTabWithIdentifier:@"Foo" view:[m_loggingViewController view] 
+			delegate:self];
 	}
 	return self;
 }
@@ -65,6 +73,8 @@
 	[m_loggingViewController release];
 	[m_tabTitle release];
 	[m_sessionName release];
+	[m_swfURL release];
+	[m_icon release];
 	[super dealloc];
 }
 
@@ -90,6 +100,23 @@
 	[m_messageModel clearAllMessages];
 	[m_loggingViewController clearAllMessages];
 	client.delegate = self;
+}
+
+- (void)setSessionName:(NSString *)aName
+{
+	[self willChangeValueForKey:@"sessionName"];
+	[aName retain];
+	[m_sessionName release];
+	m_sessionName = aName;
+	[self didChangeValueForKey:@"sessionName"];
+	[self _updateTabTitle];
+}
+
+- (void)setIsDisconnected:(BOOL)bFlag
+{
+	if (m_isDisconnected == bFlag) return;
+	m_isDisconnected = bFlag;
+	[self _updateIcon];
 }
 
 
@@ -121,6 +148,18 @@
 	return m_tabTitle;
 }
 
+- (void)didBecomeInactive
+{
+	m_isActive = NO;
+	[self _updateIcon];
+}
+
+- (void)didBecomeActive
+{
+	m_isActive = YES;
+	[self _updateIcon];
+}
+
 
 
 #pragma mark -
@@ -147,6 +186,21 @@
 {
 	self.tabTitle = [NSString stringWithFormat:@"%@%@", m_sessionName, 
 		m_filterModel.filteringIsEnabled ? @"*" : @""];
+}
+
+- (void)_updateIcon
+{
+	if (!m_isDisconnected)
+		self.icon = nil;
+	else
+	{
+		NSString *state = m_isActive ? @"on" : @"off";
+		NSImage *image = [[NSImage alloc] initWithContentsOfFile:
+			[[NSBundle bundleForClass:[self class]] pathForImageResource:
+				[NSString stringWithFormat:@"tab_%@_icon_disconnected", state]]];
+		self.icon = image;
+		[image release];
+	}
 }
 
 - (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client
@@ -215,14 +269,6 @@
 	[self _handleMessage:message fromClient:nil];
 }
 
-- (void)loggingService:(LoggingService *)service didReceiveConnectionParams:(NSDictionary *)params 
-		   fromGateway:(AMFRemoteGateway *)gateway
-{	
-	self.sessionName = [params objectForKey:@"applicationName"];
-	[(LPRemoteGateway *)gateway setConnectionParams:params];
-	[self _updateTabTitle];
-}
-
 - (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path withSize:(NSSize)size
 		   fromGateway:(AMFRemoteGateway *)gateway
 {
@@ -262,7 +308,7 @@
 #pragma mark LoggingViewController delegate methods
 
 - (AbstractMessage *)loggingViewController:(LoggingViewController *)controller 
-							messageAtIndex:(uint32_t)index
+	messageAtIndex:(uint32_t)index
 {
 	return [m_messageModel messageAtIndex:index];
 }

@@ -62,6 +62,8 @@
 		2CBFEF7A0F3E4F7400AA982D /* LPFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterController.m */; };
 		2CBFEFB50F3E578200AA982D /* LPFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEFB40F3E578200AA982D /* LPFilter.m */; };
 		2CD18C860F3601C9005D0CCE /* LoggingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD18C850F3601C9005D0CCE /* LoggingClient.m */; };
+		2CDA11751041E1EF008338CF /* tab_on_icon_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11731041E1EF008338CF /* tab_on_icon_disconnected.png */; };
+		2CDA11761041E1EF008338CF /* tab_off_icon_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11741041E1EF008338CF /* tab_off_icon_disconnected.png */; };
 		2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */; };
 		2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE3248C0F61CF1F004BB7CF /* libssl.dylib */; };
 		2CF126E010389B4000F526AB /* MenuService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF126DF10389B4000F526AB /* MenuService.m */; };
@@ -191,6 +193,8 @@
 		2CBFEFB40F3E578200AA982D /* LPFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilter.m; sourceTree = "<group>"; };
 		2CD18C840F3601C9005D0CCE /* LoggingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingClient.h; sourceTree = "<group>"; };
 		2CD18C850F3601C9005D0CCE /* LoggingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingClient.m; sourceTree = "<group>"; };
+		2CDA11731041E1EF008338CF /* tab_on_icon_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_on_icon_disconnected.png; sourceTree = "<group>"; };
+		2CDA11741041E1EF008338CF /* tab_off_icon_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_off_icon_disconnected.png; sourceTree = "<group>"; };
 		2CE324790F61CE2C004BB7CF /* CocoaCryptoHashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaCryptoHashing.h; sourceTree = "<group>"; };
 		2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaCryptoHashing.m; sourceTree = "<group>"; };
 		2CE3248C0F61CF1F004BB7CF /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
@@ -399,6 +403,8 @@
 				2C4CCAF70EABB463003EE952 /* DuplicateIcon.png */,
 				2C4CCAEE0EABB42B003EE952 /* led_off.png */,
 				2C4CCAEF0EABB42B003EE952 /* led_on.png */,
+				2CDA11731041E1EF008338CF /* tab_on_icon_disconnected.png */,
+				2CDA11741041E1EF008338CF /* tab_off_icon_disconnected.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -689,6 +695,8 @@
 				2CFEDB201034C44D004375AE /* SearchBarSearchFieldBackground.png in Resources */,
 				2CFEDBC31034D20C004375AE /* SearchBarSearchFieldDeleteButton.png in Resources */,
 				2C6A61D910358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png in Resources */,
+				2CDA11751041E1EF008338CF /* tab_on_icon_disconnected.png in Resources */,
+				2CDA11761041E1EF008338CF /* tab_off_icon_disconnected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

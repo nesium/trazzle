@@ -12,8 +12,6 @@
 
 @interface ZZTabStyle : NSObject <PSMTabStyle>
 {
-	NSImage *_closeButton, *_closeButtonDown, *_closeButtonOver;
-	NSImage *_closeDirtyButton, *_closeDirtyButtonDown, *_closeDirtyButtonOver;
 	NSImage *_addTabButtonImage, *_addTabButtonPressedImage, *_addTabButtonRolloverImage;
 	NSImage *_gradientImage;
 	

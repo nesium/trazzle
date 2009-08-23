@@ -13,6 +13,8 @@
 - (id <TrazzleTabViewDelegate>)_delegateForTabViewItem:(NSTabViewItem *)item;
 - (void)_updateTabViewItemLabels;
 - (void)_showWindowIfDelegatesAreReady;
+- (void)_closeTab:(NSTabViewItem *)item;
+- (void)_removeDelegate:(id <TrazzleTabViewDelegate>)delegate;
 @end
 
 @interface NSObject (ZZWindowControllerPrivate)
@@ -46,14 +48,20 @@
 
 - (void)windowDidLoad
 {
+	ZZWindow *window = (ZZWindow *)[self window];
+	window.borderStartColor = [NSColor colorWithCalibratedRed:0.773 green:0.773 blue:0.773 
+		alpha:1.0];
+	window.borderEndColor = [NSColor colorWithCalibratedRed:0.588 green:0.588 blue:0.588 
+		alpha:1.0];
+	window.topBorderHeight = 42.0;
+
 	while ([m_tabView numberOfTabViewItems])
-	{
 		[m_tabView removeTabViewItem:[m_tabView tabViewItemAtIndex:0]];
-	}
 	ZZTabStyle *tabStyle = [[ZZTabStyle alloc] init];
 	[m_tabBar setStyle:tabStyle];
+	[m_tabBar setCellOptimumWidth:200];
 	[tabStyle release];
-	[m_tabBar setDisableTabClose:YES];
+//	[m_tabBar setDisableTabClose:YES];
 	[m_tabBar setDelegate:self];
 }
 
@@ -92,17 +100,18 @@
 	m_windowWasVisible = YES;
 }
 
-- (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
+- (id)addTabWithIdentifier:(id)ident view:(NSView *)view 
 	delegate:(id <TrazzleTabViewDelegate>)delegate
 {
 	[m_delegates addObject:delegate];
-	NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:ident];
+	NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:delegate];
 	[tabViewItem setLabel:[delegate titleForTabWithIdentifier:ident]];
 	[tabViewItem setView:view];
 	[m_tabView addTabViewItem:tabViewItem];
 	[tabViewItem release];
 	[(NSObject *)delegate addObserver:self forKeyPath:@"tabTitle" options:0 context:NULL];
 	[(NSObject *)delegate addObserver:self forKeyPath:@"isReady" options:0 context:NULL];
+	return [[m_tabBar cells] lastObject];
 }
 
 - (void)bringWindowToTop
@@ -144,6 +153,20 @@
 	[self showWindow:self];
 }
 
+- (void)_closeTab:(NSTabViewItem *)item
+{
+	[m_tabView removeTabViewItem:item];
+}
+
+- (void)_removeDelegate:(id <TrazzleTabViewDelegate>)delegate
+{
+	[(NSObject *)delegate removeObserver:self forKeyPath:@"tabTitle"];
+	[(NSObject *)delegate removeObserver:self forKeyPath:@"isReady"];
+	[m_delegates removeObject:delegate];
+	if ([m_delegate respondsToSelector:@selector(windowController:didCloseTabViewDelegate:)])
+		[m_delegate windowController:self didCloseTabViewDelegate:delegate];
+}
+
 
 
 #pragma mark -
@@ -166,6 +189,11 @@
 		[m_delegate windowController:self didSelectTabViewDelegate:delegate];
 }
 
+- (void)tabView:(NSTabView *)aTabView didCloseTabViewItem:(NSTabViewItem *)tabViewItem
+{
+	[self _removeDelegate:(id <TrazzleTabViewDelegate>)[tabViewItem identifier]];
+}
+
 
 
 #pragma mark -
@@ -176,6 +204,14 @@
 	if ([anObject respondsToSelector:@selector(_customFieldEditorForWindow:)])
 		return [(NSObject *)anObject _customFieldEditorForWindow:sender];
 	return nil;
+}
+
+- (BOOL)windowShouldClose:(id)window
+{
+	if ([m_tabView numberOfTabViewItems] <= 1)
+		return YES;
+	[self _closeTab:[m_tabView selectedTabViewItem]];
+	return NO;
 }
 
 

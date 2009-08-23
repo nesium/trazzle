@@ -22,6 +22,7 @@
 - (void)_cleanupAfterRemoteGateway:(LPRemoteGateway *)remote;
 - (void)_handleFlashlogMessage:(AbstractMessage *)msg;
 - (LPSession *)_createNewSession;
+- (LPSession *)_sessionForSwfURL:(NSString *)swfURL;
 @end
 
 
@@ -122,6 +123,20 @@
 	m_filterController.model = session.filterModel;
 }
 
+- (void)tabViewDelegateWasClosed:(id)aDelegate
+{
+	if (![aDelegate isKindOfClass:[LPSession class]])
+		return;
+	LPSession *session = (LPSession *)aDelegate;
+	NSLog(@"remove %@", session);
+	[m_sessions removeObject:session];
+	if ([[session representedObject] isKindOfClass:[LPRemoteGateway class]])
+	{
+		LPRemoteGateway *remote = (LPRemoteGateway *)[session representedObject];
+		[remote disconnect];
+	}
+}
+
 
 
 #pragma mark -
@@ -145,6 +160,19 @@
 	[m_sessions addObject:session];
 	m_filterController.model = session.filterModel;
 	return [session autorelease];
+}
+
+- (LPSession *)_sessionForSwfURL:(NSString *)swfURL
+{
+	for (LPSession *session in m_sessions)
+		if ([session.swfURL isEqualToString:swfURL] && session.isDisconnected)
+			return session;
+	
+	for (LPSession *session in m_sessions)
+		if (session.representedObject == nil && session.swfURL == nil)
+			return session;
+	
+	return [self _createNewSession];
 }
 
 - (void)_checkMMCfgs
@@ -393,13 +421,39 @@
 
 - (void)gateway:(AMFDuplexGateway *)gateway remoteGatewayDidConnect:(AMFRemoteGateway *)remote
 {
-	LPSession *session = [self _createNewSession];
-	[session addRemoteGateway:(LPRemoteGateway *)remote];
+	remote.delegate = self;
 }
 
 - (void)gateway:(AMFDuplexGateway *)gateway remoteGatewayDidDisconnect:(AMFRemoteGateway *)remote
 {
 	[self _cleanupAfterRemoteGateway:(LPRemoteGateway *)remote];
+	for (LPSession *session in m_sessions)
+	{
+		if (session.representedObject == remote)
+		{
+			session.isDisconnected = YES;
+			session.representedObject = nil;
+			break;
+		}
+	}
+}
+
+
+
+#pragma mark -
+#pragma mark LoggingService Delegate methods
+
+- (void)loggingService:(LoggingService *)service didReceiveConnectionParams:(NSDictionary *)params 
+		   fromGateway:(AMFRemoteGateway *)gateway
+{
+	LPRemoteGateway *remote = (LPRemoteGateway *)gateway;
+	[remote setConnectionParams:params];
+	LPSession *session = [self _sessionForSwfURL:[params objectForKey:@"swfURL"]];
+	session.isDisconnected = NO;
+	session.representedObject = gateway;
+	session.sessionName = [params objectForKey:@"applicationName"];
+	session.swfURL = [params objectForKey:@"swfURL"];
+	[session addRemoteGateway:remote];
 }
 
 
@@ -411,8 +465,8 @@
 {	
 	NSMenu *lastMenu = [sender menu];
 	NSMenu *parent = [lastMenu supermenu];
-	NSMutableArray *indexes = [NSMutableArray arrayWithObject:[NSNumber numberWithInt:
-															   [lastMenu indexOfItem:sender]]];
+	NSMutableArray *indexes = [NSMutableArray arrayWithObject:
+		[NSNumber numberWithInt:[lastMenu indexOfItem:sender]]];
 	while (parent)
 	{
 		for (LPRemoteGateway *client in [m_gateway remoteGateways])

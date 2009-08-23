@@ -97,4 +97,14 @@
 	}
 }
 
+- (void)windowController:(ZZWindowController *)controller
+	didCloseTabViewDelegate:(id <TrazzleTabViewDelegate>)aDelegate
+{
+	for (NSObject <TrazzlePlugIn> *plugin in m_loadedPlugins)
+	{
+		if ([plugin respondsToSelector:@selector(tabViewDelegateWasClosed:)])
+			objc_msgSend(plugin, @selector(tabViewDelegateWasClosed:), aDelegate);
+	}
+}	
+
 @end

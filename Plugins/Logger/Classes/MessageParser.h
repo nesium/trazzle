@@ -39,8 +39,3 @@
 + (NSArray *)parseAS3StackTrace:(NSString *)stacktrace;
 
 @end
-
-
-@interface NSObject (MessageParserDelegate)
-- (void)parser:(MessageParser *)parser didParseMenuItem:(NSMenuItem *)menuItem;
-@end

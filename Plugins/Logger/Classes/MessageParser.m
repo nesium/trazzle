@@ -132,56 +132,6 @@
 		[m_data addObject:m_currentObject];
 		[m_currentObject release];
 	}
-	else if ([elementName isEqualToString:kNodeNameMenu])
-	{
-		NSMenu *menu = [[NSMenu alloc] init];
-		NSMenuItem *menuItem = [[NSMenuItem alloc] init];
-		[menuItem setTitle:[attributes objectForKey:@"title"]];
-		[menuItem setSubmenu:menu];
-		[menu release];
-		
-		if ([m_currentObject isKindOfClass:[CommandMessage class]])
-		{
-			CommandMessage *cmd = (CommandMessage *)m_currentObject;
-			if (!cmd.data)
-			{
-				cmd.data = [NSMutableArray array];
-			}
-			[(NSMutableArray *)cmd.data addObject:menuItem];
-		}
-		else if ([m_currentObject isKindOfClass:[NSMenu class]])
-		{
-			NSMenu *parentMenu = (NSMenu *)m_currentObject;
-			[parentMenu addItem:menuItem];
-		}
-		[menuItem release];
-		[menu setAutoenablesItems:YES];
-		m_currentObject = menu;
-	}
-	else if ([elementName isEqualToString:kNodeNameMenuItem])
-	{
-		NSMenuItem *menuItem = [[NSMenuItem alloc] init];
-		[menuItem setTitle:[attributes objectForKey:@"title"]];
-		if ([m_currentObject isKindOfClass:[CommandMessage class]])
-		{
-			if (![(CommandMessage *)m_currentObject data])
-			{
-				[(CommandMessage *)m_currentObject setData:[NSMutableArray array]];
-			}
-			NSMutableArray *data = (NSMutableArray *)[(CommandMessage *)m_currentObject data];
-			[data addObject:menuItem];
-		}
-		else if ([m_currentObject isKindOfClass:[NSMenu class]])
-		{
-			NSMenu *menu = (NSMenu *)m_currentObject;
-			[menu addItem:menuItem];
-		}
-		if ([m_delegate respondsToSelector:@selector(parser:didParseMenuItem:)])
-		{
-			[m_delegate parser:self didParseMenuItem:menuItem];
-		}
-		[menuItem release];
-	}
 	[self clearCurrentString];
 }
 
@@ -254,20 +204,6 @@
 	{
 		m_parentObject = nil;
 	}
-	else if ([elementName isEqualToString:kNodeNameMenuItem])
-	{
-		return;
-	}
-	else if ([elementName isEqualToString:kNodeNameMenu])
-	{
-		m_currentObject = [(NSMenu *)m_currentObject supermenu];
-		if (!m_currentObject)
-		{
-			m_currentObject = m_parentObject;
-		}
-		return;
-	}
-	
 	[self clearCurrentString];
 	m_currentObject = nil;
 }

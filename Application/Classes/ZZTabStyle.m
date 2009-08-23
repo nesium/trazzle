@@ -45,15 +45,7 @@
 }
 
 - (void)loadImages
-{
-	_closeButton = [[NSImage alloc] initByReferencingFile:[[PSMTabBarControl bundle] pathForImageResource:@"AquaTabClose_Front"]];
-	_closeButtonDown = [[NSImage alloc] initByReferencingFile:[[PSMTabBarControl bundle] pathForImageResource:@"AquaTabClose_Front_Pressed"]];
-	_closeButtonOver = [[NSImage alloc] initByReferencingFile:[[PSMTabBarControl bundle] pathForImageResource:@"AquaTabClose_Front_Rollover"]];
-
-    _closeDirtyButton = [[NSImage alloc] initByReferencingFile:[[PSMTabBarControl bundle] pathForImageResource:@"AquaTabCloseDirty_Front"]];
-    _closeDirtyButtonDown = [[NSImage alloc] initByReferencingFile:[[PSMTabBarControl bundle] pathForImageResource:@"AquaTabCloseDirty_Front_Pressed"]];
-    _closeDirtyButtonOver = [[NSImage alloc] initByReferencingFile:[[PSMTabBarControl bundle] pathForImageResource:@"AquaTabCloseDirty_Front_Rollover"]];
-        	
+{	
 	_addTabButtonImage = [[NSImage alloc] initByReferencingFile:[[PSMTabBarControl bundle] pathForImageResource:@"AquaTabNew"]];
     _addTabButtonPressedImage = [[NSImage alloc] initByReferencingFile:[[PSMTabBarControl bundle] pathForImageResource:@"AquaTabNewPressed"]];
     _addTabButtonRolloverImage = [[NSImage alloc] initByReferencingFile:[[PSMTabBarControl bundle] pathForImageResource:@"AquaTabNewRollover"]];
@@ -63,14 +55,6 @@
 
 - (void)dealloc
 {
-	[_closeButton release];
-	[_closeButtonDown release];
-	[_closeButtonOver release];
-    
-	[_closeDirtyButton release];
-	[_closeDirtyButtonDown release];
-	[_closeDirtyButtonOver release];
-	
 	[_addTabButtonImage release];
 	[_addTabButtonPressedImage release];
 	[_addTabButtonRolloverImage release];
@@ -120,7 +104,7 @@
 
 - (float)topMarginForTabBarControl
 {
-	return 10.0f;
+	return 0.0f;
 }
 
 - (void)setOrientation:(PSMTabBarOrientation)value
@@ -170,32 +154,13 @@
 }
 - (NSRect)closeButtonRectForTabCell:(PSMTabBarCell *)cell withFrame:(NSRect)cellFrame
 {
-	if ([self closeButtonIsEnabledForCell:cell] == NO) {
+	if ([self closeButtonIsEnabledForCell:cell] == NO)
 		return NSZeroRect;
-	}
-
-	NSRect result;
-	result.size = [_closeButton size];
-
-	switch (orientation) {
-		case PSMTabBarHorizontalOrientation:
-		{
-			result.origin.x = cellFrame.origin.x + Adium_MARGIN_X;
-			result.origin.y = cellFrame.origin.y + MARGIN_Y + 2.0;
-			if ([cell state] == NSOnState) {
-				result.origin.y -= 1;
-			}
-			break;
-		}			
-
-		case PSMTabBarVerticalOrientation:
-		{
-			result.origin.x = NSMaxX(cellFrame) - (Adium_MARGIN_X*2) - NSWidth(result);
-			result.origin.y = NSMinY(cellFrame) + (NSHeight(cellFrame) / 2) - (result.size.height / 2) + 1;
-			break;
-		}
-	}
-
+	
+	NSRect result = cellFrame;
+	result.size = (NSSize){12.0, 12.0};
+	result.origin.x += 8.0;
+	result.origin.y += [cell state] == NSOnState ? 5.0 : 4.0;
 	return result;
 }
 
@@ -211,31 +176,8 @@
 
 	NSRect result;
 	result.size = iconSize;
-
-	switch (orientation)
-	{
-		case PSMTabBarHorizontalOrientation:
-			result.origin.x = cellFrame.origin.x + Adium_MARGIN_X;
-			result.origin.y = cellFrame.origin.y + MARGIN_Y;
-			break;
-
-		case PSMTabBarVerticalOrientation:
-			result.origin.x = NSMaxX(cellFrame) - (Adium_MARGIN_X * 2) - NSWidth(result);
-			result.origin.y = NSMinY(cellFrame) + (NSHeight(cellFrame) / 2) - (NSHeight(result) / 2) + 1;
-			break;
-	}
-
-	// For horizontal tabs, center in available space (in case icon image is smaller than kPSMTabBarIconWidth)
-	if (orientation == PSMTabBarHorizontalOrientation) {
-		if (iconSize.width < kPSMTabBarIconWidth)
-			result.origin.x += (kPSMTabBarIconWidth - iconSize.width) / 2.0;
-		if (iconSize.height < kPSMTabBarIconWidth)
-			result.origin.y += (kPSMTabBarIconWidth - iconSize.height) / 2.0;
-	}
-
-	if ([cell state] == NSOnState) {
-		result.origin.y -= 1;
-	}
+	result.origin.x = NSMaxX(cellFrame) - 8.0 - iconSize.width;
+	result.origin.y = cellFrame.origin.y + (cellFrame.size.height - iconSize.height) / 2;
 
 	return result;
 }
@@ -306,7 +248,7 @@
 
 	// close button?
 	if ([self closeButtonIsEnabledForCell:cell]) {
-		resultWidth += MAX([_closeButton size].width, NSWidth([self iconRectForTabCell:cell])) + Adium_CellPadding;
+		resultWidth += NSWidth([self closeButtonRectForTabCell:cell withFrame:[cell frame]]) + Adium_CellPadding;
 	}
 
 	// icon?
@@ -342,7 +284,7 @@
 
 	// close button?
 	if ([self closeButtonIsEnabledForCell:cell]) {
-		resultWidth += MAX([_closeButton size].width, NSWidth([self iconRectForTabCell:cell])) + Adium_CellPadding;
+		resultWidth += NSWidth([self closeButtonRectForTabCell:cell withFrame:[cell frame]]) + Adium_CellPadding;
 	}
 
 	// icon?
@@ -371,7 +313,7 @@
 
 - (float)tabCellHeight
 {
-	return 25;
+	return 21;
 }
 
 #pragma mark -
@@ -482,81 +424,35 @@
 	switch (orientation)
 	{
 		case PSMTabBarHorizontalOrientation:
-			labelRect.origin.y = cellFrame.origin.y + MARGIN_Y + 1.0;
+			labelRect.origin.y = cellFrame.origin.y + MARGIN_Y + ([cell state] == NSOnState ? 1.0 : 0.0);
 			break;
 		case PSMTabBarVerticalOrientation:
 			labelRect.origin.y = cellFrame.origin.y;
 			break;
 	}
 	
-	if ([self closeButtonIsEnabledForCell:cell]) {
+	if ([self closeButtonIsEnabledForCell:cell])
+	{
+		NSString *state = [cell state] == NSOnState ? @"on" : @"off";
+		NSString *closeBtnImageName = [cell closeButtonOver] 
+			? @"tabbar_close_%@_over" 
+			: @"tabbar_close_%@_up";
+		closeBtnImageName = [NSString stringWithFormat:closeBtnImageName, state];
+		NSImage *closeBtnImage = [[NSImage alloc] initWithContentsOfFile:
+			[[NSBundle mainBundle] pathForImageResource:closeBtnImageName]];
+		
 		/* The close button and the icon (if present) are drawn combined, changing on-hover */
 		NSRect closeButtonRect = [cell closeButtonRectForFrame:cellFrame];
-		NSRect iconRect = [self iconRectForTabCell:cell];
-		NSRect drawingRect;
-		NSImage *closeButtonOrIcon = nil;
-
-		if ([cell hasIcon]) {
-			/* If the cell has an icon and a close button, determine which rect should be used and use it consistently
-			 * This only matters for horizontal tabs; vertical tabs look fine without making this adjustment.
-			 */
-			if (NSWidth(iconRect) > NSWidth(closeButtonRect)) {
-				closeButtonRect.origin.x = NSMinX(iconRect) + NSWidth(iconRect)/2 - NSWidth(closeButtonRect)/2;
-			}
-		}
-
-		if ([cell closeButtonPressed]) {
-			closeButtonOrIcon = ([cell isEdited] ? _closeDirtyButtonDown : _closeButtonDown);
-			drawingRect = closeButtonRect;
-
-		} else if ([cell closeButtonOver]) {
-            closeButtonOrIcon = ([cell isEdited] ? _closeDirtyButtonOver : _closeButtonOver);
-			drawingRect = closeButtonRect;
-	
-		} else if ((orientation == PSMTabBarVerticalOrientation) &&
-				   ([cell count] > 0)) {
-			/* In vertical tabs, the count indicator supercedes the icon */
-			NSSize counterSize = [self sizeForObjectCounterRectForTabCell:cell];
-			if (counterSize.width > NSWidth(closeButtonRect)) {
-				closeButtonRect.origin.x -= (counterSize.width - NSWidth(closeButtonRect));
-				closeButtonRect.size.width = counterSize.width;
-			}
-
-			closeButtonRect.origin.y = cellFrame.origin.y + ((NSHeight(cellFrame) - counterSize.height) / 2);
-			closeButtonRect.size.height = counterSize.height;
-
-			drawingRect = closeButtonRect;
-			[self drawObjectCounterInCell:cell withRect:drawingRect];
-			/* closeButtonOrIcon == nil */
-
-		} else if ([cell hasIcon]) {
-			closeButtonOrIcon = [[[cell representedObject] identifier] icon];
-			drawingRect = iconRect;
-	
-		} else {
-			closeButtonOrIcon = ([cell isEdited] ? _closeDirtyButton : _closeButton);
-			drawingRect = closeButtonRect;
-		}
 		
-		if ([controlView isFlipped]) {
-			drawingRect.origin.y += drawingRect.size.height;
-		}
-
-		[closeButtonOrIcon compositeToPoint:drawingRect.origin operation:NSCompositeSourceOver fraction:1.0];
+		if ([controlView isFlipped])
+			closeButtonRect.origin.y += closeButtonRect.size.height;
 		
-		// scoot label over
-		float oldOrigin = labelRect.origin.x;
-		if (NSWidth(iconRect) > NSWidth(closeButtonRect))
-		{
-			labelRect.origin.x = (NSMaxX(iconRect) + (Adium_CellPadding * 2));
-		} 
-		else 
-		{
-			labelRect.origin.x = (NSMaxX(closeButtonRect) + (Adium_CellPadding * 2));					
-		}
-		labelRect.size.width -= (NSMinX(labelRect) - oldOrigin);
-
-	} else if ([cell hasIcon]) {
+		[closeBtnImage compositeToPoint:closeButtonRect.origin 
+			operation:NSCompositeSourceOver fraction:1.0];
+		[closeBtnImage release];
+	}
+	if ([cell hasIcon]) 
+	{
 		/* The close button is disabled; the cell has an icon */
 		NSRect iconRect = [self iconRectForTabCell:cell];
 		NSImage *icon = [[[cell representedObject] identifier] icon];
@@ -593,15 +489,14 @@
 	NSColor *color;
 	if ([cell state] == NSOnState)
 	{
-		color = [NSColor whiteColor];
+		color = [NSColor colorWithCalibratedRed:0.906 green:0.906 blue:0.906 alpha:1.0];
 	}
 	else
 	{
-		color = [NSColor colorWithCalibratedRed:0.773 green:0.773 blue:0.773 alpha:1.0];
-		if ([cell isHighlighted]) color = [NSColor whiteColor];
+		color = [NSColor colorWithCalibratedRed:0.149 green:0.149 blue:0.149 alpha:1.0];
 		NSShadow *shadow = [[NSShadow alloc] init];
-		[shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.0 alpha:0.85]];
-		[shadow setShadowBlurRadius:2];
+		[shadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.5]];
+		[shadow setShadowBlurRadius:0.0];
 		[shadow setShadowOffset:(NSSize){0.0, -1.0}];
 		[attributes setObject:shadow forKey:NSShadowAttributeName];
 		[shadow release];
@@ -639,10 +534,10 @@
 
 - (void)drawBackgroundInRect:(NSRect)rect
 {
-	NSImage *background = [NSImage imageNamed:@"tabbar_background.png"];
-	[background setFlipped:YES];
-	[background drawInRect:[tabBar bounds] fromRect:NSZeroRect operation:NSCompositeSourceAtop 
-		fraction:1.0];
+//	NSImage *background = [NSImage imageNamed:@"tabbar_background.png"];
+//	[background setFlipped:YES];
+//	[background drawInRect:[tabBar bounds] fromRect:NSZeroRect operation:NSCompositeSourceAtop 
+//		fraction:1.0];
 }
 
 - (void)drawTabBar:(PSMTabBarControl *)bar inRect:(NSRect)rect
@@ -695,12 +590,6 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder 
 {
     if ([aCoder allowsKeyedCoding]) {
-        [aCoder encodeObject:_closeButton forKey:@"closeButton"];
-        [aCoder encodeObject:_closeButtonDown forKey:@"closeButtonDown"];
-        [aCoder encodeObject:_closeButtonOver forKey:@"closeButtonOver"];
-        [aCoder encodeObject:_closeDirtyButton forKey:@"closeDirtyButton"];
-        [aCoder encodeObject:_closeDirtyButtonDown forKey:@"closeDirtyButtonDown"];
-        [aCoder encodeObject:_closeDirtyButtonOver forKey:@"closeDirtyButtonOver"];
         [aCoder encodeObject:_addTabButtonImage forKey:@"addTabButtonImage"];
         [aCoder encodeObject:_addTabButtonPressedImage forKey:@"addTabButtonPressedImage"];
         [aCoder encodeObject:_addTabButtonRolloverImage forKey:@"addTabButtonRolloverImage"];
@@ -713,12 +602,6 @@
 {
    if ( (self = [super init]) ) {
         if ([aDecoder allowsKeyedCoding]) {
-            _closeButton = [[aDecoder decodeObjectForKey:@"closeButton"] retain];
-            _closeButtonDown = [[aDecoder decodeObjectForKey:@"closeButtonDown"] retain];
-            _closeButtonOver = [[aDecoder decodeObjectForKey:@"closeButtonOver"] retain];
-            _closeDirtyButton = [[aDecoder decodeObjectForKey:@"closeDirtyButton"] retain];
-            _closeDirtyButtonDown = [[aDecoder decodeObjectForKey:@"closeDirtyButtonDown"] retain];
-            _closeDirtyButtonOver = [[aDecoder decodeObjectForKey:@"closeDirtyButtonOver"] retain];
             _addTabButtonImage = [[aDecoder decodeObjectForKey:@"addTabButtonImage"] retain];
             _addTabButtonPressedImage = [[aDecoder decodeObjectForKey:@"addTabButtonPressedImage"] retain];
             _addTabButtonRolloverImage = [[aDecoder decodeObjectForKey:@"addTabButtonRolloverImage"] retain];

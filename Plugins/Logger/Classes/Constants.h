@@ -13,8 +13,6 @@
 #define kNodeNameCommand @"cmd"
 #define kNodeNamePolicyFileRequest @"policy-file-request"
 #define kNodeNameSignature @"signature"
-#define kNodeNameMenu @"menu"
-#define kNodeNameMenuItem @"menuitem"
 
 #define kAttributeNameLogLevel @"level"
 #define kAttributeNameFile @"file"

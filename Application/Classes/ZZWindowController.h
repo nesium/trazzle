@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <PSMTabBarControl/PSMTabBarControl.h>
 #import "ZZTabStyle.h"
+#import "ZZWindow.h"
 
 @protocol TrazzleTabViewDelegate;
 
@@ -24,7 +25,7 @@
 }
 - (id)initWithWindowNibName:(NSString *)windowNibName delegate:(id)delegate;
 
-- (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
+- (id)addTabWithIdentifier:(id)ident view:(NSView *)view 
 	delegate:(id <TrazzleTabViewDelegate>)delegate;
 - (void)bringWindowToTop;
 - (void)setWindowIsFloating:(BOOL)bFlag;
@@ -33,4 +34,6 @@
 @interface NSObject (ZZWindowControllerDelegate)
 - (void)windowController:(ZZWindowController *)controller 
 	didSelectTabViewDelegate:(id <TrazzleTabViewDelegate>)aDelegate;
+- (void)windowController:(ZZWindowController *)controller
+	didCloseTabViewDelegate:(id <TrazzleTabViewDelegate>)aDelegate;
 @end

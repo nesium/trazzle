@@ -57,10 +57,10 @@ ZZWindowController *m_windowController;
 	[m_windowController setWindowIsFloating:bFlag];
 }
 
-- (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
+- (id)addTabWithIdentifier:(id)ident view:(NSView *)view 
 	delegate:(id <TrazzleTabViewDelegate>)delegate
 {
-	[m_windowController addTabWithIdentifier:ident view:view delegate:delegate];
+	return [m_windowController addTabWithIdentifier:ident view:view delegate:delegate];
 }
 
 - (void)addStatusMenuItem:(NSMenuItem *)item
