@@ -114,6 +114,15 @@
 }
 
 
+- (void)tabViewDelegateDidBecomeActive:(id)aDelegate
+{
+	if (![aDelegate isKindOfClass:[LPSession class]])
+		return;
+	LPSession *session = (LPSession *)aDelegate;
+	m_filterController.model = session.filterModel;
+}
+
+
 
 #pragma mark -
 #pragma mark Notifications

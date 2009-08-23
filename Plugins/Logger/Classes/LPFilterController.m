@@ -8,6 +8,11 @@
 
 #import "LPFilterController.h"
 
+@interface LPFilterController (Private)
+- (void)_updateSelection;
+@end
+
+
 @implementation LPFilterController
 
 @synthesize model=m_model;
@@ -44,12 +49,10 @@
 	m_mainMenuController.defaultTarget = self;
 	[m_mainMenuController setContent:m_filterMenuArrayController];
 	
-	[m_filterMenuArrayController setSelectedObjects:(m_model.activeFilter == nil ? nil 
-		: [NSArray arrayWithObject:m_model.activeFilter])];
-	[m_filteringIsEnabledMenuItem setState:(m_model.filteringIsEnabled ? NSOnState : NSOffState)];
-	
 	[m_filtersTable setTarget:self];
 	[m_filtersTable setDoubleAction:@selector(filtersTable_doubleAction:)];
+	
+	[self _updateSelection];
 }
 
 - (BOOL)windowShouldClose:(id)window
@@ -82,6 +85,21 @@
 	m_model = model;
 	[m_model addObserver:self forKeyPath:@"activeFilter" options:0 context:NULL];
 	[m_model addObserver:self forKeyPath:@"filteringIsEnabled" options:0 context:NULL];
+	[self _updateSelection];
+}
+
+
+
+#pragma mark -
+#pragma mark Private methods
+
+- (void)_updateSelection
+{
+	[m_filterMenuArrayController setSelectedObjects:(m_model.activeFilter == nil 
+		? nil 
+		: [NSArray arrayWithObject:m_model.activeFilter])];
+	[m_filteringIsEnabledMenuItem setState:(m_model.filteringIsEnabled ? NSOnState : NSOffState)];
+	[m_filtersTable reloadData];		
 }
 
 
@@ -92,16 +110,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object 
 	change:(NSDictionary *)change context:(void *)context
 {
-	if ([keyPath isEqualToString:@"activeFilter"])
-	{
-		[m_filterMenuArrayController setSelectedObjects:(m_model.activeFilter == nil 
-			? nil 
-			: [NSArray arrayWithObject:m_model.activeFilter])];
-	}
-	else if ([keyPath isEqualToString:@"filteringIsEnabled"])
-		[m_filteringIsEnabledMenuItem setState:(m_model.filteringIsEnabled ? NSOnState : NSOffState)];
-
-	[m_filtersTable reloadData];
+	[self _updateSelection];
 }
 
 

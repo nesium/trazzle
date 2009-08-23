@@ -28,7 +28,8 @@
 
 - (void)awakeFromNib
 {
-	m_windowController = [[ZZWindowController alloc] initWithWindowNibName:@"MainWindow"];
+	m_windowController = [[ZZWindowController alloc] initWithWindowNibName:@"MainWindow" 
+		delegate:self];
 	m_plugInControllers = [[NSMutableArray alloc] init];
 	[self loadPlugins];
 }
@@ -78,6 +79,21 @@
 			[plugin release];
 			[plugInController release];
 		}
+	}
+}
+
+
+
+#pragma mark -
+#pragma mark ZZWindowController delegate methods
+
+- (void)windowController:(ZZWindowController *)controller 
+	didSelectTabViewDelegate:(id <TrazzleTabViewDelegate>)aDelegate
+{
+	for (NSObject <TrazzlePlugIn> *plugin in m_loadedPlugins)
+	{
+		if ([plugin respondsToSelector:@selector(tabViewDelegateDidBecomeActive:)])
+			objc_msgSend(plugin, @selector(tabViewDelegateDidBecomeActive:), aDelegate);
 	}
 }
 

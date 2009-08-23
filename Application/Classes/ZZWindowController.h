@@ -14,14 +14,23 @@
 
 @interface ZZWindowController : NSWindowController 
 {
+	id m_delegate;
 	IBOutlet PSMTabBarControl *m_tabBar;
 	IBOutlet NSTabView *m_tabView;
 	NSMutableArray *m_delegates;
 	BOOL m_windowIsReady;
 	BOOL m_windowWasVisible;
+	NSTabViewItem *m_lastSelectedTabViewItem;
 }
+- (id)initWithWindowNibName:(NSString *)windowNibName delegate:(id)delegate;
+
 - (void)addTabWithIdentifier:(id)ident view:(NSView *)view 
 	delegate:(id <TrazzleTabViewDelegate>)delegate;
 - (void)bringWindowToTop;
 - (void)setWindowIsFloating:(BOOL)bFlag;
+@end
+
+@interface NSObject (ZZWindowControllerDelegate)
+- (void)windowController:(ZZWindowController *)controller 
+	didSelectTabViewDelegate:(id <TrazzleTabViewDelegate>)aDelegate;
 @end
