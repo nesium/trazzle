@@ -53,7 +53,7 @@
 		alpha:1.0];
 	window.borderEndColor = [NSColor colorWithCalibratedRed:0.588 green:0.588 blue:0.588 
 		alpha:1.0];
-	window.topBorderHeight = 42.0;
+	window.topBorderHeight = 43.0;
 
 	while ([m_tabView numberOfTabViewItems])
 		[m_tabView removeTabViewItem:[m_tabView tabViewItemAtIndex:0]];

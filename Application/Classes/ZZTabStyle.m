@@ -415,6 +415,25 @@
 {
 	NSRect cellFrame = [cell frame];
 
+	NSInteger selectedIndex = [[tabBar tabView] indexOfTabViewItem:[[tabBar tabView] 
+		selectedTabViewItem]];
+	NSInteger cellIndex = [[tabBar cells] indexOfObject:cell];
+	NSInteger lastIndex = [[tabBar cells] indexOfObject:[tabBar lastVisibleTab]];
+	BOOL needsSeparator = cellIndex != selectedIndex && 
+		cellIndex != selectedIndex - 1 && 
+		cellIndex < lastIndex;
+	if (needsSeparator)
+	{
+		NSImage *separator = [[NSImage alloc] initWithContentsOfFile:
+			[[NSBundle mainBundle] pathForImageResource:@"tabbar_divider"]];
+		NSPoint origin = (NSPoint){NSMaxX(cellFrame) - [separator size].width, NSMinY(cellFrame)};
+		if ([controlView isFlipped])
+			origin.y += [separator size].height;
+		[separator compositeToPoint:origin operation:NSCompositeSourceOver fraction:1.0];
+		[separator release];
+	}
+	
+
 	// label rect
 	NSRect labelRect;
 	labelRect.origin.x = cellFrame.origin.x + Adium_MARGIN_X;
