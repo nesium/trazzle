@@ -57,6 +57,8 @@
 		2C65AE7C0F328C26005D7A61 /* LogWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAFC0EABB501003EE952 /* LogWindow.xib */; };
 		2C65AE7D0F328C2A005D7A61 /* FilterEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAEA0EABB42B003EE952 /* FilterEditor.xib */; };
 		2C6A61D910358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C6A61D810358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png */; };
+		2C78D87110406EB20064CACC /* LPFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C78D87010406EB20064CACC /* LPFilterModel.m */; };
+		2C96976B103F085100297687 /* LPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96976A103F085100297687 /* LPSession.m */; };
 		2CBFEF7A0F3E4F7400AA982D /* LPFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterController.m */; };
 		2CBFEFB50F3E578200AA982D /* LPFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEFB40F3E578200AA982D /* LPFilter.m */; };
 		2CD18C860F3601C9005D0CCE /* LoggingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD18C850F3601C9005D0CCE /* LoggingClient.m */; };
@@ -177,7 +179,11 @@
 		2C65AE390F328A90005D7A61 /* output.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = output.css; sourceTree = "<group>"; };
 		2C65AE3A0F328A90005D7A61 /* theme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = theme.html; sourceTree = "<group>"; };
 		2C6A61D810358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarSearchFieldDeleteButtonAlternate.png; sourceTree = "<group>"; };
+		2C78D86F10406EB20064CACC /* LPFilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFilterModel.h; sourceTree = "<group>"; };
+		2C78D87010406EB20064CACC /* LPFilterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilterModel.m; sourceTree = "<group>"; };
 		2C8D2CC70EAD49090020E651 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2C969769103F085100297687 /* LPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPSession.h; sourceTree = "<group>"; };
+		2C96976A103F085100297687 /* LPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSession.m; sourceTree = "<group>"; };
 		2CBFEF780F3E4F7400AA982D /* LPFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFilterController.h; sourceTree = "<group>"; };
 		2CBFEF790F3E4F7400AA982D /* LPFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilterController.m; sourceTree = "<group>"; };
 		2CBFEFAB0F3E562000AA982D /* ZZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZConstants.h; path = ../../Application/Classes/ZZConstants.h; sourceTree = SOURCE_ROOT; };
@@ -278,6 +284,8 @@
 				2C8D2CC70EAD49090020E651 /* Constants.h */,
 				2C4CCA940EABA5FC003EE952 /* LoggerPlugin.h */,
 				2C4CCA950EABA5FC003EE952 /* LoggerPlugin.m */,
+				2C969769103F085100297687 /* LPSession.h */,
+				2C96976A103F085100297687 /* LPSession.m */,
 				2C5582540F33D6A80011B31A /* MessageParser.h */,
 				2C5582550F33D6A80011B31A /* MessageParser.m */,
 				2C5582570F33D6A80011B31A /* MessageModel.h */,
@@ -519,6 +527,8 @@
 			children = (
 				2CBFEFB30F3E578200AA982D /* LPFilter.h */,
 				2CBFEFB40F3E578200AA982D /* LPFilter.m */,
+				2C78D86F10406EB20064CACC /* LPFilterModel.h */,
+				2C78D87010406EB20064CACC /* LPFilterModel.m */,
 				2CBFEF780F3E4F7400AA982D /* LPFilterController.h */,
 				2CBFEF790F3E4F7400AA982D /* LPFilterController.m */,
 				2C0422070F3E72B700726781 /* NumericPredicateTemplate.h */,
@@ -760,6 +770,8 @@
 				2CFEDA321034A254004375AE /* SearchBarViewController.m in Sources */,
 				2CF126E010389B4000F526AB /* MenuService.m in Sources */,
 				2CF127181038A77500F526AB /* LPRemoteGateway.m in Sources */,
+				2C96976B103F085100297687 /* LPSession.m in Sources */,
+				2C78D87110406EB20064CACC /* LPFilterModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

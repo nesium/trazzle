@@ -11,21 +11,18 @@
 
 @implementation LoggingService
 
-@synthesize delegate=m_delegate;
-
-- (id)initWithDelegate:(id)delegate
+- (id)init
 {
 	if (self = [super init])
 	{
-		self.delegate = delegate;
 	}
 	return self;
 }
 
 - (oneway void)gateway:(AMFRemoteGateway *)gateway setConnectionParams:(NSDictionary *)params
 {
-	if ([m_delegate respondsToSelector:@selector(loggingService:didReceiveConnectionParams:fromGateway:)])
-		[m_delegate loggingService:self didReceiveConnectionParams:params fromGateway:gateway];
+	if ([gateway.delegate respondsToSelector:@selector(loggingService:didReceiveConnectionParams:fromGateway:)])
+		[gateway.delegate loggingService:self didReceiveConnectionParams:params fromGateway:gateway];
 }
 
 - (oneway void)gateway:(AMFRemoteGateway *)gateway log:(FlashLogMessage *)logMessage
@@ -57,8 +54,8 @@
 			[message setStacktrace:stacktrace];		
 	}
 	
-	if ([m_delegate respondsToSelector:@selector(loggingService:didReceiveLogMessage:fromGateway:)])
-		[m_delegate loggingService:self didReceiveLogMessage:message fromGateway:gateway];
+	if ([gateway.delegate respondsToSelector:@selector(loggingService:didReceiveLogMessage:fromGateway:)])
+		[gateway.delegate loggingService:self didReceiveLogMessage:message fromGateway:gateway];
 	
 	[message release];
 }
@@ -71,8 +68,8 @@
 	[pngData writeToFile:filename options:0 error:&error];
 	[(LPRemoteGateway *)gateway addLoggedImagePath:filename];
 	
-	if ([m_delegate respondsToSelector:@selector(loggingService:didReceivePNG:withSize:fromGateway:)])
-		[m_delegate loggingService:self didReceivePNG:filename 
+	if ([gateway.delegate respondsToSelector:@selector(loggingService:didReceivePNG:withSize:fromGateway:)])
+		[gateway.delegate loggingService:self didReceivePNG:filename 
 			withSize:(NSSize){[width floatValue], [height floatValue]} fromGateway:gateway];
 }
 

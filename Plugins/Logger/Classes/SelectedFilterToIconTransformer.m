@@ -34,7 +34,7 @@
 - (id)transformedValue:(LPFilter *)filter
 {
 	NSString *imageName;
-	if (m_filterController.filteringIsEnabled && m_filterController.activeFilter == filter)
+	if (m_filterController.model.filteringIsEnabled && m_filterController.model.activeFilter == filter)
 		imageName = @"led_on";
 	else
 		imageName = @"led_off";

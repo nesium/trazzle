@@ -154,6 +154,29 @@
 
 - (void)keyDown:(NSEvent *)event
 {
+	if ([event modifierFlags] & NSShiftKeyMask && 
+		[event modifierFlags] & NSCommandKeyMask && 
+		([event keyCode] == 123 || [event keyCode] == 124))
+	{
+		if ([m_tabView numberOfTabViewItems] == 0) return;
+		if ([event keyCode] == 124) // right
+		{
+			if ([m_tabView indexOfTabViewItem:[m_tabView selectedTabViewItem]] == 
+				[m_tabView numberOfTabViewItems] - 1)
+				[m_tabView selectFirstTabViewItem:self];
+			else
+				[m_tabView selectNextTabViewItem:self];
+		}
+		else if ([event keyCode] == 123) // left
+		{
+			if ([m_tabView indexOfTabViewItem:[m_tabView selectedTabViewItem]] == 0)
+				[m_tabView selectLastTabViewItem:self];
+			else
+				[m_tabView selectPreviousTabViewItem:self];
+		}
+		return;
+	}
+	
 	NSTabViewItem *selectedTab = [m_tabView selectedTabViewItem];
 	uint32_t selectedIndex = [m_tabView indexOfTabViewItem:selectedTab];
 	id delegate = [m_delegates objectAtIndex:selectedIndex];

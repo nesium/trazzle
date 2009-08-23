@@ -16,37 +16,28 @@
 #import "AbstractMessage.h"
 #import "CommandMessage.h"
 #import "LPFilterController.h"
-#import "FileMonitor.h"
 #import "AMFDuplexGateway.h"
 #import "LoggingService.h"
 #import "MenuService.h"
 #import "ExceptionMessage.h"
 #import "LPRemoteGateway.h"
+#import "LPSession.h"
 
-@interface LoggerPlugin : NSObject <TrazzlePlugIn, TrazzleTabViewDelegate> 
+@interface LoggerPlugin : NSObject <TrazzlePlugIn> 
 {
-	PlugInController *controller;
+	PlugInController *m_controller;
 	
 	AsyncSocket *m_socket;
 	AMFDuplexGateway *m_gateway;
 	NSMutableArray *m_connectedClients;
+	NSMutableArray *m_sessions;
 	
 	NSTask *m_tailTask;
 	NSPipe *m_logPipe;
 	NSString *m_flashlogBuffer;
 	ExceptionMessage *m_currentException;
 	NSMutableString *m_currentExceptionStacktrace;
-	
-	MessageModel *m_messageModel;
-	LoggingViewController *m_loggingViewController;
+
 	LPFilterController *m_filterController;
-	
-	NSString *m_tabTitle;
-	NSString *m_sessionName;
-	BOOL m_isReady;
 }
-@property (nonatomic, retain) NSString *tabTitle;
-@property (nonatomic, retain) NSString *sessionName;
-@property (nonatomic, assign) BOOL isReady;
-- (id)initWithPlugInController:(PlugInController *)controller;
 @end

@@ -18,11 +18,7 @@
 
 @interface LoggingService : NSObject
 {
-	id m_delegate;
 }
-@property (nonatomic, assign) id delegate;
-
-- (id)initWithDelegate:(id)delegate;
 @end
 
 @interface FlashLogMessage : NSObject

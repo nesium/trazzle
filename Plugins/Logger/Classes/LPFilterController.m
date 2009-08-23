@@ -8,46 +8,22 @@
 
 #import "LPFilterController.h"
 
-@interface LPFilterController (Private)
-- (NSString *)_filtersPath;
-- (void)_loadFilters;
-- (BOOL)_containsFilterWithName:(NSString *)name;
-- (NSString *)_nextAvailableFilterName:(NSString *)baseName;
-- (NSPredicate *)_defaultPredicate;
-- (void)_saveDirtyFilters;
-- (void)_saveFilter:(LPFilter *)filter;
-- (void)_destroyFilter:(LPFilter *)filter;
-@end
-
-
 @implementation LPFilterController
 
-@synthesize delegate=m_delegate, 
-			activeFilter=m_activeFilter, 
-			filteringIsEnabled=m_filteringIsEnabled,
-			showsFlashLogMessages=m_showsFlashLogMessages;
+@synthesize model=m_model;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithDelegate:(id)delegate
+- (id)init
 {
 	if (self = [super initWithWindowNibName:@"FilterEditor"])
 	{
-		self.delegate = delegate;
-		
 		SelectedFilterToIconTransformer *transformer = [[SelectedFilterToIconTransformer alloc]
 			initWithFilterController:self];
 		[NSValueTransformer setValueTransformer:transformer 
 			forName:@"SelectedFilterToIconTransformer"];
 		[transformer release];
-		
-		m_filters = [[NSMutableArray alloc] init];
-		m_filteringIsEnabled = NO;
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self
-			selector:@selector(applicationWillTerminate:)
-			name:NSApplicationWillTerminateNotification object:nil];
 	}
 	return self;
 }
@@ -68,9 +44,9 @@
 	m_mainMenuController.defaultTarget = self;
 	[m_mainMenuController setContent:m_filterMenuArrayController];
 	
-	[m_filterMenuArrayController setSelectedObjects:(m_activeFilter == nil ? nil 
-		: [NSArray arrayWithObject:m_activeFilter])];
-	[m_filteringIsEnabledMenuItem setState:(m_filteringIsEnabled ? NSOnState : NSOffState)];
+	[m_filterMenuArrayController setSelectedObjects:(m_model.activeFilter == nil ? nil 
+		: [NSArray arrayWithObject:m_model.activeFilter])];
+	[m_filteringIsEnabledMenuItem setState:(m_model.filteringIsEnabled ? NSOnState : NSOffState)];
 	
 	[m_filtersTable setTarget:self];
 	[m_filtersTable setDoubleAction:@selector(filtersTable_doubleAction:)];
@@ -78,20 +54,14 @@
 
 - (BOOL)windowShouldClose:(id)window
 {
-	[self _saveDirtyFilters];
+	[m_model save];
 	return YES;
-}
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification
-{
-	[self _saveDirtyFilters];
 }
 
 - (void)dealloc
 {
 	[m_mainMenuController setContent:nil];
 	[m_mainMenuController release];
-	[m_filters release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
@@ -101,48 +71,37 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)load
+- (void)setModel:(LPFilterModel *)model
 {
-	[self _loadFilters];
-	// load window
-	[self window];
+	if (m_model == model) return;
+	if (m_model)
+	{
+		[m_model removeObserver:self forKeyPath:@"activeFilter"];
+		[m_model removeObserver:self forKeyPath:@"filteringIsEnabled"];
+	}
+	m_model = model;
+	[m_model addObserver:self forKeyPath:@"activeFilter" options:0 context:NULL];
+	[m_model addObserver:self forKeyPath:@"filteringIsEnabled" options:0 context:NULL];
 }
 
-- (void)setActiveFilter:(LPFilter *)filter
-{
-	if (filter == m_activeFilter)
-		return;
-	
-	[m_activeFilter release];
-	m_activeFilter = [filter retain];
-	
-	[m_filterMenuArrayController setSelectedObjects:(m_activeFilter == nil ? nil 
-		: [NSArray arrayWithObject:m_activeFilter])];
-	
-	[[[NSUserDefaultsController sharedUserDefaultsController] values] 
-		setValue:(filter == nil) ? @"" : [filter path] 
-		forKey:kLastSelectedFilterKey];
-	
-	[m_filtersTable reloadData];
-	
-	if ([m_delegate respondsToSelector:@selector(filterController:didSelectFilter:)])
-		[m_delegate filterController:self didSelectFilter:m_activeFilter];
-}
 
-- (void)setFilteringIsEnabled:(BOOL)bFlag
+
+#pragma mark -
+#pragma mark KVO notifications
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object 
+	change:(NSDictionary *)change context:(void *)context
 {
-	if (m_filteringIsEnabled == bFlag)
-		return;
-	
-	m_filteringIsEnabled = bFlag;
+	if ([keyPath isEqualToString:@"activeFilter"])
+	{
+		[m_filterMenuArrayController setSelectedObjects:(m_model.activeFilter == nil 
+			? nil 
+			: [NSArray arrayWithObject:m_model.activeFilter])];
+	}
+	else if ([keyPath isEqualToString:@"filteringIsEnabled"])
+		[m_filteringIsEnabledMenuItem setState:(m_model.filteringIsEnabled ? NSOnState : NSOffState)];
+
 	[m_filtersTable reloadData];
-	[m_filteringIsEnabledMenuItem setState:(bFlag ? NSOnState : NSOffState)];
-	
-	[[[NSUserDefaultsController sharedUserDefaultsController]
-	  values] setValue:[NSNumber numberWithBool:bFlag] forKey:kFilteringEnabledKey];
-	
-	if ([m_delegate respondsToSelector:@selector(filterController:didChangeFilteringEnabledFlag:)])
-		[m_delegate filterController:self didChangeFilteringEnabledFlag:m_filteringIsEnabled];
 }
 
 
@@ -152,7 +111,7 @@
 
 - (void)selectFilter:(id)sender
 {
-	self.activeFilter = (LPFilter *)[sender representedObject];
+	m_model.activeFilter = (LPFilter *)[sender representedObject];
 }
 
 - (IBAction)editFilters:(id)sender
@@ -162,164 +121,26 @@
 
 - (IBAction)toggleFilteringIsEnabled:(id)sender
 {
-	self.filteringIsEnabled = !m_filteringIsEnabled;
+	m_model.filteringIsEnabled = !m_model.filteringIsEnabled;
 }
 
 - (IBAction)add:(id)sender
 {
-	LPFilter *filter = [[LPFilter alloc] initWithName:[self _nextAvailableFilterName:nil] 
-		predicate:[self _defaultPredicate]];
-	[m_filterArrayController addObject:filter];
-	[self _saveFilter:filter];
-	[filter release];
+	[m_model addNewFilter];
 }
 
 - (IBAction)duplicate:(id)sender
 {
 	if ([m_filterArrayController selectionIndex] == NSNotFound)
 		return;
-
-	LPFilter *selectedFilter = [[m_filterArrayController selectedObjects] objectAtIndex:0];
-	LPFilter *filter = [[LPFilter alloc] initWithName:
-			[self _nextAvailableFilterName:[selectedFilter.name stringByAppendingString:@" Copy"]] 
-		predicate:[[selectedFilter.predicate copy] autorelease]];
-	[m_filterArrayController addObject:filter];
-	[self _saveFilter:filter];
-	[filter release];
+	[m_model duplicateFilter:[[m_filterArrayController selectedObjects] objectAtIndex:0]];
 }
 
 - (IBAction)remove:(id)sender
 {
 	if ([m_filterArrayController selectionIndex] == NSNotFound)
 		return;
-	
-	LPFilter *filter = [[m_filterArrayController selectedObjects] objectAtIndex:0];
-	[m_filterArrayController removeObject:filter];
-	if (filter == m_activeFilter)
-	{
-		self.filteringIsEnabled = NO;
-		self.activeFilter = [m_filters count] > 0 
-			? [[m_filterArrayController arrangedObjects] objectAtIndex:0]
-			: nil;
-	}
-	[self _destroyFilter:filter];
-	if ([m_filters count] == 0) self.filteringIsEnabled = NO;
-}
-
-- (void)setShowsFlashLogMessages:(BOOL)bFlag
-{
-	if (m_showsFlashLogMessages == bFlag) return;
-	[[[NSUserDefaultsController sharedUserDefaultsController]
-	  values] setValue:[NSNumber numberWithBool:bFlag] forKey:kShowFlashLogMessages];
-	m_showsFlashLogMessages = bFlag;
-}
-
-
-
-#pragma mark -
-#pragma mark Private methods
-
-- (BOOL)_containsFilterWithName:(NSString *)name
-{
-	for (LPFilter *filter in m_filters)
-		if ([[filter name] isEqualToString:name])
-			return YES;
-	return NO;
-}
-
-- (NSString *)_nextAvailableFilterName:(NSString *)baseName
-{
-	if (baseName == nil) baseName = @"Untitled Filter";
-	unsigned int i = 1;
-	NSString *name;
-	do name = [NSString stringWithFormat:@"%@ %d", baseName, i++];
-	while ([self _containsFilterWithName:name]);
-	return name;
-}
-
-- (NSString *)_filtersPath
-{
-	return [TRAZZLE_APP_SUPPORT stringByAppendingPathComponent:@"Filters"];
-}
-
-- (void)_loadFilters
-{
-	NSFileManager *fm = [NSFileManager defaultManager];
-	NSEnumerator *filesEnum = [[fm contentsOfDirectoryAtPath:[self _filtersPath] 
-		error: NULL] objectEnumerator];
-	NSString *file;
-	NSString *selectedFilterPath = [[[NSUserDefaultsController sharedUserDefaultsController] values]
-		valueForKey:kLastSelectedFilterKey];
-	BOOL foundSelectedFilter = NO;
-	
-	while (file = [filesEnum nextObject])
-	{
-		if (![[file pathExtension] isEqualToString:kFilterFileExtension])
-			continue;
-	
-		NSString *filterPath = [[self _filtersPath] 
-			stringByAppendingPathComponent:file];
-		NSError *error;
-		LPFilter *filter = [[LPFilter alloc] initWithContentsOfFile:filterPath error:&error];
-		if (filter == nil)
-		{
-			NSLog([error description]);
-			continue;
-		}
-		[m_filters addObject:filter];
-		BOOL currentFilterIsSelected = [[filter path] isEqualToString:selectedFilterPath];
-		if (currentFilterIsSelected)
-		{
-			foundSelectedFilter = YES;
-			[self setActiveFilter:filter];
-		}
-	}
-	
-	if (!foundSelectedFilter && [m_filters count] > 0)
-		[self setActiveFilter:(LPFilter *)[m_filters objectAtIndex:0]];
-	
-	if ([[[[NSUserDefaultsController sharedUserDefaultsController]
-	  values] valueForKey:kFilteringEnabledKey] boolValue] && [m_filters count] > 0)
-	{
-		self.filteringIsEnabled = YES;
-	}
-	
-	self.showsFlashLogMessages = [[[[NSUserDefaultsController sharedUserDefaultsController] values]
-		valueForKey:kShowFlashLogMessages] boolValue];
-}
-
-- (void)_saveDirtyFilters
-{
-	for (LPFilter *filter in m_filters)
-	{
-		if (![filter isDirty]) continue;
-		[self _saveFilter:filter];
-	}
-}
-
-- (void)_saveFilter:(LPFilter *)filter
-{
-	NSError *error;
-	if (![filter save:&error])
-		NSLog([error description]);
-}
-
-- (void)_destroyFilter:(LPFilter *)filter
-{
-	NSError *error;
-	if (![filter unlink:&error])
-		NSLog([error description]);
-}
-
-- (NSPredicate *)_defaultPredicate
-{
-	return [NSCompoundPredicate orPredicateWithSubpredicates: 
-				[NSArray arrayWithObject:[NSComparisonPredicate 
-					predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"level"]
-					rightExpression:[NSExpression expressionForConstantValue:[NSNumber numberWithInt:0]]
-					modifier:NSDirectPredicateModifier
-					type:NSEqualToPredicateOperatorType
-					options:NSCaseInsensitivePredicateOption]]];
+	[m_model removeFilter:[[m_filterArrayController selectedObjects] objectAtIndex:0]];
 }
 
 
@@ -337,9 +158,9 @@
 							select:YES];
 		return;
 	}
-	self.activeFilter = [[m_filterArrayController arrangedObjects] 
-						 objectAtIndex:[m_filtersTable clickedRow]];
-	if (!m_filteringIsEnabled) self.filteringIsEnabled = YES;
+	m_model.activeFilter = [[m_filterArrayController arrangedObjects] 
+		objectAtIndex:[m_filtersTable clickedRow]];
+	m_model.filteringIsEnabled = YES;
 }
 
 @end

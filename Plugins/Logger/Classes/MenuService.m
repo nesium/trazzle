@@ -9,28 +9,26 @@
 #import "MenuService.h"
 
 @interface MenuService (Private)
-- (NSMenu *)_menuFromSWFMenu:(SWFMenu *)aMenu;
+- (NSMenu *)_menuFromSWFMenu:(SWFMenu *)aMenu target:(id)target;
 @end
 
 
 @implementation MenuService
 
-@synthesize delegate=m_delegate;
-
-- (id)initWithDelegate:(id)aDelegate
+- (id)init
 {
 	if (self = [super init])
 	{
-		m_delegate = aDelegate;
 	}
 	return self;
 }
 
 - (oneway void)gateway:(AMFRemoteGateway *)gateway setMenu:(SWFMenu *)aMenu
 {
-	if ([m_delegate respondsToSelector:@selector(menuService:didReceiveMenu:fromGateway:)])
-		[m_delegate menuService:self didReceiveMenu:[self _menuFromSWFMenu:aMenu] 
-					fromGateway:gateway];
+	if ([gateway.delegate respondsToSelector:@selector(menuService:didReceiveMenu:fromGateway:)])
+		[gateway.delegate menuService:self 
+			didReceiveMenu:[self _menuFromSWFMenu:aMenu target:gateway.localGateway.delegate] 
+			fromGateway:gateway];
 }
 
 
@@ -38,7 +36,7 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (NSMenu *)_menuFromSWFMenu:(SWFMenu *)aMenu
+- (NSMenu *)_menuFromSWFMenu:(SWFMenu *)aMenu target:(id)target
 {
 	if (aMenu == nil || (id)aMenu == [NSNull null]) return nil;
 	NSMenu *menu = [[NSMenu alloc] init];
@@ -47,9 +45,9 @@
 		NSMenuItem *item = [[NSMenuItem alloc] init];
 		[item setTitle:anItem.title];
 		[item setState:(anItem.selected ? NSOnState : NSOffState)];
-		[item setSubmenu:[self _menuFromSWFMenu:anItem.submenu]];
+		[item setSubmenu:[self _menuFromSWFMenu:anItem.submenu target:target]];
 		[item setAction:@selector(statusMenuItemWasClicked:)];
-		[item setTarget:m_delegate];
+		[item setTarget:target];
 		[menu addItem:item];
 		[item release];
 	}

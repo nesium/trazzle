@@ -398,7 +398,7 @@
 	static NSMutableParagraphStyle *TruncatingTailParagraphStyle = nil;
 	if (!TruncatingTailParagraphStyle) {
 		TruncatingTailParagraphStyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] retain];
-		[TruncatingTailParagraphStyle setLineBreakMode:NSLineBreakByTruncatingTail];
+		[TruncatingTailParagraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
 	}
 	[attrStr addAttribute:NSParagraphStyleAttributeName value:TruncatingTailParagraphStyle range:range];
 
@@ -478,6 +478,7 @@
 	labelRect.origin.x = cellFrame.origin.x + Adium_MARGIN_X;
 	labelRect.size.width = cellFrame.size.width - (labelRect.origin.x - cellFrame.origin.x) - Adium_CellPadding;
 	labelRect.size.height = cellFrame.size.height;
+	
 	switch (orientation)
 	{
 		case PSMTabBarHorizontalOrientation:
@@ -613,7 +614,7 @@
 	[mutableAttributedString addAttributes:attributes 
 		range:(NSRange){0, [mutableAttributedString length]}];
 	
-	labelRect.size.width = MIN(cellFrame.size.width - 10.0, [mutableAttributedString size].width);
+	labelRect.size.width = MIN(cellFrame.size.width - 40.0, [mutableAttributedString size].width);
 	labelRect.origin.x = round(cellFrame.size.width - labelRect.size.width) / 2 + cellFrame.origin.x;
 		
 	[mutableAttributedString drawInRect:labelRect];
