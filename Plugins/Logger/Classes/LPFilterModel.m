@@ -11,6 +11,7 @@
 @interface LPFilterModel (Private)
 - (NSString *)_filtersPath;
 - (void)_loadFilters;
+- (void)_loadPreferences;
 - (BOOL)_containsFilterWithName:(NSString *)name;
 - (NSString *)_nextAvailableFilterName:(NSString *)baseName;
 - (NSPredicate *)_defaultPredicate;
@@ -39,8 +40,7 @@ static NSMutableArray *g_filters = nil;
 			g_filters = [[NSMutableArray alloc] init];
 			[self _loadFilters];
 		}
-		
-		m_filteringIsEnabled = NO;
+		[self _loadPreferences];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self
 			selector:@selector(applicationWillTerminate:)
@@ -190,18 +190,13 @@ static NSMutableArray *g_filters = nil;
 	NSEnumerator *filesEnum = [[fm contentsOfDirectoryAtPath:[self _filtersPath] 
 													   error: NULL] objectEnumerator];
 	NSString *file;
-	NSString *selectedFilterPath = [[[NSUserDefaultsController sharedUserDefaultsController] values]
-									valueForKey:kLastSelectedFilterKey];
-	BOOL foundSelectedFilter = NO;
-	
 	while (file = [filesEnum nextObject])
 	{
 		if (![[file pathExtension] isEqualToString:kFilterFileExtension])
 			continue;
 		
-		NSString *filterPath = [[self _filtersPath] 
-								stringByAppendingPathComponent:file];
 		NSError *error;
+		NSString *filterPath = [[self _filtersPath] stringByAppendingPathComponent:file];
 		LPFilter *filter = [[LPFilter alloc] initWithContentsOfFile:filterPath error:&error];
 		if (filter == nil)
 		{
@@ -209,25 +204,33 @@ static NSMutableArray *g_filters = nil;
 			continue;
 		}
 		[g_filters addObject:filter];
+	}
+}
+
+- (void)_loadPreferences
+{
+	NSObject *defaultValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+	NSString *selectedFilterPath = [defaultValues valueForKey:kLastSelectedFilterKey];
+	BOOL foundSelectedFilter = NO;
+	
+	for (LPFilter *filter in g_filters)
+	{
 		BOOL currentFilterIsSelected = [[filter path] isEqualToString:selectedFilterPath];
 		if (currentFilterIsSelected)
 		{
 			foundSelectedFilter = YES;
 			[self setActiveFilter:filter];
+			break;
 		}
 	}
-	
+
 	if (!foundSelectedFilter && [g_filters count] > 0)
 		[self setActiveFilter:(LPFilter *)[g_filters objectAtIndex:0]];
 	
-	if ([[[[NSUserDefaultsController sharedUserDefaultsController]
-		   values] valueForKey:kFilteringEnabledKey] boolValue] && [g_filters count] > 0)
-	{
+	if ([[defaultValues valueForKey:kFilteringEnabledKey] boolValue] && [g_filters count] > 0)
 		self.filteringIsEnabled = YES;
-	}
 	
-	self.showsFlashLogMessages = [[[[NSUserDefaultsController sharedUserDefaultsController] values]
-								   valueForKey:kShowFlashLogMessages] boolValue];
+	self.showsFlashLogMessages = [[defaultValues valueForKey:kShowFlashLogMessages] boolValue];
 }
 
 - (void)_saveDirtyFilters

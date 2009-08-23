@@ -40,11 +40,10 @@
 				
 		[m_messageModel bind:@"showsFlashLogMessages" toObject:m_filterModel 
 			withKeyPath:@"showsFlashLogMessages" options:0];
-		[m_messageModel bind:@"filter" toObject:m_filterModel 
-			withKeyPath:@"activeFilter" options:0];
 		m_messageModel.showsFlashLogMessages = m_filterModel.showsFlashLogMessages;
-		m_messageModel.filter = m_filterModel.activeFilter;
+		m_messageModel.filter = m_filterModel.filteringIsEnabled ? m_filterModel.activeFilter : nil;
 		
+		[m_filterModel addObserver:self forKeyPath:@"activeFilter" options:0 context:NULL];
 		[m_filterModel addObserver:self forKeyPath:@"filteringIsEnabled" options:0 context:NULL];
 		
 		self.sessionName = @"New Session";
@@ -130,7 +129,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object 
 	change:(NSDictionary *)change context:(void *)context
 {
-	if (object == m_filterModel && [keyPath isEqualToString:@"filteringIsEnabled"])
+	if (object == m_filterModel)
 	{
 		[self _updateTabTitle];
 		[m_messageModel setFilter:m_filterModel.filteringIsEnabled 
