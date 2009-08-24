@@ -261,6 +261,12 @@
 	NSLog(@"error: %@", dictionary);
 }
 
+- (unsigned)webView:(WebView *)sender 
+	dragDestinationActionMaskForDraggingInfo:(id <NSDraggingInfo>)draggingInfo
+{
+	return WebDragDestinationActionNone;
+}
+
 
 
 #pragma mark -
