@@ -17,7 +17,8 @@
 
 @implementation LoggingClient
 
-@synthesize delegate=m_delegate;
+@synthesize delegate=m_delegate, 
+			signature=m_signature;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -35,7 +36,9 @@
 - (void)dealloc
 {
 	[m_socket release];
-	[m_statusMenuItem release];
+	m_socket = nil;
+	[m_signature release];
+	m_signature = nil;
 	[super dealloc];
 }
 
@@ -46,7 +49,7 @@
 
 - (void)disconnect
 {
-	[m_socket disconnect];
+	[m_socket disconnectAfterWriting];
 }
 
 - (void)sendString:(NSString *)msg

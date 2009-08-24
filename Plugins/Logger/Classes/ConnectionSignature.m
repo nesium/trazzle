@@ -11,7 +11,7 @@
 
 @implementation ConnectionSignature
 
-@synthesize startTime, language;
+@synthesize startTime, language, swfURL, applicationName;
 
 - (id)init
 {
@@ -26,6 +26,8 @@
 {
 	[language release];
 	[startTime release];
+	[swfURL release];
+	[applicationName release];
 	[super dealloc];
 }
 

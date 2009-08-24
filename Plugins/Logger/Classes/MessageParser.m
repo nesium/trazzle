@@ -126,9 +126,12 @@
 	else if ([elementName isEqualToString:kNodeNameSignature])
 	{
 		m_currentObject = [[ConnectionSignature alloc] init];
-		[(ConnectionSignature *)m_currentObject setStartTime:[NSNumber numberWithDouble:
+		ConnectionSignature *sig = m_currentObject;
+		[sig setStartTime:[NSNumber numberWithDouble:
 			([[attributes objectForKey:@"starttime"] doubleValue] / 1000)]];
-		[(ConnectionSignature *)m_currentObject setLanguage:[attributes objectForKey:@"language"]];
+		[sig setLanguage:[attributes objectForKey:@"language"]];
+		[sig setSwfURL:[attributes objectForKey:@"swfURL"]];
+		[sig setApplicationName:[attributes objectForKey:@"applicationName"]];
 		[m_data addObject:m_currentObject];
 		[m_currentObject release];
 	}

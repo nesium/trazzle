@@ -23,6 +23,7 @@
 	PlugInController *m_controller;
 	id m_tab;
 	id m_representedObject;
+	id m_delegate;
 	
 	MessageModel *m_messageModel;
 	LoggingViewController *m_loggingViewController;
@@ -45,8 +46,13 @@
 @property (nonatomic, retain) NSImage *icon;
 @property (nonatomic, readonly) LPFilterModel *filterModel;
 @property (nonatomic, assign) id representedObject;
+@property (nonatomic, assign) id delegate;
 - (id)initWithPlugInController:(PlugInController *)controller;
 - (void)handleFlashlogMessage:(AbstractMessage *)msg;
 - (void)addRemoteGateway:(LPRemoteGateway *)gateway;
 - (void)addLoggingClient:(LoggingClient *)client;
+@end
+
+@interface NSObject (LPSessionDelegate)
+- (void)session:(LPSession *)session loggingClientDidDisconnect:(LoggingClient *)client;
 @end

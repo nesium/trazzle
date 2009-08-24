@@ -14,9 +14,11 @@
 {
 	NSNumber *startTime;
 	NSString *language;
+	NSString *swfURL;
+	NSString *applicationName;
 }
-
 @property (nonatomic, retain) NSNumber *startTime;
 @property (nonatomic, retain) NSString *language;
-
+@property (nonatomic, retain) NSString *swfURL;
+@property (nonatomic, retain) NSString *applicationName;
 @end

@@ -25,7 +25,8 @@
 			swfURL=m_swfURL, 
 			isDisconnected=m_isDisconnected, 
 			icon=m_icon, 
-			representedObject=m_representedObject;
+			representedObject=m_representedObject, 
+			delegate=m_delegate;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -247,15 +248,10 @@
 	[parser release];
 }
 
-
-
-#pragma mark -
-#pragma mark MessageParser delegate methods
-
-- (void)parser:(MessageParser *)parser didParseMenuItem:(NSMenuItem *)menuItem
+- (void)clientDidDisconnect:(LoggingClient *)client
 {
-	[menuItem setTarget:self];
-	[menuItem setAction:@selector(statusMenuItemWasClicked:)];
+	if ([m_delegate respondsToSelector:@selector(session:loggingClientDidDisconnect:)])
+		[m_delegate session:self loggingClientDidDisconnect:client];
 }
 
 

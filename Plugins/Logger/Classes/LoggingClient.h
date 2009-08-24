@@ -9,15 +9,16 @@
 #import <Cocoa/Cocoa.h>
 #import "AsyncSocket.h"
 #import "FileMonitor.h"
-#import "AMFDuplexGateway.h"
+#import "ConnectionSignature.h"
 
 @interface LoggingClient : NSObject <FileObserver>
 {
 	AsyncSocket *m_socket;
 	id m_delegate;
-	NSMenuItem *m_statusMenuItem;
+	ConnectionSignature *m_signature;
 }
 @property (nonatomic, assign) id delegate;
+@property (nonatomic, retain) ConnectionSignature *signature;
 
 - (id)initWithSocket:(AsyncSocket *)socket;
 - (void)disconnect;

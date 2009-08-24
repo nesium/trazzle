@@ -23,19 +23,14 @@
 	id m_delegate;
 	BOOL m_parsingSucceeded;	
 }
-
 - (id)initWithXMLString:(NSString *)xmlString delegate:(id)delegate;
 - (NSArray *)data;
-
 @end
 
 
 @interface StackTraceParser : NSObject 
 {
-
 }
-
 + (NSArray *)parseStackTrace:(NSString *)stacktrace ofLanguageType:(NSString *)language;
 + (NSArray *)parseAS3StackTrace:(NSString *)stacktrace;
-
 @end

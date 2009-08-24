@@ -128,12 +128,17 @@
 	if (![aDelegate isKindOfClass:[LPSession class]])
 		return;
 	LPSession *session = (LPSession *)aDelegate;
-	NSLog(@"remove %@", session);
 	[m_sessions removeObject:session];
 	if ([[session representedObject] isKindOfClass:[LPRemoteGateway class]])
 	{
 		LPRemoteGateway *remote = (LPRemoteGateway *)[session representedObject];
 		[remote disconnect];
+	}
+	else if ([[session representedObject] isKindOfClass:[LoggingClient class]])
+	{
+		LoggingClient *client = (LoggingClient *)[session representedObject];
+		client.delegate = self;
+		[client disconnect];
 	}
 }
 
@@ -157,6 +162,7 @@
 - (LPSession *)_createNewSession
 {
 	LPSession *session = [[LPSession alloc] initWithPlugInController:m_controller];
+	session.delegate = self;
 	[m_sessions addObject:session];
 	m_filterController.model = session.filterModel;
 	return [session autorelease];
@@ -403,15 +409,43 @@
 
 - (void)onSocket:(AsyncSocket *)sock didAcceptNewSocket:(AsyncSocket *)newSocket
 {
-//	[m_messageModel clearAllMessages];
-//	[m_loggingViewController clearAllMessages];
-	
 	LoggingClient *client = [[LoggingClient alloc] initWithSocket:newSocket];
+	client.delegate = self;
 	[m_connectedClients addObject:client];
 	[client release];
+}
+
+
+
+#pragma mark -
+#pragma mark LoggingClient delegate methods
+
+- (void)client:(LoggingClient *)client didReceiveMessage:(NSString *)message
+{
+	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message delegate:self];
+	AbstractMessage *msg = (AbstractMessage *)[[parser data] objectAtIndex:0];
 	
-	LPSession *session = [self _createNewSession];
+	if (msg.messageType != kLPMessageTypeConnectionSignature)
+	{
+		[client disconnect];
+		return;
+	}
+	
+	ConnectionSignature *sig = (ConnectionSignature *)msg;
+	client.signature = sig;
+	LPSession *session = [self _sessionForSwfURL:sig.swfURL];
+	session.isDisconnected = NO;
+	session.representedObject = client;
+	session.sessionName = sig.applicationName;
+	session.swfURL = sig.swfURL;
 	[session addLoggingClient:client];
+	
+	[parser release];
+}
+
+- (void)clientDidDisconnect:(LoggingClient *)client
+{
+	[m_connectedClients removeObject:client];
 }
 
 
@@ -454,6 +488,18 @@
 	session.sessionName = [params objectForKey:@"applicationName"];
 	session.swfURL = [params objectForKey:@"swfURL"];
 	[session addRemoteGateway:remote];
+}
+
+
+
+#pragma mark -
+#pragma mark LPSession delegate methods
+
+- (void)session:(LPSession *)session loggingClientDidDisconnect:(LoggingClient *)client
+{
+	session.representedObject = nil;
+	session.isDisconnected = YES;
+	[m_connectedClients removeObject:client];
 }
 
 
