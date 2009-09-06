@@ -584,12 +584,13 @@
 		NSMutableParagraphStyle *centeredParagraphStyle = nil;
 		
 		if (!centeredParagraphStyle) {
-			centeredParagraphStyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] retain];
+			centeredParagraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
 			[centeredParagraphStyle setAlignment:NSCenterTextAlignment];
 		}
 		
 		[attrStr addAttribute:NSParagraphStyleAttributeName value:centeredParagraphStyle range:range];
 		[attrStr drawInRect:labelRect];
+		[centeredParagraphStyle release];
 		return;
 	}
 

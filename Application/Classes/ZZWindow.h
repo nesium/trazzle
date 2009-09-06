@@ -19,6 +19,9 @@
 	NSColor *m_borderStartColor;
 	NSColor *m_borderEndColor;
 	NSColor *m_borderEdgeColor;
+	NSColor *m_borderStartColorInactive;
+	NSColor *m_borderEndColorInactive;
+	NSColor *m_borderEdgeColorInactive;
 
 	NSColor *m_backgroundFillColor;
 }
@@ -26,6 +29,9 @@
 @property (nonatomic, retain) NSColor *borderEndColor;
 @property (nonatomic, retain) NSColor *borderEdgeColor;
 @property (nonatomic, retain) NSColor *backgroundFillColor;
+@property (nonatomic, retain) NSColor *borderStartColorInactive;
+@property (nonatomic, retain) NSColor *borderEndColorInactive;
+@property (nonatomic, retain) NSColor *borderEdgeColorInactive;
 @property (nonatomic, assign) CGFloat topBorderHeight;
 @property (nonatomic, assign) CGFloat bottomBorderHeight; 
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(unsigned int)styleMask 

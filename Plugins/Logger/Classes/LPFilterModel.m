@@ -201,9 +201,11 @@ static NSMutableArray *g_filters = nil;
 		if (filter == nil)
 		{
 			NSLog([error description]);
+			[filter release];
 			continue;
 		}
 		[g_filters addObject:filter];
+		[filter release];
 	}
 }
 

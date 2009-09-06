@@ -95,6 +95,7 @@
 		[menuItem setTarget:m_defaultTarget];
 		[menuItem setRepresentedObject:item];
 		[m_menuItems addObject:menuItem];
+		[menuItem release];
 		[self _setNeedsInvalidation];
 	}
 }

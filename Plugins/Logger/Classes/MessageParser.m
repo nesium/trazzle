@@ -237,10 +237,6 @@
 
 + (NSArray *)parseStackTrace:(NSString *)stacktrace ofLanguageType:(NSString *)language
 {
-	if (language == nil)
-	{
-		language = @"as3";
-	}
 	return [StackTraceParser parseAS3StackTrace:stacktrace];
 }
 

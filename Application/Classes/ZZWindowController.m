@@ -53,6 +53,14 @@
 		alpha:1.0];
 	window.borderEndColor = [NSColor colorWithCalibratedRed:0.588 green:0.588 blue:0.588 
 		alpha:1.0];
+	window.borderEdgeColor = [NSColor colorWithCalibratedRed:0.886 green:0.886 blue:0.886 
+		alpha:1.0];
+	window.borderStartColorInactive = [NSColor colorWithCalibratedRed:0.929 green:0.929 blue:0.929 
+		alpha:1.0];
+	window.borderEndColorInactive = [NSColor colorWithCalibratedRed:0.867 green:0.867 blue:0.867 
+		alpha:1.0];
+	window.borderEdgeColorInactive = [NSColor colorWithCalibratedRed:0.957 green:0.957 blue:0.957 
+		alpha:1.0];
 	window.topBorderHeight = 43.0;
 
 	while ([m_tabView numberOfTabViewItems])

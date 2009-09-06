@@ -16,6 +16,9 @@
 			borderStartColor=m_borderStartColor, 
 			borderEndColor=m_borderEndColor, 
 			borderEdgeColor=m_borderEdgeColor, 
+			borderStartColorInactive=m_borderStartColorInactive, 
+			borderEndColorInactive=m_borderEndColorInactive, 
+			borderEdgeColorInactive=m_borderEdgeColorInactive, 
 			backgroundFillColor=m_backgroundFillColor;
 
 #pragma mark -
@@ -36,6 +39,12 @@
 		m_forceDisplay = NO;
 		[[NSNotificationCenter defaultCenter] addObserver:self 
 			selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:self];
+		[[NSNotificationCenter defaultCenter] addObserver:self 
+			selector:@selector(windowKeyStateChanged:) name:NSWindowDidResignKeyNotification 
+			object:self];
+		[[NSNotificationCenter defaultCenter] addObserver:self 
+			selector:@selector(windowKeyStateChanged:) name:NSWindowDidBecomeKeyNotification 
+			object:self];
 		return self;
 	}
 	return nil;
@@ -81,9 +90,23 @@
 
 - (NSColor *)styledBackground
 {
+	NSColor *startColor, *endColor, *edgeColor;
+	if ([self isKeyWindow])
+	{
+		startColor = m_borderStartColor;
+		endColor = m_borderEndColor;
+		edgeColor = m_borderEdgeColor;
+	}
+	else
+	{
+		startColor = m_borderStartColorInactive;
+		endColor = m_borderEndColorInactive;
+		edgeColor = m_borderEdgeColorInactive;
+	}
+
 	NSImage *bg = [[NSImage alloc] initWithSize:[self frame].size];
-	NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:m_borderStartColor 
-		endingColor:m_borderEndColor];
+	NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:startColor 
+		endingColor:endColor];
 	
 	// Set min width of temporary pattern image to prevent flickering at small widths
 	float minWidth = 300.0;
@@ -127,10 +150,10 @@
 	[topImg release];
 
 	// draw border edges
-	if (!m_borderEdgeColor)
+	if (!edgeColor)
 		[[NSColor colorWithDeviceWhite:0.25 alpha:1.0] setFill];
 	else
-		[m_borderEdgeColor setFill];
+		[edgeColor setFill];
 
 	NSRectFill(NSMakeRect(0, [bg size].height - m_topBorderHeight, [bg size].width, 1.0));
 	NSRectFill(NSMakeRect(0, m_bottomBorderHeight, [bg size].width, 1.0));
@@ -147,6 +170,12 @@
 #pragma mark Notifications
 
 - (void)windowDidResize:(NSNotification *)aNotification
+{
+	[self setBackgroundColor:[self styledBackground]];
+	if (m_forceDisplay) [self display];
+}
+
+- (void)windowKeyStateChanged:(NSNotification *)aNotification
 {
 	[self setBackgroundColor:[self styledBackground]];
 	if (m_forceDisplay) [self display];

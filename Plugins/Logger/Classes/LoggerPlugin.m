@@ -428,6 +428,7 @@
 	if (msg.messageType != kLPMessageTypeConnectionSignature)
 	{
 		[client disconnect];
+		[parser release];
 		return;
 	}
 	
