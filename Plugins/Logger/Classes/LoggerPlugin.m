@@ -425,7 +425,12 @@
 	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message delegate:self];
 	AbstractMessage *msg = (AbstractMessage *)[[parser data] objectAtIndex:0];
 	
-	if (msg.messageType != kLPMessageTypeConnectionSignature)
+	if (msg.messageType == kLPMessageTypePolicyRequest)
+	{
+		[client sendString:@"<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\"/></cross-domain-policy>\0"];
+		return;
+	}
+	else if (msg.messageType != kLPMessageTypeConnectionSignature)
 	{
 		[client disconnect];
 		[parser release];
