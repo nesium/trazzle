@@ -1,3 +1,0 @@
-[submodule "Plugins/Logger/Libraries/CocoaAMF"]
-	path = Plugins/Logger/Libraries/CocoaAMF
-	url = git@nesium.net:cocoa_amf.git
