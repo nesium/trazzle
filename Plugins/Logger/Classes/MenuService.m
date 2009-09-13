@@ -15,19 +15,20 @@
 
 @implementation MenuService
 
-- (id)init
+- (id)initWithDelegate:(id)delegate
 {
 	if (self = [super init])
 	{
+		m_delegate = delegate;
 	}
 	return self;
 }
 
 - (oneway void)gateway:(AMFRemoteGateway *)gateway setMenu:(SWFMenu *)aMenu
 {
-	if ([gateway.delegate respondsToSelector:@selector(menuService:didReceiveMenu:fromGateway:)])
-		[gateway.delegate menuService:self 
-			didReceiveMenu:[self _menuFromSWFMenu:aMenu target:gateway.localGateway.delegate] 
+	if ([m_delegate respondsToSelector:@selector(menuService:didReceiveMenu:fromGateway:)])
+		[m_delegate menuService:self 
+			didReceiveMenu:[self _menuFromSWFMenu:aMenu target:m_delegate] 
 			fromGateway:gateway];
 }
 

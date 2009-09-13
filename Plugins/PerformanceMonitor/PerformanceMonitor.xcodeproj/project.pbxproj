@@ -1,0 +1,290 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C8C0160105AE217002C246F /* PMStatsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C015F105AE217002C246F /* PMStatsData.m */; };
+		2C8C017D105AE578002C246F /* NSColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C017C105AE578002C246F /* NSColor+Additions.m */; };
+		2C8C029C105AFB66002C246F /* PMStatsSessionViewLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C029B105AFB66002C246F /* PMStatsSessionViewLayer.m */; };
+		2C8C03D2105B0855002C246F /* AGProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C03D1105B0855002C246F /* AGProcess.m */; };
+		2C8CFEBF105A9FA8002C246F /* PMPerformanceMonitorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CFEBE105A9FA8002C246F /* PMPerformanceMonitorPlugin.m */; };
+		2C8CFF0C105AA348002C246F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8CFF0B105AA348002C246F /* Cocoa.framework */; };
+		2C8CFF15105AA384002C246F /* MonitorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8CFF14105AA384002C246F /* MonitorWindow.xib */; };
+		2C8CFF19105AA469002C246F /* PMMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CFF18105AA469002C246F /* PMMainWindowController.m */; };
+		2C8CFFC6105AAC99002C246F /* PMStatsViewLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CFFC5105AAC99002C246F /* PMStatsViewLayer.m */; };
+		2C8CFFCE105AADEA002C246F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8CFFCD105AADEA002C246F /* QuartzCore.framework */; };
+		8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */; };
+		8D5B49A804867FD3000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B49A704867FD3000E48DA /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
+		2C8C015E105AE217002C246F /* PMStatsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMStatsData.h; sourceTree = "<group>"; };
+		2C8C015F105AE217002C246F /* PMStatsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMStatsData.m; sourceTree = "<group>"; };
+		2C8C017B105AE578002C246F /* NSColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Additions.h"; sourceTree = "<group>"; };
+		2C8C017C105AE578002C246F /* NSColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Additions.m"; sourceTree = "<group>"; };
+		2C8C029A105AFB66002C246F /* PMStatsSessionViewLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMStatsSessionViewLayer.h; sourceTree = "<group>"; };
+		2C8C029B105AFB66002C246F /* PMStatsSessionViewLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMStatsSessionViewLayer.m; sourceTree = "<group>"; };
+		2C8C03D0105B0855002C246F /* AGProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGProcess.h; sourceTree = "<group>"; };
+		2C8C03D1105B0855002C246F /* AGProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGProcess.m; sourceTree = "<group>"; };
+		2C8CFEBD105A9FA8002C246F /* PMPerformanceMonitorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPerformanceMonitorPlugin.h; sourceTree = "<group>"; };
+		2C8CFEBE105A9FA8002C246F /* PMPerformanceMonitorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPerformanceMonitorPlugin.m; sourceTree = "<group>"; };
+		2C8CFEC2105A9FBD002C246F /* ZZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZConstants.h; path = ../../Application/Classes/ZZConstants.h; sourceTree = SOURCE_ROOT; };
+		2C8CFF0B105AA348002C246F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		2C8CFF14105AA384002C246F /* MonitorWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonitorWindow.xib; sourceTree = "<group>"; };
+		2C8CFF17105AA469002C246F /* PMMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMainWindowController.h; sourceTree = "<group>"; };
+		2C8CFF18105AA469002C246F /* PMMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMainWindowController.m; sourceTree = "<group>"; };
+		2C8CFFC4105AAC99002C246F /* PMStatsViewLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMStatsViewLayer.h; sourceTree = "<group>"; };
+		2C8CFFC5105AAC99002C246F /* PMStatsViewLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMStatsViewLayer.m; sourceTree = "<group>"; };
+		2C8CFFCD105AADEA002C246F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8D576316048677EA00EA77CD /* PerformanceMonitor.trazzlePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceMonitor.trazzlePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D576317048677EA00EA77CD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D576313048677EA00EA77CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */,
+				2C8CFF0C105AA348002C246F /* Cocoa.framework in Frameworks */,
+				2C8CFFCE105AADEA002C246F /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* PerformanceMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AFFE84173DC02AAC07 /* Classes */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
+				19C28FB6FE9D52B211CA2CBB /* Products */,
+			);
+			name = PerformanceMonitor;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */,
+				2C8CFF0B105AA348002C246F /* Cocoa.framework */,
+				2C8CFFCD105AADEA002C246F /* QuartzCore.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D576317048677EA00EA77CD /* Info.plist */,
+				8D5B49A704867FD3000E48DA /* InfoPlist.strings */,
+				2C8CFF14105AA384002C246F /* MonitorWindow.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2C8C03D0105B0855002C246F /* AGProcess.h */,
+				2C8C03D1105B0855002C246F /* AGProcess.m */,
+				2C8CFEC2105A9FBD002C246F /* ZZConstants.h */,
+				2C8CFEBD105A9FA8002C246F /* PMPerformanceMonitorPlugin.h */,
+				2C8CFEBE105A9FA8002C246F /* PMPerformanceMonitorPlugin.m */,
+				2C8CFF17105AA469002C246F /* PMMainWindowController.h */,
+				2C8CFF18105AA469002C246F /* PMMainWindowController.m */,
+				2C8CFFC4105AAC99002C246F /* PMStatsViewLayer.h */,
+				2C8CFFC5105AAC99002C246F /* PMStatsViewLayer.m */,
+				2C8C015E105AE217002C246F /* PMStatsData.h */,
+				2C8C015F105AE217002C246F /* PMStatsData.m */,
+				2C8C017B105AE578002C246F /* NSColor+Additions.h */,
+				2C8C017C105AE578002C246F /* NSColor+Additions.m */,
+				2C8C029A105AFB66002C246F /* PMStatsSessionViewLayer.h */,
+				2C8C029B105AFB66002C246F /* PMStatsSessionViewLayer.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FB6FE9D52B211CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D576316048677EA00EA77CD /* PerformanceMonitor.trazzlePlugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D57630D048677EA00EA77CD /* PerformanceMonitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB911A08733D790010E9CD /* Build configuration list for PBXNativeTarget "PerformanceMonitor" */;
+			buildPhases = (
+				8D57630F048677EA00EA77CD /* Resources */,
+				8D576311048677EA00EA77CD /* Sources */,
+				8D576313048677EA00EA77CD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PerformanceMonitor;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = PerformanceMonitor;
+			productReference = 8D576316048677EA00EA77CD /* PerformanceMonitor.trazzlePlugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB911E08733D790010E9CD /* Build configuration list for PBXProject "PerformanceMonitor" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 089C166AFE841209C02AAC07 /* PerformanceMonitor */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D57630D048677EA00EA77CD /* PerformanceMonitor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D57630F048677EA00EA77CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5B49A804867FD3000E48DA /* InfoPlist.strings in Resources */,
+				2C8CFF15105AA384002C246F /* MonitorWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D576311048677EA00EA77CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C8CFEBF105A9FA8002C246F /* PMPerformanceMonitorPlugin.m in Sources */,
+				2C8CFF19105AA469002C246F /* PMMainWindowController.m in Sources */,
+				2C8CFFC6105AAC99002C246F /* PMStatsViewLayer.m in Sources */,
+				2C8C0160105AE217002C246F /* PMStatsData.m in Sources */,
+				2C8C017D105AE578002C246F /* NSColor+Additions.m in Sources */,
+				2C8C029C105AFB66002C246F /* PMStatsSessionViewLayer.m in Sources */,
+				2C8C03D2105B0855002C246F /* AGProcess.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8D5B49A704867FD3000E48DA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C167EFE841241C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB911B08733D790010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				PRODUCT_NAME = PerformanceMonitor;
+				WRAPPER_EXTENSION = trazzlePlugin;
+			};
+			name = Debug;
+		};
+		1DEB911C08733D790010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				PRODUCT_NAME = PerformanceMonitor;
+				WRAPPER_EXTENSION = trazzlePlugin;
+			};
+			name = Release;
+		};
+		1DEB911F08733D790010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../Application/Classes,
+					"../../Application/Libraries/**",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		1DEB912008733D790010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../Application/Classes,
+					"../../Application/Libraries/**",
+				);
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB911A08733D790010E9CD /* Build configuration list for PBXNativeTarget "PerformanceMonitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB911B08733D790010E9CD /* Debug */,
+				1DEB911C08733D790010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB911E08733D790010E9CD /* Build configuration list for PBXProject "PerformanceMonitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB911F08733D790010E9CD /* Debug */,
+				1DEB912008733D790010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}

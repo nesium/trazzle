@@ -6,9 +6,9 @@
 //  Copyright 2008 nesiumdotcom. All rights reserved.
 //
 
-#import "MessageModel.h"
+#import "LPMessageModel.h"
 
-@interface MessageModel (Private)
+@interface LPMessageModel (Private)
 - (void)_validateMessages;
 - (NSPredicate *)_applicablePredicate:(NSPredicate *)sourcePredicate 
 	forMessage:(AbstractMessage *)message;
@@ -17,7 +17,7 @@
 @end
 
 
-@implementation MessageModel
+@implementation LPMessageModel
 
 @synthesize delegate=m_delegate, 
 			filter=m_filter, 

@@ -11,8 +11,8 @@
 @interface LPSession (Private)
 - (void)_updateTabTitle;
 - (void)_updateIcon;
-- (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client;
-- (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client;
+//- (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client;
+//- (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client;
 @end
 
 
@@ -43,7 +43,7 @@
 		
 		m_filterModel = [[LPFilterModel alloc] init];
 		
-		m_messageModel = [[MessageModel alloc] init];
+		m_messageModel = [[LPMessageModel alloc] init];
 		m_messageModel.delegate = self;
 				
 		[m_messageModel bind:@"showsFlashLogMessages" toObject:m_filterModel 
@@ -84,23 +84,18 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)handleFlashlogMessage:(AbstractMessage *)msg
+- (void)handleMessage:(AbstractMessage *)msg
 {
-	[self _handleMessage:msg fromClient:nil];
+	if ([m_messageModel numberOfMessages] == 0)
+		[m_controller bringWindowToTop];
+	[m_messageModel addMessage:msg];
+	[m_loggingViewController sendMessage:msg];
 }
 
-- (void)addRemoteGateway:(LPRemoteGateway *)gateway
+- (void)addConnection:(ZZConnection *)connection
 {
 	[m_messageModel clearAllMessages];
 	[m_loggingViewController clearAllMessages];
-	gateway.delegate = self;
-}
-
-- (void)addLoggingClient:(LoggingClient *)client
-{
-	[m_messageModel clearAllMessages];
-	[m_loggingViewController clearAllMessages];
-	client.delegate = self;
 }
 
 - (void)setSessionName:(NSString *)aName
@@ -204,94 +199,37 @@
 	}
 }
 
-- (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client
-{
-	if ([m_messageModel numberOfMessages] == 0)
-		[m_controller bringWindowToTop];
-	[m_messageModel addMessage:msg];
-	[m_loggingViewController sendMessage:msg];
-}
-
-- (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client
-{
-	if (msg.type == kCommandActionTypeStartFileMonitoring)
-	{
-		[[FileMonitor sharedMonitor] addObserver:client 
-			forFileAtPath:[msg.attributes objectForKey:@"path"]];
-	}
-	else if (msg.type == kCommandActionTypeStopFileMonitoring)
-	{
-		[[FileMonitor sharedMonitor] removeObserver:client 
-			forFileAtPath:[msg.attributes objectForKey:@"path"]];
-	}
-}
+//
+//- (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client
+//{
+//	if (msg.type == kCommandActionTypeStartFileMonitoring)
+//	{
+//		[[FileMonitor sharedMonitor] addObserver:client 
+//			forFileAtPath:[msg.attributes objectForKey:@"path"]];
+//	}
+//	else if (msg.type == kCommandActionTypeStopFileMonitoring)
+//	{
+//		[[FileMonitor sharedMonitor] removeObserver:client 
+//			forFileAtPath:[msg.attributes objectForKey:@"path"]];
+//	}
+//}
 
 
 
-#pragma mark -
-#pragma mark LoggingClient delegate methods
-
-- (void)client:(LoggingClient *)client didReceiveMessage:(NSString *)message
-{
-	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message delegate:self];
-	AbstractMessage *msg = (AbstractMessage *)[[parser data] objectAtIndex:0];
-	
-	if (msg.messageType == kLPMessageTypeCommand)
-		[self _handleCommandMessage:(CommandMessage *)msg fromClient:client];
-	else
-		[self _handleMessage:msg fromClient:client];
-	[parser release];
-}
-
-- (void)clientDidDisconnect:(LoggingClient *)client
-{
-	if ([m_delegate respondsToSelector:@selector(session:loggingClientDidDisconnect:)])
-		[m_delegate session:self loggingClientDidDisconnect:client];
-}
-
-
-
-#pragma mark -
-#pragma mark LoggingService Delegate methods
-
-- (void)loggingService:(LoggingService *)service didReceiveLogMessage:(LogMessage *)message 
-		   fromGateway:(AMFRemoteGateway *)gateway
-{
-	[self _handleMessage:message fromClient:nil];
-}
-
-- (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path withSize:(NSSize)size
-		   fromGateway:(AMFRemoteGateway *)gateway
-{
-	AbstractMessage *msg = [[AbstractMessage alloc] init];
-	msg.message = [NSString stringWithFormat:@"<img src='%@' width='%d' height='%d' />", path, 
-				   (int)size.width, (int)size.height];
-	[self _handleMessage:msg fromClient:nil];
-	[msg release];
-}
-
-
-
-#pragma mark -
-#pragma mark MenuService Delegate methods
-
-- (void)menuService:(MenuService *)service didReceiveMenu:(NSMenu *)menu 
-		fromGateway:(AMFRemoteGateway *)gateway
-{
-	LPRemoteGateway *remote = (LPRemoteGateway *)gateway;
-	if (remote.menuItem)
-	{
-		[m_controller removeStatusMenuItem:remote.menuItem];
-		remote.menuItem = nil;
-	}
-	
-	NSMenuItem *item = [[NSMenuItem alloc] init];
-	[item setTitle:m_sessionName];
-	[item setSubmenu:menu];
-	remote.menuItem = item;
-	[m_controller addStatusMenuItem:item];
-	[item release];
-}
+//#pragma mark -
+//#pragma mark LoggingClient delegate methods
+//
+//- (void)client:(LoggingClient *)client didReceiveMessage:(NSString *)message
+//{
+//	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message delegate:self];
+//	AbstractMessage *msg = (AbstractMessage *)[[parser data] objectAtIndex:0];
+//	
+//	if (msg.messageType == kLPMessageTypeCommand)
+//		[self _handleCommandMessage:(CommandMessage *)msg fromClient:client];
+//	else
+//		[self _handleMessage:msg fromClient:client];
+//	[parser release];
+//}
 
 
 
@@ -314,12 +252,12 @@
 #pragma mark -
 #pragma mark MessageModel delegate methods
 
-- (void)messageModel:(MessageModel *)model didHideMessagesWithIndexes:(NSArray *)indexes
+- (void)messageModel:(LPMessageModel *)model didHideMessagesWithIndexes:(NSArray *)indexes
 {
 	[m_loggingViewController hideMessagesWithIndexes:indexes];
 }
 
-- (void)messageModel:(MessageModel *)model didShowMessagesWithIndexes:(NSArray *)indexes
+- (void)messageModel:(LPMessageModel *)model didShowMessagesWithIndexes:(NSArray *)indexes
 {
 	[m_loggingViewController showMessagesWithIndexes:indexes];
 }

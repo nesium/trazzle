@@ -8,14 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "TrazzlePlugIn.h"
-#import "MessageModel.h"
+#import "LPMessageModel.h"
 #import "LoggingViewController.h"
 #import "AMFDuplexGateway.h"
 #import "LoggingService.h"
 #import "FileMonitor.h"
-#import "LoggingClient.h"
 #import "MenuService.h"
 #import "LPFilterModel.h"
+#import "ZZConnection.h"
 
 
 @interface LPSession : NSObject <TrazzleTabViewDelegate>
@@ -25,7 +25,7 @@
 	id m_representedObject;
 	id m_delegate;
 	
-	MessageModel *m_messageModel;
+	LPMessageModel *m_messageModel;
 	LoggingViewController *m_loggingViewController;
 	LPFilterModel *m_filterModel;
 	
@@ -48,11 +48,6 @@
 @property (nonatomic, assign) id representedObject;
 @property (nonatomic, assign) id delegate;
 - (id)initWithPlugInController:(PlugInController *)controller;
-- (void)handleFlashlogMessage:(AbstractMessage *)msg;
-- (void)addRemoteGateway:(LPRemoteGateway *)gateway;
-- (void)addLoggingClient:(LoggingClient *)client;
-@end
-
-@interface NSObject (LPSessionDelegate)
-- (void)session:(LPSession *)session loggingClientDidDisconnect:(LoggingClient *)client;
+- (void)handleMessage:(AbstractMessage *)msg;
+- (void)addConnection:(ZZConnection *)connection;
 @end

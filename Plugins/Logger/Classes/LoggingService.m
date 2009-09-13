@@ -11,18 +11,13 @@
 
 @implementation LoggingService
 
-- (id)init
+- (id)initWithDelegate:(id)delegate
 {
 	if (self = [super init])
 	{
+		m_delegate = delegate;
 	}
 	return self;
-}
-
-- (oneway void)gateway:(AMFRemoteGateway *)gateway setConnectionParams:(NSDictionary *)params
-{
-	if ([gateway.delegate respondsToSelector:@selector(loggingService:didReceiveConnectionParams:fromGateway:)])
-		[gateway.delegate loggingService:self didReceiveConnectionParams:params fromGateway:gateway];
 }
 
 - (oneway void)gateway:(AMFRemoteGateway *)gateway log:(FlashLogMessage *)logMessage
@@ -54,8 +49,8 @@
 			[message setStacktrace:stacktrace];		
 	}
 	
-	if ([gateway.delegate respondsToSelector:@selector(loggingService:didReceiveLogMessage:fromGateway:)])
-		[gateway.delegate loggingService:self didReceiveLogMessage:message fromGateway:gateway];
+	if ([m_delegate respondsToSelector:@selector(loggingService:didReceiveLogMessage:fromGateway:)])
+		[m_delegate loggingService:self didReceiveLogMessage:message fromGateway:gateway];
 	
 	[message release];
 }
@@ -66,10 +61,9 @@
 	NSString *filename = [NSString stringWithFormat:@"/tmp/trazzle_%@.png", [NSObject uuid]];
 	NSError *error;
 	[pngData writeToFile:filename options:0 error:&error];
-	[(LPRemoteGateway *)gateway addLoggedImagePath:filename];
 	
-	if ([gateway.delegate respondsToSelector:@selector(loggingService:didReceivePNG:withSize:fromGateway:)])
-		[gateway.delegate loggingService:self didReceivePNG:filename 
+	if ([m_delegate respondsToSelector:@selector(loggingService:didReceivePNG:withSize:fromGateway:)])
+		[m_delegate loggingService:self didReceivePNG:filename 
 			withSize:(NSSize){[width floatValue], [height floatValue]} fromGateway:gateway];
 }
 

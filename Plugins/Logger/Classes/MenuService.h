@@ -12,7 +12,9 @@
 
 @interface MenuService : NSObject
 {
+	id m_delegate;
 }
+- (id)initWithDelegate:(id)delegate;
 @end
 
 

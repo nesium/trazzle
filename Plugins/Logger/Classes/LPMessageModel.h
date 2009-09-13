@@ -11,7 +11,7 @@
 #import "AbstractMessage.h"
 #import "LPFilter.h"
 
-@interface MessageModel : NSObject
+@interface LPMessageModel : NSObject
 {
 	id m_delegate;
 	LPFilter *m_filter;
@@ -29,6 +29,6 @@
 
 
 @interface NSObject (LPMessageModelDelegate)
-- (void)messageModel:(MessageModel *)model didHideMessagesWithIndexes:(NSArray *)indexes;
-- (void)messageModel:(MessageModel *)model didShowMessagesWithIndexes:(NSArray *)indexes;
+- (void)messageModel:(LPMessageModel *)model didHideMessagesWithIndexes:(NSArray *)indexes;
+- (void)messageModel:(LPMessageModel *)model didShowMessagesWithIndexes:(NSArray *)indexes;
 @end

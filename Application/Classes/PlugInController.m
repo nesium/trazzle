@@ -7,6 +7,7 @@
 //
 
 #import "PlugInController.h"
+#import "ZZWindowController.h"
 
 
 @interface PlugInController (Private)
@@ -22,16 +23,25 @@ ZZWindowController *m_windowController;
 
 @implementation PlugInController
 
+@synthesize sharedGateway=m_sharedGateway, 
+			sharedLegacyConnection=m_sharedLegacyConnection, 
+			connectedClients=m_connectedClients;
+
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithPlugInBundle:(NSBundle *)bundle windowController:(ZZWindowController *)controller
+- (id)initWithPlugInBundle:(NSBundle *)bundle windowController:(ZZWindowController *)controller 
+	gateway:(AMFDuplexGateway *)gateway legacyConnection:(AsyncSocket *)legacyConnection 
+	connectedClients:(NSArray *)connectedClients
 {
 	if (self = [super init])
 	{
 		m_statusItem = nil;
 		m_plugInBundle = [bundle retain];
 		m_windowController = controller;
+		m_sharedGateway = gateway;
+		m_sharedLegacyConnection = legacyConnection;
+		m_connectedClients = connectedClients;
 	}
 	return self;
 }

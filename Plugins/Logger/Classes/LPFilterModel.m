@@ -200,7 +200,7 @@ static NSMutableArray *g_filters = nil;
 		LPFilter *filter = [[LPFilter alloc] initWithContentsOfFile:filterPath error:&error];
 		if (filter == nil)
 		{
-			NSLog([error description]);
+			NSLog(@"%@", [error description]);
 			[filter release];
 			continue;
 		}
@@ -248,14 +248,14 @@ static NSMutableArray *g_filters = nil;
 {
 	NSError *error;
 	if (![filter save:&error])
-		NSLog([error description]);
+		NSLog(@"%@", [error description]);
 }
 
 - (void)_destroyFilter:(LPFilter *)filter
 {
 	NSError *error;
 	if (![filter unlink:&error])
-		NSLog([error description]);
+		NSLog(@"%@", [error description]);
 }
 
 - (NSPredicate *)_defaultPredicate

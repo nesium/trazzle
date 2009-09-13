@@ -1,0 +1,3 @@
+[submodule "Application/Libraries/CocoaAMF"]
+	path = Application/Libraries/CocoaAMF
+	url = git@nesium.net:cocoa_amf.git

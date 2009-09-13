@@ -16,13 +16,12 @@
 - (NSMutableDictionary *)_readMMCfgAtPath:(NSString *)path;
 - (BOOL)_validateMMCfg:(NSMutableDictionary *)settings;
 - (BOOL)_writeMMCfg:(NSDictionary *)settings toPath:(NSString *)path;
-- (void)_handleFlashlogLine:(NSString *)message;
-- (void)_finishFlashLogException;
-- (void)_tryFinishFlashLogException;
-- (void)_cleanupAfterRemoteGateway:(LPRemoteGateway *)remote;
+- (void)_cleanupAfterConnection:(ZZConnection *)conn;
 - (void)_handleFlashlogMessage:(AbstractMessage *)msg;
 - (LPSession *)_createNewSession;
 - (LPSession *)_sessionForSwfURL:(NSString *)swfURL;
+- (ZZConnection *)_connectionForRemote:(id)remote;
+- (LPSession *)_sessionForConnection:(ZZConnection *)conn;
 @end
 
 
@@ -34,7 +33,6 @@
 + (void)initialize
 {
 	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-	[dict setObject:[NSNumber numberWithInt:3456] forKey:@"LPServerPort"];
 	[dict setObject:[NSNumber numberWithBool:NO] forKey:kFilteringEnabledKey];
 	[dict setObject:[NSNumber numberWithBool:YES] forKey:@"LPClearMessagesOnConnection"];
 	[dict setObject:[NSNumber numberWithBool:YES] forKey:kShowFlashLogMessages];
@@ -53,31 +51,12 @@
 		m_filterController = [[LPFilterController alloc] init];
 		[m_filterController window];
 		
-		// start server
-		m_connectedClients = [[NSMutableArray alloc] init];
-		NSError *error;
-		uint16_t port = [[[[NSUserDefaultsController sharedUserDefaultsController] values] 
-			valueForKey:@"LPServerPort"] shortValue];
-		m_socket = [[AsyncSocket alloc] initWithDelegate:self];
-		if (![m_socket acceptOnPort:port error:&error])
-		{
-			NSLog(@"Could not start server on port %d", port);
-		}
-		
-		// start AMF server
-		error = nil;
-		m_gateway = [[AMFDuplexGateway alloc] init];
-		[m_gateway setRemoteGatewayClass:[LPRemoteGateway class]];
-		[m_gateway registerService:[[[LoggingService alloc] init] autorelease] 
-			withName:@"LoggingService"];
-		[m_gateway registerService:[[[MenuService alloc] init] autorelease] 
-			withName:@"MenuService"];
-		m_gateway.delegate = self;
-		[m_gateway startOnPort:(port + 1) error:&error];
+		[aController.sharedGateway registerService:[[[LoggingService alloc] initWithDelegate:self] 
+			autorelease] withName:@"LoggingService"];
+		[aController.sharedGateway registerService:[[[MenuService alloc] initWithDelegate:self] 
+			autorelease] withName:@"MenuService"];
 		
 		// tail flashlog
-		m_currentException = nil;
-		m_flashlogBuffer = nil;
 		m_tailTask = [[NSTask alloc] init];
 		m_logPipe = [[NSPipe alloc] init];
 		[m_tailTask setLaunchPath:@"/usr/bin/tail"];
@@ -108,8 +87,6 @@
 
 - (void)dealloc
 {
-	[m_socket release];
-	[m_connectedClients release];
 	[m_filterController release];
 	[super dealloc];
 }
@@ -129,17 +106,36 @@
 		return;
 	LPSession *session = (LPSession *)aDelegate;
 	[m_sessions removeObject:session];
-	if ([[session representedObject] isKindOfClass:[LPRemoteGateway class]])
+	[(ZZConnection *)[session representedObject] disconnect];
+}
+
+- (void)didAddConnection:(ZZConnection *)conn
+{
+}
+
+- (void)didRemoveConnection:(ZZConnection *)conn
+{
+	[self _cleanupAfterConnection:conn];
+	for (LPSession *session in m_sessions)
 	{
-		LPRemoteGateway *remote = (LPRemoteGateway *)[session representedObject];
-		[remote disconnect];
+		if (session.representedObject == conn)
+		{
+			session.isDisconnected = YES;
+			session.representedObject = nil;
+			break;
+		}
 	}
-	else if ([[session representedObject] isKindOfClass:[LoggingClient class]])
-	{
-		LoggingClient *client = (LoggingClient *)[session representedObject];
-		client.delegate = self;
-		[client disconnect];
-	}
+}
+
+- (void)connectionDidReceiveSignature:(ZZConnection *)conn
+{
+	NSLog(@"connectionDidReceiveSignature %@", conn);
+	LPSession *session = [self _sessionForSwfURL:conn.swfURL];
+	session.isDisconnected = NO;
+	session.representedObject = conn;
+	session.sessionName = conn.applicationName;
+	session.swfURL = conn.swfURL;
+	[session addConnection:conn];
 }
 
 
@@ -150,8 +146,8 @@
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
 	[m_tailTask terminate];
-	for (LPRemoteGateway *remote in m_gateway.remoteGateways)
-		[self _cleanupAfterRemoteGateway:remote];
+	for (ZZConnection *conn in m_controller.connectedClients)
+		[self _cleanupAfterConnection:conn];
 }
 
 
@@ -179,6 +175,22 @@
 			return session;
 	
 	return [self _createNewSession];
+}
+
+- (ZZConnection *)_connectionForRemote:(id)remote
+{
+	for (ZZConnection *conn in m_controller.connectedClients)
+		if (conn.remote == remote)
+			return conn;
+	return nil;
+}
+
+- (LPSession *)_sessionForConnection:(ZZConnection *)conn
+{
+	for (LPSession *session in m_sessions)
+		if (session.representedObject == conn)
+			return session;
+	return nil;
 }
 
 - (void)_checkMMCfgs
@@ -269,96 +281,24 @@
 	return [contents writeToFile:path atomically:NO encoding:NSUTF8StringEncoding error:&error];
 }
 
-- (void)_handleFlashlogLine:(NSString *)message
+- (void)_cleanupAfterConnection:(ZZConnection *)conn
 {
-	if (m_currentException != nil)
+	NSMutableDictionary *dict = [conn storageForPluginWithName:@"LoggerPlugin"];
+
+	if ([dict objectForKey:@"MenuItem"])
 	{
-		if ([message hasPrefix:@"\tat "])
-		{
-			[m_currentExceptionStacktrace appendFormat:@"%@\n", message];
-			return;
-		}
-		else
-		{
-			[self _finishFlashLogException];
-		}
-	}
-	
-//	if (message && [message rangeOfString:@"Error: Error #"].location != NSNotFound)
-//	{
-//		m_currentException = [[ExceptionMessage alloc] init];
-//		m_currentExceptionStacktrace = [[NSMutableString alloc] initWithFormat:@"%@\n", message];
-//		m_currentException.levelName = @"exception";
-//		NSRange colonRange = [message rangeOfString:@":"];
-//		m_currentException.errorType = [message substringToIndex:colonRange.location];
-//		NSUInteger startIndex = colonRange.location + colonRange.length;
-//		NSRange hashRange = [message rangeOfString:@"#" options:0 
-//			range:(NSRange){startIndex, [message length] - startIndex}];
-//		colonRange = [message rangeOfString:@":" options:0 
-//			range:(NSRange){startIndex, [message length] - startIndex}];
-//		m_currentException.errorNumber = [[message substringWithRange:(NSRange){hashRange.location + 
-//			hashRange.length, colonRange.location - hashRange.location - hashRange.length}] intValue];
-//		m_currentException.message = [NSString stringWithFormat:@"%@ (#%d): %@",
-//			m_currentException.errorType, m_currentException.errorNumber, 
-//			[message substringFromIndex:colonRange.location + 2]];
-//		return;
-//	}
-
-	[self _handleFlashlogMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
-		message:[message htmlEncodedStringWithConvertedLinebreaks]]];
-}
-
-- (void)_finishFlashLogException
-{
-	if (m_currentException == nil)
-		return;
-	
-	[NSObject cancelPreviousPerformRequestsWithTarget:self 
-		selector:@selector(_finishFlashLogException) object:nil];
-	
-	NSArray *stacktrace = [StackTraceParser parseAS3StackTrace:m_currentExceptionStacktrace];
-	if ([stacktrace count] > 0)
-	{
-		StackTraceItem *item = [stacktrace objectAtIndex:0];
-		m_currentException.fullClassName = item.fullClassName;
-		m_currentException.method = item.method;
-		m_currentException.file = item.file;
-		m_currentException.line = item.line;
-		[m_currentException setStacktrace:[stacktrace subarrayWithRange:
-			(NSRange){1, [stacktrace count] - 1}]];
-	}
-	[self _handleFlashlogMessage:m_currentException];
-	[m_currentException release];
-	[m_currentExceptionStacktrace release];
-	m_currentException = nil;
-	m_currentExceptionStacktrace = nil;
-}
-
-- (void)_tryFinishFlashLogException
-{
-	if (m_currentException == nil)
-		return;
-	[NSObject cancelPreviousPerformRequestsWithTarget:self 
-		selector:@selector(_finishFlashLogException) object:nil];
-	[self performSelector:@selector(_finishFlashLogException) withObject:nil afterDelay:1.0/10.0];
-}
-
-- (void)_cleanupAfterRemoteGateway:(LPRemoteGateway *)remote
-{
-	if ([(LPRemoteGateway *)remote menuItem])
-	{
-		[m_controller removeStatusMenuItem:remote.menuItem];
-		remote.menuItem = nil;
+		[m_controller removeStatusMenuItem:[dict objectForKey:@"MenuItem"]];
+		[dict removeObjectForKey:@"MenuItem"];
 	}
 	NSFileManager *fm = [NSFileManager defaultManager];
-	for (NSString *imagePath in remote.loggedImages)
+	for (NSString *imagePath in [dict objectForKey:@"LoggedImages"])
 		[fm removeItemAtPath:imagePath error:nil];
 }
 
 - (void)_handleFlashlogMessage:(AbstractMessage *)msg
 {
 	for (LPSession *session in m_sessions)
-		[session handleFlashlogMessage:msg];
+		[session handleMessage:msg];
 }
 
 
@@ -366,38 +306,14 @@
 #pragma mark -
 #pragma mark NSTask and NSFileHandle Notifications
 
-- (void)taskTerminated:(NSNotification *)notification
-{
-}
+- (void)taskTerminated:(NSNotification *)notification {}
 
 - (void)dataAvailable:(NSNotification *)notification
 {
 	NSData *data = [[notification userInfo] valueForKey:NSFileHandleNotificationDataItem];
 	NSString *message = [[NSString alloc] initWithData:data encoding:NSMacOSRomanStringEncoding];
-
 	[self _handleFlashlogMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
 		message:[message htmlEncodedStringWithConvertedLinebreaks]]];
-	
-//	if (m_flashlogBuffer != nil)
-//	{
-//		message = [[m_flashlogBuffer stringByAppendingString:message] retain];
-//		[m_flashlogBuffer release];
-//		m_flashlogBuffer = nil;
-//	}
-	
-//	NSArray *lines = [message componentsSeparatedByString:@"\n"];
-//	for (uint32_t i = 0; i < [lines count]; i++)
-//	{
-//		NSString *line = [lines objectAtIndex:i];
-//		if (i == [lines count] - 1)
-//		{
-//			if ([line length] > 0) m_flashlogBuffer = [line retain];
-//			else [self _tryFinishFlashLogException];
-//		}
-//		else if ([line length] > 0)
-//			[self _handleFlashlogLine:line];
-//	}
-
 	[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
 	[message release];
 }
@@ -405,107 +321,55 @@
 
 
 #pragma mark -
-#pragma mark AsyncSocket delegate methods
-
-- (void)onSocket:(AsyncSocket *)sock didAcceptNewSocket:(AsyncSocket *)newSocket
-{
-	LoggingClient *client = [[LoggingClient alloc] initWithSocket:newSocket];
-	client.delegate = self;
-	[m_connectedClients addObject:client];
-	[client release];
-}
-
-
-
-#pragma mark -
-#pragma mark LoggingClient delegate methods
-
-- (void)client:(LoggingClient *)client didReceiveMessage:(NSString *)message
-{
-	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message delegate:self];
-	AbstractMessage *msg = (AbstractMessage *)[[parser data] objectAtIndex:0];
-	
-	if (msg.messageType == kLPMessageTypePolicyRequest)
-	{
-		[client sendString:@"<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\"/></cross-domain-policy>\0"];
-		return;
-	}
-	else if (msg.messageType != kLPMessageTypeConnectionSignature)
-	{
-		[client disconnect];
-		[parser release];
-		return;
-	}
-	
-	ConnectionSignature *sig = (ConnectionSignature *)msg;
-	client.signature = sig;
-	LPSession *session = [self _sessionForSwfURL:sig.swfURL];
-	session.isDisconnected = NO;
-	session.representedObject = client;
-	session.sessionName = sig.applicationName;
-	session.swfURL = sig.swfURL;
-	[session addLoggingClient:client];
-	
-	[parser release];
-}
-
-- (void)clientDidDisconnect:(LoggingClient *)client
-{
-	[m_connectedClients removeObject:client];
-}
-
-
-
-#pragma mark -
-#pragma mark AMFDuplexGateway delegate methods
-
-- (void)gateway:(AMFDuplexGateway *)gateway remoteGatewayDidConnect:(AMFRemoteGateway *)remote
-{
-	remote.delegate = self;
-}
-
-- (void)gateway:(AMFDuplexGateway *)gateway remoteGatewayDidDisconnect:(AMFRemoteGateway *)remote
-{
-	[self _cleanupAfterRemoteGateway:(LPRemoteGateway *)remote];
-	for (LPSession *session in m_sessions)
-	{
-		if (session.representedObject == remote)
-		{
-			session.isDisconnected = YES;
-			session.representedObject = nil;
-			break;
-		}
-	}
-}
-
-
-
-#pragma mark -
 #pragma mark LoggingService Delegate methods
 
-- (void)loggingService:(LoggingService *)service didReceiveConnectionParams:(NSDictionary *)params 
+- (void)loggingService:(LoggingService *)service didReceiveLogMessage:(LogMessage *)message 
 		   fromGateway:(AMFRemoteGateway *)gateway
 {
-	LPRemoteGateway *remote = (LPRemoteGateway *)gateway;
-	[remote setConnectionParams:params];
-	LPSession *session = [self _sessionForSwfURL:[params objectForKey:@"swfURL"]];
-	session.isDisconnected = NO;
-	session.representedObject = gateway;
-	session.sessionName = [params objectForKey:@"applicationName"];
-	session.swfURL = [params objectForKey:@"swfURL"];
-	[session addRemoteGateway:remote];
+	[[self _sessionForConnection:[self _connectionForRemote:gateway]] handleMessage:message];
+}
+
+- (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path withSize:(NSSize)size
+		   fromGateway:(AMFRemoteGateway *)gateway
+{
+	ZZConnection *conn = [self _connectionForRemote:gateway];
+	NSMutableDictionary *dict = [conn storageForPluginWithName:@"LoggerPlugin"];
+	
+	if ([dict objectForKey:@"LoggedImages"] == nil)
+		[dict setObject:[NSMutableArray array] forKey:@"LoggedImages"];
+	[(NSMutableArray *)[dict objectForKey:@"LoggedImages"] addObject:path];
+	
+	AbstractMessage *msg = [[AbstractMessage alloc] init];
+	msg.message = [NSString stringWithFormat:@"<img src='%@' width='%d' height='%d' />", path, 
+				   (int)size.width, (int)size.height];
+	[[self _sessionForConnection:conn] handleMessage:msg];
+	[msg release];
 }
 
 
 
 #pragma mark -
-#pragma mark LPSession delegate methods
+#pragma mark MenuService Delegate methods
 
-- (void)session:(LPSession *)session loggingClientDidDisconnect:(LoggingClient *)client
+- (void)menuService:(MenuService *)service didReceiveMenu:(NSMenu *)menu 
+		fromGateway:(AMFRemoteGateway *)gateway
 {
-	session.representedObject = nil;
-	session.isDisconnected = YES;
-	[m_connectedClients removeObject:client];
+	ZZConnection *conn = [self _connectionForRemote:gateway];
+	NSMutableDictionary *dict = [conn storageForPluginWithName:@"LoggerPlugin"];
+	LPSession *session = [self _sessionForConnection:conn];
+	
+	if ([dict objectForKey:@"MenuItem"])
+	{
+		[m_controller removeStatusMenuItem:[dict objectForKey:@"MenuItem"]];
+		[dict removeObjectForKey:@"MenuItem"];
+	}
+	
+	NSMenuItem *item = [[NSMenuItem alloc] init];
+	[item setTitle:session.sessionName];
+	[item setSubmenu:menu];
+	[dict setObject:item forKey:@"MenuItem"];
+	[m_controller addStatusMenuItem:item];
+	[item release];
 }
 
 
@@ -521,11 +385,12 @@
 		[NSNumber numberWithInt:[lastMenu indexOfItem:sender]]];
 	while (parent)
 	{
-		for (LPRemoteGateway *client in [m_gateway remoteGateways])
+		for (ZZConnection *conn in m_controller.connectedClients)
 		{
-			if ([client.menuItem menu] == parent)
+			if ([[[conn storageForPluginWithName:@"LoggerPlugin"] 
+				objectForKey:@"MenuItem"] menu] == parent)
 			{
-				[client invokeRemoteService:@"MenuService" 
+				[(AMFRemoteGateway *)conn.remote invokeRemoteService:@"MenuService" 
 								 methodName:@"performClickOnMenuItemWithIndexPath" 
 								  arguments:indexes, nil];
 				return;
