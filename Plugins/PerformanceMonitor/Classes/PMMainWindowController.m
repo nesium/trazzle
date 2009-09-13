@@ -55,11 +55,24 @@
 	
 	NSArray *colors = [NSArray arrayWithObjects:[NSColor cyanColor], [NSColor magentaColor], nil];
 	[layer setStrokeColors:colors];
+	[parentLayer setColors:colors];
 	NSArray *stats = [NSArray arrayWithObjects:[[PMStatsData alloc] init], 
 		[[PMStatsData alloc] init], nil];
 	layer.statsData = stats;
 	
 	[m_layers addObject:layer];
+}
+
+- (IBAction)showWindow:(id)sender
+{
+	NSWindow *win = [self window];
+	[win setAlphaValue:0.0];
+	[win makeKeyAndOrderFront:self];
+	
+	[NSAnimationContext beginGrouping];
+	[[NSAnimationContext currentContext] setDuration:0.15];
+	[[win animator] setAlphaValue:1.0];
+	[NSAnimationContext endGrouping];
 }
 
 
@@ -82,6 +95,7 @@
 - (void)service:(PMMonitoringService *)service startMonitoring:(NSNumber *)maxFPS 
 	forRemote:(AMFRemoteGateway *)remote
 {
+	[self showWindow:self];
 	PMStatsViewLayer *layer = [m_layers objectAtIndex:0];
 	PMStatsSessionViewLayer *sessionLayer = (PMStatsSessionViewLayer *)layer.superlayer;
 	[sessionLayer setTitle:[m_controller connectionForRemote:remote].applicationName];
@@ -92,10 +106,13 @@
 {
 	PMStatsViewLayer *layer = [m_layers objectAtIndex:0];
 	PMStatsData *data = [layer.statsData objectAtIndex:0];
+	PMStatsSessionViewLayer *sessionLayer = (PMStatsSessionViewLayer *)layer.superlayer;
 	NSDate *date = [NSDate dateWithTimeIntervalSince1970:[timestamp doubleValue] / 1000];
 	[data addValue:fps withDate:date];
 	data = [layer.statsData objectAtIndex:1];
 	[data addValue:memory withDate:date];
+	[sessionLayer setFPS:fps];
+	[sessionLayer setMemory:memory];
 	m_needsRedraw = YES;
 }
 

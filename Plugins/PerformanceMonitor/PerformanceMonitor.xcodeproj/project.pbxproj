@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C1A7AD1105D07140043CD55 /* PMMonitoringService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A7AD0105D07140043CD55 /* PMMonitoringService.m */; };
+		2C1A7DC6105D567A0043CD55 /* NSNumber+FileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A7DC5105D567A0043CD55 /* NSNumber+FileSize.m */; };
 		2C8C0160105AE217002C246F /* PMStatsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C015F105AE217002C246F /* PMStatsData.m */; };
 		2C8C017D105AE578002C246F /* NSColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C017C105AE578002C246F /* NSColor+Additions.m */; };
 		2C8C029C105AFB66002C246F /* PMStatsSessionViewLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C029B105AFB66002C246F /* PMStatsSessionViewLayer.m */; };
@@ -27,6 +28,8 @@
 		0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		2C1A7ACF105D07140043CD55 /* PMMonitoringService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMonitoringService.h; sourceTree = "<group>"; };
 		2C1A7AD0105D07140043CD55 /* PMMonitoringService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMonitoringService.m; sourceTree = "<group>"; };
+		2C1A7DC4105D567A0043CD55 /* NSNumber+FileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+FileSize.h"; sourceTree = "<group>"; };
+		2C1A7DC5105D567A0043CD55 /* NSNumber+FileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+FileSize.m"; sourceTree = "<group>"; };
 		2C8C015E105AE217002C246F /* PMStatsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMStatsData.h; sourceTree = "<group>"; };
 		2C8C015F105AE217002C246F /* PMStatsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMStatsData.m; sourceTree = "<group>"; };
 		2C8C017B105AE578002C246F /* NSColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Additions.h"; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 				2C8C03D1105B0855002C246F /* AGProcess.m */,
 				2C8C017B105AE578002C246F /* NSColor+Additions.h */,
 				2C8C017C105AE578002C246F /* NSColor+Additions.m */,
+				2C1A7DC4105D567A0043CD55 /* NSNumber+FileSize.h */,
+				2C1A7DC5105D567A0043CD55 /* NSNumber+FileSize.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 				2C8C029C105AFB66002C246F /* PMStatsSessionViewLayer.m in Sources */,
 				2C8C03D2105B0855002C246F /* AGProcess.m in Sources */,
 				2C1A7AD1105D07140043CD55 /* PMMonitoringService.m in Sources */,
+				2C1A7DC6105D567A0043CD55 /* NSNumber+FileSize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

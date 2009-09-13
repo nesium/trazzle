@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <QuartzCore/QuartzCore.h>
 #import "PMStatsViewLayer.h"
 #import "PMStatsSessionViewLayer.h"
 #import "AGProcess.h"
