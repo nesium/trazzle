@@ -20,7 +20,6 @@
 - (void)_handleFlashlogMessage:(AbstractMessage *)msg;
 - (LPSession *)_createNewSession;
 - (LPSession *)_sessionForSwfURL:(NSString *)swfURL;
-- (ZZConnection *)_connectionForRemote:(id)remote;
 - (LPSession *)_sessionForConnection:(ZZConnection *)conn;
 @end
 
@@ -109,11 +108,11 @@
 	[(ZZConnection *)[session representedObject] disconnect];
 }
 
-- (void)didAddConnection:(ZZConnection *)conn
+- (void)trazzleDidOpenConnection:(ZZConnection *)conn
 {
 }
 
-- (void)didRemoveConnection:(ZZConnection *)conn
+- (void)trazzleDidCloseConnection:(ZZConnection *)conn
 {
 	[self _cleanupAfterConnection:conn];
 	for (LPSession *session in m_sessions)
@@ -127,9 +126,8 @@
 	}
 }
 
-- (void)connectionDidReceiveSignature:(ZZConnection *)conn
+- (void)trazzleDidReceiveSignatureForConnection:(ZZConnection *)conn
 {
-	NSLog(@"connectionDidReceiveSignature %@", conn);
 	LPSession *session = [self _sessionForSwfURL:conn.swfURL];
 	session.isDisconnected = NO;
 	session.representedObject = conn;
@@ -175,14 +173,6 @@
 			return session;
 	
 	return [self _createNewSession];
-}
-
-- (ZZConnection *)_connectionForRemote:(id)remote
-{
-	for (ZZConnection *conn in m_controller.connectedClients)
-		if (conn.remote == remote)
-			return conn;
-	return nil;
 }
 
 - (LPSession *)_sessionForConnection:(ZZConnection *)conn
@@ -326,13 +316,13 @@
 - (void)loggingService:(LoggingService *)service didReceiveLogMessage:(LogMessage *)message 
 		   fromGateway:(AMFRemoteGateway *)gateway
 {
-	[[self _sessionForConnection:[self _connectionForRemote:gateway]] handleMessage:message];
+	[[self _sessionForConnection:[m_controller connectionForRemote:gateway]] handleMessage:message];
 }
 
 - (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path withSize:(NSSize)size
 		   fromGateway:(AMFRemoteGateway *)gateway
 {
-	ZZConnection *conn = [self _connectionForRemote:gateway];
+	ZZConnection *conn = [m_controller connectionForRemote:gateway];
 	NSMutableDictionary *dict = [conn storageForPluginWithName:@"LoggerPlugin"];
 	
 	if ([dict objectForKey:@"LoggedImages"] == nil)
@@ -354,7 +344,7 @@
 - (void)menuService:(MenuService *)service didReceiveMenu:(NSMenu *)menu 
 		fromGateway:(AMFRemoteGateway *)gateway
 {
-	ZZConnection *conn = [self _connectionForRemote:gateway];
+	ZZConnection *conn = [m_controller connectionForRemote:gateway];
 	NSMutableDictionary *dict = [conn storageForPluginWithName:@"LoggerPlugin"];
 	LPSession *session = [self _sessionForConnection:conn];
 	

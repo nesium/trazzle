@@ -20,9 +20,10 @@
 	{
 		m_controller = aController;
 		m_windowController = [[PMMainWindowController alloc] 
-			initWithWindowNibName:@"MonitorWindow"];
-		NSLog(@"hello world! %@", m_windowController);
-		[m_windowController window];
+			initWithWindowNibName:@"MonitorWindow" plugInController:aController];
+		[m_windowController showWindow:self];
+		[[m_controller sharedGateway] registerService:[[[PMMonitoringService alloc] 
+			initWithDelegate:m_windowController] autorelease] withName:@"MonitoringService"];
 	}
 	return self;
 }

@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "AMFDuplexGateway.h"
 #import "AsyncSocket.h"
+#import "ZZConnection.h"
 
 @class ZZWindowController;
 @protocol TrazzleTabViewDelegate;
@@ -26,12 +27,11 @@
 - (id)initWithPlugInBundle:(NSBundle *)bundle windowController:(ZZWindowController *)controller 
 	gateway:(AMFDuplexGateway *)gateway legacyConnection:(AsyncSocket *)legacyConnection 
 	connectedClients:(NSArray *)connectedClients;
-
 - (void)bringWindowToTop;
 - (void)setWindowIsFloating:(BOOL)bFlag;
 - (id)addTabWithIdentifier:(id)ident view:(NSView *)view 
 	delegate:(id <TrazzleTabViewDelegate>)delegate;
 - (void)addStatusMenuItem:(NSMenuItem *)item;
 - (void)removeStatusMenuItem:(NSMenuItem *)item;
-
+- (ZZConnection *)connectionForRemote:(id)remote;
 @end

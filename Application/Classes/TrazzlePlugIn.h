@@ -10,10 +10,15 @@
 #import "PlugInController.h"
 #import <Foundation/NSKeyValueObserving.h>
 
-@class PlugInController;
+@class PlugInController, ZZConnection;
 
 @protocol TrazzlePlugIn
+@required
 - (id)initWithPlugInController:(PlugInController *)controller;
+@optional
+- (void)trazzleDidOpenConnection:(ZZConnection *)conn;
+- (void)trazzleDidCloseConnection:(ZZConnection *)conn;
+- (void)trazzleDidReceiveSignatureForConnection:(ZZConnection *)conn;
 @end
 
 @protocol TrazzleTabViewDelegate

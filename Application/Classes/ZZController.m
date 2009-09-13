@@ -132,8 +132,8 @@
 	[m_connectedClients addObject:client];
 	for (NSObject <TrazzlePlugIn> *plugin in m_loadedPlugins)
 	{
-		if ([plugin respondsToSelector:@selector(didAddConnection:)])
-			objc_msgSend(plugin, @selector(didAddConnection:), client);
+		if ([plugin respondsToSelector:@selector(trazzleDidOpenConnection:)])
+			objc_msgSend(plugin, @selector(trazzleDidOpenConnection:), client);
 	}
 	[client release];
 }
@@ -143,8 +143,8 @@
 	ZZConnection *conn = [self _connectionForRemote:remote];
 	for (NSObject <TrazzlePlugIn> *plugin in m_loadedPlugins)
 	{
-		if ([plugin respondsToSelector:@selector(didRemoveConnection:)])
-			objc_msgSend(plugin, @selector(didRemoveConnection:), conn);
+		if ([plugin respondsToSelector:@selector(trazzleDidCloseConnection:)])
+			objc_msgSend(plugin, @selector(trazzleDidCloseConnection:), conn);
 	}
 	[m_connectedClients removeObject:conn];
 }
@@ -211,8 +211,8 @@
 	[conn setConnectionParams:params];
 	for (NSObject <TrazzlePlugIn> *plugin in m_loadedPlugins)
 	{
-		if ([plugin respondsToSelector:@selector(connectionDidReceiveSignature:)])
-			objc_msgSend(plugin, @selector(connectionDidReceiveSignature:), conn);
+		if ([plugin respondsToSelector:@selector(trazzleDidReceiveSignatureForConnection:)])
+			objc_msgSend(plugin, @selector(trazzleDidReceiveSignatureForConnection:), conn);
 	}
 }
 

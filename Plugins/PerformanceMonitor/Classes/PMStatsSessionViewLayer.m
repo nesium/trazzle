@@ -34,10 +34,12 @@
 		[m_textLayer addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMaxY relativeTo:@"superlayer" 
 				attribute:kCAConstraintMaxY scale:1.0 offset:-5.0]];
-		NSLog(@"-> %@", [self layoutManager]);
-		m_textLayer.string = @"Ritter Sport";
 	}
 	return self;
 }
 
+- (void)setTitle:(NSString *)aTitle
+{
+	m_textLayer.string = aTitle;
+}
 @end

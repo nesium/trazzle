@@ -10,11 +10,16 @@
 #import "PMStatsViewLayer.h"
 #import "PMStatsSessionViewLayer.h"
 #import "AGProcess.h"
+#import "PMMonitoringService.h"
+#import "PlugInController.h"
 
 
 @interface PMMainWindowController : NSWindowController
 {
+	PlugInController *m_controller;
 	NSTimer *m_redrawTimer;
 	NSMutableArray *m_layers;
+	BOOL m_needsRedraw;
 }
+- (id)initWithWindowNibName:(NSString *)windowNibName plugInController:(PlugInController *)controller;
 @end

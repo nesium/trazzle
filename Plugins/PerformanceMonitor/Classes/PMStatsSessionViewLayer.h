@@ -14,4 +14,5 @@
 {
 	CATextLayer *m_textLayer;
 }
+- (void)setTitle:(NSString *)aTitle;
 @end

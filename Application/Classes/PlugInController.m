@@ -88,6 +88,14 @@ ZZWindowController *m_windowController;
 	}
 }
 
+- (ZZConnection *)connectionForRemote:(id)remote
+{
+	for (ZZConnection *conn in m_connectedClients)
+		if (conn.remote == remote)
+			return conn;
+	return nil;
+}
+
 
 
 #pragma mark -

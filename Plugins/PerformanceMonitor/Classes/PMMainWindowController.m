@@ -8,31 +8,20 @@
 
 #import "PMMainWindowController.h"
 
-static int initialized = 0;
-
-int irnd(int max_value)
-{
-	if (initialized == 0)
-	{
-		srandom(time(NULL));
-		initialized = 1;
-	}
-	return (int)lround(((double)random() / RAND_MAX) * max_value);
-}
-
-
 @implementation PMMainWindowController
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithWindowNibName:(NSString *)windowNibName
+- (id)initWithWindowNibName:(NSString *)windowNibName plugInController:(PlugInController *)controller
 {
 	if (self = [super initWithWindowNibName:windowNibName])
 	{
+		m_controller = controller;
 		m_redrawTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self 
 			selector:@selector(redrawTimer_tick:) userInfo:nil repeats:YES];
 		m_layers = [[NSMutableArray alloc] init];
+		m_needsRedraw = NO;
 	}
 	return self;
 }
@@ -64,9 +53,10 @@ int irnd(int max_value)
 	[parentLayer addSublayer:layer];
 	layer.frame = (CGRect){10, 25, winBounds.size.width - 20, 50};
 	
-	NSArray *colors = [NSArray arrayWithObject:[NSColor cyanColor]];
+	NSArray *colors = [NSArray arrayWithObjects:[NSColor cyanColor], [NSColor magentaColor], nil];
 	[layer setStrokeColors:colors];
-	NSArray *stats = [NSArray arrayWithObject:[[PMStatsData alloc] init]];
+	NSArray *stats = [NSArray arrayWithObjects:[[PMStatsData alloc] init], 
+		[[PMStatsData alloc] init], nil];
 	layer.statsData = stats;
 	
 	[m_layers addObject:layer];
@@ -79,13 +69,38 @@ int irnd(int max_value)
 
 - (void)redrawTimer_tick:(NSTimer *)timer
 {
+	if (!m_needsRedraw) return;
 	for (PMStatsViewLayer *layer in m_layers)
-	{
-		PMStatsData *data = [layer.statsData objectAtIndex:0];
-		for (uint16_t i = 0; i < 20; i++)
-			[data addValue:[NSNumber numberWithInt:irnd(10)] withDate:[NSDate date]];
 		[layer setNeedsDisplay];
-	}
+	m_needsRedraw = NO;
+}
+
+
+
+#pragma mark PMMonitoringServiceDelegate methods
+
+- (void)service:(PMMonitoringService *)service startMonitoring:(NSNumber *)maxFPS 
+	forRemote:(AMFRemoteGateway *)remote
+{
+	PMStatsViewLayer *layer = [m_layers objectAtIndex:0];
+	PMStatsSessionViewLayer *sessionLayer = (PMStatsSessionViewLayer *)layer.superlayer;
+	[sessionLayer setTitle:[m_controller connectionForRemote:remote].applicationName];
+}
+
+- (void)service:(PMMonitoringService *)service trackFPS:(NSNumber *)fps memoryUse:(NSNumber *)memory 
+	timestamp:(NSNumber *)timestamp forRemote:(AMFRemoteGateway *)remote
+{
+	PMStatsViewLayer *layer = [m_layers objectAtIndex:0];
+	PMStatsData *data = [layer.statsData objectAtIndex:0];
+	NSDate *date = [NSDate dateWithTimeIntervalSince1970:[timestamp doubleValue] / 1000];
+	[data addValue:fps withDate:date];
+	data = [layer.statsData objectAtIndex:1];
+	[data addValue:memory withDate:date];
+	m_needsRedraw = YES;
+}
+
+- (void)serviceStopMonitoring:(PMMonitoringService *)service forRemote:(AMFRemoteGateway *)remote
+{
 }
 
 @end
