@@ -23,4 +23,5 @@
 	BOOL m_needsRedraw;
 }
 - (id)initWithWindowNibName:(NSString *)windowNibName plugInController:(PlugInController *)controller;
+- (void)removeLayerWithConnection:(ZZConnection *)conn;
 @end

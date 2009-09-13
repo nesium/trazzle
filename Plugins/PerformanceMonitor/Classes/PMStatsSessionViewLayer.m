@@ -11,6 +11,9 @@
 
 @implementation PMStatsSessionViewLayer
 
+@synthesize representedObject=m_representedObject, 
+			dirty=m_dirty;
+
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
@@ -18,6 +21,24 @@
 {
 	if (self = [super init])
 	{
+		m_dirty = NO;
+	
+		m_statsLayer = [PMStatsViewLayer layer];
+		m_statsLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
+		[m_statsLayer addConstraint:
+			[CAConstraint constraintWithAttribute:kCAConstraintMinX relativeTo:@"superlayer" 
+				attribute:kCAConstraintMinX offset:10.0]];
+		[m_statsLayer addConstraint:
+			[CAConstraint constraintWithAttribute:kCAConstraintMaxX relativeTo:@"superlayer" 
+				attribute:kCAConstraintMaxX offset:-10.0]];
+		[m_statsLayer addConstraint:
+			[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"superlayer" 
+				attribute:kCAConstraintMinY offset:25.0]];
+		[m_statsLayer addConstraint:
+			[CAConstraint constraintWithAttribute:kCAConstraintMaxY relativeTo:@"superlayer" 
+				attribute:kCAConstraintMaxY offset:-25.0]];
+		[self addSublayer:m_statsLayer];
+	
 		m_titleLabel = [CATextLayer layer];
 		[self addSublayer:m_titleLabel];
 		m_titleLabel.truncationMode = kCATruncationEnd;
@@ -51,7 +72,7 @@
 		m_fpsLabel.font = [NSFont systemFontOfSize:9.0];
 		[m_fpsLabel addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"superlayer" 
-				attribute:kCAConstraintMinY scale:1.0 offset:15.0]];
+				attribute:kCAConstraintMinY scale:1.0 offset:17.0]];
 		[m_fpsLabel addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinX relativeTo:@"superlayer" 
 				attribute:kCAConstraintMinX scale:1.0 offset:22.0]];
@@ -93,6 +114,17 @@
 	color = [(NSColor *)[colors objectAtIndex:1] CGColorCopy];
 	m_memorySwatch.backgroundColor = color;
 	CGColorRelease(color);
+	[m_statsLayer setStrokeColors:colors];
+}
+
+- (void)setStatsData:(NSArray *)data
+{
+	m_statsLayer.statsData = data;
+}
+
+- (NSArray *)statsData
+{
+	return m_statsLayer.statsData;
 }
 
 - (void)setFPS:(NSNumber *)fps
@@ -103,5 +135,12 @@
 - (void)setMemory:(NSNumber *)memory
 {
 	m_memoryLabel.string = [memory fileSizeString];
+}
+
+- (void)redrawIfNeeded
+{
+	if (m_dirty)
+		[m_statsLayer setNeedsDisplay];
+	m_dirty = NO;
 }
 @end

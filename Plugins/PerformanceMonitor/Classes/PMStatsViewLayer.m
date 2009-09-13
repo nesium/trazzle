@@ -29,6 +29,7 @@
 	for (uint16_t i = 0; i < m_numColors; i++)
 		CGColorRelease(m_strokeColors[i]);
 	free(m_strokeColors);
+	[m_statsData release];
 	[super dealloc];
 }
 
@@ -42,7 +43,6 @@
 {
 	for (uint16_t i = 0; i < m_numColors; i++)
 		CGColorRelease(m_strokeColors[i]);
-
 	free(m_strokeColors);
 	m_strokeColors = malloc(sizeof(CGColorRef) * [colors count]);
 	uint16_t i = 0;
@@ -104,7 +104,6 @@
 		CGContextStrokePath(ctx);
 		i++;
 	}
-	
 	CGContextRestoreGState(ctx);
 }
 @end

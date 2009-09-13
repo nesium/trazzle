@@ -27,4 +27,9 @@
 	return self;
 }
 
+- (void)trazzleDidCloseConnection:(ZZConnection *)conn
+{
+	[m_windowController removeLayerWithConnection:conn];
+}
+
 @end

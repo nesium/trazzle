@@ -8,6 +8,13 @@
 
 #import "PMMainWindowController.h"
 
+@interface PMMainWindowController (Private)
+- (PMStatsSessionViewLayer *)_layerForConnection:(ZZConnection *)conn;
+- (PMStatsSessionViewLayer *)_addLayerWithConnection:(ZZConnection *)conn;
+- (void)_updateLayerPositions;
+@end
+
+
 @implementation PMMainWindowController
 
 #pragma mark -
@@ -44,23 +51,6 @@
 
 - (void)windowDidLoad
 {
-	PMStatsSessionViewLayer *parentLayer = [PMStatsSessionViewLayer layer];
-
-	PMStatsViewLayer *layer = [PMStatsViewLayer layer];
-	NSRect winBounds = [[[self window] contentView] frame];
-	parentLayer.frame = (CGRect){0, winBounds.size.height - 100, winBounds.size.width, 100};
-	[[[[self window] contentView] layer] addSublayer:parentLayer];
-	[parentLayer addSublayer:layer];
-	layer.frame = (CGRect){10, 25, winBounds.size.width - 20, 50};
-	
-	NSArray *colors = [NSArray arrayWithObjects:[NSColor cyanColor], [NSColor magentaColor], nil];
-	[layer setStrokeColors:colors];
-	[parentLayer setColors:colors];
-	NSArray *stats = [NSArray arrayWithObjects:[[PMStatsData alloc] init], 
-		[[PMStatsData alloc] init], nil];
-	layer.statsData = stats;
-	
-	[m_layers addObject:layer];
 }
 
 - (IBAction)showWindow:(id)sender
@@ -68,11 +58,78 @@
 	NSWindow *win = [self window];
 	[win setAlphaValue:0.0];
 	[win makeKeyAndOrderFront:self];
-	
 	[NSAnimationContext beginGrouping];
 	[[NSAnimationContext currentContext] setDuration:0.15];
 	[[win animator] setAlphaValue:1.0];
 	[NSAnimationContext endGrouping];
+}
+
+
+
+#pragma mark -
+#pragma mark Public methods
+
+- (void)removeLayerWithConnection:(ZZConnection *)conn
+{
+	PMStatsSessionViewLayer *layer = [self _layerForConnection:conn];
+	[layer removeFromSuperlayer];
+	[m_layers removeObject:layer];
+	[self _updateLayerPositions];
+}
+
+
+
+#pragma mark -
+#pragma mark Private methods
+
+- (PMStatsSessionViewLayer *)_layerForConnection:(ZZConnection *)conn
+{
+	for (PMStatsSessionViewLayer *layer in m_layers)
+		if (layer.representedObject == conn)
+			return layer;
+	return nil;
+}
+
+- (PMStatsSessionViewLayer *)_addLayerWithConnection:(ZZConnection *)conn
+{
+	NSRect windowFrame = [[self window] frame];
+	NSRect contentViewFrame = [[[self window] contentView] frame];
+	CGFloat heightDiff = windowFrame.size.height - contentViewFrame.size.height;
+	NSRect newWindowFrame = windowFrame;
+	newWindowFrame.size.height = MIN(([m_layers count] + 1), 3) * 100 + heightDiff;
+
+	PMStatsSessionViewLayer *layer = [PMStatsSessionViewLayer layer];
+	layer.frame = (CGRect){0, 0, contentViewFrame.size.width, 100};
+	NSArray *colors = [NSArray arrayWithObjects:[NSColor cyanColor], [NSColor magentaColor], nil];
+	[layer setColors:colors];
+	NSArray *stats = [NSArray arrayWithObjects:[[PMStatsData alloc] init], 
+		[[PMStatsData alloc] init], nil];
+	[layer setStatsData:stats];
+	layer.representedObject = conn;
+	[m_layers addObject:layer];
+	
+	[[[[self window] contentView] layer] addSublayer:layer];
+	[self _updateLayerPositions];
+	
+	return layer;
+}
+
+- (void)_updateLayerPositions
+{
+	NSRect windowFrame = [[self window] frame];
+	NSRect contentViewFrame = [[[self window] contentView] frame];
+	CGFloat heightDiff = windowFrame.size.height - contentViewFrame.size.height;
+	NSRect newWindowFrame = windowFrame;
+	newWindowFrame.size.height = MAX(MIN([m_layers count], 3), 1) * 100 + heightDiff;
+	[[[self window] animator] setFrame:newWindowFrame display:YES];
+
+	float y = [m_layers count] * 100.0f - 50.0f;
+	float x = [[[self window] contentView] bounds].size.width / 2;
+	for (CALayer *layer in m_layers)
+	{
+		layer.position = (CGPoint){x, y};
+		y -= 100.0f;
+	}
 }
 
 
@@ -83,41 +140,47 @@
 - (void)redrawTimer_tick:(NSTimer *)timer
 {
 	if (!m_needsRedraw) return;
-	for (PMStatsViewLayer *layer in m_layers)
-		[layer setNeedsDisplay];
+	for (PMStatsSessionViewLayer *layer in m_layers)
+		[layer redrawIfNeeded];
 	m_needsRedraw = NO;
 }
 
 
 
+#pragma mark -
 #pragma mark PMMonitoringServiceDelegate methods
 
 - (void)service:(PMMonitoringService *)service startMonitoring:(NSNumber *)maxFPS 
 	forRemote:(AMFRemoteGateway *)remote
 {
-	[self showWindow:self];
-	PMStatsViewLayer *layer = [m_layers objectAtIndex:0];
-	PMStatsSessionViewLayer *sessionLayer = (PMStatsSessionViewLayer *)layer.superlayer;
-	[sessionLayer setTitle:[m_controller connectionForRemote:remote].applicationName];
+	if (![[self window] isVisible])
+		[self showWindow:self];
+	ZZConnection *conn = [m_controller connectionForRemote:remote];
+	PMStatsSessionViewLayer *layer = [self _layerForConnection:conn];
+	if (layer == nil)
+		layer = [self _addLayerWithConnection:conn];
+	[layer setTitle:conn.applicationName];
 }
 
 - (void)service:(PMMonitoringService *)service trackFPS:(NSNumber *)fps memoryUse:(NSNumber *)memory 
 	timestamp:(NSNumber *)timestamp forRemote:(AMFRemoteGateway *)remote
 {
-	PMStatsViewLayer *layer = [m_layers objectAtIndex:0];
-	PMStatsData *data = [layer.statsData objectAtIndex:0];
-	PMStatsSessionViewLayer *sessionLayer = (PMStatsSessionViewLayer *)layer.superlayer;
+	PMStatsSessionViewLayer *layer = [self _layerForConnection:
+		[m_controller connectionForRemote:remote]];
+	PMStatsData *data = [[layer statsData] objectAtIndex:0];
 	NSDate *date = [NSDate dateWithTimeIntervalSince1970:[timestamp doubleValue] / 1000];
 	[data addValue:fps withDate:date];
-	data = [layer.statsData objectAtIndex:1];
+	data = [[layer statsData] objectAtIndex:1];
 	[data addValue:memory withDate:date];
-	[sessionLayer setFPS:fps];
-	[sessionLayer setMemory:memory];
+	[layer setFPS:fps];
+	[layer setMemory:memory];
+	layer.dirty = YES;
 	m_needsRedraw = YES;
 }
 
 - (void)serviceStopMonitoring:(PMMonitoringService *)service forRemote:(AMFRemoteGateway *)remote
 {
+	[self removeLayerWithConnection:[m_controller connectionForRemote:remote]];
 }
 
 @end
