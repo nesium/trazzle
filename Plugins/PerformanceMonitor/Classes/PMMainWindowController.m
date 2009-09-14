@@ -51,6 +51,9 @@
 
 - (void)windowDidLoad
 {
+	m_documentView = [[NSView alloc] initWithFrame:NSZeroRect];
+	[m_documentView setWantsLayer:YES];
+	[m_scrollView setDocumentView:m_documentView];
 }
 
 - (IBAction)showWindow:(id)sender
@@ -75,6 +78,8 @@
 	[layer removeFromSuperlayer];
 	[m_layers removeObject:layer];
 	[self _updateLayerPositions];
+	if ([m_layers count] == 0)
+		[[self window] close];
 }
 
 
@@ -100,6 +105,7 @@
 
 	PMStatsSessionViewLayer *layer = [PMStatsSessionViewLayer layer];
 	layer.frame = (CGRect){0, 0, contentViewFrame.size.width, 100};
+	[layer setNeedsDisplay];
 	NSArray *colors = [NSArray arrayWithObjects:[NSColor cyanColor], [NSColor magentaColor], nil];
 	[layer setColors:colors];
 	NSArray *stats = [NSArray arrayWithObjects:[[PMStatsData alloc] init], 
@@ -108,7 +114,8 @@
 	layer.representedObject = conn;
 	[m_layers addObject:layer];
 	
-	[[[[self window] contentView] layer] addSublayer:layer];
+	[[m_documentView layer] addSublayer:layer];
+	
 	[self _updateLayerPositions];
 	
 	return layer;
@@ -120,7 +127,8 @@
 	NSRect contentViewFrame = [[[self window] contentView] frame];
 	CGFloat heightDiff = windowFrame.size.height - contentViewFrame.size.height;
 	NSRect newWindowFrame = windowFrame;
-	newWindowFrame.size.height = MAX(MIN([m_layers count], 3), 1) * 100 + heightDiff;
+	newWindowFrame.size.height = MAX(MIN([m_layers count], 3), 1) * 100.0f + heightDiff + 6.0f;
+	[m_documentView setFrame:(NSRect){0, 0, contentViewFrame.size.width, [m_layers count] * 100.0f}];
 	[[[self window] animator] setFrame:newWindowFrame display:YES];
 
 	float y = [m_layers count] * 100.0f - 50.0f;

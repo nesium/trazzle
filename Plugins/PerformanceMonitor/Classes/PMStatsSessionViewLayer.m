@@ -96,9 +96,28 @@
 				attribute:kCAConstraintMinY scale:1.0 offset:15.0]];
 		[m_memoryLabel addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinX relativeTo:@"superlayer" 
-				attribute:kCAConstraintMinX scale:1.0 offset:82]];		
+				attribute:kCAConstraintMinX scale:1.0 offset:82]];
 	}
 	return self;
+}
+
+- (void)drawInContext:(CGContextRef)ctx
+{
+	CGRect fillRect = self.bounds;
+	NSLog(@"drawInContext %@", NSStringFromRect(NSRectFromCGRect(fillRect)));
+	CGContextSaveGState(ctx);
+	CGContextSetGrayStrokeColor(ctx, 0.0, 0.15);
+	CGContextMoveToPoint(ctx, fillRect.origin.x, CGRectGetMinY(fillRect) + 1);
+	CGContextAddLineToPoint(ctx, CGRectGetMaxX(fillRect), CGRectGetMinY(fillRect) + 1);
+	CGContextStrokePath(ctx);
+	CGContextRestoreGState(ctx);
+	
+	CGContextSaveGState(ctx);
+	CGContextSetGrayStrokeColor(ctx, 1.0, 0.25);
+	CGContextMoveToPoint(ctx, fillRect.origin.x, CGRectGetMinY(fillRect));
+	CGContextAddLineToPoint(ctx, CGRectGetMaxX(fillRect), CGRectGetMinY(fillRect));
+	CGContextStrokePath(ctx);
+	CGContextRestoreGState(ctx);
 }
 
 - (void)setTitle:(NSString *)aTitle

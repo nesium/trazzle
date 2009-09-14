@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C03583C0D1C568C007C1A48 /* Advanced Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C03583B0D1C568C007C1A48 /* Advanced Preferences.tiff */; };
+		2C0D6205105EA9B10024BC52 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0D6204105EA9B10024BC52 /* BWToolkitFramework.framework */; };
+		2C0D620E105EAAF10024BC52 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C0D6204105EA9B10024BC52 /* BWToolkitFramework.framework */; };
 		2C19E0610EBE752F00B9BA96 /* ZZWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */; };
 		2C19E0660EBE75C100B9BA96 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C19E0650EBE75C100B9BA96 /* MainWindow.xib */; };
 		2C1A2B380D294BB600418DB7 /* reload.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C1A2B370D294BB600418DB7 /* reload.tiff */; };
@@ -134,6 +136,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2C0D620E105EAAF10024BC52 /* BWToolkitFramework.framework in CopyFiles */,
 				496AF03F0F320B4E0049FB23 /* RegexKit.framework in CopyFiles */,
 				496AF0400F320B4E0049FB23 /* Sparkle.framework in CopyFiles */,
 				496AF0410F320B4E0049FB23 /* PSMTabBarControl.framework in CopyFiles */,
@@ -152,6 +155,7 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2C03583B0D1C568C007C1A48 /* Advanced Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Advanced Preferences.tiff"; sourceTree = "<group>"; };
+		2C0D6204105EA9B10024BC52 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
 		2C19E05F0EBE752F00B9BA96 /* ZZWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZWindowController.h; sourceTree = "<group>"; };
 		2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZWindowController.m; sourceTree = "<group>"; };
 		2C19E0650EBE75C100B9BA96 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/Xibs/MainWindow.xib; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 				496AF03A0F320B3B0049FB23 /* RegexKit.framework in Frameworks */,
 				496AF03B0F320B3B0049FB23 /* Sparkle.framework in Frameworks */,
 				496AF03C0F320B3B0049FB23 /* PSMTabBarControl.framework in Frameworks */,
+				2C0D6205105EA9B10024BC52 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +261,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C0D6204105EA9B10024BC52 /* BWToolkitFramework.framework */,
 				496AF0370F320B3B0049FB23 /* RegexKit.framework */,
 				496AF0380F320B3B0049FB23 /* Sparkle.framework */,
 				496AF0390F320B3B0049FB23 /* PSMTabBarControl.framework */,
