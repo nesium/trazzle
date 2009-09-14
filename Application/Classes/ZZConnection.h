@@ -32,4 +32,5 @@
 @interface NSObject (ZZConnectionDelegate)
 - (void)connection:(ZZConnection *)client didReceiveMessage:(NSString *)message;
 - (void)connectionDidDisconnect:(ZZConnection *)connection;
+- (void)connectionDidReceiveConnectionSignature:(ZZConnection *)conn;
 @end

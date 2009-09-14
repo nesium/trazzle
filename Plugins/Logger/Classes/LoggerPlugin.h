@@ -20,6 +20,7 @@
 #import "MenuService.h"
 #import "ExceptionMessage.h"
 #import "LPSession.h"
+#import "MessageParser.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn> 
 {

@@ -19,6 +19,8 @@
 - (void)trazzleDidOpenConnection:(ZZConnection *)conn;
 - (void)trazzleDidCloseConnection:(ZZConnection *)conn;
 - (void)trazzleDidReceiveSignatureForConnection:(ZZConnection *)conn;
+// triggered by legacy connections
+- (void)trazzleDidReceiveMessage:(NSString *)msg forConnection:(ZZConnection *)conn;
 @end
 
 @protocol TrazzleTabViewDelegate

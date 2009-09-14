@@ -136,6 +136,49 @@
 	[session addConnection:conn];
 }
 
+- (void)trazzleDidReceiveMessage:(NSString *)message forConnection:(ZZConnection *)conn
+{
+	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message delegate:self];
+	AbstractMessage *msg = (AbstractMessage *)[[parser data] objectAtIndex:0];
+	
+	if (conn.applicationName == nil && msg.messageType != kLPMessageTypeConnectionSignature)
+	{
+		[conn disconnect];
+		goto bailout;
+	}
+	
+	if (msg.messageType == kLPMessageTypeConnectionSignature)
+	{
+		ConnectionSignature *sig = (ConnectionSignature *)msg;
+		[conn setConnectionParams:[NSDictionary dictionaryWithObjectsAndKeys:
+			sig.applicationName, @"applicationName", sig.swfURL, @"swfURL", nil]];
+		goto bailout;
+	}
+	
+	if (msg.messageType == kLPMessageTypeCommand)
+		NSLog(@"Command message are temporarly disabled!");
+	else
+		[[self _sessionForConnection:conn] handleMessage:msg];
+	
+	bailout:
+		[parser release];
+}
+
+//
+//- (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client
+//{
+//	if (msg.type == kCommandActionTypeStartFileMonitoring)
+//	{
+//		[[FileMonitor sharedMonitor] addObserver:client 
+//			forFileAtPath:[msg.attributes objectForKey:@"path"]];
+//	}
+//	else if (msg.type == kCommandActionTypeStopFileMonitoring)
+//	{
+//		[[FileMonitor sharedMonitor] removeObserver:client 
+//			forFileAtPath:[msg.attributes objectForKey:@"path"]];
+//	}
+//}
+
 
 
 #pragma mark -

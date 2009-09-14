@@ -23,9 +23,11 @@
 	CALayer *m_memorySwatch;
 	CATextLayer *m_memoryLabel;
 	BOOL m_dirty;
+	BOOL m_drawsDivider;
 }
 @property (nonatomic, assign) id representedObject;
 @property (nonatomic, assign) BOOL dirty;
+@property (nonatomic, assign) BOOL drawsDivider;
 - (void)setTitle:(NSString *)aTitle;
 - (void)setFPS:(NSNumber *)fps;
 - (void)setMemory:(NSNumber *)memory;

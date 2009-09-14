@@ -12,7 +12,8 @@
 @implementation PMStatsSessionViewLayer
 
 @synthesize representedObject=m_representedObject, 
-			dirty=m_dirty;
+			dirty=m_dirty, 
+			drawsDivider=m_drawsDivider;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -33,7 +34,7 @@
 				attribute:kCAConstraintMaxX offset:-10.0]];
 		[m_statsLayer addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"superlayer" 
-				attribute:kCAConstraintMinY offset:25.0]];
+				attribute:kCAConstraintMinY offset:20.0]];
 		[m_statsLayer addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMaxY relativeTo:@"superlayer" 
 				attribute:kCAConstraintMaxY offset:-25.0]];
@@ -61,7 +62,7 @@
 		m_fpsSwatch.frame = (CGRect){0, 0, 7.0, 7.0};
 		[m_fpsSwatch addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"superlayer" 
-				attribute:kCAConstraintMinY scale:1.0 offset:17.0]];
+				attribute:kCAConstraintMinY scale:1.0 offset:10.0]];
 		[m_fpsSwatch addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinX relativeTo:@"superlayer" 
 				attribute:kCAConstraintMinX scale:1.0 offset:10.0]];
@@ -72,17 +73,18 @@
 		m_fpsLabel.font = [NSFont systemFontOfSize:9.0];
 		[m_fpsLabel addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"superlayer" 
-				attribute:kCAConstraintMinY scale:1.0 offset:17.0]];
+				attribute:kCAConstraintMinY scale:1.0 offset:8.0]];
 		[m_fpsLabel addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinX relativeTo:@"superlayer" 
 				attribute:kCAConstraintMinX scale:1.0 offset:22.0]];
+		[self setFPS:[NSNumber numberWithInt:0]];
 		
 		m_memorySwatch = [CALayer layer];
 		[self addSublayer:m_memorySwatch];
 		m_memorySwatch.frame = (CGRect){0, 0, 7.0, 7.0};
 		[m_memorySwatch addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"superlayer" 
-				attribute:kCAConstraintMinY scale:1.0 offset:17.0]];
+				attribute:kCAConstraintMinY scale:1.0 offset:10.0]];
 		[m_memorySwatch addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinX relativeTo:@"superlayer" 
 				attribute:kCAConstraintMinX scale:1.0 offset:70.0]];
@@ -93,18 +95,21 @@
 		m_memoryLabel.font = [NSFont systemFontOfSize:9.0];
 		[m_memoryLabel addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"superlayer" 
-				attribute:kCAConstraintMinY scale:1.0 offset:15.0]];
+				attribute:kCAConstraintMinY scale:1.0 offset:8.0]];
 		[m_memoryLabel addConstraint:
 			[CAConstraint constraintWithAttribute:kCAConstraintMinX relativeTo:@"superlayer" 
 				attribute:kCAConstraintMinX scale:1.0 offset:82]];
+		[self setMemory:[NSNumber numberWithInt:0]];
 	}
 	return self;
 }
 
 - (void)drawInContext:(CGContextRef)ctx
 {
+	if (!m_drawsDivider)
+		return;
+
 	CGRect fillRect = self.bounds;
-	NSLog(@"drawInContext %@", NSStringFromRect(NSRectFromCGRect(fillRect)));
 	CGContextSaveGState(ctx);
 	CGContextSetGrayStrokeColor(ctx, 0.0, 0.15);
 	CGContextMoveToPoint(ctx, fillRect.origin.x, CGRectGetMinY(fillRect) + 1);
@@ -118,6 +123,13 @@
 	CGContextAddLineToPoint(ctx, CGRectGetMaxX(fillRect), CGRectGetMinY(fillRect));
 	CGContextStrokePath(ctx);
 	CGContextRestoreGState(ctx);
+}
+
+- (void)setDrawsDivider:(BOOL)bFlag
+{
+	if (m_drawsDivider == bFlag) return;
+	m_drawsDivider = bFlag;
+	[self setNeedsDisplay];
 }
 
 - (void)setTitle:(NSString *)aTitle

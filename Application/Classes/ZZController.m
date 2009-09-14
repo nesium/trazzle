@@ -209,11 +209,6 @@
 {
 	ZZConnection *conn = [self _connectionForRemote:gateway];
 	[conn setConnectionParams:params];
-	for (NSObject <TrazzlePlugIn> *plugin in m_loadedPlugins)
-	{
-		if ([plugin respondsToSelector:@selector(trazzleDidReceiveSignatureForConnection:)])
-			objc_msgSend(plugin, @selector(trazzleDidReceiveSignatureForConnection:), conn);
-	}
 }
 
 
@@ -221,8 +216,22 @@
 #pragma mark -
 #pragma mark ZZConnectionDelegate methods
 
-- (void)connection:(ZZConnection *)client didReceiveMessage:(NSString *)message
+- (void)connection:(ZZConnection *)conn didReceiveMessage:(NSString *)message
 {
+	for (NSObject <TrazzlePlugIn> *plugin in m_loadedPlugins)
+	{
+		if ([plugin respondsToSelector:@selector(trazzleDidReceiveMessage:forConnection:)])
+			objc_msgSend(plugin, @selector(trazzleDidReceiveMessage:forConnection:), message, conn);
+	}
+}
+
+- (void)connectionDidReceiveConnectionSignature:(ZZConnection *)conn
+{
+	for (NSObject <TrazzlePlugIn> *plugin in m_loadedPlugins)
+	{
+		if ([plugin respondsToSelector:@selector(trazzleDidReceiveSignatureForConnection:)])
+			objc_msgSend(plugin, @selector(trazzleDidReceiveSignatureForConnection:), conn);
+	}
 }
 
 - (void)connectionDidDisconnect:(ZZConnection *)connection

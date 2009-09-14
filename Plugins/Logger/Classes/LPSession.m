@@ -199,38 +199,6 @@
 	}
 }
 
-//
-//- (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client
-//{
-//	if (msg.type == kCommandActionTypeStartFileMonitoring)
-//	{
-//		[[FileMonitor sharedMonitor] addObserver:client 
-//			forFileAtPath:[msg.attributes objectForKey:@"path"]];
-//	}
-//	else if (msg.type == kCommandActionTypeStopFileMonitoring)
-//	{
-//		[[FileMonitor sharedMonitor] removeObserver:client 
-//			forFileAtPath:[msg.attributes objectForKey:@"path"]];
-//	}
-//}
-
-
-
-//#pragma mark -
-//#pragma mark LoggingClient delegate methods
-//
-//- (void)client:(LoggingClient *)client didReceiveMessage:(NSString *)message
-//{
-//	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message delegate:self];
-//	AbstractMessage *msg = (AbstractMessage *)[[parser data] objectAtIndex:0];
-//	
-//	if (msg.messageType == kLPMessageTypeCommand)
-//		[self _handleCommandMessage:(CommandMessage *)msg fromClient:client];
-//	else
-//		[self _handleMessage:msg fromClient:client];
-//	[parser release];
-//}
-
 
 
 #pragma mark -

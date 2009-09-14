@@ -54,17 +54,28 @@
 	m_documentView = [[NSView alloc] initWithFrame:NSZeroRect];
 	[m_documentView setWantsLayer:YES];
 	[m_scrollView setDocumentView:m_documentView];
+	
+	CAAnimation *anim = [CABasicAnimation animation];
+    [anim setDelegate:self];
+    [self.window setAnimations:[NSDictionary dictionaryWithObject:anim forKey:@"alphaValue"]];
+	
+	anim = [CABasicAnimation animation];
+	[anim setDelegate:self];
+	[anim setValue:@"documentView" forKey:@"name"];
+	[m_documentView setAnimations:[NSDictionary dictionaryWithObject:anim forKey:@"frameSize"]];
 }
 
 - (IBAction)showWindow:(id)sender
 {
-	NSWindow *win = [self window];
-	[win setAlphaValue:0.0];
-	[win makeKeyAndOrderFront:self];
-	[NSAnimationContext beginGrouping];
-	[[NSAnimationContext currentContext] setDuration:0.15];
-	[[win animator] setAlphaValue:1.0];
-	[NSAnimationContext endGrouping];
+	if (![self.window isVisible])
+    {
+        self.window.alphaValue = 0.0;
+		[NSAnimationContext beginGrouping];
+		[[NSAnimationContext currentContext] setDuration:0.15];
+        [self.window.animator setAlphaValue:1.0];
+		[NSAnimationContext endGrouping];
+    }
+    [super showWindow:sender];
 }
 
 
@@ -79,7 +90,7 @@
 	[m_layers removeObject:layer];
 	[self _updateLayerPositions];
 	if ([m_layers count] == 0)
-		[[self window] close];
+		[self.window performClose:self];
 }
 
 
@@ -97,15 +108,8 @@
 
 - (PMStatsSessionViewLayer *)_addLayerWithConnection:(ZZConnection *)conn
 {
-	NSRect windowFrame = [[self window] frame];
-	NSRect contentViewFrame = [[[self window] contentView] frame];
-	CGFloat heightDiff = windowFrame.size.height - contentViewFrame.size.height;
-	NSRect newWindowFrame = windowFrame;
-	newWindowFrame.size.height = MIN(([m_layers count] + 1), 3) * 100 + heightDiff;
-
 	PMStatsSessionViewLayer *layer = [PMStatsSessionViewLayer layer];
-	layer.frame = (CGRect){0, 0, contentViewFrame.size.width, 100};
-	[layer setNeedsDisplay];
+	layer.frame = (CGRect){0, 0, [m_scrollView contentSize].width, 100};
 	NSArray *colors = [NSArray arrayWithObjects:[NSColor cyanColor], [NSColor magentaColor], nil];
 	[layer setColors:colors];
 	NSArray *stats = [NSArray arrayWithObjects:[[PMStatsData alloc] init], 
@@ -115,7 +119,6 @@
 	[m_layers addObject:layer];
 	
 	[[m_documentView layer] addSublayer:layer];
-	
 	[self _updateLayerPositions];
 	
 	return layer;
@@ -126,17 +129,23 @@
 	NSRect windowFrame = [[self window] frame];
 	NSRect contentViewFrame = [[[self window] contentView] frame];
 	CGFloat heightDiff = windowFrame.size.height - contentViewFrame.size.height;
+	NSRect documentViewRect = (NSRect){0, 0, contentViewFrame.size.width, [m_layers count] * 100.0f};
+	NSRect newContentViewFrame = contentViewFrame;
+	newContentViewFrame.size.height = MAX(MIN([m_layers count], 3), 1) * 100.0f + 6.0f;
 	NSRect newWindowFrame = windowFrame;
-	newWindowFrame.size.height = MAX(MIN([m_layers count], 3), 1) * 100.0f + heightDiff + 6.0f;
-	[m_documentView setFrame:(NSRect){0, 0, contentViewFrame.size.width, [m_layers count] * 100.0f}];
+	newWindowFrame.size.height = newContentViewFrame.size.height + heightDiff;
+	newWindowFrame.origin.y -= newWindowFrame.size.height - windowFrame.size.height;
+	
 	[[[self window] animator] setFrame:newWindowFrame display:YES];
-
+	[[m_documentView animator] setFrame:documentViewRect];
+	
 	float y = [m_layers count] * 100.0f - 50.0f;
-	float x = [[[self window] contentView] bounds].size.width / 2;
-	for (CALayer *layer in m_layers)
+	float x = [m_scrollView contentSize].width / 2;
+	for (PMStatsSessionViewLayer *layer in m_layers)
 	{
 		layer.position = (CGPoint){x, y};
 		y -= 100.0f;
+		layer.drawsDivider = layer != [m_layers lastObject];
 	}
 }
 
@@ -151,6 +160,28 @@
 	for (PMStatsSessionViewLayer *layer in m_layers)
 		[layer redrawIfNeeded];
 	m_needsRedraw = NO;
+}
+
+- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
+{
+	if ([[animation valueForKey:@"name"] isEqualToString:@"documentView"])
+	{
+		NSSize contentSize = [m_scrollView contentSize];
+		NSRect documentViewFrame = [m_documentView frame];
+		documentViewFrame.size.width = contentSize.width;
+		[m_documentView setFrame:documentViewFrame];
+		for (CALayer *layer in m_layers)
+		{
+			CGRect layerFrame = layer.frame;
+			layerFrame.size.width = contentSize.width;
+			layer.frame = layerFrame;
+		}
+	}
+	else
+	{
+		if (self.window.alphaValue == 0.00)
+			[self close];
+	}
 }
 
 
@@ -189,6 +220,20 @@
 - (void)serviceStopMonitoring:(PMMonitoringService *)service forRemote:(AMFRemoteGateway *)remote
 {
 	[self removeLayerWithConnection:[m_controller connectionForRemote:remote]];
+}
+
+
+
+#pragma mark -
+#pragma mark Window delegate methods
+
+- (BOOL)windowShouldClose:(id)window
+{
+	[NSAnimationContext beginGrouping];
+	[[NSAnimationContext currentContext] setDuration:0.15];
+	[self.window.animator setAlphaValue:0.0];
+	[NSAnimationContext endGrouping];
+    return NO;
 }
 
 @end

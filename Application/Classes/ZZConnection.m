@@ -21,9 +21,11 @@
 {
 	if (self = [super init])
 	{
-		m_remote = remote;
+		m_remote = [remote retain];
 		m_delegate = delegate;
 		m_isLegacyConnection = [remote isMemberOfClass:[AsyncSocket class]];
+		if (m_isLegacyConnection)
+			[(AsyncSocket *)remote setDelegate:self];
 		m_pluginStorage = [[NSMutableDictionary alloc] init];
 		m_connectionParams = nil;
 	}
@@ -32,6 +34,7 @@
 
 - (void)dealloc
 {
+	[m_remote release];
 	[m_pluginStorage release];
 	[m_connectionParams release];
 	[super dealloc];
@@ -54,6 +57,8 @@
 	[params retain];
 	[m_connectionParams release];
 	m_connectionParams = params;
+	if ([m_delegate respondsToSelector:@selector(connectionDidReceiveConnectionSignature:)])
+		[m_delegate connectionDidReceiveConnectionSignature:self];
 }
 
 - (NSString *)applicationName
@@ -94,6 +99,7 @@
 
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
 {
+	NSLog(@"didConnectToHost");
 	[self _continueReading];
 }
 
@@ -106,13 +112,6 @@
 </cross-domain-policy>\0"];
 		return;
 	}
-		
-//	if (msg.messageType != kLPMessageTypeConnectionSignature)
-//	{
-//		[client disconnect];
-//		[parser release];
-//		return;
-//	}
 	
 	if ([m_delegate respondsToSelector:@selector(connection:didReceiveMessage:)])
 		[m_delegate connection:self didReceiveMessage:message];
