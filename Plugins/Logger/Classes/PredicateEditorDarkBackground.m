@@ -51,15 +51,12 @@
 	* @see http://www.cocoabuilder.com/archive/message/cocoa/2008/6/27/211281
 	*/
 	else if ([object isKindOfClass:[NSCompoundPredicate class]])
-	{
 		object = [self _validPredicate:object];
-	}
 	[super setObjectValue:object];
 }
 
 - (NSCompoundPredicate *)_validPredicate:(NSCompoundPredicate *)sourcePredicate
 {
-	BOOL needsTransform = NO;
 	NSMutableArray *transformedSubpredicates = [NSMutableArray array];
 	for (NSPredicate *subPredicate in [sourcePredicate subpredicates])
 	{
@@ -68,18 +65,9 @@
 			NSCompoundPredicate *transformedSubPredicate = 
 				[self _validPredicate:(NSCompoundPredicate *)subPredicate];
 			[transformedSubpredicates addObject:transformedSubPredicate];
-			needsTransform = needsTransform || transformedSubPredicate != subPredicate || 
-				([sourcePredicate compoundPredicateType] == NSNotPredicateType && 
-				[(NSCompoundPredicate *)subPredicate compoundPredicateType] != NSOrPredicateType);
 		}
 		else
-		{
 			[transformedSubpredicates addObject:subPredicate];
-		}
-	}
-	if (!needsTransform)
-	{
-		return sourcePredicate;
 	}
 	if ([sourcePredicate compoundPredicateType] == NSNotPredicateType)
 	{
