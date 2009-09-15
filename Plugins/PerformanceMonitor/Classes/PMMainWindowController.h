@@ -23,6 +23,7 @@
 	BOOL m_needsRedraw;
 	IBOutlet NSScrollView *m_scrollView;
 	NSView *m_documentView;
+	CATextLayer *m_noSessionTextLayer;
 }
 - (id)initWithWindowNibName:(NSString *)windowNibName plugInController:(PlugInController *)controller;
 - (void)removeLayerWithConnection:(ZZConnection *)conn;

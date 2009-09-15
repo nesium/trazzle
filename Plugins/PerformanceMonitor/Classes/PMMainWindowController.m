@@ -51,9 +51,13 @@
 
 - (void)windowDidLoad
 {
-	m_documentView = [[NSView alloc] initWithFrame:NSZeroRect];
+	NSSize contentSize = [m_scrollView contentSize];
+	m_documentView = [[NSView alloc] initWithFrame:(NSRect){0, 0, contentSize.width, 
+		contentSize.height}];
 	[m_documentView setWantsLayer:YES];
+	m_documentView.layer.layoutManager = [CAConstraintLayoutManager layoutManager];
 	[m_scrollView setDocumentView:m_documentView];
+	[m_documentView release];
 	
 	CAAnimation *anim = [CABasicAnimation animation];
     [anim setDelegate:self];
@@ -63,6 +67,22 @@
 	[anim setDelegate:self];
 	[anim setValue:@"documentView" forKey:@"name"];
 	[m_documentView setAnimations:[NSDictionary dictionaryWithObject:anim forKey:@"frameSize"]];
+	
+	m_noSessionTextLayer = [CATextLayer layer];
+	[m_documentView.layer addSublayer:m_noSessionTextLayer];
+	m_noSessionTextLayer.string = @"No active session";
+	m_noSessionTextLayer.fontSize = 11.0;
+	m_noSessionTextLayer.font = [NSFont systemFontOfSize:11.0];
+	CGColorRef color = CGColorCreateGenericGray(0.6, 1.0);
+	m_noSessionTextLayer.foregroundColor = color;
+	CGColorRelease(color);
+	[m_noSessionTextLayer addConstraint:
+		[CAConstraint constraintWithAttribute:kCAConstraintMidX 
+			relativeTo:@"superlayer" attribute:kCAConstraintMidX]];
+	[m_noSessionTextLayer addConstraint:
+		[CAConstraint constraintWithAttribute:kCAConstraintMidY 
+			relativeTo:@"superlayer" attribute:kCAConstraintMidY]];
+	[m_documentView.layer setNeedsLayout];
 }
 
 - (IBAction)showWindow:(id)sender
@@ -89,8 +109,6 @@
 	[layer removeFromSuperlayer];
 	[m_layers removeObject:layer];
 	[self _updateLayerPositions];
-	if ([m_layers count] == 0)
-		[self.window performClose:self];
 }
 
 
@@ -126,10 +144,13 @@
 
 - (void)_updateLayerPositions
 {
+	m_noSessionTextLayer.opacity = [m_layers count] == 0 ? 1.0 : 0.0;
+
 	NSRect windowFrame = [[self window] frame];
 	NSRect contentViewFrame = [[[self window] contentView] frame];
 	CGFloat heightDiff = windowFrame.size.height - contentViewFrame.size.height;
-	NSRect documentViewRect = (NSRect){0, 0, contentViewFrame.size.width, [m_layers count] * 100.0f};
+	NSRect documentViewRect = (NSRect){0, 0, contentViewFrame.size.width, 
+		MAX([m_layers count], 1) * 100.0f};
 	NSRect newContentViewFrame = contentViewFrame;
 	newContentViewFrame.size.height = MAX(MIN([m_layers count], 3), 1) * 100.0f + 6.0f;
 	NSRect newWindowFrame = windowFrame;

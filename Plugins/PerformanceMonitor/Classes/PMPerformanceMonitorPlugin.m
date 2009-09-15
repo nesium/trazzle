@@ -23,6 +23,12 @@
 			initWithWindowNibName:@"MonitorWindow" plugInController:aController];
 		[[m_controller sharedGateway] registerService:[[[PMMonitoringService alloc] 
 			initWithDelegate:m_windowController] autorelease] withName:@"MonitoringService"];
+			
+		NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Performance Monitor" 
+			action:@selector(showWindow:) keyEquivalent:@""];
+		[item setTarget:m_windowController];
+		[[[[NSApp mainMenu] itemWithTitle:@"Window"] submenu] insertItem:item atIndex:4]; // i18n!
+		[item release];
 	}
 	return self;
 }
