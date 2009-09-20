@@ -112,15 +112,17 @@
 	CGRect fillRect = self.bounds;
 	CGContextSaveGState(ctx);
 	CGContextSetGrayStrokeColor(ctx, 0.0, 0.15);
-	CGContextMoveToPoint(ctx, fillRect.origin.x, CGRectGetMinY(fillRect) + 1);
-	CGContextAddLineToPoint(ctx, CGRectGetMaxX(fillRect), CGRectGetMinY(fillRect) + 1);
+	CGContextSetLineWidth(ctx, 1.0f);
+	CGContextMoveToPoint(ctx, fillRect.origin.x, CGRectGetMinY(fillRect) + 1.0f);
+	CGContextAddLineToPoint(ctx, CGRectGetMaxX(fillRect), CGRectGetMinY(fillRect) + 1.0f);
 	CGContextStrokePath(ctx);
 	CGContextRestoreGState(ctx);
 	
 	CGContextSaveGState(ctx);
+	CGContextSetLineWidth(ctx, 1.0f);
 	CGContextSetGrayStrokeColor(ctx, 1.0, 0.25);
-	CGContextMoveToPoint(ctx, fillRect.origin.x, CGRectGetMinY(fillRect));
-	CGContextAddLineToPoint(ctx, CGRectGetMaxX(fillRect), CGRectGetMinY(fillRect));
+	CGContextMoveToPoint(ctx, fillRect.origin.x, CGRectGetMinY(fillRect) + 0.5f);
+	CGContextAddLineToPoint(ctx, CGRectGetMaxX(fillRect), CGRectGetMinY(fillRect) + 0.5f);
 	CGContextStrokePath(ctx);
 	CGContextRestoreGState(ctx);
 }

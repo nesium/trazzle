@@ -11,7 +11,10 @@
 @interface PMMainWindowController (Private)
 - (PMStatsSessionViewLayer *)_layerForConnection:(ZZConnection *)conn;
 - (PMStatsSessionViewLayer *)_addLayerWithConnection:(ZZConnection *)conn;
+- (void)_updateWindowFrame;
 - (void)_updateLayerPositions;
+- (NSRect)_windowFrame;
+- (void)_resizeLayers;
 @end
 
 
@@ -55,34 +58,35 @@
 	m_documentView = [[NSView alloc] initWithFrame:(NSRect){0, 0, contentSize.width, 
 		contentSize.height}];
 	[m_documentView setWantsLayer:YES];
-	m_documentView.layer.layoutManager = [CAConstraintLayoutManager layoutManager];
 	[m_scrollView setDocumentView:m_documentView];
 	[m_documentView release];
 	
-	CAAnimation *anim = [CABasicAnimation animation];
-    [anim setDelegate:self];
-    [self.window setAnimations:[NSDictionary dictionaryWithObject:anim forKey:@"alphaValue"]];
+	CAAnimation *winAlphaAnim = [CABasicAnimation animation];
+    [winAlphaAnim setDelegate:self];
+    [self.window setAnimations:[NSDictionary dictionaryWithObject:winAlphaAnim forKey:@"alphaValue"]];
 	
-	anim = [CABasicAnimation animation];
-	[anim setDelegate:self];
-	[anim setValue:@"documentView" forKey:@"name"];
-	[m_documentView setAnimations:[NSDictionary dictionaryWithObject:anim forKey:@"frameSize"]];
+	CAAnimation *winFrameAnim = [CABasicAnimation animation];
+	[winFrameAnim setDelegate:self];
+	[winFrameAnim setValue:@"window" forKey:@"name"];
+	[self.window setAnimations:[NSDictionary dictionaryWithObject:winFrameAnim forKey:@"frame"]];
+	
+	CAAnimation *documentViewFrameAnim = [CABasicAnimation animation];
+	[documentViewFrameAnim setDelegate:self];
+	[documentViewFrameAnim setValue:@"documentView" forKey:@"name"];
+	[m_documentView setAnimations:[NSDictionary dictionaryWithObject:documentViewFrameAnim 
+		forKey:@"frameSize"]];
 	
 	m_noSessionTextLayer = [CATextLayer layer];
 	[m_documentView.layer addSublayer:m_noSessionTextLayer];
 	m_noSessionTextLayer.string = @"No active session";
 	m_noSessionTextLayer.fontSize = 11.0;
 	m_noSessionTextLayer.font = [NSFont systemFontOfSize:11.0];
+	m_noSessionTextLayer.alignmentMode = kCAAlignmentCenter;
+	m_noSessionTextLayer.frame = (CGRect){0.0f, roundf((contentSize.height - 11.0f) / 2) + 5.0f, 
+		contentSize.width, 11.0f};
 	CGColorRef color = CGColorCreateGenericGray(0.6, 1.0);
 	m_noSessionTextLayer.foregroundColor = color;
 	CGColorRelease(color);
-	[m_noSessionTextLayer addConstraint:
-		[CAConstraint constraintWithAttribute:kCAConstraintMidX 
-			relativeTo:@"superlayer" attribute:kCAConstraintMidX]];
-	[m_noSessionTextLayer addConstraint:
-		[CAConstraint constraintWithAttribute:kCAConstraintMidY 
-			relativeTo:@"superlayer" attribute:kCAConstraintMidY]];
-	[m_documentView.layer setNeedsLayout];
 }
 
 - (IBAction)showWindow:(id)sender
@@ -106,9 +110,10 @@
 - (void)removeLayerWithConnection:(ZZConnection *)conn
 {
 	PMStatsSessionViewLayer *layer = [self _layerForConnection:conn];
+	layer.zPosition = -1;
 	[layer removeFromSuperlayer];
 	[m_layers removeObject:layer];
-	[self _updateLayerPositions];
+	[self _updateWindowFrame];
 }
 
 
@@ -128,6 +133,7 @@
 {
 	PMStatsSessionViewLayer *layer = [PMStatsSessionViewLayer layer];
 	layer.frame = (CGRect){0, 0, [m_scrollView contentSize].width, 100};
+	layer.anchorPoint = (CGPoint){0.0f, 0.0f};
 	NSArray *colors = [NSArray arrayWithObjects:[NSColor cyanColor], [NSColor magentaColor], nil];
 	[layer setColors:colors];
 	NSArray *stats = [NSArray arrayWithObjects:[[PMStatsData alloc] init], 
@@ -137,36 +143,65 @@
 	[m_layers addObject:layer];
 	
 	[[m_documentView layer] addSublayer:layer];
-	[self _updateLayerPositions];
+	[self _updateWindowFrame];
 	
 	return layer;
 }
 
-- (void)_updateLayerPositions
+- (void)_updateWindowFrame
 {
 	m_noSessionTextLayer.opacity = [m_layers count] == 0 ? 1.0 : 0.0;
+	
+	NSRect windowFrame = [[self window] frame];
+	NSRect newWindowFrame = [self _windowFrame];
+	NSRect contentViewFrame = [[[self window] contentView] frame];
+	BOOL isShrinking = newWindowFrame.size.height < windowFrame.size.height;
+	NSRect documentViewRect = (NSRect){0, 0, contentViewFrame.size.width, 
+		MAX([m_layers count], 1) * 100.0f};
 
+	[[m_documentView animator] setFrame:documentViewRect];
+	[[[self window] animator] setFrame:newWindowFrame display:YES];
+	[self _updateLayerPositions];
+	if (isShrinking)
+		[m_scrollView setHasVerticalScroller:NO];
+}
+
+- (void)_updateLayerPositions
+{
+	float y = MAX([m_layers count], 1) * 100.0f;
+	float x = 0.0f;
+	for (PMStatsSessionViewLayer *layer in m_layers)
+	{
+		y -= 100.0f;
+		layer.position = (CGPoint){x, y};
+		layer.drawsDivider = layer != [m_layers lastObject];
+	}
+}
+
+- (NSRect)_windowFrame
+{
 	NSRect windowFrame = [[self window] frame];
 	NSRect contentViewFrame = [[[self window] contentView] frame];
 	CGFloat heightDiff = windowFrame.size.height - contentViewFrame.size.height;
-	NSRect documentViewRect = (NSRect){0, 0, contentViewFrame.size.width, 
-		MAX([m_layers count], 1) * 100.0f};
 	NSRect newContentViewFrame = contentViewFrame;
 	newContentViewFrame.size.height = MAX(MIN([m_layers count], 3), 1) * 100.0f + 6.0f;
 	NSRect newWindowFrame = windowFrame;
 	newWindowFrame.size.height = newContentViewFrame.size.height + heightDiff;
 	newWindowFrame.origin.y -= newWindowFrame.size.height - windowFrame.size.height;
-	
-	[[[self window] animator] setFrame:newWindowFrame display:YES];
-	[[m_documentView animator] setFrame:documentViewRect];
-	
-	float y = [m_layers count] * 100.0f - 50.0f;
-	float x = [m_scrollView contentSize].width / 2;
-	for (PMStatsSessionViewLayer *layer in m_layers)
+	return newWindowFrame;
+}
+
+- (void)_resizeLayers
+{
+	NSSize contentSize = [m_scrollView contentSize];
+	NSRect documentViewFrame = [m_documentView frame];
+	documentViewFrame.size.width = contentSize.width;
+	[m_documentView setFrame:documentViewFrame];
+	for (CALayer *layer in m_layers)
 	{
-		layer.position = (CGPoint){x, y};
-		y -= 100.0f;
-		layer.drawsDivider = layer != [m_layers lastObject];
+		CGRect layerFrame = layer.frame;
+		layerFrame.size.width = contentSize.width;
+		layer.frame = layerFrame;
 	}
 }
 
@@ -188,15 +223,13 @@
 	if ([[animation valueForKey:@"name"] isEqualToString:@"documentView"])
 	{
 		NSSize contentSize = [m_scrollView contentSize];
-		NSRect documentViewFrame = [m_documentView frame];
-		documentViewFrame.size.width = contentSize.width;
-		[m_documentView setFrame:documentViewFrame];
-		for (CALayer *layer in m_layers)
-		{
-			CGRect layerFrame = layer.frame;
-			layerFrame.size.width = contentSize.width;
-			layer.frame = layerFrame;
-		}
+		BOOL wasShrinking = contentSize.height > [m_documentView frame].size.height;
+		if (wasShrinking)
+			[m_scrollView setHasVerticalScroller:YES];
+	}
+	else if ([[animation valueForKey:@"name"] isEqualToString:@"window"])
+	{
+		[self _resizeLayers];
 	}
 	else
 	{
