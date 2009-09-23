@@ -49,6 +49,7 @@
 		2CDA11271041DBDE008338CF /* tabbar_close_on_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11251041DBDE008338CF /* tabbar_close_on_over.png */; };
 		2CDA11281041DBDE008338CF /* tabbar_close_on_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11261041DBDE008338CF /* tabbar_close_on_up.png */; };
 		2CE309230D1EDF130092B5E0 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CE309220D1EDF130092B5E0 /* star.png */; };
+		2CEEDBB9106ACCB700D46C84 /* ZZTabBarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEEDBB8106ACCB700D46C84 /* ZZTabBarControl.m */; };
 		2CEF18430D2405C6002D3C69 /* CellButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEF18420D2405C6002D3C69 /* CellButton.png */; };
 		2CF0B37B105C5BAD000222E7 /* ZZCoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0B37A105C5BAD000222E7 /* ZZCoreService.m */; };
 		2CF39FE30CF8E23600A1B9A9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */; };
@@ -232,6 +233,8 @@
 		2CDA11251041DBDE008338CF /* tabbar_close_on_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_close_on_over.png; sourceTree = "<group>"; };
 		2CDA11261041DBDE008338CF /* tabbar_close_on_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_close_on_up.png; sourceTree = "<group>"; };
 		2CE309220D1EDF130092B5E0 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		2CEEDBB7106ACCB700D46C84 /* ZZTabBarControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZTabBarControl.h; sourceTree = "<group>"; };
+		2CEEDBB8106ACCB700D46C84 /* ZZTabBarControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZTabBarControl.m; sourceTree = "<group>"; };
 		2CEF18420D2405C6002D3C69 /* CellButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellButton.png; sourceTree = "<group>"; };
 		2CF0B379105C5BAD000222E7 /* ZZCoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCoreService.h; sourceTree = "<group>"; };
 		2CF0B37A105C5BAD000222E7 /* ZZCoreService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCoreService.m; sourceTree = "<group>"; };
@@ -484,6 +487,8 @@
 				2C93A5370F3906A60050CD51 /* ZZTabStyle.m */,
 				2CDA0FEE1041AFF4008338CF /* ZZWindow.h */,
 				2CDA0FEF1041AFF4008338CF /* ZZWindow.m */,
+				2CEEDBB7106ACCB700D46C84 /* ZZTabBarControl.h */,
+				2CEEDBB8106ACCB700D46C84 /* ZZTabBarControl.m */,
 			);
 			name = ui;
 			sourceTree = "<group>";
@@ -732,6 +737,7 @@
 				2C8C0604105B181E002C246F /* AsyncSocket.m in Sources */,
 				2C8C0670105B2831002C246F /* ZZConnection.m in Sources */,
 				2CF0B37B105C5BAD000222E7 /* ZZCoreService.m in Sources */,
+				2CEEDBB9106ACCB700D46C84 /* ZZTabBarControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
