@@ -25,17 +25,24 @@
 
 	NSPoint where = [theEvent locationInWindow];
 	NSPoint localPoint = [self convertPoint:where fromView:nil];
+	BOOL shouldDrag = YES;
 	
 	for (int i = 0; i < [_cells count]; i++)
 	{
 		if (NSPointInRect(localPoint, [_controller cellFrameAtIndex:i]))
-			return;
+		{
+			shouldDrag = NO;
+			break;
+		}
 	}
 	
 	if (![_overflowPopUpButton isHidden] && NSPointInRect(localPoint, [_overflowPopUpButton frame]))
-		return;
-	
-	[self performSelector:@selector(_startDraggingWindow:) withObject:theEvent afterDelay:0.0];
+		shouldDrag = NO;
+
+	if (shouldDrag)	
+		[self performSelector:@selector(_startDraggingWindow:) withObject:theEvent afterDelay:0.0];
+	else
+		[super mouseDown:theEvent];
 }
 
 - (void)_startDraggingWindow:(NSEvent *)theEvent
