@@ -148,7 +148,6 @@
 			[[NSBundle bundleForClass:[self class]]
 				pathForResource:@"SearchBarSearchFieldDeleteButtonAlternate" ofType:@"png"]];
 		NSButtonCell *cancelButtonCell = [self cancelButtonCell];
-		NSLog(@"shortcut: %@", [cancelButtonCell keyEquivalent]);
 		
 		[cancelButtonCell setImage:image];
 		[cancelButtonCell setAlternateImage:altImage];

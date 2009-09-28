@@ -39,6 +39,7 @@
 		2C6A61D910358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C6A61D810358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png */; };
 		2C78D87110406EB20064CACC /* LPFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C78D87010406EB20064CACC /* LPFilterModel.m */; };
 		2C96976B103F085100297687 /* LPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96976A103F085100297687 /* LPSession.m */; };
+		2CA62C98107118B600ECCE70 /* LPExistingFilesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA62C97107118B600ECCE70 /* LPExistingFilesCache.m */; };
 		2CBFEF7A0F3E4F7400AA982D /* LPFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterController.m */; };
 		2CBFEFB50F3E578200AA982D /* LPFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEFB40F3E578200AA982D /* LPFilter.m */; };
 		2CDA11751041E1EF008338CF /* tab_on_icon_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11731041E1EF008338CF /* tab_on_icon_disconnected.png */; };
@@ -130,6 +131,8 @@
 		2C8D2CC70EAD49090020E651 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		2C969769103F085100297687 /* LPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPSession.h; sourceTree = "<group>"; };
 		2C96976A103F085100297687 /* LPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSession.m; sourceTree = "<group>"; };
+		2CA62C96107118B600ECCE70 /* LPExistingFilesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPExistingFilesCache.h; sourceTree = "<group>"; };
+		2CA62C97107118B600ECCE70 /* LPExistingFilesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPExistingFilesCache.m; sourceTree = "<group>"; };
 		2CBFEF780F3E4F7400AA982D /* LPFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFilterController.h; sourceTree = "<group>"; };
 		2CBFEF790F3E4F7400AA982D /* LPFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilterController.m; sourceTree = "<group>"; };
 		2CBFEFAB0F3E562000AA982D /* ZZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZConstants.h; path = ../../Application/Classes/ZZConstants.h; sourceTree = SOURCE_ROOT; };
@@ -485,6 +488,8 @@
 			children = (
 				49472F2E0F614C410049A188 /* FileMonitor.h */,
 				49472F2F0F614C410049A188 /* FileMonitor.m */,
+				2CA62C96107118B600ECCE70 /* LPExistingFilesCache.h */,
+				2CA62C97107118B600ECCE70 /* LPExistingFilesCache.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -667,6 +672,7 @@
 				2CF0B365105C4773000222E7 /* LogMessage.m in Sources */,
 				2CF0B366105C4773000222E7 /* MessageParser.m in Sources */,
 				2CF0B367105C4773000222E7 /* StackTraceItem.m in Sources */,
+				2CA62C98107118B600ECCE70 /* LPExistingFilesCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

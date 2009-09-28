@@ -54,7 +54,7 @@ function logMessageToHTML(message, addTextmateLinks)
 	html += '<div class="lineno">' + (message.index + 1) + '</div>';
 	html += '<div class="timestamp">' + message.formattedTimestamp() + '</div>';
 	html += '<div class="content ' + message.levelName + '">';
-	if (addTextmateLinks && message.line > -1)
+	if (addTextmateLinks && message.line > -1 && message.fileExists)
 	{
 		html += '<a class="tm_link" href="txmt://open/?url=file://' + escape(message.file) + 
 			'&line=' + message.line + '">';

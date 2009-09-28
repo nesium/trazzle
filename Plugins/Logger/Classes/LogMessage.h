@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "StackTraceItem.h"
 #import "NSString+LPStringAdditions.h"
+#import "LPExistingFilesCache.h"
 
 @interface LogMessage : StackTraceItem
 {
@@ -17,6 +18,9 @@
 	BOOL encodeHTML;
 	NSArray *stacktrace;
 	NSTimeInterval connectionTimestamp;
+	
+	BOOL m_didLookupFile;
+	BOOL m_fileExists;
 }
 
 @property (nonatomic, retain) NSString *levelName;
@@ -24,6 +28,7 @@
 @property (nonatomic, retain) NSArray *stacktrace;
 @property (nonatomic, assign) BOOL encodeHTML;
 @property (nonatomic, assign) NSTimeInterval connectionTimestamp;
+@property (nonatomic, readonly) BOOL fileExists;
 
 - (NSString *)formattedTimestamp;
 

@@ -28,6 +28,7 @@ static NSArray *kLPLogLevels;
 	{
 		encodeHTML = YES;
 		messageType = kLPMessageTypeSocket;
+		m_didLookupFile = NO;
 	}
 	return self;
 }
@@ -73,6 +74,16 @@ static NSArray *kLPLogLevels;
 	return [date descriptionWithCalendarFormat:@"%M:%S:%F" timeZone:nil locale:nil];
 }
 
+- (BOOL)fileExists
+{
+	if (!m_didLookupFile)
+	{
+		m_fileExists = [[LPExistingFilesCache sharedCache] fileExistsAtPath:file];
+		m_didLookupFile = YES;
+	}
+	return m_fileExists;
+}
+
 
 
 #pragma mark -
@@ -86,7 +97,8 @@ static NSArray *kLPLogLevels;
 		name == "stacktrace" ||
 		name == "index" ||
 		name == "timestamp" || 
-		name == "formattedTimestamp")
+		name == "formattedTimestamp" || 
+		name == "fileExists")
 	{
 		return NO;
 	}
