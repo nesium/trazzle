@@ -31,7 +31,7 @@
 	
 	NSString *m_tabTitle;
 	NSString *m_sessionName;
-	NSString *m_swfURL;
+	NSURL *m_swfURL;
 	BOOL m_isReady;
 	BOOL m_isDisconnected;
 	BOOL m_isActive;
@@ -40,7 +40,7 @@
 }
 @property (nonatomic, retain) NSString *tabTitle;
 @property (nonatomic, retain) NSString *sessionName;
-@property (nonatomic, retain) NSString *swfURL;
+@property (nonatomic, retain) NSURL *swfURL;
 @property (nonatomic, assign) BOOL isReady;
 @property (nonatomic, assign) BOOL isDisconnected;
 @property (nonatomic, retain) NSImage *icon;

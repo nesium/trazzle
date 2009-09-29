@@ -19,7 +19,7 @@
 - (void)_cleanupAfterConnection:(ZZConnection *)conn;
 - (void)_handleFlashlogMessage:(AbstractMessage *)msg;
 - (LPSession *)_createNewSession;
-- (LPSession *)_sessionForSwfURL:(NSString *)swfURL;
+- (LPSession *)_sessionForSwfURL:(NSURL *)swfURL;
 - (LPSession *)_sessionForConnection:(ZZConnection *)conn;
 @end
 
@@ -151,7 +151,8 @@
 	{
 		ConnectionSignature *sig = (ConnectionSignature *)msg;
 		[conn setConnectionParams:[NSDictionary dictionaryWithObjectsAndKeys:
-			sig.applicationName, @"applicationName", sig.swfURL, @"swfURL", nil]];
+			sig.applicationName, @"applicationName", 
+			[NSURL URLWithString:sig.swfURL], @"swfURL", nil]];
 		goto bailout;
 	}
 	
@@ -205,10 +206,10 @@
 	return [session autorelease];
 }
 
-- (LPSession *)_sessionForSwfURL:(NSString *)swfURL
+- (LPSession *)_sessionForSwfURL:(NSURL *)swfURL
 {
 	for (LPSession *session in m_sessions)
-		if ([session.swfURL isEqualToString:swfURL] && session.isDisconnected)
+		if ([session.swfURL isEqual:swfURL] && session.isDisconnected)
 			return session;
 	
 	for (LPSession *session in m_sessions)

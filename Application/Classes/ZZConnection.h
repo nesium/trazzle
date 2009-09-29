@@ -16,12 +16,13 @@
 	id m_remote;
 	id m_delegate;
 	BOOL m_isLegacyConnection;
+	NSURL *m_swfURL;
 	NSDictionary *m_connectionParams;
 	NSMutableDictionary *m_pluginStorage;
 }
 @property (nonatomic, readonly) BOOL isLegacyConnection;
 @property (nonatomic, readonly) id remote;
-@property (nonatomic, readonly) NSString *swfURL;
+@property (nonatomic, readonly) NSURL *swfURL;
 @property (nonatomic, readonly) NSString *applicationName;
 - (id)initWithRemote:(id)remote delegate:(id)delegate;
 - (void)setConnectionParams:(NSDictionary *)params;
