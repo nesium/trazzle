@@ -79,7 +79,10 @@
 
 - (void)disconnect
 {
-	[m_remote disconnect];
+	if ([m_remote isMemberOfClass:[AsyncSocket class]])
+		[(AsyncSocket *)m_remote disconnectAfterReadingAndWriting];
+	else 
+		[m_remote disconnect];
 }
 
 
@@ -152,7 +155,6 @@
 
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
 {
-	NSLog(@"didConnectToHost");
 	[self _continueReading];
 }
 
