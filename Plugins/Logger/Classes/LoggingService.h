@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AMFDuplexGateway.h"
-#import "CocoaCryptoHashing.h"
 #import "LogMessage.h"
 #import "StackTraceItem.h"
 #import "MessageParser.h"
