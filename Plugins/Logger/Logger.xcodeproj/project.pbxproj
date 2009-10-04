@@ -46,7 +46,6 @@
 		2CBFEFB50F3E578200AA982D /* LPFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEFB40F3E578200AA982D /* LPFilter.m */; };
 		2CDA11751041E1EF008338CF /* tab_on_icon_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11731041E1EF008338CF /* tab_on_icon_disconnected.png */; };
 		2CDA11761041E1EF008338CF /* tab_off_icon_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11741041E1EF008338CF /* tab_off_icon_disconnected.png */; };
-		2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */; };
 		2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE3248C0F61CF1F004BB7CF /* libssl.dylib */; };
 		2CEEFE8F1073B69A003B3734 /* LPPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEEFE8E1073B69A003B3734 /* LPPreferencesViewController.m */; };
 		2CEEFE951073B862003B3734 /* Advanced Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2CEEFE941073B862003B3734 /* Advanced Preferences.tiff */; };
@@ -147,8 +146,6 @@
 		2CBFEFB40F3E578200AA982D /* LPFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilter.m; sourceTree = "<group>"; };
 		2CDA11731041E1EF008338CF /* tab_on_icon_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_on_icon_disconnected.png; sourceTree = "<group>"; };
 		2CDA11741041E1EF008338CF /* tab_off_icon_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_off_icon_disconnected.png; sourceTree = "<group>"; };
-		2CE324790F61CE2C004BB7CF /* CocoaCryptoHashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaCryptoHashing.h; sourceTree = "<group>"; };
-		2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaCryptoHashing.m; sourceTree = "<group>"; };
 		2CE3248C0F61CF1F004BB7CF /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
 		2CEEFE8D1073B69A003B3734 /* LPPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPPreferencesViewController.h; sourceTree = "<group>"; };
 		2CEEFE8E1073B69A003B3734 /* LPPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPPreferencesViewController.m; sourceTree = "<group>"; };
@@ -325,7 +322,6 @@
 		2C4CCA8A0EABA3C9003EE952 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				2CE324780F61CE2C004BB7CF /* CocoaCryptoHashing */,
 				2C0421A80F3E625900726781 /* NSMUtils */,
 				2C19E0B00EBE7C5200B9BA96 /* MGScopeBar */,
 				2C4CCB3A0EABBF1F003EE952 /* UKKQueue */,
@@ -448,15 +444,6 @@
 				2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */,
 			);
 			name = FilterWindow;
-			sourceTree = "<group>";
-		};
-		2CE324780F61CE2C004BB7CF /* CocoaCryptoHashing */ = {
-			isa = PBXGroup;
-			children = (
-				2CE324790F61CE2C004BB7CF /* CocoaCryptoHashing.h */,
-				2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */,
-			);
-			path = CocoaCryptoHashing;
 			sourceTree = "<group>";
 		};
 		2CEEFE8C1073B672003B3734 /* Preferences */ = {
@@ -690,7 +677,6 @@
 				2C159B340F3EF67A00321454 /* SelectedFilterToIconTransformer.m in Sources */,
 				49472F300F614C410049A188 /* FileMonitor.m in Sources */,
 				49E48A610F6182130034B384 /* LoggingService.m in Sources */,
-				2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */,
 				2CFEDA321034A254004375AE /* SearchBarViewController.m in Sources */,
 				2CF126E010389B4000F526AB /* MenuService.m in Sources */,
 				2C96976B103F085100297687 /* LPSession.m in Sources */,
