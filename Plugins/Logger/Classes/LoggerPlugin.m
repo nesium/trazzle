@@ -11,16 +11,22 @@
 #define kMMCFG_GlobalPath @"/Library/Application Support/Macromedia/mm.cfg"
 #define kMMCFG_LocalPath @"~/mm.cfg"
 
+#define kUserDefaultsObservationContext 1
+#define kSessionObservationContext 2
+
 @interface LoggerPlugin (Private)
 - (void)_checkMMCfgs;
 - (NSMutableDictionary *)_readMMCfgAtPath:(NSString *)path;
 - (BOOL)_validateMMCfg:(NSMutableDictionary *)settings;
 - (BOOL)_writeMMCfg:(NSDictionary *)settings toPath:(NSString *)path;
 - (void)_cleanupAfterConnection:(ZZConnection *)conn;
-- (void)_handleFlashlogMessage:(AbstractMessage *)msg;
 - (LPSession *)_createNewSession;
+- (void)_destroySession:(LPSession *)session;
 - (LPSession *)_sessionForSwfURL:(NSURL *)swfURL;
 - (LPSession *)_sessionForConnection:(ZZConnection *)conn;
+- (void)_updateWindowLevel:(BOOL)justConnected;
+- (BOOL)_hasActiveSession;
+- (void)_handleMessage:(AbstractMessage *)message fromConnection:(ZZConnection *)connection;
 @end
 
 
@@ -33,10 +39,15 @@
 {
 	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 	[dict setObject:[NSNumber numberWithBool:NO] forKey:kFilteringEnabledKey];
-	[dict setObject:[NSNumber numberWithBool:YES] forKey:@"LPClearMessagesOnConnection"];
 	[dict setObject:[NSNumber numberWithBool:YES] forKey:kShowFlashLogMessages];
-	[dict setObject:[NSNumber numberWithInt:WBMBringToTop] 
-		forKey:@"LPWindowBehaviour"];
+	[dict setObject:[NSNumber numberWithBool:NO] forKey:kKeepAlwaysOnTop];
+	[dict setObject:[NSNumber numberWithInt:kTabBehaviourOneForSameURL] forKey:kTabBehaviour];
+	[dict setObject:[NSNumber numberWithBool:YES] forKey:kReuseTabs];
+	[dict setObject:[NSNumber numberWithInt:WBMBringToTop] forKey:kWindowBehaviour];
+	[dict setObject:[NSNumber numberWithBool:NO] forKey:kKeepWindowOnTopWhileConnected];
+	[dict setObject:[NSNumber numberWithBool:YES] forKey:kClearMessagesOnNewConnection];
+	[dict setObject:[NSNumber numberWithBool:YES] forKey:kAutoSelectNewTab];
+	[dict setObject:[NSNumber numberWithBool:YES] forKey:kShowTextMateLinks];
 	[dict setObject:[NSNumber numberWithBool:NO] forKey:@"LPDebuggingMode"];
 	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:dict];
 }
@@ -80,6 +91,16 @@
 			
 		m_sessions = [[NSMutableArray alloc] init];
 		[self _createNewSession];
+		
+		NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+		[defaults addObserver:self 
+			forKeyPath:[NSString stringWithFormat:@"values.%@", kKeepAlwaysOnTop] 
+			options:0 context:(void *)kUserDefaultsObservationContext];
+		[defaults addObserver:self 
+			forKeyPath:[NSString stringWithFormat:@"values.%@", kKeepWindowOnTopWhileConnected] 
+			options:0 context:(void *)kUserDefaultsObservationContext];
+			
+		[self _updateWindowLevel:NO];
 	}
 	return self;
 }
@@ -104,8 +125,7 @@
 	if (![aDelegate isKindOfClass:[LPSession class]])
 		return;
 	LPSession *session = (LPSession *)aDelegate;
-	[m_sessions removeObject:session];
-	[(ZZConnection *)[session representedObject] disconnect];
+	[self _destroySession:session];
 }
 
 - (void)trazzleDidOpenConnection:(ZZConnection *)conn
@@ -117,22 +137,15 @@
 	[self _cleanupAfterConnection:conn];
 	for (LPSession *session in m_sessions)
 	{
-		if (session.representedObject == conn)
-		{
-			session.isDisconnected = YES;
-			session.representedObject = nil;
-			break;
-		}
+		if ([session containsConnection:conn])
+			[session removeConnection:conn];
 	}
+	[self _updateWindowLevel:NO];
 }
 
 - (void)trazzleDidReceiveSignatureForConnection:(ZZConnection *)conn
 {
 	LPSession *session = [self _sessionForSwfURL:conn.swfURL];
-	session.isDisconnected = NO;
-	session.representedObject = conn;
-	session.sessionName = conn.applicationName;
-	session.swfURL = conn.swfURL;
 	[session addConnection:conn];
 }
 
@@ -159,10 +172,18 @@
 	if (msg.messageType == kLPMessageTypeCommand)
 		NSLog(@"Command message are temporarly disabled!");
 	else
-		[[self _sessionForConnection:conn] handleMessage:msg];
+		[self _handleMessage:msg fromConnection:conn];
 	
 	bailout:
 		[parser release];
+}
+
+- (void)prefPane:(NSViewController **)viewController icon:(NSImage **)icon
+{
+	*viewController = [[[LPPreferencesViewController alloc] initWithNibName:@"Preferences" 
+		bundle:[NSBundle bundleForClass:[self class]]] autorelease];
+	*icon = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] 
+		pathForResource:@"LoggingIcon" ofType:@"png"]] autorelease];
 }
 
 //
@@ -195,26 +216,73 @@
 
 
 #pragma mark -
+#pragma mark Bindings notifications
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object 
+	change:(NSDictionary *)change context:(void *)context
+{
+	if ((int)context == kUserDefaultsObservationContext)
+	{
+		if ([keyPath isEqualToString:[NSString stringWithFormat:@"values.%@", kKeepAlwaysOnTop]] || 
+			[keyPath isEqualToString:[NSString stringWithFormat:@"values.%@", 
+				kKeepWindowOnTopWhileConnected]])
+		{
+			[self _updateWindowLevel:NO];
+		}
+	}
+	else if ((int)context == kSessionObservationContext)
+	{
+		if ([keyPath isEqualToString:@"isReady"])
+		{
+			BOOL autoSelectTab = [[[[NSUserDefaultsController sharedUserDefaultsController] values] 
+				valueForKey:kAutoSelectNewTab] boolValue];
+			if (autoSelectTab)
+				[m_controller selectTabItemWithDelegate:(LPSession *)object];
+		}
+	}
+}
+
+
+
+#pragma mark -
 #pragma mark Private methods
 
 - (LPSession *)_createNewSession
 {
 	LPSession *session = [[LPSession alloc] initWithPlugInController:m_controller];
 	session.delegate = self;
+	[session addObserver:self forKeyPath:@"isReady" options:0 
+		context:(void *)kSessionObservationContext];
 	[m_sessions addObject:session];
 	m_filterController.model = session.filterModel;
 	return [session autorelease];
 }
 
+- (void)_destroySession:(LPSession *)session
+{
+	[session removeObserver:self forKeyPath:@"isReady"];
+	[m_sessions removeObject:session];
+	for (ZZConnection *conn in [session representedObjects])
+		[conn disconnect];
+}
+
 - (LPSession *)_sessionForSwfURL:(NSURL *)swfURL
 {
+	TabBehaviourMode tmode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] 
+		valueForKey:kTabBehaviour] intValue];
+
+	if (tmode == kTabBehaviourOneForAll && [m_sessions count])
+		return [m_sessions objectAtIndex:0];
+
 	for (LPSession *session in m_sessions)
-		if ([session.swfURL isEqual:swfURL] && session.isDisconnected)
+	{
+		if (session.isPristine || 
+			([session.swfURL isEqual:swfURL] && 
+			(session.isDisconnected || tmode == kTabBehaviourOneForSameURL)))
+		{
 			return session;
-	
-	for (LPSession *session in m_sessions)
-		if (session.representedObject == nil && session.swfURL == nil)
-			return session;
+		}
+	}
 	
 	return [self _createNewSession];
 }
@@ -222,9 +290,17 @@
 - (LPSession *)_sessionForConnection:(ZZConnection *)conn
 {
 	for (LPSession *session in m_sessions)
-		if (session.representedObject == conn)
+		if ([session.representedObjects aa_containsPointer:conn])
 			return session;
 	return nil;
+}
+
+- (BOOL)_hasActiveSession
+{
+	for (LPSession *session in m_sessions)
+		if (!session.isDisconnected)
+			return YES;
+	return NO;
 }
 
 - (void)_checkMMCfgs
@@ -335,6 +411,42 @@
 		[session handleMessage:msg];
 }
 
+- (void)_updateWindowLevel:(BOOL)justConnected
+{
+	NSObject *values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+	BOOL keepWindowOnTop = [[values valueForKey:kKeepAlwaysOnTop] boolValue];
+	BOOL keepWindowOnTopWhileConnected = [[values valueForKey:kKeepWindowOnTopWhileConnected] 
+		boolValue];
+		
+	if (keepWindowOnTop || (keepWindowOnTopWhileConnected && [self _hasActiveSession]))
+	{
+		[m_controller setWindowIsFloating:YES];
+		return;
+	}
+	
+	[m_controller setWindowIsFloating:NO];
+	WindowBehaviourMode wmode = [[values valueForKey:kWindowBehaviour] intValue];
+	if (wmode == WBMBringToTop && justConnected)
+		[m_controller bringWindowToTop];
+}
+
+- (void)_handleMessage:(AbstractMessage *)message fromConnection:(ZZConnection *)connection
+{
+	if (connection == nil) // a flashlog message
+	{
+		for (LPSession *session in m_sessions)
+			[session handleMessage:message];
+	}
+	[[self _sessionForConnection:connection] handleMessage:message];
+	
+	NSMutableDictionary *storage = [connection storageForPluginWithName:@"LoggerPlugin"];
+	if ([storage objectForKey:@"HasSentMessage"] == nil)
+	{
+		[storage setObject:[NSNumber numberWithBool:YES] forKey:@"HasSentMessages"];
+		[self _updateWindowLevel:YES];
+	}
+}
+
 
 
 #pragma mark -
@@ -346,8 +458,8 @@
 {
 	NSData *data = [[notification userInfo] valueForKey:NSFileHandleNotificationDataItem];
 	NSString *message = [[NSString alloc] initWithData:data encoding:NSMacOSRomanStringEncoding];
-	[self _handleFlashlogMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
-		message:[message htmlEncodedStringWithConvertedLinebreaks]]];
+	[self _handleMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
+		message:[message htmlEncodedStringWithConvertedLinebreaks]] fromConnection:nil];
 	[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
 	[message release];
 }
@@ -360,7 +472,7 @@
 - (void)loggingService:(LoggingService *)service didReceiveLogMessage:(LogMessage *)message 
 		   fromGateway:(AMFRemoteGateway *)gateway
 {
-	[[self _sessionForConnection:[m_controller connectionForRemote:gateway]] handleMessage:message];
+	[self _handleMessage:message fromConnection:[m_controller connectionForRemote:gateway]];
 }
 
 - (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path withSize:(NSSize)size
@@ -376,7 +488,7 @@
 	AbstractMessage *msg = [[AbstractMessage alloc] init];
 	msg.message = [NSString stringWithFormat:@"<img src='%@' width='%d' height='%d' />", path, 
 				   (int)size.width, (int)size.height];
-	[[self _sessionForConnection:conn] handleMessage:msg];
+	[self _handleMessage:msg fromConnection:conn];
 	[msg release];
 }
 

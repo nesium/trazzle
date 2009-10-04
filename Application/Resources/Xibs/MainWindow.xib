@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4"/>
+			<integer value="3"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -41,7 +41,7 @@
 			<object class="NSWindowTemplate" id="325943115">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 107}, {746, 403}}</string>
+				<string key="NSWindowRect">{{364, 36}, {964, 285}}</string>
 				<int key="NSWTFlags">1946157056</int>
 				<string key="NSWindowTitle">Trazzle</string>
 				<string key="NSWindowClass">ZZWindow</string>
@@ -56,7 +56,7 @@
 						<object class="NSCustomView" id="875610375">
 							<reference key="NSNextResponder" ref="995987926"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{0, 382}, {746, 21}}</string>
+							<string key="NSFrame">{{0, 264}, {964, 21}}</string>
 							<reference key="NSSuperview" ref="995987926"/>
 							<string key="NSClassName">ZZTabBarControl</string>
 							<string key="NSExtension">NSControl</string>
@@ -64,7 +64,7 @@
 						<object class="NSTabView" id="584938495">
 							<reference key="NSNextResponder" ref="995987926"/>
 							<int key="NSvFlags">18</int>
-							<string key="NSFrameSize">{746, 383}</string>
+							<string key="NSFrameSize">{964, 265}</string>
 							<reference key="NSSuperview" ref="995987926"/>
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -73,7 +73,7 @@
 									<object class="NSView" key="NSView" id="61019158">
 										<reference key="NSNextResponder" ref="584938495"/>
 										<int key="NSvFlags">256</int>
-										<string key="NSFrameSize">{746, 383}</string>
+										<string key="NSFrameSize">{964, 265}</string>
 										<reference key="NSSuperview" ref="584938495"/>
 									</object>
 									<string key="NSLabel">Tab</string>
@@ -115,10 +115,10 @@
 							</object>
 						</object>
 					</object>
-					<string key="NSFrameSize">{746, 403}</string>
+					<string key="NSFrameSize">{964, 285}</string>
 					<reference key="NSSuperview"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
 				<string key="NSMinSize">{400, 172}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSFrameAutosaveName">ZZMainWindow</string>
@@ -299,9 +299,9 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{468, 313}, {746, 403}}</string>
+					<string>{{364, 36}, {964, 285}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{468, 313}, {746, 403}}</string>
+					<string>{{364, 36}, {964, 285}}</string>
 					<boolean value="NO"/>
 					<boolean value="YES"/>
 					<string>{400, 150}</string>
@@ -621,6 +621,13 @@
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">FeedbackReporter.framework/Headers/FRFeedbackReporter.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">Foundation.framework/Headers/NSArchiver.h</string>
 					</object>
 				</object>
@@ -762,13 +769,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="21589672">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">PSMTabBarControl.framework/Headers/PSMTabBarControl.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">RegexKit.framework/Headers/NSObject.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

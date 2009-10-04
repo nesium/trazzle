@@ -16,13 +16,14 @@
 #import "MenuService.h"
 #import "LPFilterModel.h"
 #import "ZZConnection.h"
+#import "NSPointerArray+LPAdditions.h"
 
 
 @interface LPSession : NSObject <TrazzleTabViewDelegate>
 {
 	PlugInController *m_controller;
 	id m_tab;
-	id m_representedObject;
+	NSPointerArray *m_representedObjects;
 	id m_delegate;
 	
 	LPMessageModel *m_messageModel;
@@ -35,6 +36,8 @@
 	BOOL m_isReady;
 	BOOL m_isDisconnected;
 	BOOL m_isActive;
+	BOOL m_isPristine;
+	BOOL m_isMixed;
 	
 	NSImage *m_icon;
 }
@@ -43,11 +46,15 @@
 @property (nonatomic, retain) NSURL *swfURL;
 @property (nonatomic, assign) BOOL isReady;
 @property (nonatomic, assign) BOOL isDisconnected;
+@property (nonatomic, assign) BOOL isPristine;
+@property (nonatomic, assign) BOOL isMixed;
 @property (nonatomic, retain) NSImage *icon;
 @property (nonatomic, readonly) LPFilterModel *filterModel;
-@property (nonatomic, assign) id representedObject;
+@property (nonatomic, readonly) NSPointerArray *representedObjects;
 @property (nonatomic, assign) id delegate;
 - (id)initWithPlugInController:(PlugInController *)controller;
 - (void)handleMessage:(AbstractMessage *)msg;
 - (void)addConnection:(ZZConnection *)connection;
+- (void)removeConnection:(ZZConnection *)connection;
+- (BOOL)containsConnection:(ZZConnection *)connection;
 @end

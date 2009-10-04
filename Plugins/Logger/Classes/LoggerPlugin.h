@@ -21,6 +21,7 @@
 #import "ExceptionMessage.h"
 #import "LPSession.h"
 #import "MessageParser.h"
+#import "LPPreferencesViewController.h"
 
 @interface LoggerPlugin : NSObject <TrazzlePlugIn> 
 {

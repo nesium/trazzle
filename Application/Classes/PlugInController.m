@@ -73,6 +73,11 @@ ZZWindowController *m_windowController;
 	return [m_windowController addTabWithIdentifier:ident view:view delegate:delegate];
 }
 
+- (void)selectTabItemWithDelegate:(id<TrazzleTabViewDelegate>)aDelegate
+{
+	[m_windowController selectTabItemWithDelegate:aDelegate];
+}
+
 - (void)addStatusMenuItem:(NSMenuItem *)item
 {
 	[NSObject cancelPreviousPerformRequestsWithTarget:self];

@@ -26,15 +26,29 @@
 
 typedef enum _WindowBehaviourMode
 {
-	WBMBringToTop,
-	WBMKeepOnTopWhileConnected,
-	WBMKeepAlwaysOnTop,
-	WBMDoNothing
+	WBMBringToTop = 1,
+	WBMDoNothing = 2
 } WindowBehaviourMode;
+
+typedef enum _TabBehaviourMode
+{
+	kTabBehaviourOneForAll = 1, 
+	kTabBehaviourOneForSameURL = 2, 
+	kTabBehaviourOneForEach = 3
+} TabBehaviourMode;
 
 #define kLastSelectedFilterKey @"LPLastSelectedFilter"
 #define kFilteringEnabledKey @"LPFilteringEnabled"
 #define kShowFlashLogMessages @"LPShowFlashlogMessages"
+#define kKeepAlwaysOnTop @"LPKeepAlwaysOnTop"
+#define kTabBehaviour @"LPTabBehaviour"
+#define kReuseTabs @"LPReuseTabs"
+#define kWindowBehaviour @"LPWindowBehaviour"
+#define kKeepWindowOnTopWhileConnected @"LPKeepWindowOnTopWhileConnected" 
+#define kClearMessagesOnNewConnection @"LPClearMessagesOnNewConnection"
+#define kAutoSelectNewTab @"LPAutoSelectNewTab"
+#define kShowTextMateLinks @"LPShowTextMateLinks"
+
 #define kFilterFileExtension @"trazzleFilter"
 #define kFilterName @"Name"
 #define kFilterPredicate @"Predicate"

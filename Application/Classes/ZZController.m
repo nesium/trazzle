@@ -25,13 +25,18 @@
 {
 	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 	[dict setObject:[NSNumber numberWithInt:3456] forKey:@"LPServerPort"];
-	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:dict];
+	[dict setObject:[NSNumber numberWithBool:NO] forKey:@"ZZCheckForUpdatesOnStartup"];
+	[dict setObject:[NSDate date] forKey:@"FRFeedbackReporter.lastCrashCheckDate"];
+	[dict setObject:[[[NSBundle mainBundle] infoDictionary] 
+		objectForKey:@"SUFeedURL"] forKey:@"SUFeedURL"];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:dict];
 }
 
 - (id)init
 {
 	if (self = [super init])
 	{
+		[[FRFeedbackReporter sharedReporter] reportIfCrash];
 		// start server
 		m_connectedClients = [[NSMutableArray alloc] init];
 		m_socket = [[AsyncSocket alloc] initWithDelegate:self];
@@ -39,6 +44,7 @@
 		m_gateway.delegate = self;
 		[m_gateway registerService:[[[ZZCoreService alloc] initWithDelegate:self] autorelease] 
 			withName:@"CoreService"];
+		m_prefsWindowController = nil;
 	}
 	return self;
 }
@@ -69,9 +75,55 @@
 	[m_gateway startOnPort:(port + 1) error:&error];
 }
 
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
+{
+	BOOL checkForUpdatesOnStartup = [[[[NSUserDefaultsController sharedUserDefaultsController]
+		values] valueForKey:@"ZZCheckForUpdatesOnStartup"] boolValue];
+	if (checkForUpdatesOnStartup)
+		[[SUUpdater sharedUpdater] checkForUpdatesInBackground];
+}
+
 - (void)showTrazzleWindow:(id)sender
 {
 	[m_windowController showWindow:self];
+}
+
+- (IBAction)showPreferences:(id)sender
+{
+	if (!m_prefsWindowController)
+	{
+		NSWindow *window = [[NSWindow alloc] initWithContentRect:(NSRect){0, 0, 100, 100} 
+			styleMask:(NSTitledWindowMask | NSClosableWindowMask) 
+			backing:NSBackingStoreBuffered defer:YES];
+		
+		m_prefsWindowController = [[AAPreferencesWindowController alloc] initWithWindow:window];
+		m_prefsWindowController.toolbarIdentifier = @"ZZPreferencesToolbar";
+		m_prefsWindowController.windowAutosaveName = @"ZZPreferencesWindowOrigin";
+		
+		for (NSObject<TrazzlePlugIn> *plugin in m_loadedPlugins)
+		{
+			if ([plugin respondsToSelector:@selector(prefPane:icon:)])
+			{
+				NSViewController *viewController = nil;
+				NSImage *icon = nil;
+				[plugin prefPane:&viewController icon:&icon];
+				[m_prefsWindowController addPrefPaneWithController:viewController icon:icon];
+			}
+		}
+		ZZUpdatePreferencesViewController *updatePrefsController = 
+			[[ZZUpdatePreferencesViewController alloc] initWithNibName:@"UpdatePreferences" 
+				bundle:nil];
+		[m_prefsWindowController addPrefPaneWithController:updatePrefsController 
+			icon:[NSImage imageNamed:@"reload.tiff"]];
+		
+		[window release];
+	}
+	[m_prefsWindowController showWindow:self];
+}
+
+- (IBAction)reportFeedback:(id)sender
+{
+	[[FRFeedbackReporter sharedReporter] reportFeedback];
 }
 
 
@@ -130,7 +182,7 @@
 {
 	ZZConnection *client = [[ZZConnection alloc] initWithRemote:remote delegate:self];
 	[m_connectedClients addObject:client];
-	for (NSObject <TrazzlePlugIn> *plugin in m_loadedPlugins)
+	for (NSObject<TrazzlePlugIn> *plugin in m_loadedPlugins)
 	{
 		if ([plugin respondsToSelector:@selector(trazzleDidOpenConnection:)])
 			objc_msgSend(plugin, @selector(trazzleDidOpenConnection:), client);

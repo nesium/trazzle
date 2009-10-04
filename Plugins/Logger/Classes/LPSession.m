@@ -11,6 +11,7 @@
 @interface LPSession (Private)
 - (void)_updateTabTitle;
 - (void)_updateIcon;
+- (void)_updateMixedStatus;
 //- (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client;
 //- (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client;
 @end
@@ -25,8 +26,10 @@
 			swfURL=m_swfURL, 
 			isDisconnected=m_isDisconnected, 
 			icon=m_icon, 
-			representedObject=m_representedObject, 
-			delegate=m_delegate;
+			representedObjects=m_representedObjects, 
+			delegate=m_delegate, 
+			isPristine=m_isPristine, 
+			isMixed=m_isMixed;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -39,7 +42,10 @@
 		
 		m_isReady = NO;
 		m_isActive = NO;
-		m_isDisconnected = NO;
+		m_isPristine = YES;
+		m_isDisconnected = YES;
+		m_isMixed = NO;
+		m_representedObjects = [[NSPointerArray alloc] initWithOptions:NSPointerFunctionsZeroingWeakMemory];
 		
 		m_filterModel = [[LPFilterModel alloc] init];
 		
@@ -76,6 +82,7 @@
 	[m_sessionName release];
 	[m_swfURL release];
 	[m_icon release];
+	[m_representedObjects release];
 	[super dealloc];
 }
 
@@ -86,26 +93,39 @@
 
 - (void)handleMessage:(AbstractMessage *)msg
 {
-	if ([m_messageModel numberOfMessages] == 0)
-		[m_controller bringWindowToTop];
 	[m_messageModel addMessage:msg];
 	[m_loggingViewController sendMessage:msg];
 }
 
 - (void)addConnection:(ZZConnection *)connection
 {
-	[m_messageModel clearAllMessages];
-	[m_loggingViewController clearAllMessages];
+	[m_representedObjects addPointer:connection];
+	[self _updateMixedStatus];
+	self.isDisconnected = NO;
+	self.isPristine = NO;
+	self.sessionName = connection.applicationName;
+	self.swfURL = connection.swfURL;
+	[self _updateTabTitle];
+	
+	BOOL clearMessagesOnNewConnection = [[[[NSUserDefaultsController sharedUserDefaultsController] 
+		values] valueForKey:kClearMessagesOnNewConnection] boolValue];
+	if (clearMessagesOnNewConnection)
+	{
+		[m_messageModel clearAllMessages];
+		[m_loggingViewController clearAllMessages];
+	}
 }
 
-- (void)setSessionName:(NSString *)aName
+- (void)removeConnection:(ZZConnection *)connection
 {
-	[self willChangeValueForKey:@"sessionName"];
-	[aName retain];
-	[m_sessionName release];
-	m_sessionName = aName;
-	[self didChangeValueForKey:@"sessionName"];
-	[self _updateTabTitle];
+	[m_representedObjects aa_removePointer:connection];
+	self.isDisconnected = [m_representedObjects count] == 0;
+	[self _updateMixedStatus];
+}
+
+- (BOOL)containsConnection:(ZZConnection *)connection
+{
+	return [m_representedObjects aa_containsPointer:connection];
 }
 
 - (void)setIsDisconnected:(BOOL)bFlag
@@ -180,13 +200,14 @@
 
 - (void)_updateTabTitle
 {
-	self.tabTitle = [NSString stringWithFormat:@"%@%@", m_sessionName, 
+	NSString *sessionName = m_isMixed ? @"Mixed Session" : m_sessionName;
+	self.tabTitle = [NSString stringWithFormat:@"%@%@", sessionName, 
 		m_filterModel.filteringIsEnabled ? @"*" : @""];
 }
 
 - (void)_updateIcon
 {
-	if (!m_isDisconnected)
+	if (!m_isDisconnected || m_isPristine)
 		self.icon = nil;
 	else
 	{
@@ -197,6 +218,25 @@
 		self.icon = image;
 		[image release];
 	}
+}
+
+- (void)_updateMixedStatus
+{
+	if ([m_representedObjects count] == 0)
+	{
+		self.isMixed = NO;
+		return;
+	}
+	NSURL *baseURL = [(ZZConnection *)[m_representedObjects pointerAtIndex:0] swfURL];
+	for (int i = 1; i < [m_representedObjects count]; i++)
+	{
+		if (![[(ZZConnection *)[m_representedObjects pointerAtIndex:i] swfURL] isEqual:baseURL])
+		{
+			self.isMixed = YES;
+			return;
+		}
+	}
+	self.isMixed = NO;
 }
 
 

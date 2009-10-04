@@ -71,5 +71,9 @@
 	<string>ZZApplication</string>
 	<key>SUFeedURL</key>
 	<string>http://www.nesium.com/appcast/trazzle/</string>
+	<key>SUEnableSystemProfiling</key>
+	<true/>
+	<key>FRFeedbackReporter.targetURL</key>
+	<string>http://www.nesium.com/feedback/%@</string>
 </dict>
 </plist>

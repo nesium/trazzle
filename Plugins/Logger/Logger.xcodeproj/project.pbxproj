@@ -11,6 +11,7 @@
 		2C0422090F3E72B700726781 /* NumericPredicateTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0422080F3E72B700726781 /* NumericPredicateTemplate.m */; };
 		2C04220C0F3E72C400726781 /* PredicateEditorDarkBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C04220A0F3E72C400726781 /* PredicateEditorDarkBackground.m */; };
 		2C04220F0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C04220E0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.m */; };
+		2C10A92C10750D8D00EAED60 /* LoggingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10A92B10750D8D00EAED60 /* LoggingIcon.png */; };
 		2C159B340F3EF67A00321454 /* SelectedFilterToIconTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */; };
 		2C19E0B60EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0B20EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m */; };
 		2C19E0B70EBE7C5200B9BA96 /* MGScopeBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0B40EBE7C5200B9BA96 /* MGScopeBar.m */; };
@@ -36,6 +37,7 @@
 		2C65AE400F328A90005D7A61 /* theme.html in Resources */ = {isa = PBXBuildFile; fileRef = 2C65AE3A0F328A90005D7A61 /* theme.html */; };
 		2C65AE7C0F328C26005D7A61 /* LogWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAFC0EABB501003EE952 /* LogWindow.xib */; };
 		2C65AE7D0F328C2A005D7A61 /* FilterEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAEA0EABB42B003EE952 /* FilterEditor.xib */; };
+		2C69201D1072677000D20740 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C69201C1072677000D20740 /* Preferences.xib */; };
 		2C6A61D910358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C6A61D810358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png */; };
 		2C78D87110406EB20064CACC /* LPFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C78D87010406EB20064CACC /* LPFilterModel.m */; };
 		2C96976B103F085100297687 /* LPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96976A103F085100297687 /* LPSession.m */; };
@@ -46,6 +48,9 @@
 		2CDA11761041E1EF008338CF /* tab_off_icon_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11741041E1EF008338CF /* tab_off_icon_disconnected.png */; };
 		2CE3247F0F61CE2C004BB7CF /* CocoaCryptoHashing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */; };
 		2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE3248C0F61CF1F004BB7CF /* libssl.dylib */; };
+		2CEEFE8F1073B69A003B3734 /* LPPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEEFE8E1073B69A003B3734 /* LPPreferencesViewController.m */; };
+		2CEEFE951073B862003B3734 /* Advanced Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2CEEFE941073B862003B3734 /* Advanced Preferences.tiff */; };
+		2CEEFF491073F30C003B3734 /* NSPointerArray+LPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEEFF481073F30C003B3734 /* NSPointerArray+LPAdditions.m */; };
 		2CF0B361105C4773000222E7 /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0B354105C4773000222E7 /* AbstractMessage.m */; };
 		2CF0B362105C4773000222E7 /* CommandMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0B356105C4773000222E7 /* CommandMessage.m */; };
 		2CF0B363105C4773000222E7 /* ConnectionSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0B358105C4773000222E7 /* ConnectionSignature.m */; };
@@ -82,6 +87,7 @@
 		2C04220B0F3E72C400726781 /* PredicateEditorDarkBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredicateEditorDarkBackground.h; sourceTree = "<group>"; };
 		2C04220D0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVerticallyCenteredTextFieldCell.h; sourceTree = "<group>"; };
 		2C04220E0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVerticallyCenteredTextFieldCell.m; sourceTree = "<group>"; };
+		2C10A92B10750D8D00EAED60 /* LoggingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoggingIcon.png; sourceTree = "<group>"; };
 		2C159B320F3EF67A00321454 /* SelectedFilterToIconTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedFilterToIconTransformer.h; sourceTree = "<group>"; };
 		2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedFilterToIconTransformer.m; sourceTree = "<group>"; };
 		2C19E0B10EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGRecessedPopUpButtonCell.h; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 		2C65AE380F328A90005D7A61 /* functions.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = functions.js; sourceTree = "<group>"; };
 		2C65AE390F328A90005D7A61 /* output.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = output.css; sourceTree = "<group>"; };
 		2C65AE3A0F328A90005D7A61 /* theme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = theme.html; sourceTree = "<group>"; };
+		2C69201C1072677000D20740 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		2C6A61D810358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarSearchFieldDeleteButtonAlternate.png; sourceTree = "<group>"; };
 		2C78D86F10406EB20064CACC /* LPFilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFilterModel.h; sourceTree = "<group>"; };
 		2C78D87010406EB20064CACC /* LPFilterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilterModel.m; sourceTree = "<group>"; };
@@ -143,6 +150,11 @@
 		2CE324790F61CE2C004BB7CF /* CocoaCryptoHashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaCryptoHashing.h; sourceTree = "<group>"; };
 		2CE3247A0F61CE2C004BB7CF /* CocoaCryptoHashing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaCryptoHashing.m; sourceTree = "<group>"; };
 		2CE3248C0F61CF1F004BB7CF /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		2CEEFE8D1073B69A003B3734 /* LPPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPPreferencesViewController.h; sourceTree = "<group>"; };
+		2CEEFE8E1073B69A003B3734 /* LPPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPPreferencesViewController.m; sourceTree = "<group>"; };
+		2CEEFE941073B862003B3734 /* Advanced Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Advanced Preferences.tiff"; sourceTree = "<group>"; };
+		2CEEFF471073F30C003B3734 /* NSPointerArray+LPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPointerArray+LPAdditions.h"; sourceTree = "<group>"; };
+		2CEEFF481073F30C003B3734 /* NSPointerArray+LPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPointerArray+LPAdditions.m"; sourceTree = "<group>"; };
 		2CF0B353105C4773000222E7 /* AbstractMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage.h; sourceTree = "<group>"; };
 		2CF0B354105C4773000222E7 /* AbstractMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMessage.m; sourceTree = "<group>"; };
 		2CF0B355105C4773000222E7 /* CommandMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMessage.h; sourceTree = "<group>"; };
@@ -249,6 +261,7 @@
 				2C5582560F33D6A80011B31A /* LPMessageModel.m */,
 				2CFEDA401034A274004375AE /* LoggingView */,
 				2CBFEF770F3E4F6200AA982D /* FilterWindow */,
+				2CEEFE8C1073B672003B3734 /* Preferences */,
 				49E48A5E0F6181F70034B384 /* AMF Services */,
 				2CF0B348105C476A000222E7 /* Messages */,
 				49472F310F614C450049A188 /* utils */,
@@ -325,6 +338,7 @@
 			children = (
 				2C4CCAFC0EABB501003EE952 /* LogWindow.xib */,
 				2C4CCAEA0EABB42B003EE952 /* FilterEditor.xib */,
+				2C69201C1072677000D20740 /* Preferences.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -332,6 +346,8 @@
 		2C4CCAEB0EABB42B003EE952 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2C10A92B10750D8D00EAED60 /* LoggingIcon.png */,
+				2CEEFE941073B862003B3734 /* Advanced Preferences.tiff */,
 				2CFEDBC21034D20C004375AE /* SearchBarSearchFieldDeleteButton.png */,
 				2C6A61D810358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png */,
 				2CFEDB1F1034C44D004375AE /* SearchBarSearchFieldBackground.png */,
@@ -443,6 +459,15 @@
 			path = CocoaCryptoHashing;
 			sourceTree = "<group>";
 		};
+		2CEEFE8C1073B672003B3734 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				2CEEFE8D1073B69A003B3734 /* LPPreferencesViewController.h */,
+				2CEEFE8E1073B69A003B3734 /* LPPreferencesViewController.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
 		2CF0B348105C476A000222E7 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,6 +524,8 @@
 			children = (
 				496AF0690F321D070049FB23 /* NSString+LPStringAdditions.h */,
 				496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */,
+				2CEEFF471073F30C003B3734 /* NSPointerArray+LPAdditions.h */,
+				2CEEFF481073F30C003B3734 /* NSPointerArray+LPAdditions.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -605,6 +632,9 @@
 				2C6A61D910358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png in Resources */,
 				2CDA11751041E1EF008338CF /* tab_on_icon_disconnected.png in Resources */,
 				2CDA11761041E1EF008338CF /* tab_off_icon_disconnected.png in Resources */,
+				2C69201D1072677000D20740 /* Preferences.xib in Resources */,
+				2CEEFE951073B862003B3734 /* Advanced Preferences.tiff in Resources */,
+				2C10A92C10750D8D00EAED60 /* LoggingIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +703,8 @@
 				2CF0B366105C4773000222E7 /* MessageParser.m in Sources */,
 				2CF0B367105C4773000222E7 /* StackTraceItem.m in Sources */,
 				2CA62C98107118B600ECCE70 /* LPExistingFilesCache.m in Sources */,
+				2CEEFE8F1073B69A003B3734 /* LPPreferencesViewController.m in Sources */,
+				2CEEFF491073F30C003B3734 /* NSPointerArray+LPAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +788,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (

@@ -29,6 +29,7 @@
 	delegate:(id <TrazzleTabViewDelegate>)delegate;
 - (void)bringWindowToTop;
 - (void)setWindowIsFloating:(BOOL)bFlag;
+- (void)selectTabItemWithDelegate:(id<TrazzleTabViewDelegate>)aDelegate;
 @end
 
 @interface NSObject (ZZWindowControllerDelegate)

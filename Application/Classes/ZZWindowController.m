@@ -132,6 +132,14 @@
 	[[self window] setLevel:(bFlag ? NSFloatingWindowLevel : NSNormalWindowLevel)];
 }
 
+- (void)selectTabItemWithDelegate:(id<TrazzleTabViewDelegate>)aDelegate
+{
+	NSUInteger index = [m_delegates indexOfObject:aDelegate];
+	if (index == NSNotFound)
+		return;
+	[m_tabView selectTabViewItemAtIndex:index];
+}
+
 
 
 #pragma mark -

@@ -288,7 +288,8 @@
 
 - (BOOL)textMateLinksEnabled
 {
-	return YES;
+	return [[[[NSUserDefaultsController sharedUserDefaultsController] values] 
+		valueForKey:kShowTextMateLinks] boolValue];
 }
 
 
