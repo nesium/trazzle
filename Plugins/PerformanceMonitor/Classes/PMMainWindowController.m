@@ -63,12 +63,15 @@
 	
 	CAAnimation *winAlphaAnim = [CABasicAnimation animation];
     [winAlphaAnim setDelegate:self];
-    [self.window setAnimations:[NSDictionary dictionaryWithObject:winAlphaAnim forKey:@"alphaValue"]];
 	
 	CAAnimation *winFrameAnim = [CABasicAnimation animation];
 	[winFrameAnim setDelegate:self];
 	[winFrameAnim setValue:@"window" forKey:@"name"];
-	[self.window setAnimations:[NSDictionary dictionaryWithObject:winFrameAnim forKey:@"frame"]];
+	
+	[self.window setAnimations:[NSDictionary dictionaryWithObjectsAndKeys:
+		winFrameAnim, @"frame", 
+		winAlphaAnim, @"alphaValue", 
+		nil]];
 	
 	CAAnimation *documentViewFrameAnim = [CABasicAnimation animation];
 	[documentViewFrameAnim setDelegate:self];
