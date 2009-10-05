@@ -55,6 +55,7 @@
 		2CF0B37B105C5BAD000222E7 /* ZZCoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0B37A105C5BAD000222E7 /* ZZCoreService.m */; };
 		2CF39FE30CF8E23600A1B9A9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */; };
 		2CF39FF60CF8E5CA00A1B9A9 /* ZZController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */; };
+		2CF4FB0C107981D8003BA6B3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 2CF4FB0B107981D8003BA6B3 /* dsa_pub.pem */; };
 		496AF03B0F320B3B0049FB23 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF0380F320B3B0049FB23 /* Sparkle.framework */; };
 		496AF03C0F320B3B0049FB23 /* PSMTabBarControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF0390F320B3B0049FB23 /* PSMTabBarControl.framework */; };
 		496AF0400F320B4E0049FB23 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 496AF0380F320B3B0049FB23 /* Sparkle.framework */; };
@@ -242,6 +243,7 @@
 		2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		2CF39FF40CF8E5CA00A1B9A9 /* ZZController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZController.h; sourceTree = "<group>"; };
 		2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZController.m; sourceTree = "<group>"; };
+		2CF4FB0B107981D8003BA6B3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/dsa_pub.pem; sourceTree = "<group>"; };
 		2CFA54E30D6B8D5F00F5DFE5 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32DBCF750370BD2300C91783 /* Trazzle_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trazzle_Prefix.pch; sourceTree = "<group>"; };
 		496AF0380F320B3B0049FB23 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2CF4FB0B107981D8003BA6B3 /* dsa_pub.pem */,
 				2C7D43F51077920D00EB4725 /* FRFeedbackReporter.sh */,
 				2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */,
 				2C03583A0D1C568C007C1A48 /* Images */,
@@ -672,6 +675,7 @@
 				2CDA11281041DBDE008338CF /* tabbar_close_on_up.png in Resources */,
 				2C10A89A1074E26700EAED60 /* UpdatePreferences.xib in Resources */,
 				2C7D43F61077920D00EB4725 /* FRFeedbackReporter.sh in Resources */,
+				2CF4FB0C107981D8003BA6B3 /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

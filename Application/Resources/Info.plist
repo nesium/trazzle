@@ -73,6 +73,10 @@
 	<string>http://www.nesium.com/appcast/trazzle/</string>
 	<key>SUEnableSystemProfiling</key>
 	<true/>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
+	<key>SUExpectsDSASignature</key>
+	<true/>
 	<key>FRFeedbackReporter.targetURL</key>
 	<string>http://www.nesium.com/feedback/%@</string>
 </dict>
