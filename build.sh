@@ -64,7 +64,7 @@ else
  
 	# make the zip file
 	cd $final_builds
-	zip -r $project_$tag.zip $project.app
+	zip -r "${project}_${tag}.zip" $project.app
 	rm -rf $project.app
 	
 	#cd $final_builds
