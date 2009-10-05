@@ -66,7 +66,8 @@
 	m_connectionParams = params;
 	
 	[m_swfURL release];
-	m_swfURL = [[self _normalizeSWFURL:[m_connectionParams objectForKey:@"swfURL"]] retain];
+	m_swfURL = [[self _normalizeSWFURL:[NSURL URLWithString:
+		[m_connectionParams objectForKey:@"swfURL"]]] retain];
 	
 	if ([m_delegate respondsToSelector:@selector(connectionDidReceiveConnectionSignature:)])
 		[m_delegate connectionDidReceiveConnectionSignature:self];
