@@ -59,6 +59,7 @@ else
 	#ok, let's index the documentation if we've got it.
 	#/Developer/Applications/Utilities/Help\ Indexer.app/Contents/MacOS/Help\ Indexer "/tmp/buildapp/build/Release/BuildApp.app/Contents/Resources/English.lproj/BuildAppHelp"
  
+	mv $build_folder/Release/$project.app $final_builds
 	#mv $build_folder/Release/$project.app $diskimage_folder
  
 	# make the zip file
