@@ -90,6 +90,8 @@
 	CGColorRef color = CGColorCreateGenericGray(0.6, 1.0);
 	m_noSessionTextLayer.foregroundColor = color;
 	CGColorRelease(color);
+	
+	[self.window setLevel:NSNormalWindowLevel];
 }
 
 - (IBAction)showWindow:(id)sender

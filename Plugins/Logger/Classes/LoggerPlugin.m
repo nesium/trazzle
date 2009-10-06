@@ -99,7 +99,8 @@
 		[defaults addObserver:self 
 			forKeyPath:[NSString stringWithFormat:@"values.%@", kKeepWindowOnTopWhileConnected] 
 			options:0 context:(void *)kUserDefaultsObservationContext];
-			
+		
+		// apply window preferences, like "keep trazzle always on top"
 		[self _updateWindowLevel:NO];
 	}
 	return self;
@@ -165,7 +166,7 @@
 		ConnectionSignature *sig = (ConnectionSignature *)msg;
 		[conn setConnectionParams:[NSDictionary dictionaryWithObjectsAndKeys:
 			sig.applicationName, @"applicationName", 
-			[NSURL URLWithString:sig.swfURL], @"swfURL", nil]];
+			sig.swfURL, @"swfURL", nil]];
 		goto bailout;
 	}
 	
@@ -437,14 +438,17 @@
 		for (LPSession *session in m_sessions)
 			[session handleMessage:message];
 	}
-	[[self _sessionForConnection:connection] handleMessage:message];
-	
-	NSMutableDictionary *storage = [connection storageForPluginWithName:@"LoggerPlugin"];
-	if ([storage objectForKey:@"HasSentMessage"] == nil)
+	else
 	{
-		[storage setObject:[NSNumber numberWithBool:YES] forKey:@"HasSentMessages"];
-		[self _updateWindowLevel:YES];
+		// we don't want to bring the window to front for flashlog messages
+		NSMutableDictionary *storage = [connection storageForPluginWithName:@"LoggerPlugin"];
+		if ([storage objectForKey:@"HasSentMessages"] == nil)
+		{
+			[storage setObject:[NSNumber numberWithBool:YES] forKey:@"HasSentMessages"];
+			[self _updateWindowLevel:YES];
+		}	
 	}
+	[[self _sessionForConnection:connection] handleMessage:message];
 }
 
 
