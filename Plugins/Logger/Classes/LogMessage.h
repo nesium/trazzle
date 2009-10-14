@@ -18,9 +18,9 @@
 	BOOL encodeHTML;
 	NSArray *stacktrace;
 	NSTimeInterval connectionTimestamp;
+	BOOL fileExists;
 	
 	BOOL m_didLookupFile;
-	BOOL m_fileExists;
 }
 
 @property (nonatomic, retain) NSString *levelName;
@@ -29,7 +29,5 @@
 @property (nonatomic, assign) BOOL encodeHTML;
 @property (nonatomic, assign) NSTimeInterval connectionTimestamp;
 @property (nonatomic, readonly) BOOL fileExists;
-
 - (NSString *)formattedTimestamp;
-
 @end

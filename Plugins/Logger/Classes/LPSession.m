@@ -12,8 +12,6 @@
 - (void)_updateTabTitle;
 - (void)_updateIcon;
 - (void)_updateMixedStatus;
-//- (void)_handleMessage:(AbstractMessage *)msg fromClient:(LoggingClient *)client;
-//- (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client;
 @end
 
 
@@ -107,13 +105,21 @@
 	self.swfURL = connection.swfURL;
 	[self _updateTabTitle];
 	
-	BOOL clearMessagesOnNewConnection = [[[[NSUserDefaultsController sharedUserDefaultsController] 
-		values] valueForKey:kClearMessagesOnNewConnection] boolValue];
-	if (clearMessagesOnNewConnection)
+	NSObject *defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
+	BOOL clearMessagesOnNewConnection = 
+		[[defaults valueForKey:kClearMessagesOnNewConnection] boolValue];
+	BOOL clearFlashLogMessagesOnNewConnection = 
+		[[defaults valueForKey:kClearFlashLogMessagesOnNewConnection] boolValue];
+	
+	if (clearMessagesOnNewConnection && clearFlashLogMessagesOnNewConnection)
 	{
 		[m_messageModel clearAllMessages];
 		[m_loggingViewController clearAllMessages];
 	}
+	else if (clearMessagesOnNewConnection)
+		[m_messageModel clearLogMessages];
+	else if ( clearFlashLogMessagesOnNewConnection)
+		[m_messageModel clearFlashLogMessages];
 }
 
 - (void)removeConnection:(ZZConnection *)connection
@@ -245,9 +251,9 @@
 #pragma mark LoggingViewController delegate methods
 
 - (AbstractMessage *)loggingViewController:(LoggingViewController *)controller 
-	messageAtIndex:(uint32_t)index
+	messageWithIndex:(uint32_t)index
 {
-	return [m_messageModel messageAtIndex:index];
+	return [m_messageModel messageWithIndex:index];
 }
 
 - (void)loggingViewControllerWebViewIsReady:(LoggingViewController *)controller
@@ -268,6 +274,11 @@
 - (void)messageModel:(LPMessageModel *)model didShowMessagesWithIndexes:(NSArray *)indexes
 {
 	[m_loggingViewController showMessagesWithIndexes:indexes];
+}
+
+- (void)messageModel:(LPMessageModel *)model didRemoveMessagesWithIndexes:(NSArray *)indexes
+{
+	[m_loggingViewController removeMessagesWithIndexes:indexes];
 }
 
 @end

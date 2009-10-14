@@ -46,6 +46,7 @@ typedef enum _TabBehaviourMode
 #define kWindowBehaviour @"LPWindowBehaviour"
 #define kKeepWindowOnTopWhileConnected @"LPKeepWindowOnTopWhileConnected" 
 #define kClearMessagesOnNewConnection @"LPClearMessagesOnNewConnection"
+#define kClearFlashLogMessagesOnNewConnection @"LPClearFlashLogMessagesOnNewConnection" 
 #define kAutoSelectNewTab @"LPAutoSelectNewTab"
 #define kShowTextMateLinks @"LPShowTextMateLinks"
 

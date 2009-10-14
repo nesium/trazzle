@@ -86,6 +86,13 @@
 		withArguments:[NSArray arrayWithObject:indexes]];
 }
 
+- (void)removeMessagesWithIndexes:(NSArray *)indexes
+{
+	WebScriptObject *window = [m_webView windowScriptObject];
+	[window callWebScriptMethod:@"removeMessagesWithIndexes" 
+		withArguments:[NSArray arrayWithObject:indexes]];
+}
+
 - (void)clearAllMessages
 {
 	[m_buffer removeAllObjects];
@@ -272,11 +279,11 @@
 #pragma mark -
 #pragma mark WebScriptObject methods
 
-- (AbstractMessage *)messageAtIndex:(NSNumber *)index
+- (AbstractMessage *)messageWithIndex:(NSNumber *)index
 {
-	if ([m_delegate respondsToSelector:@selector(loggingViewController:messageAtIndex:)])
+	if ([m_delegate respondsToSelector:@selector(loggingViewController:messageWithIndex:)])
 	{
-		return [m_delegate loggingViewController:self messageAtIndex:[index intValue]];
+		return [m_delegate loggingViewController:self messageWithIndex:[index intValue]];
 	}
 	return nil;
 }
@@ -299,15 +306,15 @@
 
 + (BOOL)isSelectorExcludedFromWebScript:(SEL)sel
 {
-	return !(sel == @selector(messageAtIndex:) || sel == @selector(log:) || 
+	return !(sel == @selector(messageWithIndex:) || sel == @selector(log:) || 
 		sel == @selector(textMateLinksEnabled));
 }
 
 + (NSString *)webScriptNameForSelector:(SEL)sel
 {
-	if (sel == @selector(messageAtIndex:))
+	if (sel == @selector(messageWithIndex:))
 	{
-		return @"messageAtIndex";
+		return @"messageWithIndex";
 	}
 	else if (sel == @selector(log:))
 	{

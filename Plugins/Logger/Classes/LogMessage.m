@@ -78,10 +78,10 @@ static NSArray *kLPLogLevels;
 {
 	if (!m_didLookupFile)
 	{
-		m_fileExists = [[LPExistingFilesCache sharedCache] fileExistsAtPath:file];
+		fileExists = [[LPExistingFilesCache sharedCache] fileExistsAtPath:file];
 		m_didLookupFile = YES;
 	}
-	return m_fileExists;
+	return fileExists;
 }
 
 

@@ -36,12 +36,13 @@
 - (void)sendMessages:(NSArray *)messages;
 - (void)hideMessagesWithIndexes:(NSArray *)indexes;
 - (void)showMessagesWithIndexes:(NSArray *)indexes;
+- (void)removeMessagesWithIndexes:(NSArray *)indexes;
 - (void)clearAllMessages;
 @end
 
 
 @interface NSObject (LoggingViewControllerDelegate)
 - (AbstractMessage *)loggingViewController:(LoggingViewController *)controller 
-	messageAtIndex:(uint32_t)index;
+	messageWithIndex:(uint32_t)index;
 - (void)loggingViewControllerWebViewIsReady:(LoggingViewController *)controller;
 @end

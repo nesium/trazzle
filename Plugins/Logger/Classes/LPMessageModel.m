@@ -14,6 +14,7 @@
 	forMessage:(AbstractMessage *)message;
 - (BOOL)_expression:(NSExpression *)expression isApplicableToMessage:(AbstractMessage *)message;
 - (BOOL)_evaluateMessage:(AbstractMessage *)message;
+- (void)_clearMessagesWithType:(LPMessageType)type;
 @end
 
 
@@ -31,6 +32,7 @@
 	if (self = [super init])
 	{
 		m_messages = [[NSMutableArray alloc] init];
+		m_messageIndex = 0;
 	}
 	return self;
 }
@@ -63,22 +65,32 @@
 - (void)addMessage:(AbstractMessage *)message
 {
 	message.visible = [self _evaluateMessage:message];
-	message.index = [m_messages count];
+	message.index = m_messageIndex++;
 	[m_messages addObject:message];
 }
 
-- (AbstractMessage *)messageAtIndex:(uint32_t)index
+- (AbstractMessage *)messageWithIndex:(uint32_t)index
 {
-	if (index > [m_messages count])
-	{
-		return nil;
-	}
-	return [m_messages objectAtIndex:index];
+	for (AbstractMessage *msg in m_messages)
+		if (msg.index == index)
+			return msg;
+	return nil;
 }
 
 - (void)clearAllMessages
 {
 	[m_messages removeAllObjects];
+	m_messageIndex = 0;
+}
+
+- (void)clearFlashLogMessages
+{
+	[self _clearMessagesWithType:kLPMessageTypeFlashLog];
+}
+
+- (void)clearLogMessages
+{
+	[self _clearMessagesWithType:kLPMessageTypeSocket];
 }
 
 - (NSUInteger)numberOfMessages
@@ -200,6 +212,25 @@
 	
 	NSPredicate *predicate = [self _applicablePredicate:m_filter.predicate forMessage:message];
 	return (predicate == nil) ? YES : [predicate evaluateWithObject:message];
+}
+
+- (void)_clearMessagesWithType:(LPMessageType)type
+{
+	NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
+	NSMutableArray *indexesArray = [NSMutableArray array];
+	uint32_t count = [m_messages count];
+	for (uint32_t i = 0; i < count; i++)
+	{
+		AbstractMessage *msg = [m_messages objectAtIndex:i];
+		if (msg.messageType == type)
+		{
+			[indexes addIndex:i];
+			[indexesArray addObject:[NSNumber numberWithInt:i]];
+		}
+	}
+	[m_messages removeObjectsAtIndexes:indexes];
+	if ([m_delegate respondsToSelector:@selector(messageModel:didRemoveMessagesWithIndexes:)])
+		[m_delegate messageModel:self didRemoveMessagesWithIndexes:indexesArray];
 }
 
 

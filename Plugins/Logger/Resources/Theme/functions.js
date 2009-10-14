@@ -142,6 +142,17 @@ function hideMessagesWithIndexes(indexes)
 	if (shouldScroll) scrollToBottom();
 }
 
+function removeMessagesWithIndexes(indexes)
+{
+	var shouldScroll = scrollThumbIsAtBottom();
+	var i = indexes.length;
+	while (i--)
+	{
+		logList.removeChild(logList.childNodes[indexes[i]]);
+	}
+	if (shouldScroll) scrollToBottom();
+}
+
 function clearAllMessages()
 {
 	var i = logList.childNodes.length;
@@ -170,7 +181,7 @@ function toggleStacktrace(id)
 	}
 
 	var addTextmateLinks = window.TrazzleBridge.textMateLinksEnabled();
-	var message = window.TrazzleBridge.messageAtIndex(id);
+	var message = window.TrazzleBridge.messageWithIndex(id);
 	var html = '<ul class="stacktrace">';
 	for (i = 0; i < message.stacktrace.length; i++)
 	{

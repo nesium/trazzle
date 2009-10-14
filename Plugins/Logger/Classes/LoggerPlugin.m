@@ -46,6 +46,7 @@
 	[dict setObject:[NSNumber numberWithInt:WBMBringToTop] forKey:kWindowBehaviour];
 	[dict setObject:[NSNumber numberWithBool:NO] forKey:kKeepWindowOnTopWhileConnected];
 	[dict setObject:[NSNumber numberWithBool:YES] forKey:kClearMessagesOnNewConnection];
+	[dict setObject:[NSNumber numberWithBool:YES] forKey:kClearFlashLogMessagesOnNewConnection];
 	[dict setObject:[NSNumber numberWithBool:YES] forKey:kAutoSelectNewTab];
 	[dict setObject:[NSNumber numberWithBool:YES] forKey:kShowTextMateLinks];
 	[dict setObject:[NSNumber numberWithBool:NO] forKey:@"LPDebuggingMode"];
@@ -406,12 +407,6 @@
 		[fm removeItemAtPath:imagePath error:nil];
 }
 
-- (void)_handleFlashlogMessage:(AbstractMessage *)msg
-{
-	for (LPSession *session in m_sessions)
-		[session handleMessage:msg];
-}
-
 - (void)_updateWindowLevel:(BOOL)justConnected
 {
 	NSObject *values = [[NSUserDefaultsController sharedUserDefaultsController] values];
@@ -490,6 +485,7 @@
 	[(NSMutableArray *)[dict objectForKey:@"LoggedImages"] addObject:path];
 	
 	AbstractMessage *msg = [[AbstractMessage alloc] init];
+	msg.messageType = kLPMessageTypeSocket;
 	msg.message = [NSString stringWithFormat:@"<img src='%@' width='%d' height='%d' />", path, 
 				   (int)size.width, (int)size.height];
 	[self _handleMessage:msg fromConnection:conn];
