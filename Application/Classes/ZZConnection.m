@@ -78,6 +78,13 @@
 	return [m_connectionParams objectForKey:@"applicationName"];
 }
 
+- (void)sendString:(NSString *)msg
+{
+	if (!m_isLegacyConnection) return;
+	NSData *data = [[msg stringByAppendingString:@"\0"] dataUsingEncoding:NSUTF8StringEncoding];
+	[(AsyncSocket *)m_remote writeData:data withTimeout:-1 tag:0];
+}
+
 - (void)disconnect
 {
 	if ([m_remote isMemberOfClass:[AsyncSocket class]])
@@ -94,12 +101,6 @@
 - (void)_continueReading
 {
 	[(AsyncSocket *)m_remote readDataToData:[AsyncSocket ZeroData] withTimeout:-1 tag:0];	
-}
-
-- (void)_sendString:(NSString *)msg
-{
-	NSData *data = [[msg stringByAppendingString:@"\0"] dataUsingEncoding:NSUTF8StringEncoding];
-	[(AsyncSocket *)m_remote writeData:data withTimeout:-1 tag:0];
 }
 
 - (NSURL *)_normalizeSWFURL:(NSURL *)url
@@ -164,7 +165,7 @@
 	NSString *message = [NSString stringWithUTF8String:[data bytes]];
 	if ([message isEqualToString:@"<policy-file-request/>"])
 	{
-		[self _sendString:@"<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\"/>\
+		[self sendString:@"<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\"/>\
 </cross-domain-policy>\0"];
 		return;
 	}
@@ -180,17 +181,4 @@
 	if ([m_delegate respondsToSelector:@selector(connectionDidDisconnect:)])
 		[m_delegate connectionDidDisconnect:self];
 }
-
-
-
-//#pragma mark -
-//#pragma mark FileMonitor Delegate methods
-//
-//- (void)fileMonitor:(FileMonitor *)fm fileDidChangeAtPath:(NSString *)path
-//{
-//	[self performSelectorOnMainThread:@selector(_sendString:) 
-//		withObject:[NSString stringWithFormat:@"<event type=\"fileChange\" path=\"%@\"/>", path] 
-//		waitUntilDone:NO];
-//}
-
 @end

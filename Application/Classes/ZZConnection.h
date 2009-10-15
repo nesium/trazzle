@@ -27,6 +27,7 @@
 - (id)initWithRemote:(id)remote delegate:(id)delegate;
 - (void)setConnectionParams:(NSDictionary *)params;
 - (NSMutableDictionary *)storageForPluginWithName:(NSString *)name;
+- (void)sendString:(NSString *)msg; // works only with legacy connections
 - (void)disconnect;
 @end
 

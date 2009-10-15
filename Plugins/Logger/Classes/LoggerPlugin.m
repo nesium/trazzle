@@ -66,6 +66,8 @@
 			autorelease] withName:@"LoggingService"];
 		[aController.sharedGateway registerService:[[[MenuService alloc] initWithDelegate:self] 
 			autorelease] withName:@"MenuService"];
+		[aController.sharedGateway registerService:[[[FileObservingService alloc] 
+			initWithDelegate:self] autorelease] withName:@"FileObservingService"];
 		
 		// tail flashlog
 		m_tailTask = [[NSTask alloc] init];
@@ -446,6 +448,29 @@
 	[[self _sessionForConnection:connection] handleMessage:message];
 }
 
+- (void)_notifyConnectionsAboutChangedFile:(NSString *)path
+{
+	for (ZZConnection *conn in m_controller.connectedClients)
+	{
+		NSMutableDictionary *storage = [conn storageForPluginWithName:@"LoggerPlugin"];
+		NSMutableSet *observedPaths = [storage objectForKey:@"ObservedPaths"];
+		if ([observedPaths containsObject:path])
+		{
+			if (conn.isLegacyConnection)
+			{
+				[conn sendString:[NSString stringWithFormat:
+					@"<event type=\"fileChange\" path=\"%@\"/>", path]];
+			}
+			else
+			{
+				AMFRemoteGateway *gateway = conn.remote;
+				[gateway invokeRemoteService:@"FileObservingService" methodName:@"fileDidChange" 
+					arguments:path, nil];
+			}
+		}
+	}
+}
+
 
 
 #pragma mark -
@@ -516,6 +541,47 @@
 	[dict setObject:item forKey:@"MenuItem"];
 	[m_controller addStatusMenuItem:item];
 	[item release];
+}
+
+
+
+#pragma mark -
+#pragma mark FileObservingService Delegate methods
+
+- (void)fileObservingService:(FileObservingService *)service 
+	didReceiveObservingMessageForPath:(NSString *)aPath 
+	shouldStopObserving:(BOOL)shouldStop 
+	fromGateway:(AMFRemoteGateway *)gateway
+{
+	ZZConnection *conn = [m_controller connectionForRemote:gateway];
+	NSMutableDictionary *storage = [conn storageForPluginWithName:@"LoggerPlugin"];
+	NSMutableSet *observedPaths = [storage objectForKey:@"ObservedPaths"];
+	if (shouldStop)
+	{
+		[observedPaths removeObject:aPath];
+		[[FileMonitor sharedMonitor] removeObserver:self forFileAtPath:aPath];
+	}
+	else
+	{
+		if (!observedPaths)
+		{
+			observedPaths = [NSMutableSet set];
+			[storage setObject:observedPaths forKey:@"ObservedPaths"];
+		}
+		[observedPaths addObject:aPath];
+		[[FileMonitor sharedMonitor] addObserver:self forFileAtPath:aPath];
+	}
+}
+
+
+
+#pragma mark -
+#pragma mark FileObserver Protocol methods
+
+- (void)fileMonitor:(FileMonitor *)fm fileDidChangeAtPath:(NSString *)path
+{
+	[self performSelectorOnMainThread:@selector(_notifyConnectionsAboutChangedFile:) 
+		withObject:path waitUntilDone:NO];
 }
 
 

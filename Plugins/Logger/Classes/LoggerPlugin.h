@@ -22,8 +22,10 @@
 #import "LPSession.h"
 #import "MessageParser.h"
 #import "LPPreferencesViewController.h"
+#import "FileObservingService.h"
+#import "FileMonitor.h"
 
-@interface LoggerPlugin : NSObject <TrazzlePlugIn> 
+@interface LoggerPlugin : NSObject <TrazzlePlugIn, FileObserver>
 {
 	PlugInController *m_controller;
 	

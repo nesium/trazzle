@@ -116,13 +116,10 @@ static FileMonitor *g_sharedInstance;
 
 - (void)watcher_fileDidChangeNotification:(NSNotification *)notification
 {
+	NSLog(@"watcher_fileDidChangeNotification %@", notification);
 	NSString *path = [[notification userInfo] objectForKey:@"path"];
-	NSEnumerator *observerList = [(NSSet *)[m_observers objectForKey:path] objectEnumerator];
-	id <FileObserver> observer;
-	while (observer = [observerList nextObject])
-	{
-		[observer fileMonitor:self fileDidChangeAtPath:path];
-	}
+	id <FileObserver> observer = [(NSSet *)[m_observers objectForKey:path] anyObject];
+	[observer fileMonitor:self fileDidChangeAtPath:path];
 }
 
 @end

@@ -15,6 +15,7 @@
 		2C159B340F3EF67A00321454 /* SelectedFilterToIconTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */; };
 		2C19E0B60EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0B20EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m */; };
 		2C19E0B70EBE7C5200B9BA96 /* MGScopeBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0B40EBE7C5200B9BA96 /* MGScopeBar.m */; };
+		2C4960D61087B759007BAC58 /* FileObservingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4960D51087B759007BAC58 /* FileObservingService.m */; };
 		2C4CCA960EABA5FC003EE952 /* LoggerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CCA950EABA5FC003EE952 /* LoggerPlugin.m */; };
 		2C4CCAF10EABB42B003EE952 /* ButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAEC0EABB42B003EE952 /* ButtonBackground.png */; };
 		2C4CCAF20EABB42B003EE952 /* ButtonBackgroundRightCap.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAED0EABB42B003EE952 /* ButtonBackgroundRightCap.png */; };
@@ -94,6 +95,8 @@
 		2C19E0B30EBE7C5200B9BA96 /* MGScopeBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGScopeBar.h; sourceTree = "<group>"; };
 		2C19E0B40EBE7C5200B9BA96 /* MGScopeBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGScopeBar.m; sourceTree = "<group>"; };
 		2C19E0B50EBE7C5200B9BA96 /* MGScopeBarDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGScopeBarDelegateProtocol.h; sourceTree = "<group>"; };
+		2C4960D41087B759007BAC58 /* FileObservingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileObservingService.h; sourceTree = "<group>"; };
+		2C4960D51087B759007BAC58 /* FileObservingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileObservingService.m; sourceTree = "<group>"; };
 		2C4CCA940EABA5FC003EE952 /* LoggerPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerPlugin.h; sourceTree = "<group>"; };
 		2C4CCA950EABA5FC003EE952 /* LoggerPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerPlugin.m; sourceTree = "<group>"; };
 		2C4CCAEA0EABB42B003EE952 /* FilterEditor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterEditor.xib; sourceTree = "<group>"; };
@@ -524,6 +527,8 @@
 				49E48A600F6182130034B384 /* LoggingService.m */,
 				2CF126DE10389B3F00F526AB /* MenuService.h */,
 				2CF126DF10389B4000F526AB /* MenuService.m */,
+				2C4960D41087B759007BAC58 /* FileObservingService.h */,
+				2C4960D51087B759007BAC58 /* FileObservingService.m */,
 			);
 			name = "AMF Services";
 			sourceTree = "<group>";
@@ -691,6 +696,7 @@
 				2CA62C98107118B600ECCE70 /* LPExistingFilesCache.m in Sources */,
 				2CEEFE8F1073B69A003B3734 /* LPPreferencesViewController.m in Sources */,
 				2CEEFF491073F30C003B3734 /* NSPointerArray+LPAdditions.m in Sources */,
+				2C4960D61087B759007BAC58 /* FileObservingService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
