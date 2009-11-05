@@ -52,6 +52,7 @@
 @property (nonatomic, readonly) LPFilterModel *filterModel;
 @property (nonatomic, readonly) NSPointerArray *representedObjects;
 @property (nonatomic, assign) id delegate;
+@property (nonatomic, readonly) NSTimeInterval lastLogMessageTimestamp;
 - (id)initWithPlugInController:(PlugInController *)controller;
 - (void)handleMessage:(AbstractMessage *)msg;
 - (void)addConnection:(ZZConnection *)connection;

@@ -33,6 +33,7 @@
 	
 	NSTask *m_tailTask;
 	NSPipe *m_logPipe;
+	BOOL m_autoSelectTab;
 
 	LPFilterController *m_filterController;
 }

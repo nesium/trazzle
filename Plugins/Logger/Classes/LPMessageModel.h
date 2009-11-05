@@ -18,10 +18,12 @@
 	NSMutableArray *m_messages;
 	BOOL m_showsFlashLogMessages;
 	uint32_t m_messageIndex;
+	NSTimeInterval m_lastLogMessageTimestamp;
 }
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, retain) LPFilter *filter;
 @property (nonatomic, assign) BOOL showsFlashLogMessages;
+@property (readonly) NSTimeInterval lastLogMessageTimestamp;
 - (void)addMessage:(AbstractMessage *)message;
 - (AbstractMessage *)messageWithIndex:(uint32_t)index;
 - (void)clearAllMessages;

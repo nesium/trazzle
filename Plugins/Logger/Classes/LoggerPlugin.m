@@ -103,6 +103,13 @@
 			forKeyPath:[NSString stringWithFormat:@"values.%@", kKeepWindowOnTopWhileConnected] 
 			options:0 context:(void *)kUserDefaultsObservationContext];
 		
+		// we cache this preference, since the flag is checked on every incoming message
+		// (see _handleMessage:fromConnection:)
+		m_autoSelectTab = [[[defaults values] valueForKey:kAutoSelectNewTab] boolValue];
+		[defaults addObserver:self 
+			forKeyPath:[NSString stringWithFormat:@"values.%@", kAutoSelectNewTab] 
+			options:0 context:(void *)kUserDefaultsObservationContext];
+		
 		// apply window preferences, like "keep trazzle always on top"
 		[self _updateWindowLevel:NO];
 	}
@@ -223,21 +230,19 @@
 #pragma mark Bindings notifications
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object 
-	change:(NSDictionary *)change context:(void *)context
-{
-	if ((int)context == kUserDefaultsObservationContext)
-	{
+	change:(NSDictionary *)change context:(void *)context{
+	if ((int)context == kUserDefaultsObservationContext){
 		if ([keyPath isEqualToString:[NSString stringWithFormat:@"values.%@", kKeepAlwaysOnTop]] || 
 			[keyPath isEqualToString:[NSString stringWithFormat:@"values.%@", 
-				kKeepWindowOnTopWhileConnected]])
-		{
+				kKeepWindowOnTopWhileConnected]]){
 			[self _updateWindowLevel:NO];
+		}else if ([keyPath isEqualToString:[NSString stringWithFormat:@"values.%@", 
+			kAutoSelectNewTab]]){
+			m_autoSelectTab = [[[[NSUserDefaultsController sharedUserDefaultsController] values] 
+				valueForKey:kAutoSelectNewTab] boolValue];
 		}
-	}
-	else if ((int)context == kSessionObservationContext)
-	{
-		if ([keyPath isEqualToString:@"isReady"])
-		{
+	}else if ((int)context == kSessionObservationContext){
+		if ([keyPath isEqualToString:@"isReady"]){
 			BOOL autoSelectTab = [[[[NSUserDefaultsController sharedUserDefaultsController] values] 
 				valueForKey:kAutoSelectNewTab] boolValue];
 			if (autoSelectTab)
@@ -284,6 +289,9 @@
 			([session.swfURL isEqual:swfURL] && 
 			(session.isDisconnected || tmode == kTabBehaviourOneForSameURL)))
 		{
+			if (m_autoSelectTab){
+				[m_controller selectTabItemWithDelegate:session];
+			}
 			return session;
 		}
 	}
@@ -428,41 +436,48 @@
 		[m_controller bringWindowToTop];
 }
 
-- (void)_handleMessage:(AbstractMessage *)message fromConnection:(ZZConnection *)connection
-{
-	if (connection == nil) // a flashlog message
-	{
+- (void)_handleMessage:(AbstractMessage *)message fromConnection:(ZZConnection *)connection{
+	// a flashlog message
+	if (connection == nil){
 		for (LPSession *session in m_sessions)
 			[session handleMessage:message];
-	}
-	else
-	{
-		// we don't want to bring the window to front for flashlog messages
+	}else{
+		LPSession *session = [self _sessionForConnection:connection];
+		[session handleMessage:message];
+		// bring window to front for non flashlog messages and only if it hasn't been brought 
+		// to front by this connection
 		NSMutableDictionary *storage = [connection storageForPluginWithName:@"LoggerPlugin"];
-		if ([storage objectForKey:@"HasSentMessages"] == nil)
-		{
+		if ([storage objectForKey:@"HasSentMessages"] == nil){
 			[storage setObject:[NSNumber numberWithBool:YES] forKey:@"HasSentMessages"];
 			[self _updateWindowLevel:YES];
-		}	
+		}
+		// if the targeted session is not the active tab, we try to make it active if the 
+		// currently selected tab contains either a inactive session or hasn't received messages 
+		// for at least 10 seconds (to prevent nervous flipping between tabs)
+		// if the active tab delegate is not an instance of LPSession, we do nothing
+		id activeTabDelegate = [m_controller selectedTabDelegate];
+		if (session != activeTabDelegate && m_autoSelectTab){
+			NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
+			if ([activeTabDelegate isMemberOfClass:[LPSession class]]){
+				LPSession *activeSession = (LPSession *)activeTabDelegate;
+				if (activeSession.isReady && (activeSession.isDisconnected || 
+					currentTime - activeSession.lastLogMessageTimestamp >= 10.0)){
+					[m_controller selectTabItemWithDelegate:session];
+				}
+			}
+		}
 	}
-	[[self _sessionForConnection:connection] handleMessage:message];
 }
 
-- (void)_notifyConnectionsAboutChangedFile:(NSString *)path
-{
-	for (ZZConnection *conn in m_controller.connectedClients)
-	{
+- (void)_notifyConnectionsAboutChangedFile:(NSString *)path{
+	for (ZZConnection *conn in m_controller.connectedClients){
 		NSMutableDictionary *storage = [conn storageForPluginWithName:@"LoggerPlugin"];
 		NSMutableSet *observedPaths = [storage objectForKey:@"ObservedPaths"];
-		if ([observedPaths containsObject:path])
-		{
-			if (conn.isLegacyConnection)
-			{
+		if ([observedPaths containsObject:path]){
+			if (conn.isLegacyConnection){
 				[conn sendString:[NSString stringWithFormat:
 					@"<event type=\"fileChange\" path=\"%@\"/>", path]];
-			}
-			else
-			{
+			}else{
 				AMFRemoteGateway *gateway = conn.remote;
 				[gateway invokeRemoteService:@"FileObservingService" methodName:@"fileDidChange" 
 					arguments:path, nil];

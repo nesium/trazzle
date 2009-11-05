@@ -22,6 +22,7 @@
 	BOOL m_windowIsReady;
 	BOOL m_windowWasVisible;
 	NSTabViewItem *m_lastSelectedTabViewItem;
+	id m_selectedTabDelegate;
 }
 - (id)initWithWindowNibName:(NSString *)windowNibName delegate:(id)delegate;
 
@@ -30,6 +31,7 @@
 - (void)bringWindowToTop;
 - (void)setWindowIsFloating:(BOOL)bFlag;
 - (void)selectTabItemWithDelegate:(id<TrazzleTabViewDelegate>)aDelegate;
+- (id)selectedTabDelegate;
 @end
 
 @interface NSObject (ZZWindowControllerDelegate)

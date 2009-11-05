@@ -22,7 +22,8 @@
 
 @synthesize delegate=m_delegate, 
 			filter=m_filter, 
-			showsFlashLogMessages=m_showsFlashLogMessages;
+			showsFlashLogMessages=m_showsFlashLogMessages, 
+			lastLogMessageTimestamp=m_lastLogMessageTimestamp;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -64,6 +65,11 @@
 
 - (void)addMessage:(AbstractMessage *)message
 {
+	// record timestamp of last message actively sent from flash
+	if (message.messageType != kLPMessageTypeFlashLog && 
+		message.messageType != kLPMessageTypeException){
+		m_lastLogMessageTimestamp = [NSDate timeIntervalSinceReferenceDate];
+	}
 	message.visible = [self _evaluateMessage:message];
 	message.index = m_messageIndex++;
 	[m_messages addObject:message];

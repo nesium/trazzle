@@ -35,6 +35,7 @@
 		m_windowIsReady = NO;
 		m_windowWasVisible = NO;
 		m_lastSelectedTabViewItem = nil;
+		m_selectedTabDelegate = nil;
 		[self window];
 	}
 	return self;
@@ -140,6 +141,10 @@
 	[m_tabView selectTabViewItemAtIndex:index];
 }
 
+- (id)selectedTabDelegate{
+	return m_selectedTabDelegate;
+}
+
 
 
 #pragma mark -
@@ -201,6 +206,7 @@
 	if ([(NSObject *)delegate respondsToSelector:@selector(didBecomeActive)])
 		objc_msgSend(delegate, @selector(didBecomeActive));
 	m_lastSelectedTabViewItem = tabViewItem;
+	m_selectedTabDelegate = delegate;
 	if ([m_delegate respondsToSelector:@selector(windowController:didSelectTabViewDelegate:)])
 		[m_delegate windowController:self didSelectTabViewDelegate:delegate];
 }

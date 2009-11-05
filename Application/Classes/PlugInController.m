@@ -78,6 +78,10 @@ ZZWindowController *m_windowController;
 	[m_windowController selectTabItemWithDelegate:aDelegate];
 }
 
+- (id)selectedTabDelegate{
+	return [m_windowController selectedTabDelegate];
+}
+
 - (void)addStatusMenuItem:(NSMenuItem *)item
 {
 	[NSObject cancelPreviousPerformRequestsWithTarget:self];

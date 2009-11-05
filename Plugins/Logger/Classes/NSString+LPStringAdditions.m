@@ -27,7 +27,6 @@
 		options:NSLiteralSearch range:NSMakeRange(0, [escapedString length])];
 	[escapedString replaceOccurrencesOfString:@"\t" withString:@"&nbsp;&nbsp;&nbsp;&nbsp;" 
 		options:NSLiteralSearch range:NSMakeRange(0, [escapedString length])];
-	NSLog(@"%@", escapedString);
 	return escapedString;
 }
 

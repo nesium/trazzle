@@ -141,6 +141,10 @@
 	[self _updateIcon];
 }
 
+- (NSTimeInterval)lastLogMessageTimestamp{
+	return [m_messageModel lastLogMessageTimestamp];
+}
+
 
 
 #pragma mark -

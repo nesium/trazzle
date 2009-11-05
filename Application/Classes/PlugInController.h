@@ -32,6 +32,7 @@
 - (id)addTabWithIdentifier:(id)ident view:(NSView *)view 
 	delegate:(id <TrazzleTabViewDelegate>)delegate;
 - (void)selectTabItemWithDelegate:(id<TrazzleTabViewDelegate>)aDelegate;
+- (id)selectedTabDelegate;
 - (void)addStatusMenuItem:(NSMenuItem *)item;
 - (void)removeStatusMenuItem:(NSMenuItem *)item;
 - (ZZConnection *)connectionForRemote:(id)remote;
