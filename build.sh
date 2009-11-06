@@ -40,7 +40,6 @@ if [ -d $build_folder ]; then
 fi
 
 cd $code_folder
- 
 git pull origin master
 git fetch --tags
 git checkout $tag
