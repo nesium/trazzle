@@ -10,8 +10,7 @@
 #import "AMFDuplexGateway.h"
 
 
-@interface ZZCoreService : NSObject
-{
+@interface ZZCoreService : NSObject{
 	id m_delegate;
 }
 @end

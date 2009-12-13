@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "TrazzlePlugIn.h"
+#import "ZZTrazzlePlugIn.h"
 #import "LPMessageModel.h"
 #import "LoggingViewController.h"
 #import "AMFDuplexGateway.h"
@@ -21,7 +21,7 @@
 
 @interface LPSession : NSObject <TrazzleTabViewDelegate>
 {
-	PlugInController *m_controller;
+	ZZPlugInController *m_controller;
 	id m_tab;
 	NSPointerArray *m_representedObjects;
 	id m_delegate;
@@ -53,7 +53,7 @@
 @property (nonatomic, readonly) NSPointerArray *representedObjects;
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, readonly) NSTimeInterval lastLogMessageTimestamp;
-- (id)initWithPlugInController:(PlugInController *)controller;
+- (id)initWithPlugInController:(ZZPlugInController *)controller;
 - (void)handleMessage:(AbstractMessage *)msg;
 - (void)addConnection:(ZZConnection *)connection;
 - (void)removeConnection:(ZZConnection *)connection;

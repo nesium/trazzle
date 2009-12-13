@@ -16,15 +16,11 @@
 @end
 
 
-@interface FileMonitor : NSObject 
-{
+@interface FileMonitor : NSObject{
 	NSMutableDictionary *m_observers;
 }
-
 + (FileMonitor *)sharedMonitor;
-
 - (void)addObserver:(id <FileObserver>)observer forFileAtPath:(NSString *)path;
 - (void)removeObserver:(id <FileObserver>)observer forFileAtPath:(NSString *)path;
 - (void)removeObserver:(id <FileObserver>)observer;
-
 @end

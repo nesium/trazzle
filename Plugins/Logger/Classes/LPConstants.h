@@ -24,14 +24,12 @@
 
 #define kEventStatusItemClicked @"statusItemClicked"
 
-typedef enum _WindowBehaviourMode
-{
+typedef enum _WindowBehaviourMode{
 	WBMBringToTop = 1,
 	WBMDoNothing = 2
 } WindowBehaviourMode;
 
-typedef enum _TabBehaviourMode
-{
+typedef enum _TabBehaviourMode{
 	kTabBehaviourOneForAll = 1, 
 	kTabBehaviourOneForSameURL = 2, 
 	kTabBehaviourOneForEach = 3

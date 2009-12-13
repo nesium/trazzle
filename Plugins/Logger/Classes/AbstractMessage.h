@@ -7,10 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Constants.h"
+#import "LPConstants.h"
 
-typedef enum _LPMessageType
-{
+typedef enum _LPMessageType{
 	kLPMessageTypeSystem = 0,
 	kLPMessageTypeFlashLog = 1,
 	kLPMessageTypeCommand = 2,
@@ -18,11 +17,11 @@ typedef enum _LPMessageType
 	kLPMessageTypePolicyRequest = 4,
 	kLPMessageTypeStackTrace = 5,
 	kLPMessageTypeConnectionSignature = 6,
-	kLPMessageTypeException = 7
+	kLPMessageTypeException = 7, 
+	kLPMessageTypeBitmap = 8
 } LPMessageType;
 
-@interface AbstractMessage : NSObject
-{
+@interface AbstractMessage : NSObject{
 	uint32_t index;
 	NSString *message;
 	NSTimeInterval timestamp;

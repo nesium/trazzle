@@ -10,9 +10,6 @@
 #import <objc/objc-runtime.h>
 
 
-@interface PredicateEditorDarkBackground : NSPredicateEditor
-{
-
+@interface PredicateEditorDarkBackground : NSPredicateEditor{
 }
-
 @end

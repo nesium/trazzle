@@ -10,8 +10,7 @@
 #import "AbstractMessage.h"
 
 
-@interface StackTraceItem : AbstractMessage
-{
+@interface StackTraceItem : AbstractMessage{
 	NSString *fullClassName;
 	NSString *shortClassName;
 	NSString *method;

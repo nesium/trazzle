@@ -10,8 +10,7 @@
 #import "LPFilter.h"
 
 
-@interface LPFilterModel : NSObject
-{
+@interface LPFilterModel : NSObject{
 	LPFilter *m_activeFilter;
 	BOOL m_filteringIsEnabled;
 	BOOL m_showsFlashLogMessages;

@@ -11,17 +11,14 @@
 
 @implementation ZZCoreService
 
-- (id)initWithDelegate:(id)delegate
-{
-	if (self = [super init])
-	{
+- (id)initWithDelegate:(id)delegate{
+	if (self = [super init]){
 		m_delegate = delegate;
 	}
 	return self;
 }
 
-- (oneway void)gateway:(AMFRemoteGateway *)gateway setConnectionParams:(NSDictionary *)params
-{
+- (oneway void)gateway:(AMFRemoteGateway *)gateway setConnectionParams:(NSDictionary *)params{
 	if ([m_delegate respondsToSelector:@selector(coreService:didReceiveConnectionParams:fromGateway:)])
 		[m_delegate coreService:self didReceiveConnectionParams:params fromGateway:gateway];
 }

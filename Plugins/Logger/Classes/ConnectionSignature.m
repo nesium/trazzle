@@ -13,22 +13,18 @@
 
 @synthesize startTime, language, swfURL, applicationName;
 
-- (id)init
-{
-	if (self = [super init])
-	{
+- (id)init{
+	if (self = [super init]){
 		messageType = kLPMessageTypeConnectionSignature;
 	}
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[language release];
 	[startTime release];
 	[swfURL release];
 	[applicationName release];
 	[super dealloc];
 }
-
 @end

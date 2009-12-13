@@ -10,8 +10,7 @@
 #import "AbstractMessage.h"
 
 
-@interface ConnectionSignature : AbstractMessage 
-{
+@interface ConnectionSignature : AbstractMessage{
 	NSNumber *startTime;
 	NSString *language;
 	NSString *swfURL;

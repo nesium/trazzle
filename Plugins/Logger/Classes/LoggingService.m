@@ -11,28 +11,23 @@
 
 @implementation LoggingService
 
-- (id)initWithDelegate:(id)delegate
-{
-	if (self = [super init])
-	{
+- (id)initWithDelegate:(id)delegate{
+	if (self = [super init]){
 		m_delegate = delegate;
 	}
 	return self;
 }
 
-- (oneway void)gateway:(AMFRemoteGateway *)gateway log:(FlashLogMessage *)logMessage
-{
+- (oneway void)gateway:(AMFRemoteGateway *)gateway log:(FlashLogMessage *)logMessage{
 	LogMessage *message = [[LogMessage alloc] init];
 	message.message = logMessage.message;
 	message.levelName = logMessage.levelName;
 	message.timestamp = logMessage.timestamp;
 	message.encodeHTML = logMessage.encodeHTML;
 	
-	if ([logMessage.stacktrace isKindOfClass:[NSString class]])
-	{
+	if ([logMessage.stacktrace isKindOfClass:[NSString class]]){
 		NSArray *stacktrace = [StackTraceParser parseAS3StackTrace:logMessage.stacktrace];
-		if (logMessage.stackIndex >= 0 && logMessage.stackIndex < [stacktrace count])
-		{
+		if (logMessage.stackIndex >= 0 && logMessage.stackIndex < [stacktrace count]){
 			StackTraceItem *item = [stacktrace objectAtIndex:logMessage.stackIndex];
 			message.fullClassName = item.fullClassName;
 			message.method = item.method;
@@ -43,7 +38,7 @@
 			NSLog(@"warning! stacktrace index is out of bounds");
 		
 		stacktrace = [stacktrace subarrayWithRange:NSMakeRange(logMessage.stackIndex + 1, 
-															   [stacktrace count] - logMessage.stackIndex - 1)];
+			[stacktrace count] - logMessage.stackIndex - 1)];
 		
 		if ([stacktrace	count])
 			[message setStacktrace:stacktrace];		
@@ -56,8 +51,7 @@
 }
 
 - (oneway void)gateway:(AMFRemoteGateway *)gateway logPNG:(NSData *)pngData width:(NSNumber *)width
-	height:(NSNumber *)height
-{
+	height:(NSNumber *)height{
 	NSString *filename = [NSString stringWithFormat:@"/tmp/trazzle_%@.png", [NSObject uuid]];
 	NSError *error;
 	[pngData writeToFile:filename options:0 error:&error];
@@ -68,14 +62,12 @@
 }
 
 - (oneway void)gateway:(AMFRemoteGateway *)gateway addI18NKey:(NSString *)key 
-	toFile:(NSString *)path
-{
+	toFile:(NSString *)path{
 	NSStringEncoding encoding;
 	path = [path stringByExpandingTildeInPath];
 	NSString *fileData = [NSString stringWithContentsOfFile:path usedEncoding:&encoding error:nil];
 	NSMutableArray *lines = [NSMutableArray array];
-	if (fileData != nil)
-	{
+	if (fileData != nil){
 		[lines addObjectsFromArray:[fileData componentsSeparatedByString:@"\n"]];
 		if ([lines containsObject:key]) return;
 	}
@@ -84,7 +76,6 @@
 	[[lines componentsJoinedByString:@"\n"] writeToFile:path atomically:NO encoding:encoding 
 		error:nil];
 }
-
 @end
 
 
@@ -93,18 +84,15 @@
 
 @synthesize message, encodeHTML, stacktrace, levelName, timestamp, stackIndex;
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[message release];
 	[stacktrace release];
 	[levelName release];
 	[super dealloc];
 }
 
-- (id)initWithCoder:(NSCoder *)coder
-{
-	if (self = [super init])
-	{
+- (id)initWithCoder:(NSCoder *)coder{
+	if (self = [super init]){
 		self.message = [coder decodeObjectForKey:@"message"];
 		self.encodeHTML = [coder decodeBoolForKey:@"encodeHTML"];
 		self.stacktrace = [coder decodeObjectForKey:@"stacktrace"];
@@ -115,8 +103,7 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)coder
-{
+- (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:message forKey:@"message"];
 	[coder encodeBool:encodeHTML forKey:@"encodeHTML"];
 	[coder encodeObject:stacktrace forKey:@"stacktrace"];

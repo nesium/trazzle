@@ -10,8 +10,7 @@
 #import "LogMessage.h"
 
 
-@interface ExceptionMessage : LogMessage 
-{
+@interface ExceptionMessage : LogMessage{
 	NSString *errorType;
 	uint32_t errorNumber;
 }

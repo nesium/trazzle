@@ -28,18 +28,15 @@
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)init
-{
-	if (self = [super init])
-	{
+- (id)init{
+	if (self = [super init]){
 		m_messages = [[NSMutableArray alloc] init];
 		m_messageIndex = 0;
 	}
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[m_messages release];
 	[super dealloc];
 }
@@ -49,12 +46,10 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)setFilter:(LPFilter *)filter
-{
+- (void)setFilter:(LPFilter *)filter{
 	if (m_filter == filter)
-	{
 		return;
-	}
+	
 	[filter retain];
 	if (m_filter) [m_filter removeObserver:self forKeyPath:@"predicate"];
 	[m_filter release];
@@ -63,8 +58,7 @@
 	[self _validateMessages];
 }
 
-- (void)addMessage:(AbstractMessage *)message
-{
+- (void)addMessage:(AbstractMessage *)message{
 	// record timestamp of last message actively sent from flash
 	if (message.messageType != kLPMessageTypeFlashLog && 
 		message.messageType != kLPMessageTypeException){
@@ -75,37 +69,31 @@
 	[m_messages addObject:message];
 }
 
-- (AbstractMessage *)messageWithIndex:(uint32_t)index
-{
+- (AbstractMessage *)messageWithIndex:(uint32_t)index{
 	for (AbstractMessage *msg in m_messages)
 		if (msg.index == index)
 			return msg;
 	return nil;
 }
 
-- (void)clearAllMessages
-{
+- (void)clearAllMessages{
 	[m_messages removeAllObjects];
 	m_messageIndex = 0;
 }
 
-- (void)clearFlashLogMessages
-{
+- (void)clearFlashLogMessages{
 	[self _clearMessagesWithType:kLPMessageTypeFlashLog];
 }
 
-- (void)clearLogMessages
-{
+- (void)clearLogMessages{
 	[self _clearMessagesWithType:kLPMessageTypeSocket];
 }
 
-- (NSUInteger)numberOfMessages
-{
+- (NSUInteger)numberOfMessages{
 	return [m_messages count];
 }
 
-- (void)setShowsFlashLogMessages:(BOOL)bFlag
-{
+- (void)setShowsFlashLogMessages:(BOOL)bFlag{
 	if (m_showsFlashLogMessages == bFlag) return;
 	m_showsFlashLogMessages = bFlag;
 	[self _validateMessages];
@@ -116,18 +104,15 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (void)_validateMessages
-{
+- (void)_validateMessages{
 	NSMutableArray *invisibleMessagesDelta = [[NSMutableArray alloc] init];
 	NSMutableArray *visibleMessagesDelta = [[NSMutableArray alloc] init];
 	uint32_t i = 0;
-	for (AbstractMessage *message in m_messages)
-	{
+	for (AbstractMessage *message in m_messages){
 		BOOL messageWasVisible = message.visible;
 		BOOL messageShouldBeVisible = [self _evaluateMessage:message];
 		
-		if (messageWasVisible != messageShouldBeVisible)
-		{
+		if (messageWasVisible != messageShouldBeVisible){
 			message.visible = messageShouldBeVisible;
 			if (messageShouldBeVisible) [visibleMessagesDelta addObject:[NSNumber numberWithInt:i]];
 			else [invisibleMessagesDelta addObject:[NSNumber numberWithInt:i]];
@@ -136,14 +121,12 @@
 	}
 	
 	if ([invisibleMessagesDelta count] > 0 && 
-		[m_delegate respondsToSelector:@selector(messageModel:didHideMessagesWithIndexes:)])
-	{
+		[m_delegate respondsToSelector:@selector(messageModel:didHideMessagesWithIndexes:)]){
 		[m_delegate messageModel:self didHideMessagesWithIndexes:invisibleMessagesDelta];
 	}
 	
 	if ([visibleMessagesDelta count] > 0 && 
-		[m_delegate respondsToSelector:@selector(messageModel:didShowMessagesWithIndexes:)])
-	{
+		[m_delegate respondsToSelector:@selector(messageModel:didShowMessagesWithIndexes:)]){
 		[m_delegate messageModel:self didShowMessagesWithIndexes:visibleMessagesDelta];
 	}
 	
@@ -152,65 +135,49 @@
 }
 
 - (NSPredicate *)_applicablePredicate:(NSPredicate *)sourcePredicate 
-	forMessage:(AbstractMessage *)message
-{
+	forMessage:(AbstractMessage *)message{
 	if (sourcePredicate == nil)
-	{
 		return nil;
-	}
-	else if ([sourcePredicate isKindOfClass:[NSCompoundPredicate class]])
-	{
+	else if ([sourcePredicate isKindOfClass:[NSCompoundPredicate class]]){
 		NSCompoundPredicate *comp = (NSCompoundPredicate *)sourcePredicate;
 		NSMutableArray *applicableSubPredicates = [NSMutableArray array];
 		BOOL needsTransform = NO;
-		for (NSPredicate *subpredicate in [comp subpredicates])
-		{
-			if ([subpredicate isKindOfClass:[NSCompoundPredicate class]])
-			{
+		for (NSPredicate *subpredicate in [comp subpredicates]){
+			if ([subpredicate isKindOfClass:[NSCompoundPredicate class]]){
 				NSCompoundPredicate *applicableCompoundPredicate = 
 					(NSCompoundPredicate *)[self _applicablePredicate:subpredicate forMessage:message];
-				if (applicableCompoundPredicate != nil)
-				{
+				if (applicableCompoundPredicate != nil){
 					[applicableSubPredicates addObject:applicableCompoundPredicate];
 					needsTransform = needsTransform || (applicableCompoundPredicate != subpredicate);
 				}
 				else needsTransform = YES;
-			}
-			else if ([subpredicate isKindOfClass:[NSComparisonPredicate class]])
-			{
+			}else if ([subpredicate isKindOfClass:[NSComparisonPredicate class]]){
 				NSComparisonPredicate *compa = (NSComparisonPredicate *)subpredicate;
 				if ([self _expression:[compa leftExpression] isApplicableToMessage:message])
 					[applicableSubPredicates addObject:compa];
 				else needsTransform = YES;
-			}
-			else
-			{
+			}else
 				NSLog(@"WARNING! Encountered unknown (sub)predicate type!");
-			}
 		}
 		if (!needsTransform) return sourcePredicate;
 		return [[[NSCompoundPredicate alloc] initWithType:[comp compoundPredicateType] 
 			subpredicates:applicableSubPredicates] autorelease];
 	}
-	else if ([sourcePredicate isKindOfClass:[NSComparisonPredicate class]])
-	{
+	else if ([sourcePredicate isKindOfClass:[NSComparisonPredicate class]]){
 		return [self _expression:[(NSComparisonPredicate *)sourcePredicate leftExpression] 
 			isApplicableToMessage:message] ? sourcePredicate : nil;
 	}
-	else
-	{
+	else{
 		NSLog(@"WARNING! Encountered unknown predicate type!");
 		return nil;
 	}
 }
 
-- (BOOL)_expression:(NSExpression *)expression isApplicableToMessage:(AbstractMessage *)message
-{
+- (BOOL)_expression:(NSExpression *)expression isApplicableToMessage:(AbstractMessage *)message{
 	return [message respondsToSelector:NSSelectorFromString([expression keyPath])];
 }
 
-- (BOOL)_evaluateMessage:(AbstractMessage *)message
-{
+- (BOOL)_evaluateMessage:(AbstractMessage *)message{
 	if (!m_showsFlashLogMessages && message.messageType == kLPMessageTypeFlashLog)
 		return NO;
 	if (m_filter == nil)
@@ -220,16 +187,13 @@
 	return (predicate == nil) ? YES : [predicate evaluateWithObject:message];
 }
 
-- (void)_clearMessagesWithType:(LPMessageType)type
-{
+- (void)_clearMessagesWithType:(LPMessageType)type{
 	NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
 	NSMutableArray *indexesArray = [NSMutableArray array];
 	uint32_t count = [m_messages count];
-	for (uint32_t i = 0; i < count; i++)
-	{
+	for (uint32_t i = 0; i < count; i++){
 		AbstractMessage *msg = [m_messages objectAtIndex:i];
-		if (msg.messageType == type)
-		{
+		if (msg.messageType == type){
 			[indexes addIndex:i];
 			[indexesArray addObject:[NSNumber numberWithInt:i]];
 		}
@@ -245,12 +209,8 @@
 #pragma mark Bindings notifications
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object 
-	change:(NSDictionary *)change context:(void *)context
-{
+	change:(NSDictionary *)change context:(void *)context{
 	if ([keyPath isEqualToString:@"predicate"])
-	{
 		[self _validateMessages];
-	}
 }
-
 @end

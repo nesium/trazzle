@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface ZZApplication : NSApplication
-{
+@interface ZZApplication : NSApplication{
 }
 @end

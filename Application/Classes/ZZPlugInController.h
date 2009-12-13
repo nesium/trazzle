@@ -14,11 +14,14 @@
 @class ZZWindowController;
 @protocol TrazzleTabViewDelegate;
 
-@interface PlugInController : NSObject
-{
+@interface ZZPlugInController : NSObject{
+@private
 	AMFDuplexGateway *m_sharedGateway;
 	AsyncSocket *m_sharedLegacyConnection;
 	NSArray *m_connectedClients;
+	ZZWindowController *m_windowController;
+	NSStatusItem *m_statusItem;
+	NSBundle *m_plugInBundle;
 }
 @property (nonatomic, readonly) AMFDuplexGateway *sharedGateway;
 @property (nonatomic, readonly) AsyncSocket *sharedLegacyConnection;

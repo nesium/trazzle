@@ -23,10 +23,8 @@
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithAction:(NSString *)action attributes:(NSDictionary *)actionAttributes
-{
-	if (self = [super init])
-	{
+- (id)initWithAction:(NSString *)action attributes:(NSDictionary *)actionAttributes{
+	if (self = [super init]){
 		self.attributes = actionAttributes;
 		messageType = kLPMessageTypeCommand;
 		type = [self commandActionTypeFromString:action];
@@ -34,8 +32,7 @@
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[data release];
 	[attributes release];
 	[super dealloc];
@@ -46,25 +43,16 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (CommandActionType)commandActionTypeFromString:(NSString *)aType
-{
-	if ([aType isEqualToString:@"clear"])
-	{
+- (CommandActionType)commandActionTypeFromString:(NSString *)aType{
+	if ([aType isEqualToString:@"clear"]){
 		return kCommandActionTypeClear;
-	}
-	else if ([aType isEqualToString:@"monitorFile"])
-	{
+	}else if ([aType isEqualToString:@"monitorFile"]){
 		return kCommandActionTypeStartFileMonitoring;
-	}
-	else if ([aType isEqualToString:@"unmonitorFile"])
-	{
+	}else if ([aType isEqualToString:@"unmonitorFile"]){
 		return kCommandActionTypeStopFileMonitoring;
-	}
-	else if ([aType isEqualToString:@"updateStatusBar"])
-	{
+	}else if ([aType isEqualToString:@"updateStatusBar"]){
 		return kCommandActionTypeUpdateStatusBar;
 	}
 	return kCommandActionTypeUnknown;
 }
-
 @end

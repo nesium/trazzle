@@ -12,12 +12,11 @@
 #import "PMStatsSessionViewLayer.h"
 #import "AGProcess.h"
 #import "PMMonitoringService.h"
-#import "PlugInController.h"
+#import "ZZPlugInController.h"
 
 
-@interface PMMainWindowController : NSWindowController
-{
-	PlugInController *m_controller;
+@interface PMMainWindowController : NSWindowController{
+	ZZPlugInController *m_controller;
 	NSTimer *m_redrawTimer;
 	NSMutableArray *m_layers;
 	BOOL m_needsRedraw;
@@ -25,6 +24,6 @@
 	NSView *m_documentView;
 	CATextLayer *m_noSessionTextLayer;
 }
-- (id)initWithWindowNibName:(NSString *)windowNibName plugInController:(PlugInController *)controller;
+- (id)initWithWindowNibName:(NSString *)windowNibName plugInController:(ZZPlugInController *)controller;
 - (void)removeLayerWithConnection:(ZZConnection *)conn;
 @end

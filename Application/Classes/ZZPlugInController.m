@@ -6,22 +6,17 @@
 //  Copyright 2008 nesiumdotcom. All rights reserved.
 //
 
-#import "PlugInController.h"
+#import "ZZPlugInController.h"
 #import "ZZWindowController.h"
 
 
-@interface PlugInController (Private)
+@interface ZZPlugInController (Private)
 - (void)_destroyStatusItem;
 - (NSStatusItem *)_statusItem;
 @end
 
-NSStatusItem *m_statusItem;
-NSBundle *m_plugInBundle;
-ZZWindowController *m_windowController;
 
-
-
-@implementation PlugInController
+@implementation ZZPlugInController
 
 @synthesize sharedGateway=m_sharedGateway, 
 			sharedLegacyConnection=m_sharedLegacyConnection, 
@@ -32,10 +27,8 @@ ZZWindowController *m_windowController;
 
 - (id)initWithPlugInBundle:(NSBundle *)bundle windowController:(ZZWindowController *)controller 
 	gateway:(AMFDuplexGateway *)gateway legacyConnection:(AsyncSocket *)legacyConnection 
-	connectedClients:(NSArray *)connectedClients
-{
-	if (self = [super init])
-	{
+	connectedClients:(NSArray *)connectedClients{
+	if (self = [super init]){
 		m_statusItem = nil;
 		m_plugInBundle = [bundle retain];
 		m_windowController = controller;
@@ -46,8 +39,7 @@ ZZWindowController *m_windowController;
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[self _destroyStatusItem];
 	[super dealloc];
 }
@@ -57,24 +49,20 @@ ZZWindowController *m_windowController;
 #pragma mark -
 #pragma mark Public methods
 
-- (void)bringWindowToTop
-{
+- (void)bringWindowToTop{
 	[m_windowController bringWindowToTop];
 }
 
-- (void)setWindowIsFloating:(BOOL)bFlag
-{
+- (void)setWindowIsFloating:(BOOL)bFlag{
 	[m_windowController setWindowIsFloating:bFlag];
 }
 
 - (id)addTabWithIdentifier:(id)ident view:(NSView *)view 
-	delegate:(id <TrazzleTabViewDelegate>)delegate
-{
+	delegate:(id <TrazzleTabViewDelegate>)delegate{
 	return [m_windowController addTabWithIdentifier:ident view:view delegate:delegate];
 }
 
-- (void)selectTabItemWithDelegate:(id<TrazzleTabViewDelegate>)aDelegate
-{
+- (void)selectTabItemWithDelegate:(id<TrazzleTabViewDelegate>)aDelegate{
 	[m_windowController selectTabItemWithDelegate:aDelegate];
 }
 
@@ -82,23 +70,19 @@ ZZWindowController *m_windowController;
 	return [m_windowController selectedTabDelegate];
 }
 
-- (void)addStatusMenuItem:(NSMenuItem *)item
-{
+- (void)addStatusMenuItem:(NSMenuItem *)item{
 	[NSObject cancelPreviousPerformRequestsWithTarget:self];
 	[[[self _statusItem] menu] addItem:item];
 }
 
-- (void)removeStatusMenuItem:(NSMenuItem *)item
-{
+- (void)removeStatusMenuItem:(NSMenuItem *)item{
 	[[[self _statusItem] menu] removeItem:item];
-	if ([[[[self _statusItem] menu] itemArray] count] == 0)
-	{
+	if ([[[[self _statusItem] menu] itemArray] count] == 0){
 		[self performSelector:@selector(_destroyStatusItem) withObject:nil afterDelay:0.0];
 	}
 }
 
-- (ZZConnection *)connectionForRemote:(id)remote
-{
+- (ZZConnection *)connectionForRemote:(id)remote{
 	for (ZZConnection *conn in m_connectedClients)
 		if (conn.remote == remote)
 			return conn;
@@ -110,21 +94,16 @@ ZZWindowController *m_windowController;
 #pragma mark -
 #pragma mark Private methods
 
-- (void)_destroyStatusItem
-{
+- (void)_destroyStatusItem{
 	if (!m_statusItem)
-	{
 		return;
-	}
 	[[NSStatusBar systemStatusBar] removeStatusItem:m_statusItem];
 	[m_statusItem release];
 	m_statusItem = nil;
 }
 
-- (NSStatusItem *)_statusItem
-{
-	if (!m_statusItem)
-	{
+- (NSStatusItem *)_statusItem{
+	if (!m_statusItem){
 		m_statusItem = [[[NSStatusBar systemStatusBar] 
 			statusItemWithLength:NSSquareStatusItemLength] retain];
 		[m_statusItem setImage:[NSImage imageNamed:@"statusbar_icon.png"]];
@@ -136,5 +115,4 @@ ZZWindowController *m_windowController;
 	}
 	return m_statusItem;
 }
-
 @end

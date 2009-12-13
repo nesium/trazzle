@@ -23,10 +23,8 @@
 #pragma mark -
 #pragma mark Initialization & deallocation
 
-- (id)initWithName:(NSString *)name predicate:(NSPredicate *)predicate
-{
-	if (self = [super init])
-	{
+- (id)initWithName:(NSString *)name predicate:(NSPredicate *)predicate{
+	if (self = [super init]){
 		self.name = name;
 		self.predicate = predicate;
 		m_isDirty = YES;
@@ -35,20 +33,16 @@
 	return self;
 }
 
-- (id)initWithContentsOfFile:(NSString *)path error:(NSError **)error
-{
+- (id)initWithContentsOfFile:(NSString *)path error:(NSError **)error{
     NSString *errorString;
 	NSData *data = [NSData dataWithContentsOfFile:path];
     NSDictionary *doc = [NSPropertyListSerialization propertyListFromData:data 
 		mutabilityOption:NSPropertyListImmutable format:NULL errorDescription:&errorString];
 
-    if (doc) 
-	{
+    if (doc){
 		self = [self initWithName:[doc objectForKey:kFilterName] 
 			predicate:[NSPredicate predicateWithFormat:[doc objectForKey:kFilterPredicate]]];
-    } 
-	else 
-	{
+    }else{
 		NSDictionary *errorUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSString stringWithFormat:@"Trazzle filter couldn't be read (%@)", path], 
 			NSLocalizedDescriptionKey, 
@@ -58,14 +52,12 @@
         [errorString release];
 		return nil;
     }
-	
 	[self _setPath:path];
 	m_isDirty = NO;
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[m_predicate release];
 	[m_name release];
 	[m_path release];
@@ -77,15 +69,12 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (NSString *)description
-{
+- (NSString *)description{
 	return [NSString stringWithFormat:@"<%@ = 0x%08x>", [self className], (long)self];
 }
 
-- (void)setName:(NSString *)name
-{
-	if ([m_name isEqualToString:name])
-	{
+- (void)setName:(NSString *)name{
+	if ([m_name isEqualToString:name]){
 		return;
 	}
 	m_isDirty = YES;
@@ -95,52 +84,38 @@
 	m_name = name;
 }
 
-- (NSString *)path
-{
+- (NSString *)path{
 	return m_path;
 }
 
-- (void)setPredicate:(NSPredicate *)predicate
-{
+- (void)setPredicate:(NSPredicate *)predicate{
 	if ([m_predicate isEqual:predicate])
-	{
 		return;
-	}
 	m_isDirty = YES;
 	[predicate retain];
 	[m_predicate release];
 	m_predicate = predicate;
 }
 
-- (BOOL)isDirty
-{
+- (BOOL)isDirty{
 	return m_isDirty;
 }
 
-- (BOOL)save:(NSError **)error
-{
+- (BOOL)save:(NSError **)error{
 	if (m_wantsRenaming)
-	{
 		[self unlink:error];
-	}
 	if ([self path] == nil)
-	{
 		[self _setPath:[self _nextAvailableFilename]];
-	}
 	return [self _writeToFile:[self path] error:error];
 }
 
-- (BOOL)unlink:(NSError **)error
-{
+- (BOOL)unlink:(NSError **)error{
 	BOOL isDir;
 	NSFileManager *fm = [NSFileManager defaultManager];
 	if (![fm fileExistsAtPath:[self path] isDirectory:&isDir] || isDir)
-	{
 		return NO;
-	}
 	BOOL success = [fm removeItemAtPath:[self path] error:error];
-	if (success)
-	{
+	if (success){
 		[self _setPath:nil];
 		m_wantsRenaming = NO;
 	}
@@ -152,8 +127,7 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (BOOL)_writeToFile:(NSString *)path error:(NSError **)error
-{
+- (BOOL)_writeToFile:(NSString *)path error:(NSError **)error{
 	NSData *data;
 	NSMutableDictionary *doc = [NSMutableDictionary dictionary];
 	NSString *errorString;
@@ -164,8 +138,7 @@
 	data = [NSPropertyListSerialization dataFromPropertyList:doc 
 		format:NSPropertyListXMLFormat_v1_0 errorDescription:&errorString];
 
-	if (!data) 
-	{
+	if (!data){
 		NSDictionary *errorUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 			@"Trazzle filter couldn't be written", NSLocalizedDescriptionKey, 
 			(errorString ? errorString : @"An unknown error occured."), 
@@ -176,14 +149,11 @@
 	}
 	BOOL success = [data writeToFile:path options:0 error:error];
 	if (success)
-	{
 		m_isDirty = NO;
-	}
 	return success;
 }
 
-- (NSString *)_normalizedName
-{
+- (NSString *)_normalizedName{
 	NSMutableString *name = [NSMutableString stringWithString: [self name]];
 	[name replaceOccurrencesOfString:@":" withString:@"-" 
 		options:0 range:NSMakeRange(0, [[self name] length])];
@@ -192,8 +162,7 @@
 	return [name precomposedStringWithCanonicalMapping];
 }
 
-- (NSString *)_nextAvailableFilename
-{
+- (NSString *)_nextAvailableFilename{
 	NSString *proposedFilename = [[TRAZZLE_APP_SUPPORT stringByAppendingPathComponent:@"Filters"] 
 		stringByAppendingPathComponent:[self _normalizedName]];
 	NSString *usedFilename = proposedFilename;
@@ -201,17 +170,13 @@
 	unsigned int i = 1;
 	while ([[NSFileManager defaultManager] 
 		fileExistsAtPath:[usedFilename stringByAppendingPathExtension:kFilterFileExtension]])
-	{
 		usedFilename = [NSString stringWithFormat:@"%@-%d", proposedFilename, i++];
-	}
 	return [usedFilename stringByAppendingPathExtension:kFilterFileExtension];
 }
 
-- (void)_setPath:(NSString *)path
-{
+- (void)_setPath:(NSString *)path{
 	[path retain];
 	[m_path release];
 	m_path = path;
 }
-
 @end

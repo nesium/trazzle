@@ -16,18 +16,15 @@
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)init
-{
-	if (self = [super init])
-	{
+- (id)init{
+	if (self = [super init]){
 		messageType = kLPMessageTypeStackTrace;
 		line = -1;
 	}
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[fullClassName release];
 	[shortClassName release];
 	[method release];
@@ -40,8 +37,7 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)setFullClassName:(NSString *)aClassName
-{
+- (void)setFullClassName:(NSString *)aClassName{
 	[aClassName retain];
 	[fullClassName release];
 	fullClassName = aClassName;
@@ -55,18 +51,15 @@
 #pragma mark -
 #pragma mark WebScripting Protocol
 
-+ (BOOL)isKeyExcludedFromWebScript:(const char *)name
-{
++ (BOOL)isKeyExcludedFromWebScript:(const char *)name{
 	if (name == "fullClassName" ||
 		name == "shortClassName" ||
 		name == "file" ||
 		name == "method" ||
 		name == "className" ||
-		name == "line")
-	{
+		name == "line"){
 		return NO;
 	}
 	return [super isKeyExcludedFromWebScript:name];
 }
-
 @end

@@ -9,8 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "AbstractMessage.h"
 
-typedef enum _CommandActionType
-{
+typedef enum _CommandActionType{
 	kCommandActionTypeUnknown,
 	kCommandActionTypeClear,
 	kCommandActionTypeStartFileMonitoring,
@@ -19,8 +18,7 @@ typedef enum _CommandActionType
 } CommandActionType;
 
 
-@interface CommandMessage : AbstractMessage
-{
+@interface CommandMessage : AbstractMessage{
 	CommandActionType type;
 	NSDictionary *attributes;
 	NSObject *data;
@@ -31,5 +29,4 @@ typedef enum _CommandActionType
 @property (nonatomic, retain) NSObject *data;
 
 - (id)initWithAction:(NSString *)action attributes:(NSDictionary *)attributes;
-
 @end

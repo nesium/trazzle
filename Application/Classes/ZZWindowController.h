@@ -13,8 +13,7 @@
 
 @protocol TrazzleTabViewDelegate;
 
-@interface ZZWindowController : NSWindowController 
-{
+@interface ZZWindowController : NSWindowController{
 	id m_delegate;
 	IBOutlet PSMTabBarControl *m_tabBar;
 	IBOutlet NSTabView *m_tabView;

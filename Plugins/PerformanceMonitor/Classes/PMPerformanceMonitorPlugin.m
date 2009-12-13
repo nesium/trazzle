@@ -14,10 +14,8 @@
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithPlugInController:(PlugInController *)aController
-{
-	if (self = [super init])
-	{
+- (id)initWithPlugInController:(ZZPlugInController *)aController{
+	if (self = [super init]){
 		m_controller = aController;
 		m_windowController = [[PMMainWindowController alloc] 
 			initWithWindowNibName:@"MonitorWindow" plugInController:aController];
@@ -33,8 +31,7 @@
 	return self;
 }
 
-- (void)trazzleDidCloseConnection:(ZZConnection *)conn
-{
+- (void)trazzleDidCloseConnection:(ZZConnection *)conn{
 	[m_windowController removeLayerWithConnection:conn];
 }
 

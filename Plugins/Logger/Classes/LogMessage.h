@@ -11,18 +11,15 @@
 #import "NSString+LPStringAdditions.h"
 #import "LPExistingFilesCache.h"
 
-@interface LogMessage : StackTraceItem
-{
+@interface LogMessage : StackTraceItem{
 	NSString *levelName;
 	uint32_t level;
 	BOOL encodeHTML;
 	NSArray *stacktrace;
 	NSTimeInterval connectionTimestamp;
 	BOOL fileExists;
-	
 	BOOL m_didLookupFile;
 }
-
 @property (nonatomic, retain) NSString *levelName;
 @property (nonatomic, readonly) uint32_t level;
 @property (nonatomic, retain) NSArray *stacktrace;

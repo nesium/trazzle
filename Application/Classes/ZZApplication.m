@@ -11,18 +11,14 @@
 
 @implementation ZZApplication
 
-- (void)sendEvent:(NSEvent *)anEvent
-{
-	if ([anEvent type] == NSKeyUp)
-	{
+- (void)sendEvent:(NSEvent *)anEvent{
+	if ([anEvent type] == NSKeyUp){
 		if ([[[[self keyWindow] firstResponder] className] isEqualToString:@"WebHTMLView"] && 
-			[[self keyWindow] windowController] != nil)
-		{
+			[[self keyWindow] windowController] != nil){
 			[[[self keyWindow] windowController] keyUp:anEvent];
 			return;
-		}	
+		}
 	}
 	[super sendEvent:anEvent];
 }
-
 @end

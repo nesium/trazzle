@@ -7,12 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "TrazzlePlugIn.h"
+#import "ZZTrazzlePlugIn.h"
 #import "IPInspectionService.h"
 
 
-@interface IPInspectorPlugin : NSObject <TrazzlePlugIn>
-{
-	PlugInController *m_controller;
+@interface IPInspectorPlugin : NSObject <ZZTrazzlePlugIn>{
+	ZZPlugInController *m_controller;
 }
 @end

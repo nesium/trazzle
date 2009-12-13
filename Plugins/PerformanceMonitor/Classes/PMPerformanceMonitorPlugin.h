@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TrazzlePlugIn.h"
+#import "ZZTrazzlePlugIn.h"
 #import "PMMainWindowController.h"
 
 
-@interface PMPerformanceMonitorPlugin : NSObject <TrazzlePlugIn>
-{
-	PlugInController *m_controller;
+@interface PMPerformanceMonitorPlugin : NSObject <ZZTrazzlePlugIn>{
+	ZZPlugInController *m_controller;
 	PMMainWindowController *m_windowController;
 }
 

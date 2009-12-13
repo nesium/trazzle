@@ -32,10 +32,8 @@
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithPlugInController:(PlugInController *)aController
-{
-	if (self = [super init])
-	{
+- (id)initWithPlugInController:(ZZPlugInController *)aController{
+	if (self = [super init]){
 		m_controller = aController;
 		
 		m_isReady = NO;
@@ -71,8 +69,7 @@
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[m_messageModel release];
 	[m_filterModel release];
 	[m_loggingViewController release];
@@ -89,14 +86,12 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)handleMessage:(AbstractMessage *)msg
-{
+- (void)handleMessage:(AbstractMessage *)msg{
 	[m_messageModel addMessage:msg];
 	[m_loggingViewController sendMessage:msg];
 }
 
-- (void)addConnection:(ZZConnection *)connection
-{
+- (void)addConnection:(ZZConnection *)connection{
 	[m_representedObjects addPointer:connection];
 	[self _updateMixedStatus];
 	self.isDisconnected = NO;
@@ -111,8 +106,7 @@
 	BOOL clearFlashLogMessagesOnNewConnection = 
 		[[defaults valueForKey:kClearFlashLogMessagesOnNewConnection] boolValue];
 	
-	if (clearMessagesOnNewConnection && clearFlashLogMessagesOnNewConnection)
-	{
+	if (clearMessagesOnNewConnection && clearFlashLogMessagesOnNewConnection){
 		[m_messageModel clearAllMessages];
 		[m_loggingViewController clearAllMessages];
 	}
@@ -122,20 +116,17 @@
 		[m_messageModel clearFlashLogMessages];
 }
 
-- (void)removeConnection:(ZZConnection *)connection
-{
+- (void)removeConnection:(ZZConnection *)connection{
 	[m_representedObjects aa_removePointer:connection];
 	self.isDisconnected = [m_representedObjects count] == 0;
 	[self _updateMixedStatus];
 }
 
-- (BOOL)containsConnection:(ZZConnection *)connection
-{
+- (BOOL)containsConnection:(ZZConnection *)connection{
 	return [m_representedObjects aa_containsPointer:connection];
 }
 
-- (void)setIsDisconnected:(BOOL)bFlag
-{
+- (void)setIsDisconnected:(BOOL)bFlag{
 	if (m_isDisconnected == bFlag) return;
 	m_isDisconnected = bFlag;
 	[self _updateIcon];
@@ -151,37 +142,31 @@
 #pragma mark TrazzleTabViewDelegate methods
 
 - (BOOL)receivedKeyDown:(NSEvent *)event inTabWithIdentifier:(NSString *)identifier 
-				 window:(NSWindow *)window
-{
+	window:(NSWindow *)window{
 	if ([[window firstResponder] isKindOfClass:[NSTextView class]]) return NO;
 	return [event keyCode] == 51 || [event keyCode] == 117;
 }
 
 - (BOOL)receivedKeyUp:(NSEvent *)event inTabWithIdentifier:(NSString *)identifier 
-			   window:(NSWindow *)window
-{
+	window:(NSWindow *)window{
 	if ([[window firstResponder] isKindOfClass:[NSTextView class]]) return NO;
-	if ([event keyCode] == 51 || [event keyCode] == 117)
-	{
+	if ([event keyCode] == 51 || [event keyCode] == 117){
 		[m_messageModel clearAllMessages];
 		[m_loggingViewController clearAllMessages];
 	}
 	return YES;
 }
 
-- (NSString *)titleForTabWithIdentifier:(NSString *)identifier
-{
+- (NSString *)titleForTabWithIdentifier:(NSString *)identifier{
 	return m_tabTitle;
 }
 
-- (void)didBecomeInactive
-{
+- (void)didBecomeInactive{
 	m_isActive = NO;
 	[self _updateIcon];
 }
 
-- (void)didBecomeActive
-{
+- (void)didBecomeActive{
 	m_isActive = YES;
 	[self _updateIcon];
 }
@@ -192,10 +177,8 @@
 #pragma mark KVO notifications
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object 
-	change:(NSDictionary *)change context:(void *)context
-{
-	if (object == m_filterModel)
-	{
+	change:(NSDictionary *)change context:(void *)context{
+	if (object == m_filterModel){
 		[self _updateTabTitle];
 		[m_messageModel setFilter:m_filterModel.filteringIsEnabled 
 			? m_filterModel.activeFilter
@@ -208,19 +191,16 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (void)_updateTabTitle
-{
+- (void)_updateTabTitle{
 	NSString *sessionName = m_isMixed ? @"Mixed Session" : m_sessionName;
 	self.tabTitle = [NSString stringWithFormat:@"%@%@", sessionName, 
 		m_filterModel.filteringIsEnabled ? @"*" : @""];
 }
 
-- (void)_updateIcon
-{
+- (void)_updateIcon{
 	if (!m_isDisconnected || m_isPristine)
 		self.icon = nil;
-	else
-	{
+	else{
 		NSString *state = m_isActive ? @"on" : @"off";
 		NSImage *image = [[NSImage alloc] initWithContentsOfFile:
 			[[NSBundle bundleForClass:[self class]] pathForImageResource:
@@ -230,18 +210,14 @@
 	}
 }
 
-- (void)_updateMixedStatus
-{
-	if ([m_representedObjects count] == 0)
-	{
+- (void)_updateMixedStatus{
+	if ([m_representedObjects count] == 0){
 		self.isMixed = NO;
 		return;
 	}
 	NSURL *baseURL = [(ZZConnection *)[m_representedObjects pointerAtIndex:0] swfURL];
-	for (int i = 1; i < [m_representedObjects count]; i++)
-	{
-		if (![[(ZZConnection *)[m_representedObjects pointerAtIndex:i] swfURL] isEqual:baseURL])
-		{
+	for (int i = 1; i < [m_representedObjects count]; i++){
+		if (![[(ZZConnection *)[m_representedObjects pointerAtIndex:i] swfURL] isEqual:baseURL]){
 			self.isMixed = YES;
 			return;
 		}
@@ -255,13 +231,11 @@
 #pragma mark LoggingViewController delegate methods
 
 - (AbstractMessage *)loggingViewController:(LoggingViewController *)controller 
-	messageWithIndex:(uint32_t)index
-{
+	messageWithIndex:(uint32_t)index{
 	return [m_messageModel messageWithIndex:index];
 }
 
-- (void)loggingViewControllerWebViewIsReady:(LoggingViewController *)controller
-{
+- (void)loggingViewControllerWebViewIsReady:(LoggingViewController *)controller{
 	if (!m_isReady) self.isReady = YES;
 }
 
@@ -270,19 +244,15 @@
 #pragma mark -
 #pragma mark MessageModel delegate methods
 
-- (void)messageModel:(LPMessageModel *)model didHideMessagesWithIndexes:(NSArray *)indexes
-{
+- (void)messageModel:(LPMessageModel *)model didHideMessagesWithIndexes:(NSArray *)indexes{
 	[m_loggingViewController hideMessagesWithIndexes:indexes];
 }
 
-- (void)messageModel:(LPMessageModel *)model didShowMessagesWithIndexes:(NSArray *)indexes
-{
+- (void)messageModel:(LPMessageModel *)model didShowMessagesWithIndexes:(NSArray *)indexes{
 	[m_loggingViewController showMessagesWithIndexes:indexes];
 }
 
-- (void)messageModel:(LPMessageModel *)model didRemoveMessagesWithIndexes:(NSArray *)indexes
-{
+- (void)messageModel:(LPMessageModel *)model didRemoveMessagesWithIndexes:(NSArray *)indexes{
 	[m_loggingViewController removeMessagesWithIndexes:indexes];
 }
-
 @end

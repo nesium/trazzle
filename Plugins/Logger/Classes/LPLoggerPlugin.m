@@ -6,19 +6,13 @@
 //  Copyright 2008 nesiumdotcom. All rights reserved.
 //
 
-#import "LoggerPlugin.h"
-
-#define kMMCFG_GlobalPath @"/Library/Application Support/Macromedia/mm.cfg"
-#define kMMCFG_LocalPath @"~/mm.cfg"
+#import "LPLoggerPlugin.h"
 
 #define kUserDefaultsObservationContext 1
 #define kSessionObservationContext 2
 
-@interface LoggerPlugin (Private)
+@interface LPLoggerPlugin (Private)
 - (void)_checkMMCfgs;
-- (NSMutableDictionary *)_readMMCfgAtPath:(NSString *)path;
-- (BOOL)_validateMMCfg:(NSMutableDictionary *)settings;
-- (BOOL)_writeMMCfg:(NSDictionary *)settings toPath:(NSString *)path;
 - (void)_cleanupAfterConnection:(ZZConnection *)conn;
 - (LPSession *)_createNewSession;
 - (void)_destroySession:(LPSession *)session;
@@ -30,13 +24,12 @@
 @end
 
 
-@implementation LoggerPlugin
+@implementation LPLoggerPlugin
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-+ (void)initialize
-{
++ (void)initialize{
 	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 	[dict setObject:[NSNumber numberWithBool:NO] forKey:kFilteringEnabledKey];
 	[dict setObject:[NSNumber numberWithBool:YES] forKey:kShowFlashLogMessages];
@@ -53,10 +46,8 @@
 	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:dict];
 }
 
-- (id)initWithPlugInController:(PlugInController *)aController
-{
-	if (self = [super init])
-	{
+- (id)initWithPlugInController:(ZZPlugInController *)aController{
+	if (self = [super init]){
 		m_controller = aController;
 		
 		m_filterController = [[LPFilterController alloc] init];
@@ -70,21 +61,10 @@
 			initWithDelegate:self] autorelease] withName:@"FileObservingService"];
 		
 		// tail flashlog
-		m_tailTask = [[NSTask alloc] init];
-		m_logPipe = [[NSPipe alloc] init];
-		[m_tailTask setLaunchPath:@"/usr/bin/tail"];
-		[m_tailTask setArguments:[NSArray arrayWithObjects:@"-F", @"-n", @"0", 
-			[@"~/Library/Preferences/Macromedia/Flash Player/Logs/flashlog.txt" 
-				stringByExpandingTildeInPath], nil]];
-		[m_tailTask setStandardOutput:m_logPipe];
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataAvailable:) 
-			name:NSFileHandleReadCompletionNotification object:[m_logPipe fileHandleForReading]];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskTerminated:) 
-			name:NSTaskDidTerminateNotification object:m_tailTask];
-			
+		NSString *flashLogPath = [@"~/Library/Preferences/Macromedia/Flash Player/Logs/flashlog.txt" 
+				stringByExpandingTildeInPath];
+		m_tailTask = [[LPTailTask alloc] initWithFile:flashLogPath delegate:self];
 		[m_tailTask launch];
-		[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
 		
 		[self _checkMMCfgs];
 		
@@ -116,63 +96,53 @@
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[m_filterController release];
 	[super dealloc];
 }
 
 
-- (void)tabViewDelegateDidBecomeActive:(id)aDelegate
-{
+- (void)tabViewDelegateDidBecomeActive:(id)aDelegate{
 	if (![aDelegate isKindOfClass:[LPSession class]])
 		return;
 	LPSession *session = (LPSession *)aDelegate;
 	m_filterController.model = session.filterModel;
 }
 
-- (void)tabViewDelegateWasClosed:(id)aDelegate
-{
+- (void)tabViewDelegateWasClosed:(id)aDelegate{
 	if (![aDelegate isKindOfClass:[LPSession class]])
 		return;
 	LPSession *session = (LPSession *)aDelegate;
 	[self _destroySession:session];
 }
 
-- (void)trazzleDidOpenConnection:(ZZConnection *)conn
-{
+- (void)trazzleDidOpenConnection:(ZZConnection *)conn{
 }
 
-- (void)trazzleDidCloseConnection:(ZZConnection *)conn
-{
+- (void)trazzleDidCloseConnection:(ZZConnection *)conn{
 	[self _cleanupAfterConnection:conn];
-	for (LPSession *session in m_sessions)
-	{
+	for (LPSession *session in m_sessions){
 		if ([session containsConnection:conn])
 			[session removeConnection:conn];
 	}
 	[self _updateWindowLevel:NO];
 }
 
-- (void)trazzleDidReceiveSignatureForConnection:(ZZConnection *)conn
-{
+- (void)trazzleDidReceiveSignatureForConnection:(ZZConnection *)conn{
 	LPSession *session = [self _sessionForSwfURL:conn.swfURL];
 	[session addConnection:conn];
 }
 
-- (void)trazzleDidReceiveMessage:(NSString *)message forConnection:(ZZConnection *)conn
-{
-	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message delegate:self];
+- (void)trazzleDidReceiveMessage:(NSString *)message forConnection:(ZZConnection *)conn{
+	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message];
 	AbstractMessage *msg = (AbstractMessage *)[[parser data] objectAtIndex:0];
 	
-	if (conn.applicationName == nil && msg.messageType != kLPMessageTypeConnectionSignature)
-	{
+	if (conn.applicationName == nil && msg.messageType != kLPMessageTypeConnectionSignature){
 		[conn disconnect];
 		goto bailout;
 	}
 	
-	if (msg.messageType == kLPMessageTypeConnectionSignature)
-	{
+	if (msg.messageType == kLPMessageTypeConnectionSignature){
 		ConnectionSignature *sig = (ConnectionSignature *)msg;
 		[conn setConnectionParams:[NSDictionary dictionaryWithObjectsAndKeys:
 			sig.applicationName, @"applicationName", 
@@ -189,8 +159,7 @@
 		[parser release];
 }
 
-- (void)prefPane:(NSViewController **)viewController icon:(NSImage **)icon
-{
+- (void)prefPane:(NSViewController **)viewController icon:(NSImage **)icon{
 	*viewController = [[[LPPreferencesViewController alloc] initWithNibName:@"Preferences" 
 		bundle:[NSBundle bundleForClass:[self class]]] autorelease];
 	*icon = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] 
@@ -217,8 +186,7 @@
 #pragma mark -
 #pragma mark Notifications
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification
-{
+- (void)applicationWillTerminate:(NSNotification *)aNotification{
 	[m_tailTask terminate];
 	for (ZZConnection *conn in m_controller.connectedClients)
 		[self _cleanupAfterConnection:conn];
@@ -256,8 +224,7 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (LPSession *)_createNewSession
-{
+- (LPSession *)_createNewSession{
 	LPSession *session = [[LPSession alloc] initWithPlugInController:m_controller];
 	session.delegate = self;
 	[session addObserver:self forKeyPath:@"isReady" options:0 
@@ -267,148 +234,69 @@
 	return [session autorelease];
 }
 
-- (void)_destroySession:(LPSession *)session
-{
+- (void)_destroySession:(LPSession *)session{
 	[session removeObserver:self forKeyPath:@"isReady"];
 	[m_sessions removeObject:session];
 	for (ZZConnection *conn in [session representedObjects])
 		[conn disconnect];
 }
 
-- (LPSession *)_sessionForSwfURL:(NSURL *)swfURL
-{
+- (LPSession *)_sessionForSwfURL:(NSURL *)swfURL{
 	TabBehaviourMode tmode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] 
 		valueForKey:kTabBehaviour] intValue];
 
 	if (tmode == kTabBehaviourOneForAll && [m_sessions count])
 		return [m_sessions objectAtIndex:0];
 
-	for (LPSession *session in m_sessions)
-	{
+	for (LPSession *session in m_sessions){
 		if (session.isPristine || 
 			([session.swfURL isEqual:swfURL] && 
-			(session.isDisconnected || tmode == kTabBehaviourOneForSameURL)))
-		{
+			(session.isDisconnected || tmode == kTabBehaviourOneForSameURL))){
 			if (m_autoSelectTab){
 				[m_controller selectTabItemWithDelegate:session];
 			}
 			return session;
 		}
 	}
-	
 	return [self _createNewSession];
 }
 
-- (LPSession *)_sessionForConnection:(ZZConnection *)conn
-{
+- (LPSession *)_sessionForConnection:(ZZConnection *)conn{
 	for (LPSession *session in m_sessions)
 		if ([session.representedObjects aa_containsPointer:conn])
 			return session;
 	return nil;
 }
 
-- (BOOL)_hasActiveSession
-{
+- (BOOL)_hasActiveSession{
 	for (LPSession *session in m_sessions)
 		if (!session.isDisconnected)
 			return YES;
 	return NO;
 }
 
-- (void)_checkMMCfgs
-{
-	NSFileManager *fm = [NSFileManager defaultManager];
-	NSMutableDictionary *globalMMCfgContents = nil;
-	NSMutableDictionary *localMMCfgContents = nil;
-	
-	if ([fm fileExistsAtPath:kMMCFG_GlobalPath])
-		globalMMCfgContents = [self _readMMCfgAtPath:kMMCFG_GlobalPath];
-	
-	if (globalMMCfgContents == nil)
-		globalMMCfgContents = [NSMutableDictionary dictionary];
-	
-	if ([fm fileExistsAtPath:[kMMCFG_LocalPath stringByExpandingTildeInPath]])
-		localMMCfgContents = [self _readMMCfgAtPath:kMMCFG_LocalPath];
-	
-	if (localMMCfgContents == nil)
-		localMMCfgContents = [NSMutableDictionary dictionary];
-	
-	if (![self _validateMMCfg:globalMMCfgContents])
-		[self _writeMMCfg:globalMMCfgContents toPath:kMMCFG_GlobalPath];
-
-	if (![self _validateMMCfg:localMMCfgContents])
-		[self _writeMMCfg:localMMCfgContents toPath:kMMCFG_LocalPath];
-}
-
-- (BOOL)_validateMMCfg:(NSMutableDictionary *)settings
-{
+- (void)_checkMMCfgs{
 	NSDictionary *defaultSettings = [NSDictionary dictionaryWithObjectsAndKeys: 
 		@"1", @"ErrorReportingEnable", 
 		@"0", @"MaxWarnings", 
 		@"1", @"TraceOutputEnable", 
 		[@"~/Library/Preferences/Macromedia/Flash Player/Logs/flashlog.txt" 
 			stringByExpandingTildeInPath], @"TraceOutputFileName", nil];
-
-	BOOL needsSave = NO;
-	for (NSString *key in defaultSettings)
-	{
-		NSString *defaultValue = [defaultSettings objectForKey:key];
-		NSString *currentValue = [settings objectForKey:key];
-		if (currentValue == nil || ![defaultValue isEqualToString:currentValue])
-		{
-			[settings setObject:defaultValue forKey:key];
-			needsSave = YES;
-		}
-	}
-	return !needsSave;
+	
+	LPMMCfgFile *mmCfg = [LPMMCfgFile mmCfgWithContentsOfFile:kMMCfgGlobalPath error:nil];
+	[mmCfg setValuesForKeysWithDictionary:defaultSettings];
+	[mmCfg writeToFile:kMMCfgGlobalPath atomically:NO error:nil];
+	
+	NSString *path = [kMMCfgLocalPath stringByExpandingTildeInPath];
+	mmCfg = [LPMMCfgFile mmCfgWithContentsOfFile:path error:nil];
+	[mmCfg setValuesForKeysWithDictionary:defaultSettings];
+	[mmCfg writeToFile:path atomically:NO error:nil];
 }
 
-- (NSMutableDictionary *)_readMMCfgAtPath:(NSString *)path
-{
-	NSError *error;
-	NSMutableString *contents = [NSMutableString stringWithContentsOfFile:path 
-		encoding:NSUTF8StringEncoding error:&error];
-	[contents replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:0 
-		range:(NSRange){0, [contents length]}];
-	if (contents == nil)
-	{
-		return nil;
-	}
-	NSArray *lines = [contents componentsSeparatedByString:@"\n"];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	for (NSString *line in lines)
-	{
-		NSRange equalSignRange = [line rangeOfString:@"="];
-		if (equalSignRange.location == NSNotFound)
-		{
-			continue;
-		}
-		NSString *key = [line substringToIndex:equalSignRange.location];
-		NSString *value = [line substringFromIndex:equalSignRange.location + equalSignRange.length];
-		[settings setObject:[value stringByTrimmingCharactersInSet:
-			[NSCharacterSet whitespaceCharacterSet]] 
-			forKey:[key stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-	}
-	return settings;
-}
-
-- (BOOL)_writeMMCfg:(NSDictionary *)settings toPath:(NSString *)path
-{
-	NSMutableString *contents = [NSMutableString string];
-	for (NSString *key in settings)
-	{
-		[contents appendFormat:@"%@=%@\n", key, [settings objectForKey:key]];
-	}
-	NSError *error;
-	return [contents writeToFile:path atomically:NO encoding:NSUTF8StringEncoding error:&error];
-}
-
-- (void)_cleanupAfterConnection:(ZZConnection *)conn
-{
+- (void)_cleanupAfterConnection:(ZZConnection *)conn{
 	NSMutableDictionary *dict = [conn storageForPluginWithName:@"LoggerPlugin"];
-
-	if ([dict objectForKey:@"MenuItem"])
-	{
+	
+	if ([dict objectForKey:@"MenuItem"]){
 		[m_controller removeStatusMenuItem:[dict objectForKey:@"MenuItem"]];
 		[dict removeObjectForKey:@"MenuItem"];
 	}
@@ -417,15 +305,13 @@
 		[fm removeItemAtPath:imagePath error:nil];
 }
 
-- (void)_updateWindowLevel:(BOOL)justConnected
-{
+- (void)_updateWindowLevel:(BOOL)justConnected{
 	NSObject *values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 	BOOL keepWindowOnTop = [[values valueForKey:kKeepAlwaysOnTop] boolValue];
 	BOOL keepWindowOnTopWhileConnected = [[values valueForKey:kKeepWindowOnTopWhileConnected] 
 		boolValue];
 		
-	if (keepWindowOnTop || (keepWindowOnTopWhileConnected && [self _hasActiveSession]))
-	{
+	if (keepWindowOnTop || (keepWindowOnTopWhileConnected && [self _hasActiveSession])){
 		[m_controller setWindowIsFloating:YES];
 		return;
 	}
@@ -489,18 +375,11 @@
 
 
 #pragma mark -
-#pragma mark NSTask and NSFileHandle Notifications
+#pragma mark TailTaskDelegate methods
 
-- (void)taskTerminated:(NSNotification *)notification {}
-
-- (void)dataAvailable:(NSNotification *)notification
-{
-	NSData *data = [[notification userInfo] valueForKey:NSFileHandleNotificationDataItem];
-	NSString *message = [[NSString alloc] initWithData:data encoding:NSMacOSRomanStringEncoding];
+- (void)tailTask:(LPTailTask *)task didReceiveLine:(NSString *)line{
 	[self _handleMessage:[AbstractMessage messageWithType:kLPMessageTypeFlashLog 
-		message:[message htmlEncodedStringWithConvertedLinebreaks]] fromConnection:nil];
-	[[m_logPipe fileHandleForReading] readInBackgroundAndNotify];
-	[message release];
+		message:[line htmlEncodedStringWithConvertedLinebreaks]] fromConnection:nil];
 }
 
 
@@ -509,14 +388,12 @@
 #pragma mark LoggingService Delegate methods
 
 - (void)loggingService:(LoggingService *)service didReceiveLogMessage:(LogMessage *)message 
-		   fromGateway:(AMFRemoteGateway *)gateway
-{
+		   fromGateway:(AMFRemoteGateway *)gateway{
 	[self _handleMessage:message fromConnection:[m_controller connectionForRemote:gateway]];
 }
 
 - (void)loggingService:(LoggingService *)service didReceivePNG:(NSString *)path withSize:(NSSize)size
-		   fromGateway:(AMFRemoteGateway *)gateway
-{
+		   fromGateway:(AMFRemoteGateway *)gateway{
 	ZZConnection *conn = [m_controller connectionForRemote:gateway];
 	NSMutableDictionary *dict = [conn storageForPluginWithName:@"LoggerPlugin"];
 	
@@ -525,7 +402,7 @@
 	[(NSMutableArray *)[dict objectForKey:@"LoggedImages"] addObject:path];
 	
 	AbstractMessage *msg = [[AbstractMessage alloc] init];
-	msg.messageType = kLPMessageTypeSocket;
+	msg.messageType = kLPMessageTypeBitmap;
 	msg.message = [NSString stringWithFormat:@"<img src='%@' width='%d' height='%d' />", path, 
 				   (int)size.width, (int)size.height];
 	[self _handleMessage:msg fromConnection:conn];
@@ -538,14 +415,12 @@
 #pragma mark MenuService Delegate methods
 
 - (void)menuService:(MenuService *)service didReceiveMenu:(NSMenu *)menu 
-		fromGateway:(AMFRemoteGateway *)gateway
-{
+		fromGateway:(AMFRemoteGateway *)gateway{
 	ZZConnection *conn = [m_controller connectionForRemote:gateway];
 	NSMutableDictionary *dict = [conn storageForPluginWithName:@"LoggerPlugin"];
 	LPSession *session = [self _sessionForConnection:conn];
 	
-	if ([dict objectForKey:@"MenuItem"])
-	{
+	if ([dict objectForKey:@"MenuItem"]){
 		[m_controller removeStatusMenuItem:[dict objectForKey:@"MenuItem"]];
 		[dict removeObjectForKey:@"MenuItem"];
 	}
@@ -566,20 +441,15 @@
 - (void)fileObservingService:(FileObservingService *)service 
 	didReceiveObservingMessageForPath:(NSString *)aPath 
 	shouldStopObserving:(BOOL)shouldStop 
-	fromGateway:(AMFRemoteGateway *)gateway
-{
+	fromGateway:(AMFRemoteGateway *)gateway{
 	ZZConnection *conn = [m_controller connectionForRemote:gateway];
 	NSMutableDictionary *storage = [conn storageForPluginWithName:@"LoggerPlugin"];
 	NSMutableSet *observedPaths = [storage objectForKey:@"ObservedPaths"];
-	if (shouldStop)
-	{
+	if (shouldStop){
 		[observedPaths removeObject:aPath];
 		[[FileMonitor sharedMonitor] removeObserver:self forFileAtPath:aPath];
-	}
-	else
-	{
-		if (!observedPaths)
-		{
+	}else{
+		if (!observedPaths){
 			observedPaths = [NSMutableSet set];
 			[storage setObject:observedPaths forKey:@"ObservedPaths"];
 		}
@@ -593,8 +463,7 @@
 #pragma mark -
 #pragma mark FileObserver Protocol methods
 
-- (void)fileMonitor:(FileMonitor *)fm fileDidChangeAtPath:(NSString *)path
-{
+- (void)fileMonitor:(FileMonitor *)fm fileDidChangeAtPath:(NSString *)path{
 	[self performSelectorOnMainThread:@selector(_notifyConnectionsAboutChangedFile:) 
 		withObject:path waitUntilDone:NO];
 }
@@ -604,19 +473,15 @@
 #pragma mark -
 #pragma mark StatusMenuItem actions
 
-- (void)statusMenuItemWasClicked:(NSMenuItem *)sender
-{	
+- (void)statusMenuItemWasClicked:(NSMenuItem *)sender{
 	NSMenu *lastMenu = [sender menu];
 	NSMenu *parent = [lastMenu supermenu];
 	NSMutableArray *indexes = [NSMutableArray arrayWithObject:
 		[NSNumber numberWithInt:[lastMenu indexOfItem:sender]]];
-	while (parent)
-	{
-		for (ZZConnection *conn in m_controller.connectedClients)
-		{
+	while (parent){
+		for (ZZConnection *conn in m_controller.connectedClients){
 			if ([[[conn storageForPluginWithName:@"LoggerPlugin"] 
-				objectForKey:@"MenuItem"] menu] == parent)
-			{
+				objectForKey:@"MenuItem"] menu] == parent){
 				[(AMFRemoteGateway *)conn.remote invokeRemoteService:@"MenuService" 
 								 methodName:@"performClickOnMenuItemWithIndexPath" 
 								  arguments:indexes, nil];
@@ -624,11 +489,9 @@
 			}
 		}
 		
-		for (int32_t i = 0; i < [[parent itemArray] count]; i++)
-		{
+		for (int32_t i = 0; i < [[parent itemArray] count]; i++){
 			NSMenuItem *item = [[parent itemArray] objectAtIndex:i];
-			if ([item submenu] == lastMenu)
-			{
+			if ([item submenu] == lastMenu){
 				[indexes insertObject:[NSNumber numberWithInt:i] atIndex:0];
 			}
 		}
@@ -637,5 +500,4 @@
 		parent = [lastMenu supermenu];
 	}
 }
-
 @end

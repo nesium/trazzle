@@ -53,11 +53,11 @@
 	
 	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message];
 	NSArray *messages = [parser data];
-	STAssertEquals((int)[messages count], 1, @"num messages should be 1 but is %d", [messages count]);
+	GHAssertEquals((int)[messages count], 1, @"num messages should be 1 but is %d", [messages count]);
 	LogMessage *parsedMessage = (LogMessage *)[messages objectAtIndex:0];
-	STAssertTrue([[parsedMessage message] isEqualToString:@"hello<br /> world"], @"message should be 'hello<br /> world' but is '%@'", [parsedMessage message]);
+	GHAssertTrue([[parsedMessage message] isEqualToString:@"hello<br /> world"], @"message should be 'hello<br /> world' but is '%@'", [parsedMessage message]);
 	[parsedMessage setEncodeHTML:NO];
-	STAssertTrue([[parsedMessage message] isEqualToString:@"hello\n world"], @"message should be 'hello\n world' but is '%@'", [parsedMessage message]);
+	GHAssertTrue([[parsedMessage message] isEqualToString:@"hello\n world"], @"message should be 'hello\n world' but is '%@'", [parsedMessage message]);
 	[parser release];
 }
 
@@ -75,10 +75,10 @@
 
 	MessageParser *parser = [[MessageParser alloc] initWithXMLString:message];
 	NSArray *messages = [parser data];
-	STAssertEquals((int)[messages count], 1, @"num messages should be 1 but is %d", [messages count]);
+	GHAssertEquals((int)[messages count], 1, @"num messages should be 1 but is %d", [messages count]);
 	LogMessage *parsedMessage = (LogMessage *)[messages objectAtIndex:0];
-	STAssertTrue([[parsedMessage method] isEqualToString:@"keyDown"], @"message should be keyDown but is '%@'", [parsedMessage method]);
-	STAssertTrue([[parsedMessage className] isEqualToString:@"DemoApplication"], @"message should be DemoApplication but is '%@'", [parsedMessage className]);
+	GHAssertTrue([[parsedMessage method] isEqualToString:@"keyDown"], @"message should be keyDown but is '%@'", [parsedMessage method]);
+	GHAssertTrue([[parsedMessage shortClassName] isEqualToString:@"DemoApplication"], @"message should be DemoApplication but is '%@'", [parsedMessage className]);
 	[parser release];
 }
 

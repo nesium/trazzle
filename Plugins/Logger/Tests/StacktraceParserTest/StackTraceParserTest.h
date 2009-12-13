@@ -6,10 +6,10 @@
 //  Copyright 2008 nesiumdotcom. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <GHUnit/GHUnit.h>
 
 
-@interface StackTraceParserTest : SenTestCase 
+@interface StackTraceParserTest : GHTestCase 
 {
 
 }

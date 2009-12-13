@@ -7,7 +7,7 @@
 //
 
 #import "ZZWindowController.h"
-#import "TrazzlePlugIn.h"
+#import "ZZTrazzlePlugIn.h"
 
 @interface ZZWindowController (Private)
 - (id <TrazzleTabViewDelegate>)_delegateForTabViewItem:(NSTabViewItem *)item;
@@ -26,10 +26,8 @@
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithWindowNibName:(NSString *)windowNibName delegate:(id)delegate
-{
-	if (self = [super initWithWindowNibName:windowNibName])
-	{
+- (id)initWithWindowNibName:(NSString *)windowNibName delegate:(id)delegate{
+	if (self = [super initWithWindowNibName:windowNibName]){
 		m_delegate = delegate;
 		m_delegates = [[NSMutableArray alloc] init];
 		m_windowIsReady = NO;
@@ -41,14 +39,12 @@
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[m_delegates release];
 	[super dealloc];
 }
 
-- (void)windowDidLoad
-{
+- (void)windowDidLoad{
 	ZZWindow *window = (ZZWindow *)[self window];
 	window.borderStartColor = [NSColor colorWithCalibratedRed:0.773 green:0.773 blue:0.773 
 		alpha:1.0];
@@ -79,11 +75,9 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (IBAction)showWindow:(id)sender
-{
+- (IBAction)showWindow:(id)sender{
 	if (!m_windowIsReady) return;
-	if (m_windowWasVisible)
-	{
+	if (m_windowWasVisible){
 		[super showWindow:sender];
 		return;
 	}
@@ -110,8 +104,7 @@
 }
 
 - (id)addTabWithIdentifier:(id)ident view:(NSView *)view 
-	delegate:(id <TrazzleTabViewDelegate>)delegate
-{
+	delegate:(id <TrazzleTabViewDelegate>)delegate{
 	[m_delegates addObject:delegate];
 	NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:delegate];
 	[tabViewItem setLabel:[delegate titleForTabWithIdentifier:ident]];
@@ -123,18 +116,15 @@
 	return [[m_tabBar cells] lastObject];
 }
 
-- (void)bringWindowToTop
-{
+- (void)bringWindowToTop{
 	[[self window] orderFrontRegardless];
 }
 
-- (void)setWindowIsFloating:(BOOL)bFlag
-{
+- (void)setWindowIsFloating:(BOOL)bFlag{
 	[[self window] setLevel:(bFlag ? NSFloatingWindowLevel : NSNormalWindowLevel)];
 }
 
-- (void)selectTabItemWithDelegate:(id<TrazzleTabViewDelegate>)aDelegate
-{
+- (void)selectTabItemWithDelegate:(id<TrazzleTabViewDelegate>)aDelegate{
 	NSUInteger index = [m_delegates indexOfObject:aDelegate];
 	if (index == NSNotFound)
 		return;
@@ -150,23 +140,19 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (id <TrazzleTabViewDelegate>)_delegateForTabViewItem:(NSTabViewItem *)item
-{
+- (id <TrazzleTabViewDelegate>)_delegateForTabViewItem:(NSTabViewItem *)item{
 	return [m_delegates objectAtIndex:[m_tabView indexOfTabViewItem:item]];
 }
 
-- (void)_updateTabViewItemLabels
-{
-	for (int i = 0; i < [[m_tabView tabViewItems] count]; i++)
-	{
+- (void)_updateTabViewItemLabels{
+	for (int i = 0; i < [[m_tabView tabViewItems] count]; i++){
 		NSTabViewItem *item = [m_tabView tabViewItemAtIndex:i];
 		id <TrazzleTabViewDelegate> delegate = [m_delegates objectAtIndex:i];
 		[item setLabel:[delegate titleForTabWithIdentifier:[item identifier]]];
 	}
 }
 
-- (void)_showWindowIfDelegatesAreReady
-{
+- (void)_showWindowIfDelegatesAreReady{
 	for (NSObject *delegate in m_delegates)
 		if (![[delegate valueForKey:@"isReady"] boolValue])
 			return;
@@ -174,13 +160,11 @@
 	[self showWindow:self];
 }
 
-- (void)_closeTab:(NSTabViewItem *)item
-{
+- (void)_closeTab:(NSTabViewItem *)item{
 	[m_tabView removeTabViewItem:item];
 }
 
-- (void)_removeDelegate:(id <TrazzleTabViewDelegate>)delegate
-{
+- (void)_removeDelegate:(id <TrazzleTabViewDelegate>)delegate{
 	[(NSObject *)delegate removeObserver:self forKeyPath:@"tabTitle"];
 	[(NSObject *)delegate removeObserver:self forKeyPath:@"isReady"];
 	[m_delegates removeObject:delegate];
@@ -193,11 +177,9 @@
 #pragma mark -
 #pragma mark TabView delegate methods
 
-- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
-{
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem{
 	id <TrazzleTabViewDelegate> delegate;
-	if (m_lastSelectedTabViewItem != nil)
-	{
+	if (m_lastSelectedTabViewItem != nil){
 		delegate = [self _delegateForTabViewItem:m_lastSelectedTabViewItem];
 		if ([(NSObject *)delegate respondsToSelector:@selector(didBecomeInactive)])
 			objc_msgSend(delegate, @selector(didBecomeInactive));
@@ -211,8 +193,7 @@
 		[m_delegate windowController:self didSelectTabViewDelegate:delegate];
 }
 
-- (void)tabView:(NSTabView *)aTabView didCloseTabViewItem:(NSTabViewItem *)tabViewItem
-{
+- (void)tabView:(NSTabView *)aTabView didCloseTabViewItem:(NSTabViewItem *)tabViewItem{
 	[self _removeDelegate:(id <TrazzleTabViewDelegate>)[tabViewItem identifier]];
 }
 
@@ -221,15 +202,13 @@
 #pragma mark -
 #pragma mark Window delegate methods
 
-- (id)windowWillReturnFieldEditor:(NSWindow *)sender toObject:(id)anObject
-{
+- (id)windowWillReturnFieldEditor:(NSWindow *)sender toObject:(id)anObject{
 	if ([anObject respondsToSelector:@selector(_customFieldEditorForWindow:)])
 		return [(NSObject *)anObject _customFieldEditorForWindow:sender];
 	return nil;
 }
 
-- (BOOL)windowShouldClose:(id)window
-{
+- (BOOL)windowShouldClose:(id)window{
 	if ([m_tabView numberOfTabViewItems] <= 1)
 		return YES;
 	[self _closeTab:[m_tabView selectedTabViewItem]];
@@ -241,25 +220,20 @@
 #pragma mark -
 #pragma mark NSResponder methods
 
-- (void)keyDown:(NSEvent *)event
-{
+- (void)keyDown:(NSEvent *)event{
 	NSTabViewItem *selectedTab = [m_tabView selectedTabViewItem];
 	uint32_t selectedIndex = [m_tabView indexOfTabViewItem:selectedTab];
 
 	if ([event modifierFlags] & NSShiftKeyMask && 
 		[event modifierFlags] & NSCommandKeyMask && 
-		([event keyCode] == 123 || [event keyCode] == 124))
-	{
+		([event keyCode] == 123 || [event keyCode] == 124)){
 		if ([m_tabView numberOfTabViewItems] == 0) return;
-		if ([event keyCode] == 124) // right
-		{
+		if ([event keyCode] == 124){ // right
 			if (selectedIndex == [m_tabView numberOfTabViewItems] - 1)
 				[m_tabView selectFirstTabViewItem:self];
 			else
 				[m_tabView selectNextTabViewItem:self];
-		}
-		else if ([event keyCode] == 123) // left
-		{
+		}else if ([event keyCode] == 123){ // left
 			if (selectedIndex == 0)
 				[m_tabView selectLastTabViewItem:self];
 			else
@@ -270,30 +244,25 @@
 	
 	id delegate = [m_delegates objectAtIndex:selectedIndex];
 	id consumed = NO;
-	if ([delegate respondsToSelector:@selector(receivedKeyDown:inTabWithIdentifier:window:)])
-	{
+	if ([delegate respondsToSelector:@selector(receivedKeyDown:inTabWithIdentifier:window:)]){
 		consumed = objc_msgSend(delegate, @selector(receivedKeyDown:inTabWithIdentifier:window:), 
 			event, [selectedTab identifier], [self window]);
 	}
-	if (!consumed)
-	{
+	if (!consumed){
 		[super keyDown:event];
 	}
 }
 
-- (void)keyUp:(NSEvent *)event
-{
+- (void)keyUp:(NSEvent *)event{
 	NSTabViewItem *selectedTab = [m_tabView selectedTabViewItem];
 	uint32_t selectedIndex = [m_tabView indexOfTabViewItem:selectedTab];
 	id delegate = [m_delegates objectAtIndex:selectedIndex];
 	id consumed = NO;
-	if ([delegate respondsToSelector:@selector(receivedKeyUp:inTabWithIdentifier:window:)])
-	{
+	if ([delegate respondsToSelector:@selector(receivedKeyUp:inTabWithIdentifier:window:)]){
 		consumed = objc_msgSend(delegate, @selector(receivedKeyUp:inTabWithIdentifier:window:), event, 
 			[selectedTab identifier], [self window]);
 	}
-	if (!consumed)
-	{
+	if (!consumed){
 		[super keyUp:event];
 	}
 }
@@ -304,12 +273,10 @@
 #pragma mark KVO methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object 
-	change:(NSDictionary *)change context:(void *)context
-{
+	change:(NSDictionary *)change context:(void *)context{
 	if ([keyPath isEqualToString:@"tabTitle"])
 		[self _updateTabViewItemLabels];
 	else if ([keyPath isEqualToString:@"isReady"])
 		[self _showWindowIfDelegatesAreReady];
 }
-
 @end

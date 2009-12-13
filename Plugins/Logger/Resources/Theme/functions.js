@@ -8,6 +8,7 @@ var kLPMessageTypePolicyRequest = 4;
 var kLPMessageTypeStackTrace = 5;
 var kLPMessageTypeConnectionSignature = 6;
 var kLPMessageTypeException = 7;
+var kLPMessageTypeBitmap = 8;
 
 onload = function()
 {

@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Constants.h"
+#import "LPConstants.h"
 #import "ZZConstants.h"
 #import "LPFilter.h"
 #import "NSMMenuController.h"
@@ -15,8 +15,7 @@
 #import "LPFilterModel.h"
 
 
-@interface LPFilterController : NSWindowController
-{
+@interface LPFilterController : NSWindowController{
 	IBOutlet NSMenu *m_mainMenu;
 	IBOutlet NSArrayController *m_filterArrayController;
 	IBOutlet NSArrayController *m_filterMenuArrayController;

@@ -6,14 +6,11 @@
 //  Copyright 2008 nesiumdotcom. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <GHUnit/GHUnit.h>
 #import "MessageParser.h"
 #import "LogMessage.h"
 
 
-@interface MessageParserTest : SenTestCase 
-{
-
+@interface MessageParserTest : GHTestCase{
 }
-
 @end

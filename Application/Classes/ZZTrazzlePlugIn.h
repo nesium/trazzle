@@ -7,14 +7,14 @@
  *
  */
 
-#import "PlugInController.h"
+#import "ZZPlugInController.h"
 #import <Foundation/NSKeyValueObserving.h>
 
-@class PlugInController, ZZConnection;
+@class ZZPlugInController, ZZConnection;
 
-@protocol TrazzlePlugIn
+@protocol ZZTrazzlePlugIn
 @required
-- (id)initWithPlugInController:(PlugInController *)controller;
+- (id)initWithPlugInController:(ZZPlugInController *)controller;
 @optional
 - (void)trazzleDidOpenConnection:(ZZConnection *)conn;
 - (void)trazzleDidCloseConnection:(ZZConnection *)conn;

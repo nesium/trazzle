@@ -31,12 +31,9 @@ static NSMutableArray *g_filters = nil;
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)init
-{
-	if (self = [super init])
-	{
-		if (!g_filters)
-		{
+- (id)init{
+	if (self = [super init]){
+		if (!g_filters){
 			g_filters = [[NSMutableArray alloc] init];
 			[self _loadFilters];
 		}
@@ -49,8 +46,7 @@ static NSMutableArray *g_filters = nil;
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[super dealloc];
 }
 
@@ -59,26 +55,22 @@ static NSMutableArray *g_filters = nil;
 #pragma mark -
 #pragma mark Public methods
 
-- (void)save
-{
+- (void)save{
 	[self _saveDirtyFilters];
 }
 
-- (NSArray *)filters
-{
+- (NSArray *)filters{
 	return g_filters;
 }
 
-- (void)setShowsFlashLogMessages:(BOOL)bFlag
-{
+- (void)setShowsFlashLogMessages:(BOOL)bFlag{
 	if (m_showsFlashLogMessages == bFlag) return;
 	[[[NSUserDefaultsController sharedUserDefaultsController]
 	  values] setValue:[NSNumber numberWithBool:bFlag] forKey:kShowFlashLogMessages];
 	m_showsFlashLogMessages = bFlag;
 }
 
-- (LPFilter *)addNewFilter
-{
+- (LPFilter *)addNewFilter{
 	LPFilter *filter = [[LPFilter alloc] initWithName:[self _nextAvailableFilterName:nil] 
 		predicate:[self _defaultPredicate]];
 	[self _saveFilter:filter];
@@ -86,20 +78,17 @@ static NSMutableArray *g_filters = nil;
 	return [filter autorelease];
 }
 
-- (void)addFilter:(LPFilter *)aFilter
-{
+- (void)addFilter:(LPFilter *)aFilter{
 	[self willChangeValueForKey:@"filters"];
 	[g_filters addObject:aFilter];
 	[self didChangeValueForKey:@"filters"];
 }
 
-- (void)removeFilter:(LPFilter *)aFilter
-{
+- (void)removeFilter:(LPFilter *)aFilter{
 	[self willChangeValueForKey:@"filters"];
 	[aFilter retain];
 	[g_filters removeObject:aFilter];
-	if (aFilter == m_activeFilter)
-	{
+	if (aFilter == m_activeFilter){
 		self.filteringIsEnabled = NO;
 		self.activeFilter = [g_filters count] > 0 
 			? [g_filters objectAtIndex:0]
@@ -111,8 +100,7 @@ static NSMutableArray *g_filters = nil;
 	[self didChangeValueForKey:@"filters"];
 }
 
-- (LPFilter *)duplicateFilter:(LPFilter *)aFilter
-{
+- (LPFilter *)duplicateFilter:(LPFilter *)aFilter{
 	LPFilter *filter = [[LPFilter alloc] initWithName:
 		[self _nextAvailableFilterName:[aFilter.name stringByAppendingString:@" Copy"]] 
 		predicate:[[aFilter.predicate copy] autorelease]];
@@ -121,8 +109,7 @@ static NSMutableArray *g_filters = nil;
 	return [filter autorelease];
 }
 
-- (void)setActiveFilter:(LPFilter *)filter
-{
+- (void)setActiveFilter:(LPFilter *)filter{
 	if (filter == m_activeFilter)
 		return;
 	
@@ -134,8 +121,7 @@ static NSMutableArray *g_filters = nil;
 	[self didChangeValueForKey:@"activeFilter"];
 }
 
-- (void)setFilteringIsEnabled:(BOOL)bFlag
-{
+- (void)setFilteringIsEnabled:(BOOL)bFlag{
 	if (m_filteringIsEnabled == bFlag)
 		return;
 	
@@ -151,8 +137,7 @@ static NSMutableArray *g_filters = nil;
 #pragma mark -
 #pragma mark Notifications
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification
-{
+- (void)applicationWillTerminate:(NSNotification *)aNotification{
 	[self _saveDirtyFilters];
 }
 
@@ -161,16 +146,14 @@ static NSMutableArray *g_filters = nil;
 #pragma mark -
 #pragma mark Private methods
 
-- (BOOL)_containsFilterWithName:(NSString *)name
-{
+- (BOOL)_containsFilterWithName:(NSString *)name{
 	for (LPFilter *filter in g_filters)
 		if ([[filter name] isEqualToString:name])
 			return YES;
 	return NO;
 }
 
-- (NSString *)_nextAvailableFilterName:(NSString *)baseName
-{
+- (NSString *)_nextAvailableFilterName:(NSString *)baseName{
 	if (baseName == nil) baseName = @"Untitled Filter";
 	unsigned int i = 1;
 	NSString *name;
@@ -179,27 +162,23 @@ static NSMutableArray *g_filters = nil;
 	return name;
 }
 
-- (NSString *)_filtersPath
-{
+- (NSString *)_filtersPath{
 	return [TRAZZLE_APP_SUPPORT stringByAppendingPathComponent:@"Filters"];
 }
 
-- (void)_loadFilters
-{
+- (void)_loadFilters{
 	NSFileManager *fm = [NSFileManager defaultManager];
 	NSEnumerator *filesEnum = [[fm contentsOfDirectoryAtPath:[self _filtersPath] 
 													   error: NULL] objectEnumerator];
 	NSString *file;
-	while (file = [filesEnum nextObject])
-	{
+	while (file = [filesEnum nextObject]){
 		if (![[file pathExtension] isEqualToString:kFilterFileExtension])
 			continue;
 		
 		NSError *error;
 		NSString *filterPath = [[self _filtersPath] stringByAppendingPathComponent:file];
 		LPFilter *filter = [[LPFilter alloc] initWithContentsOfFile:filterPath error:&error];
-		if (filter == nil)
-		{
+		if (filter == nil){
 			NSLog(@"%@", [error description]);
 			[filter release];
 			continue;
@@ -209,17 +188,14 @@ static NSMutableArray *g_filters = nil;
 	}
 }
 
-- (void)_loadPreferences
-{
+- (void)_loadPreferences{
 	NSObject *defaultValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 	NSString *selectedFilterPath = [defaultValues valueForKey:kLastSelectedFilterKey];
 	BOOL foundSelectedFilter = NO;
 	
-	for (LPFilter *filter in g_filters)
-	{
+	for (LPFilter *filter in g_filters){
 		BOOL currentFilterIsSelected = [[filter path] isEqualToString:selectedFilterPath];
-		if (currentFilterIsSelected)
-		{
+		if (currentFilterIsSelected){
 			foundSelectedFilter = YES;
 			[self setActiveFilter:filter];
 			break;
@@ -235,31 +211,26 @@ static NSMutableArray *g_filters = nil;
 	self.showsFlashLogMessages = [[defaultValues valueForKey:kShowFlashLogMessages] boolValue];
 }
 
-- (void)_saveDirtyFilters
-{
-	for (LPFilter *filter in g_filters)
-	{
+- (void)_saveDirtyFilters{
+	for (LPFilter *filter in g_filters){
 		if (![filter isDirty]) continue;
 		[self _saveFilter:filter];
 	}
 }
 
-- (void)_saveFilter:(LPFilter *)filter
-{
+- (void)_saveFilter:(LPFilter *)filter{
 	NSError *error;
 	if (![filter save:&error])
 		NSLog(@"%@", [error description]);
 }
 
-- (void)_destroyFilter:(LPFilter *)filter
-{
+- (void)_destroyFilter:(LPFilter *)filter{
 	NSError *error;
 	if (![filter unlink:&error])
 		NSLog(@"%@", [error description]);
 }
 
-- (NSPredicate *)_defaultPredicate
-{
+- (NSPredicate *)_defaultPredicate{
 	return [NSCompoundPredicate orPredicateWithSubpredicates: 
 				[NSArray arrayWithObject:[NSComparisonPredicate 
 					predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"level"]
@@ -268,5 +239,4 @@ static NSMutableArray *g_filters = nil;
 					type:NSEqualToPredicateOperatorType
 					options:NSCaseInsensitivePredicateOption]]];
 }
-
 @end

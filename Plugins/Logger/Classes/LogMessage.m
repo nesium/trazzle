@@ -16,16 +16,13 @@ static NSArray *kLPLogLevels;
 #pragma mark -
 #pragma mark Initialization & deallocation
 
-+ (void)initialize
-{
++ (void)initialize{
 	kLPLogLevels = [[NSArray alloc] initWithObjects: @"not specified", @"temp", 
 		@"debug", @"info", @"notice", @"warning", @"error", @"critical", @"fatal", @"exception", nil];
 }
 
-- (id)init
-{
-	if (self = [super init])
-	{
+- (id)init{
+	if (self = [super init]){
 		encodeHTML = YES;
 		messageType = kLPMessageTypeSocket;
 		m_didLookupFile = NO;
@@ -33,8 +30,7 @@ static NSArray *kLPLogLevels;
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[levelName release];
 	[stacktrace release];
 	[super dealloc];
@@ -45,12 +41,10 @@ static NSArray *kLPLogLevels;
 #pragma mark -
 #pragma mark Public methods
 
-- (void)setLevelName:(NSString *)aLevel
-{
+- (void)setLevelName:(NSString *)aLevel{
 	[aLevel retain];
 	[levelName release];
-	if ([aLevel isEqualToString:@""])
-	{
+	if ([aLevel isEqualToString:@""]){
 		[aLevel release];
 		aLevel = [[kLPLogLevels objectAtIndex:0] retain];
 	}
@@ -59,13 +53,11 @@ static NSArray *kLPLogLevels;
 	levelName = aLevel;
 }
 
-- (NSString *)message
-{
+- (NSString *)message{
 	return encodeHTML ? [message htmlEncodedStringWithConvertedLinebreaks] : message;
 }
 
-- (NSString *)formattedTimestamp
-{
+- (NSString *)formattedTimestamp{
 	BOOL useRelativeTimestamp = YES;
 	NSTimeInterval interval = useRelativeTimestamp
 		? timestamp
@@ -74,10 +66,8 @@ static NSArray *kLPLogLevels;
 	return [date descriptionWithCalendarFormat:@"%M:%S:%F" timeZone:nil locale:nil];
 }
 
-- (BOOL)fileExists
-{
-	if (!m_didLookupFile)
-	{
+- (BOOL)fileExists{
+	if (!m_didLookupFile){
 		fileExists = [[LPExistingFilesCache sharedCache] fileExistsAtPath:file];
 		m_didLookupFile = YES;
 	}
@@ -89,8 +79,7 @@ static NSArray *kLPLogLevels;
 #pragma mark -
 #pragma mark WebScripting Protocol
 
-+ (BOOL)isKeyExcludedFromWebScript:(const char *)name
-{
++ (BOOL)isKeyExcludedFromWebScript:(const char *)name{
 	if (name == "levelName" ||
 		name == "connectionTimestamp" ||
 		name == "message" ||
@@ -98,16 +87,13 @@ static NSArray *kLPLogLevels;
 		name == "index" ||
 		name == "timestamp" || 
 		name == "formattedTimestamp" || 
-		name == "fileExists")
-	{
+		name == "fileExists"){
 		return NO;
 	}
 	return [super isKeyExcludedFromWebScript:name];
 }
 
-+ (BOOL)isSelectorExcludedFromWebScript:(SEL)sel
-{
++ (BOOL)isSelectorExcludedFromWebScript:(SEL)sel{
 	return !(sel == @selector(formattedTimestamp));
 }
-
 @end

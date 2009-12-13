@@ -13,19 +13,15 @@
 
 @synthesize errorType, errorNumber;
 
-- (id)init
-{
-	if (self = [super init])
-	{
+- (id)init{
+	if (self = [super init]){
 		messageType = kLPMessageTypeException;
 	}
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[errorType release];
 	[super dealloc];
 }
-
 @end

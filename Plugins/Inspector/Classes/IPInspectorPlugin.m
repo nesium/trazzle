@@ -14,10 +14,8 @@
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithPlugInController:(PlugInController *)aController
-{
-	if (self = [super init])
-	{
+- (id)initWithPlugInController:(ZZPlugInController *)aController{
+	if (self = [super init]){
 		m_controller = aController;
 		[[m_controller sharedGateway] registerService:[[[IPInspectionService alloc] 
 			initWithDelegate:self] autorelease] withName:@"InspectionService"];

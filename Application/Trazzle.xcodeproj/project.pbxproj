@@ -20,7 +20,7 @@
 		2C1D6DC70F34F82F00EA8975 /* statusbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D6DC60F34F82F00EA8975 /* statusbar_icon.png */; };
 		2C1D6DDE0F34FA4000EA8975 /* statusbar_icon_alternate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D6DDD0F34FA4000EA8975 /* statusbar_icon_alternate.png */; };
 		2C1F223C0FF57C730035F2DE /* ZZApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F223B0FF57C730035F2DE /* ZZApplication.m */; };
-		2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC39F0ECE303F005785E2 /* PlugInController.m */; };
+		2C2EC3A00ECE303F005785E2 /* ZZPlugInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC39F0ECE303F005785E2 /* ZZPlugInController.m */; };
 		2C54D7FD0F3A068200264CC9 /* tabbar_activetab_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FA0F3A068200264CC9 /* tabbar_activetab_right.png */; };
 		2C54D7FE0F3A068200264CC9 /* tabbar_activetab_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FB0F3A068200264CC9 /* tabbar_activetab_middle.png */; };
 		2C54D7FF0F3A068200264CC9 /* tabbar_activetab_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FC0F3A068200264CC9 /* tabbar_activetab_left.png */; };
@@ -54,7 +54,7 @@
 		2CEEDBB9106ACCB700D46C84 /* ZZTabBarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEEDBB8106ACCB700D46C84 /* ZZTabBarControl.m */; };
 		2CF0B37B105C5BAD000222E7 /* ZZCoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0B37A105C5BAD000222E7 /* ZZCoreService.m */; };
 		2CF39FE30CF8E23600A1B9A9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */; };
-		2CF39FF60CF8E5CA00A1B9A9 /* ZZController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */; };
+		2CF39FF60CF8E5CA00A1B9A9 /* ZZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF39FF50CF8E5CA00A1B9A9 /* ZZAppDelegate.m */; };
 		2CF4FB0C107981D8003BA6B3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 2CF4FB0B107981D8003BA6B3 /* dsa_pub.pem */; };
 		496AF03B0F320B3B0049FB23 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF0380F320B3B0049FB23 /* Sparkle.framework */; };
 		496AF03C0F320B3B0049FB23 /* PSMTabBarControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF0390F320B3B0049FB23 /* PSMTabBarControl.framework */; };
@@ -183,14 +183,14 @@
 		2C1D6DDD0F34FA4000EA8975 /* statusbar_icon_alternate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusbar_icon_alternate.png; sourceTree = "<group>"; };
 		2C1F223A0FF57C730035F2DE /* ZZApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZApplication.h; sourceTree = "<group>"; };
 		2C1F223B0FF57C730035F2DE /* ZZApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZApplication.m; sourceTree = "<group>"; };
-		2C2EC39E0ECE303F005785E2 /* PlugInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlugInController.h; sourceTree = "<group>"; };
-		2C2EC39F0ECE303F005785E2 /* PlugInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlugInController.m; sourceTree = "<group>"; };
+		2C2EC39E0ECE303F005785E2 /* ZZPlugInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPlugInController.h; sourceTree = "<group>"; };
+		2C2EC39F0ECE303F005785E2 /* ZZPlugInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPlugInController.m; sourceTree = "<group>"; };
 		2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tests-Info.plist"; path = "Resources/Tests-Info.plist"; sourceTree = "<group>"; };
 		2C485F281062D4B7009818EE /* Inspector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Inspector.xcodeproj; path = ../Plugins/Inspector/Inspector.xcodeproj; sourceTree = SOURCE_ROOT; };
 		2C54D7FA0F3A068200264CC9 /* tabbar_activetab_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab_right.png; sourceTree = "<group>"; };
 		2C54D7FB0F3A068200264CC9 /* tabbar_activetab_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab_middle.png; sourceTree = "<group>"; };
 		2C54D7FC0F3A068200264CC9 /* tabbar_activetab_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_activetab_left.png; sourceTree = "<group>"; };
-		2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrazzlePlugIn.h; sourceTree = "<group>"; };
+		2C65AE150F328A3C005D7A61 /* ZZTrazzlePlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZTrazzlePlugIn.h; sourceTree = "<group>"; };
 		2C69204F1072C1CC00D20740 /* AAPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPreferencesWindowController.h; sourceTree = "<group>"; };
 		2C6920501072C1CC00D20740 /* AAPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPreferencesWindowController.m; sourceTree = "<group>"; };
 		2C7D43F51077920D00EB4725 /* FRFeedbackReporter.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = FRFeedbackReporter.sh; path = Resources/FRFeedbackReporter.sh; sourceTree = "<group>"; };
@@ -241,8 +241,8 @@
 		2CF0B379105C5BAD000222E7 /* ZZCoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCoreService.h; sourceTree = "<group>"; };
 		2CF0B37A105C5BAD000222E7 /* ZZCoreService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCoreService.m; sourceTree = "<group>"; };
 		2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
-		2CF39FF40CF8E5CA00A1B9A9 /* ZZController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZController.h; sourceTree = "<group>"; };
-		2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZController.m; sourceTree = "<group>"; };
+		2CF39FF40CF8E5CA00A1B9A9 /* ZZAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZAppDelegate.h; sourceTree = "<group>"; };
+		2CF39FF50CF8E5CA00A1B9A9 /* ZZAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZAppDelegate.m; sourceTree = "<group>"; };
 		2CF4FB0B107981D8003BA6B3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/dsa_pub.pem; sourceTree = "<group>"; };
 		2CFA54E30D6B8D5F00F5DFE5 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32DBCF750370BD2300C91783 /* Trazzle_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trazzle_Prefix.pch; sourceTree = "<group>"; };
@@ -329,12 +329,12 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2C65AE150F328A3C005D7A61 /* TrazzlePlugIn.h */,
-				2C2EC39E0ECE303F005785E2 /* PlugInController.h */,
-				2C2EC39F0ECE303F005785E2 /* PlugInController.m */,
+				2C65AE150F328A3C005D7A61 /* ZZTrazzlePlugIn.h */,
+				2C2EC39E0ECE303F005785E2 /* ZZPlugInController.h */,
+				2C2EC39F0ECE303F005785E2 /* ZZPlugInController.m */,
 				2C87B4570D8733F10065FC08 /* ZZConstants.h */,
-				2CF39FF40CF8E5CA00A1B9A9 /* ZZController.h */,
-				2CF39FF50CF8E5CA00A1B9A9 /* ZZController.m */,
+				2CF39FF40CF8E5CA00A1B9A9 /* ZZAppDelegate.h */,
+				2CF39FF50CF8E5CA00A1B9A9 /* ZZAppDelegate.m */,
 				2C19E05F0EBE752F00B9BA96 /* ZZWindowController.h */,
 				2C19E0600EBE752F00B9BA96 /* ZZWindowController.m */,
 				2C1F223A0FF57C730035F2DE /* ZZApplication.h */,
@@ -517,7 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */,
-				2C65AD9E0F32813F005D7A61 /* Tests.octest */,
+				2C65AD9E0F32813F005D7A61 /* Tests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -615,10 +615,10 @@
 			remoteRef = 2C485F2C1062D4B7009818EE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2C65AD9E0F32813F005D7A61 /* Tests.octest */ = {
+		2C65AD9E0F32813F005D7A61 /* Tests.app */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = Tests.octest;
+			fileType = wrapper.application;
+			path = Tests.app;
 			remoteRef = 2C65AD9D0F32813F005D7A61 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -723,9 +723,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				2CF39FF60CF8E5CA00A1B9A9 /* ZZController.m in Sources */,
+				2CF39FF60CF8E5CA00A1B9A9 /* ZZAppDelegate.m in Sources */,
 				2C19E0610EBE752F00B9BA96 /* ZZWindowController.m in Sources */,
-				2C2EC3A00ECE303F005785E2 /* PlugInController.m in Sources */,
+				2C2EC3A00ECE303F005785E2 /* ZZPlugInController.m in Sources */,
 				2C93A5390F3906A60050CD51 /* ZZTabStyle.m in Sources */,
 				2C1F223C0FF57C730035F2DE /* ZZApplication.m in Sources */,
 				2CDA0FF01041AFF4008338CF /* ZZWindow.m in Sources */,

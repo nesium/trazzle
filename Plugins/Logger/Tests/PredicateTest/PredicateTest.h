@@ -6,10 +6,10 @@
 //  Copyright 2007 nesiumdotcom. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <GHUnit/GHUnit.h>
 
 
-@interface PredicateTest : SenTestCase 
+@interface PredicateTest : GHTestCase
 {
 }
 

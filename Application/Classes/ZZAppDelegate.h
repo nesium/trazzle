@@ -13,8 +13,8 @@
 #import "AMFDuplexGateway.h"
 #import "AsyncSocket.h"
 #import "ZZWindowController.h"
-#import "PlugInController.h"
-#import "TrazzlePlugIn.h"
+#import "ZZPlugInController.h"
+#import "ZZTrazzlePlugIn.h"
 #import "ZZConnection.h"
 #import "ZZCoreService.h"
 #import "AAPreferencesWindowController.h"
@@ -22,8 +22,8 @@
 
 #define SUPPORT_PATH @"~/Library/Application Support/Trazzle"
 
-@interface ZZController : NSObject
-{
+@interface ZZAppDelegate : NSObject{
+@private
 	NSMutableArray *m_connectedClients;
 	AsyncSocket *m_socket;
 	AMFDuplexGateway *m_gateway;

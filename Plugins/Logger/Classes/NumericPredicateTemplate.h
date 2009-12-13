@@ -9,9 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface NumericPredicateTemplate : NSPredicateEditorRowTemplate 
-{
-
+@interface NumericPredicateTemplate : NSPredicateEditorRowTemplate{
 }
-
 @end

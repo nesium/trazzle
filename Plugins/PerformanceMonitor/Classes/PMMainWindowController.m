@@ -23,10 +23,8 @@
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithWindowNibName:(NSString *)windowNibName plugInController:(PlugInController *)controller
-{
-	if (self = [super initWithWindowNibName:windowNibName])
-	{
+- (id)initWithWindowNibName:(NSString *)windowNibName plugInController:(ZZPlugInController *)controller{
+	if (self = [super initWithWindowNibName:windowNibName]){
 		m_controller = controller;
 		m_redrawTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self 
 			selector:@selector(redrawTimer_tick:) userInfo:nil repeats:YES];
@@ -36,8 +34,7 @@
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[m_redrawTimer invalidate];
 	[super dealloc];
 }
@@ -47,13 +44,11 @@
 #pragma mark -
 #pragma mark Overridden NSWindowController methods
 
-- (NSString *)windowFrameAutosaveName
-{
+- (NSString *)windowFrameAutosaveName{
 	return @"PMMainWindow";
 }
 
-- (void)windowDidLoad
-{
+- (void)windowDidLoad{
 	NSSize contentSize = [m_scrollView contentSize];
 	m_documentView = [[NSView alloc] initWithFrame:(NSRect){0, 0, contentSize.width, 
 		contentSize.height}];
@@ -94,10 +89,8 @@
 	[self.window setLevel:NSNormalWindowLevel];
 }
 
-- (IBAction)showWindow:(id)sender
-{
-	if (![self.window isVisible])
-    {
+- (IBAction)showWindow:(id)sender{
+	if (![self.window isVisible]){
         self.window.alphaValue = 0.0;
 		[NSAnimationContext beginGrouping];
 		[[NSAnimationContext currentContext] setDuration:0.15];
@@ -112,8 +105,7 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)removeLayerWithConnection:(ZZConnection *)conn
-{
+- (void)removeLayerWithConnection:(ZZConnection *)conn{
 	PMStatsSessionViewLayer *layer = [self _layerForConnection:conn];
 	layer.zPosition = -1;
 	[layer removeFromSuperlayer];
@@ -126,23 +118,21 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (PMStatsSessionViewLayer *)_layerForConnection:(ZZConnection *)conn
-{
+- (PMStatsSessionViewLayer *)_layerForConnection:(ZZConnection *)conn{
 	for (PMStatsSessionViewLayer *layer in m_layers)
 		if (layer.representedObject == conn)
 			return layer;
 	return nil;
 }
 
-- (PMStatsSessionViewLayer *)_addLayerWithConnection:(ZZConnection *)conn
-{
+- (PMStatsSessionViewLayer *)_addLayerWithConnection:(ZZConnection *)conn{
 	PMStatsSessionViewLayer *layer = [PMStatsSessionViewLayer layer];
 	layer.frame = (CGRect){0, 0, [m_scrollView contentSize].width, 100};
 	layer.anchorPoint = (CGPoint){0.0f, 0.0f};
 	NSArray *colors = [NSArray arrayWithObjects:[NSColor cyanColor], [NSColor magentaColor], nil];
 	[layer setColors:colors];
-	NSArray *stats = [NSArray arrayWithObjects:[[PMStatsData alloc] init], 
-		[[PMStatsData alloc] init], nil];
+	NSArray *stats = [NSArray arrayWithObjects:[[[PMStatsData alloc] init] autorelease], 
+		[[[PMStatsData alloc] init] autorelease], nil];
 	[layer setStatsData:stats];
 	layer.representedObject = conn;
 	[m_layers addObject:layer];
@@ -153,8 +143,7 @@
 	return layer;
 }
 
-- (void)_updateWindowFrame
-{
+- (void)_updateWindowFrame{
 	m_noSessionTextLayer.opacity = [m_layers count] == 0 ? 1.0 : 0.0;
 	
 	NSRect windowFrame = [[self window] frame];
@@ -171,20 +160,17 @@
 		[m_scrollView setHasVerticalScroller:NO];
 }
 
-- (void)_updateLayerPositions
-{
+- (void)_updateLayerPositions{
 	float y = MAX([m_layers count], 1) * 100.0f;
 	float x = 0.0f;
-	for (PMStatsSessionViewLayer *layer in m_layers)
-	{
+	for (PMStatsSessionViewLayer *layer in m_layers){
 		y -= 100.0f;
 		layer.position = (CGPoint){x, y};
 		layer.drawsDivider = layer != [m_layers lastObject];
 	}
 }
 
-- (NSRect)_windowFrame
-{
+- (NSRect)_windowFrame{
 	NSRect windowFrame = [[self window] frame];
 	NSRect contentViewFrame = [[[self window] contentView] frame];
 	CGFloat heightDiff = windowFrame.size.height - contentViewFrame.size.height;
@@ -196,8 +182,7 @@
 	return newWindowFrame;
 }
 
-- (void)_resizeLayers
-{
+- (void)_resizeLayers{
 	NSSize contentSize = [m_scrollView contentSize];
 	NSRect documentViewFrame = [m_documentView frame];
 	documentViewFrame.size.width = contentSize.width;
@@ -215,29 +200,22 @@
 #pragma mark -
 #pragma mark Events
 
-- (void)redrawTimer_tick:(NSTimer *)timer
-{
+- (void)redrawTimer_tick:(NSTimer *)timer{
 	if (!m_needsRedraw) return;
 	for (PMStatsSessionViewLayer *layer in m_layers)
 		[layer redrawIfNeeded];
 	m_needsRedraw = NO;
 }
 
-- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
-{
-	if ([[animation valueForKey:@"name"] isEqualToString:@"documentView"])
-	{
+- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag{
+	if ([[animation valueForKey:@"name"] isEqualToString:@"documentView"]){
 		NSSize contentSize = [m_scrollView contentSize];
 		BOOL wasShrinking = contentSize.height > [m_documentView frame].size.height;
 		if (wasShrinking)
 			[m_scrollView setHasVerticalScroller:YES];
-	}
-	else if ([[animation valueForKey:@"name"] isEqualToString:@"window"])
-	{
+	}else if ([[animation valueForKey:@"name"] isEqualToString:@"window"]){
 		[self _resizeLayers];
-	}
-	else
-	{
+	}else{
 		if (self.window.alphaValue == 0.00)
 			[self close];
 	}
@@ -249,8 +227,7 @@
 #pragma mark PMMonitoringServiceDelegate methods
 
 - (void)service:(PMMonitoringService *)service startMonitoring:(NSNumber *)maxFPS 
-	forRemote:(AMFRemoteGateway *)remote
-{
+	forRemote:(AMFRemoteGateway *)remote{
 	if (![[self window] isVisible])
 		[self showWindow:self];
 	ZZConnection *conn = [m_controller connectionForRemote:remote];
@@ -261,8 +238,7 @@
 }
 
 - (void)service:(PMMonitoringService *)service trackFPS:(NSNumber *)fps memoryUse:(NSNumber *)memory 
-	timestamp:(NSNumber *)timestamp forRemote:(AMFRemoteGateway *)remote
-{
+	timestamp:(NSNumber *)timestamp forRemote:(AMFRemoteGateway *)remote{
 	PMStatsSessionViewLayer *layer = [self _layerForConnection:
 		[m_controller connectionForRemote:remote]];
 	PMStatsData *data = [[layer statsData] objectAtIndex:0];
@@ -276,8 +252,7 @@
 	m_needsRedraw = YES;
 }
 
-- (void)serviceStopMonitoring:(PMMonitoringService *)service forRemote:(AMFRemoteGateway *)remote
-{
+- (void)serviceStopMonitoring:(PMMonitoringService *)service forRemote:(AMFRemoteGateway *)remote{
 	[self removeLayerWithConnection:[m_controller connectionForRemote:remote]];
 }
 
@@ -286,13 +261,11 @@
 #pragma mark -
 #pragma mark Window delegate methods
 
-- (BOOL)windowShouldClose:(id)window
-{
+- (BOOL)windowShouldClose:(id)window{
 	[NSAnimationContext beginGrouping];
 	[[NSAnimationContext currentContext] setDuration:0.15];
 	[self.window.animator setAlphaValue:0.0];
 	[NSAnimationContext endGrouping];
     return NO;
 }
-
 @end

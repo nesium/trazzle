@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "TrazzlePlugIn.h"
-#import "Constants.h"
+#import "ZZTrazzlePlugIn.h"
+#import "LPConstants.h"
 #import "AsyncSocket.h"
 #import "LPMessageModel.h"
 #import "LoggingViewController.h"
@@ -24,17 +24,14 @@
 #import "LPPreferencesViewController.h"
 #import "FileObservingService.h"
 #import "FileMonitor.h"
+#import "LPMMCfgFile.h"
+#import "LPTailTask.h"
 
-@interface LoggerPlugin : NSObject <TrazzlePlugIn, FileObserver>
-{
-	PlugInController *m_controller;
-	
+@interface LPLoggerPlugin : NSObject <ZZTrazzlePlugIn, FileObserver>{
+	ZZPlugInController *m_controller;
 	NSMutableArray *m_sessions;
-	
-	NSTask *m_tailTask;
-	NSPipe *m_logPipe;
+	LPTailTask *m_tailTask;
 	BOOL m_autoSelectTab;
-
 	LPFilterController *m_filterController;
 }
 @end

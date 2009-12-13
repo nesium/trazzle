@@ -11,8 +11,7 @@
 
 @class LPFilterController;
 
-@interface SelectedFilterToIconTransformer : NSValueTransformer
-{
+@interface SelectedFilterToIconTransformer : NSValueTransformer{
 	LPFilterController *m_filterController;
 }
 - (id)initWithFilterController:(LPFilterController *)filterController;

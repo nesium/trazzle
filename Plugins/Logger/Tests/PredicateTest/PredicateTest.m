@@ -7,14 +7,14 @@
 //
 
 #import "PredicateTest.h"
-#import "LogMessageModel.h"
+#import "LPMessageModel.h"
 #import "MessageParser.h"
-#import "FilterModel.h"
+#import "LPFilterModel.h"
 
 
 @implementation PredicateTest
 
-LogMessageModel *m_logMessageModel;
+LPMessageModel *m_logMessageModel;
 
 - (void) setUp
 {
@@ -24,14 +24,14 @@ LogMessageModel *m_logMessageModel;
 		stringByAppendingPathComponent: @"predicatetest_data.xml"];
 	NSString *testData = [NSString stringWithContentsOfFile: testDataPath
 		 encoding: NSUTF8StringEncoding error: &error];
-	STAssertNil(error, @"Test data could not be read. %@", [error description]);
+	GHAssertNil(error, @"Test data could not be read. %@", [error description]);
 	
 	NSArray *lines = [testData componentsSeparatedByString: @"\n"];
-	STAssertEquals(496, (int)[lines count], 
+	GHAssertEquals(496, (int)[lines count], 
 		@"array should contain 496 items, but does contain %d items", [lines count]);
 	
 	// parse testdata & push into model
-	m_logMessageModel = [[LogMessageModel alloc] init];
+	m_logMessageModel = [[LPMessageModel alloc] init];
 	
 	NSEnumerator *lineEnum = [lines objectEnumerator];
 	NSString *messageString;
@@ -41,35 +41,33 @@ LogMessageModel *m_logMessageModel;
 		NSEnumerator *messageEnum = [[parser data] objectEnumerator];
 		id message;
 		
-		while (message = [messageEnum nextObject])
-		{
-			[[m_logMessageModel messages] addObject: message];
+		while (message = [messageEnum nextObject]){
+			[m_logMessageModel addMessage:message];
 		}
 		[parser release];
 	}
 	
-	STAssertEquals(496, (int)[[m_logMessageModel messages] count], 
+	GHAssertEquals(496, (int)[[m_logMessageModel messages] count], 
 	@"Model should contain 496 messages, but does contain %d messages", 
 	[[m_logMessageModel messages] count]);
 }
 
-- (void) tearDown
-{
+- (void)tearDown{
 	[m_logMessageModel release];
 }
 
 - (void)testPredicateLoglevelEquals
 {
-	Filter *filter = [[FilterModel defaultModel] addFilterWithName:@"testPredicateLoglevelEquals" 
+	LPFilter *filter = [[LPFilterModel defaultModel] addFilterWithName:@"testPredicateLoglevelEquals" 
 		predicate:[NSPredicate predicateWithFormat: @"level == 5"]];
-	[[FilterModel defaultModel] setActiveFilter:filter];
-	[[FilterModel defaultModel] setFilteringEnabled:[NSNumber numberWithBool:YES]];
+	[[LPFilterModel defaultModel] setActiveFilter:filter];
+	[[LPFilterModel defaultModel] setFilteringEnabled:[NSNumber numberWithBool:YES]];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat: @"visible == YES"];
 	NSArray *filteredMessages = [[m_logMessageModel messages] 
 		filteredArrayUsingPredicate: predicate];
-	STAssertEquals(2, (int)[filteredMessages count], @"filtered message should be 2, but is %d",
+	GHAssertEquals(2, (int)[filteredMessages count], @"filtered message should be 2, but is %d",
 		[filteredMessages count]);
-	[[FilterModel defaultModel] removeFilter:filter];
+	[[LPFilterModel defaultModel] removeFilter:filter];
 }
 
 - (void) testPredicateClazzEndsWith
@@ -77,7 +75,7 @@ LogMessageModel *m_logMessageModel;
 	NSPredicate *predicate = [NSPredicate predicateWithFormat: @"fqClassName ENDSWITH \"CSS\""];
 	NSArray *filteredMessages = [[m_logMessageModel messages] 
 		filteredArrayUsingPredicate: predicate];
-	STAssertEquals(1, (int)[filteredMessages count], @"filtered message should be 1, but is %d",
+	GHAssertEquals(1, (int)[filteredMessages count], @"filtered message should be 1, but is %d",
 		[filteredMessages count]);	
 }
 - (void) testPredicateClazzEquals
@@ -86,7 +84,7 @@ LogMessageModel *m_logMessageModel;
 		@"fqClassName == \"de.rittersport.components.coverflow.Coverflow\""];
 	NSArray *filteredMessages = [[m_logMessageModel messages] 
 		filteredArrayUsingPredicate: predicate];
-	STAssertEquals(483, (int)[filteredMessages count], @"filtered message should be 483, but is %d",
+	GHAssertEquals(483, (int)[filteredMessages count], @"filtered message should be 483, but is %d",
 		[filteredMessages count]);	
 }
 - (void) testPredicateClazzBeginsWith
@@ -94,7 +92,7 @@ LogMessageModel *m_logMessageModel;
 	NSPredicate *predicate = [NSPredicate predicateWithFormat: @"fqClassName BEGINSWITH \"com\""];
 	NSArray *filteredMessages = [[m_logMessageModel messages] 
 		filteredArrayUsingPredicate: predicate];
-	STAssertEquals(10, (int)[filteredMessages count], @"filtered message should be 10, but is %d",
+	GHAssertEquals(10, (int)[filteredMessages count], @"filtered message should be 10, but is %d",
 		[filteredMessages count]);	
 }
 - (void) testPredicateClazzMatches
@@ -102,7 +100,7 @@ LogMessageModel *m_logMessageModel;
 	NSPredicate *predicate = [NSPredicate predicateWithFormat: @"fqClassName MATCHES \"de\\.fork\\..*\\.AbstractResource\""];
 	NSArray *filteredMessages = [[m_logMessageModel messages] 
 		filteredArrayUsingPredicate: predicate];
-	STAssertEquals(2, (int)[filteredMessages count], @"filtered message should be 2, but is %d",
+	GHAssertEquals(2, (int)[filteredMessages count], @"filtered message should be 2, but is %d",
 		[filteredMessages count]);	
 }
 
