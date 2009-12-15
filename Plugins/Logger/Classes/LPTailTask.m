@@ -9,6 +9,7 @@
 #import "LPTailTask.h"
 
 @interface LPTailTask (Private)
+- (void)_setupTask;
 - (void)_processBuffer;
 @end
 
@@ -22,21 +23,22 @@
 	if (self = [super init]){
 		m_path = [aPath retain];
 		m_delegate = aDelegate;
-		m_task = [[NSTask alloc] init];
-		m_pipe = [[NSPipe alloc] init];
-		[m_task setLaunchPath:@"/usr/bin/tail"];
-		[m_task setArguments:[NSArray arrayWithObjects:@"-F", @"-n", @"0", m_path, nil]];
-		[m_task setStandardOutput:m_pipe];
+		
+		m_task = nil;
+		m_pipe = nil;
 		m_buffer = [[NSMutableString alloc] init];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_dataAvailable:) 
-			name:NSFileHandleReadCompletionNotification object:[m_pipe fileHandleForReading]];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_taskTerminated:) 
-			name:NSTaskDidTerminateNotification object:m_task];
 		
 		// create file if needed
 		NSFileManager *fm = [NSFileManager defaultManager];
-		if (![fm fileExistsAtPath:m_path])
-			[fm createFileAtPath:m_path contents:nil attributes:nil];
+		if (![fm fileExistsAtPath:m_path]){
+			if (![fm createFileAtPath:m_path contents:nil attributes:nil]){
+				// could not create file. there is no way to tail a non-existing file
+				[self release];
+				return nil;
+			}
+		}
+		
+		[self _setupTask];
 	}
 	return self;
 }
@@ -72,6 +74,18 @@
 
 #pragma mark -
 #pragma mark Private methods
+
+- (void)_setupTask{
+	m_task = [[NSTask alloc] init];
+	m_pipe = [[NSPipe alloc] init];
+	[m_task setLaunchPath:@"/usr/bin/tail"];
+	[m_task setArguments:[NSArray arrayWithObjects:@"-F", @"-n", @"0", m_path, nil]];
+	[m_task setStandardOutput:m_pipe];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_dataAvailable:) 
+		name:NSFileHandleReadCompletionNotification object:[m_pipe fileHandleForReading]];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_taskTerminated:) 
+		name:NSTaskDidTerminateNotification object:m_task];
+}
 
 - (void)_processBuffer{
 	NSRange nlRange = [m_buffer rangeOfString:@"\n"];

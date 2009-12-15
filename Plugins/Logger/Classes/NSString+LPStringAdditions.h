@@ -12,4 +12,5 @@
 @interface NSString (LPStringAdditions)
 - (NSString *)htmlEncodedString;
 - (NSString *)htmlEncodedStringWithConvertedLinebreaks;
+- (NSString *)normalizedFilename;
 @end

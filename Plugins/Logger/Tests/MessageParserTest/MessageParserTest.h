@@ -6,7 +6,6 @@
 //  Copyright 2008 nesiumdotcom. All rights reserved.
 //
 
-#import <GHUnit/GHUnit.h>
 #import "MessageParser.h"
 #import "LogMessage.h"
 

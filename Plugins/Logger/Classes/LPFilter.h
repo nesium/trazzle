@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "LPConstants.h"
 #import "ZZConstants.h"
+#import "NSString+LPStringAdditions.h"
+#import "NSFileManager+LPAdditions.h"
 
 @interface LPFilter : NSObject{
 	NSString *m_name;

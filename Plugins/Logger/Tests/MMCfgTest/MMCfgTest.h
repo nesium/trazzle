@@ -6,8 +6,6 @@
 //  Copyright 2009 nesiumdotcom. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import <GHUnit/GHUnit.h>
 #import "LPMMCfgFile.h"
 
 

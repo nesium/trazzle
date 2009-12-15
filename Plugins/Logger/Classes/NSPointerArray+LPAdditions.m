@@ -11,8 +11,7 @@
 
 @implementation NSPointerArray (LPAdditions)
 
-- (NSUInteger)aa_indexOfPointer:(void *)ptr
-{
+- (NSUInteger)aa_indexOfPointer:(void *)ptr{
 	NSUInteger i = 0;
 	for (i = 0; i < [self count]; i++)
 	{
@@ -23,13 +22,11 @@
 	return NSNotFound;
 }
 
-- (BOOL)aa_containsPointer:(void *)ptr
-{
+- (BOOL)aa_containsPointer:(void *)ptr{
 	return [self aa_indexOfPointer:ptr] != NSNotFound;
 }
 
-- (void)aa_removePointer:(void *)ptr
-{
+- (void)aa_removePointer:(void *)ptr{
 	NSUInteger index = [self aa_indexOfPointer:ptr];
 	if (index == NSNotFound)
 		return;

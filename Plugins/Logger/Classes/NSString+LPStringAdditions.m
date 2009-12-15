@@ -11,15 +11,13 @@
 
 @implementation NSString (LPStringAdditions)
 
-- (NSString *)htmlEncodedString
-{
+- (NSString *)htmlEncodedString{
 	NSString *escapedString = (NSString *)CFXMLCreateStringByEscapingEntities(kCFAllocatorDefault,
 		(CFStringRef)self, NULL);
 	return [escapedString autorelease];
 }
 
-- (NSString *)htmlEncodedStringWithConvertedLinebreaks
-{
+- (NSString *)htmlEncodedStringWithConvertedLinebreaks{
 	NSMutableString *escapedString = [NSMutableString stringWithString:[self htmlEncodedString]];
 	[escapedString replaceOccurrencesOfString:@"\r\n" withString: @"\n" 
 		options:NSLiteralSearch range:NSMakeRange(0, [escapedString length])];
@@ -30,4 +28,12 @@
 	return escapedString;
 }
 
+- (NSString *)normalizedFilename{
+	NSMutableString *result = [NSMutableString stringWithString:self];
+	[result replaceOccurrencesOfString:@":" withString:@"-" 
+		options:0 range:(NSRange){0, [result length]}];
+	[result replaceOccurrencesOfString:@"/" withString:@":" 
+		options:0 range:(NSRange){0, [result length]}];
+	return [result precomposedStringWithCanonicalMapping];
+}
 @end

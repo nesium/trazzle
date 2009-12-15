@@ -6,11 +6,7 @@
 //  Copyright 2007 nesiumdotcom. All rights reserved.
 //
 
-#import <GHUnit/GHUnit.h>
 
-
-@interface PredicateTest : GHTestCase
-{
+@interface PredicateTest : GHTestCase{
 }
-
 @end

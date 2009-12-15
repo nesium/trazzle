@@ -6,8 +6,6 @@
 //  Copyright 2008 nesiumdotcom. All rights reserved.
 //
 
-#import <GHUnit/GHUnit.h>
-
 
 @interface StackTraceParserTest : GHTestCase 
 {

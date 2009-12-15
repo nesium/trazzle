@@ -10,9 +10,7 @@
 
 @interface LPFilter (Private)
 - (BOOL)_writeToFile:(NSString *)path error:(NSError **)error;
-- (NSString *)_normalizedName;
 - (void)_setPath:(NSString *)path;
-- (NSString *)_nextAvailableFilename;
 @end
 
 @implementation LPFilter
@@ -104,8 +102,13 @@
 - (BOOL)save:(NSError **)error{
 	if (m_wantsRenaming)
 		[self unlink:error];
-	if ([self path] == nil)
-		[self _setPath:[self _nextAvailableFilename]];
+	if ([self path] == nil){
+		NSString *proposedFilename = [[[self name] normalizedFilename] 
+			stringByAppendingPathExtension:kFilterFileExtension];
+		[self _setPath:[[NSFileManager defaultManager] 
+			nextAvailableFilenameAtPath:[TRAZZLE_APP_SUPPORT stringByAppendingPathComponent:@"Filters"] 
+			proposedFilename:proposedFilename]];
+	}
 	return [self _writeToFile:[self path] error:error];
 }
 
@@ -151,27 +154,6 @@
 	if (success)
 		m_isDirty = NO;
 	return success;
-}
-
-- (NSString *)_normalizedName{
-	NSMutableString *name = [NSMutableString stringWithString: [self name]];
-	[name replaceOccurrencesOfString:@":" withString:@"-" 
-		options:0 range:NSMakeRange(0, [[self name] length])];
-	[name replaceOccurrencesOfString:@"/" withString:@":" 
-		options:0 range:NSMakeRange(0, [[self name] length])];
-	return [name precomposedStringWithCanonicalMapping];
-}
-
-- (NSString *)_nextAvailableFilename{
-	NSString *proposedFilename = [[TRAZZLE_APP_SUPPORT stringByAppendingPathComponent:@"Filters"] 
-		stringByAppendingPathComponent:[self _normalizedName]];
-	NSString *usedFilename = proposedFilename;
-		
-	unsigned int i = 1;
-	while ([[NSFileManager defaultManager] 
-		fileExistsAtPath:[usedFilename stringByAppendingPathExtension:kFilterFileExtension]])
-		usedFilename = [NSString stringWithFormat:@"%@-%d", proposedFilename, i++];
-	return [usedFilename stringByAppendingPathExtension:kFilterFileExtension];
 }
 
 - (void)_setPath:(NSString *)path{

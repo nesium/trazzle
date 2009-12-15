@@ -22,7 +22,8 @@
 	NSString *tmpPath = [NSTemporaryDirectory() stringByAppendingPathComponent:
 		[[NSProcessInfo processInfo] globallyUniqueString]];
 
-	[self performSelectorOnMainThread:@selector(_startTailTask:) withObject:tmpPath waitUntilDone:YES];
+	[self performSelectorOnMainThread:@selector(_startTailTask:) withObject:tmpPath 
+		waitUntilDone:YES];
 	
 	GHTestLog(@"path: %@", tmpPath);
 	m_fileHandle = [[NSFileHandle fileHandleForWritingAtPath:tmpPath] retain];
@@ -30,6 +31,7 @@
 
 - (void)_startTailTask:(NSString *)tmpPath{
 	m_tailTask = [[LPTailTask alloc] initWithFile:tmpPath delegate:self];
+	GHAssertNotNil(m_tailTask, @"Tail task should not be nil");
 	[m_tailTask launch];
 }
 
@@ -48,6 +50,11 @@
 	[m_fileHandle closeFile];
 	[m_fileHandle release];
 	m_fileHandle = nil;
+}
+
+- (void)testFileCreationFailure{
+	LPTailTask *tailTask = [[LPTailTask alloc] initWithFile:@"/etc/test.txt" delegate:nil];
+	GHAssertNil(tailTask, @"Tail task should be nil");
 }
 
 - (void)testReceivingOfLines{

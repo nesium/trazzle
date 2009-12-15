@@ -95,6 +95,9 @@
 		2CDA11751041E1EF008338CF /* tab_on_icon_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11731041E1EF008338CF /* tab_on_icon_disconnected.png */; };
 		2CDA11761041E1EF008338CF /* tab_off_icon_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11741041E1EF008338CF /* tab_off_icon_disconnected.png */; };
 		2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE3248C0F61CF1F004BB7CF /* libssl.dylib */; };
+		2CE906E310D6F9E1004085C9 /* FiltersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE906E210D6F9E1004085C9 /* FiltersTest.m */; };
+		2CE9072D10D70DAA004085C9 /* NSFileManager+LPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE9072C10D70DAA004085C9 /* NSFileManager+LPAdditions.m */; };
+		2CE9074810D71307004085C9 /* FileManagerAdditionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE9074710D71307004085C9 /* FileManagerAdditionsTest.m */; };
 		2CEEFE8F1073B69A003B3734 /* LPPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEEFE8E1073B69A003B3734 /* LPPreferencesViewController.m */; };
 		2CEEFE951073B862003B3734 /* Advanced Preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2CEEFE941073B862003B3734 /* Advanced Preferences.tiff */; };
 		2CEEFF491073F30C003B3734 /* NSPointerArray+LPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEEFF481073F30C003B3734 /* NSPointerArray+LPAdditions.m */; };
@@ -221,6 +224,13 @@
 		2CDA11731041E1EF008338CF /* tab_on_icon_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_on_icon_disconnected.png; sourceTree = "<group>"; };
 		2CDA11741041E1EF008338CF /* tab_off_icon_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_off_icon_disconnected.png; sourceTree = "<group>"; };
 		2CE3248C0F61CF1F004BB7CF /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		2CE906E110D6F9E1004085C9 /* FiltersTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltersTest.h; sourceTree = "<group>"; };
+		2CE906E210D6F9E1004085C9 /* FiltersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltersTest.m; sourceTree = "<group>"; };
+		2CE906E510D6FA45004085C9 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
+		2CE9072B10D70DAA004085C9 /* NSFileManager+LPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+LPAdditions.h"; sourceTree = "<group>"; };
+		2CE9072C10D70DAA004085C9 /* NSFileManager+LPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+LPAdditions.m"; sourceTree = "<group>"; };
+		2CE9074610D71307004085C9 /* FileManagerAdditionsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerAdditionsTest.h; sourceTree = "<group>"; };
+		2CE9074710D71307004085C9 /* FileManagerAdditionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerAdditionsTest.m; sourceTree = "<group>"; };
 		2CEEFE8D1073B69A003B3734 /* LPPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPPreferencesViewController.h; sourceTree = "<group>"; };
 		2CEEFE8E1073B69A003B3734 /* LPPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPPreferencesViewController.m; sourceTree = "<group>"; };
 		2CEEFE941073B862003B3734 /* Advanced Preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Advanced Preferences.tiff"; sourceTree = "<group>"; };
@@ -457,12 +467,15 @@
 			isa = PBXGroup;
 			children = (
 				2C65AD9B0F32813E005D7A61 /* Tests-Info.plist */,
+				2CE906E510D6FA45004085C9 /* Tests_Prefix.pch */,
+				2C0926DD10D302DF00FFDDD8 /* GHUnitTestMain.m */,
 				2C65ADAE0F328187005D7A61 /* MessageParserTest */,
 				2C65ADB10F328187005D7A61 /* PredicateTest */,
 				2C65ADB50F328187005D7A61 /* StacktraceParserTest */,
 				2C67180410D453EA005310C2 /* MMCfgTest */,
 				2C6718B910D47435005310C2 /* TailTaskTest */,
-				2C0926DD10D302DF00FFDDD8 /* GHUnitTestMain.m */,
+				2CE906E010D6F9D5004085C9 /* FiltersTest */,
+				2CE9074510D712F5004085C9 /* CategoriesTests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -546,6 +559,24 @@
 			name = FilterWindow;
 			sourceTree = "<group>";
 		};
+		2CE906E010D6F9D5004085C9 /* FiltersTest */ = {
+			isa = PBXGroup;
+			children = (
+				2CE906E110D6F9E1004085C9 /* FiltersTest.h */,
+				2CE906E210D6F9E1004085C9 /* FiltersTest.m */,
+			);
+			path = FiltersTest;
+			sourceTree = "<group>";
+		};
+		2CE9074510D712F5004085C9 /* CategoriesTests */ = {
+			isa = PBXGroup;
+			children = (
+				2CE9074610D71307004085C9 /* FileManagerAdditionsTest.h */,
+				2CE9074710D71307004085C9 /* FileManagerAdditionsTest.m */,
+			);
+			path = CategoriesTests;
+			sourceTree = "<group>";
+		};
 		2CEEFE8C1073B672003B3734 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +648,8 @@
 				496AF06A0F321D070049FB23 /* NSString+LPStringAdditions.m */,
 				2CEEFF471073F30C003B3734 /* NSPointerArray+LPAdditions.h */,
 				2CEEFF481073F30C003B3734 /* NSPointerArray+LPAdditions.m */,
+				2CE9072B10D70DAA004085C9 /* NSFileManager+LPAdditions.h */,
+				2CE9072C10D70DAA004085C9 /* NSFileManager+LPAdditions.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -782,6 +815,9 @@
 				2C67180910D453F7005310C2 /* MMCfgTest.m in Sources */,
 				2C67188610D4616F005310C2 /* LPTailTask.m in Sources */,
 				2C6718BC10D47440005310C2 /* TailTaskTest.m in Sources */,
+				2CE906E310D6F9E1004085C9 /* FiltersTest.m in Sources */,
+				2CE9072D10D70DAA004085C9 /* NSFileManager+LPAdditions.m in Sources */,
+				2CE9074810D71307004085C9 /* FileManagerAdditionsTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,7 +970,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = Tests/Tests_Prefix.pch;
 				INFOPLIST_FILE = "tests/Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
@@ -962,7 +998,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = Tests/Tests_Prefix.pch;
 				INFOPLIST_FILE = "tests/Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
