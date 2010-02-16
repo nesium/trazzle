@@ -6,8 +6,8 @@
 //  Copyright 2009 nesiumdotcom. All rights reserved.
 //
 
+#import "LPFilter.h"
 
-
-@interface FiltersTest : NSObject{
+@interface FiltersTest : GHTestCase{
 }
 @end

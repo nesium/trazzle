@@ -14,7 +14,7 @@
 #import "LoggingViewController.h"
 #import "AbstractMessage.h"
 #import "CommandMessage.h"
-#import "LPFilterController.h"
+#import "LPFilterWindowController.h"
 #import "AMFDuplexGateway.h"
 #import "LoggingService.h"
 #import "MenuService.h"
@@ -32,6 +32,6 @@
 	NSMutableArray *m_sessions;
 	LPTailTask *m_tailTask;
 	BOOL m_autoSelectTab;
-	LPFilterController *m_filterController;
+	LPFilterWindowController *m_filterController;
 }
 @end

@@ -76,6 +76,10 @@
 	[[lines componentsJoinedByString:@"\n"] writeToFile:path atomically:NO encoding:encoding 
 		error:nil];
 }
+
+- (oneway void)gatewayBeep:(AMFRemoteGateway *)gateway{
+	NSBeep();
+}
 @end
 
 

@@ -26,6 +26,6 @@
 - (id)initWithContentsOfFile:(NSString *)path error:(NSError **)error;
 - (NSString *)path;
 - (BOOL)isDirty;
-- (BOOL)save:(NSError **)error;
+- (BOOL)saveToDirectory:(NSString *)aDir error:(NSError **)error;
 - (BOOL)unlink:(NSError **)error;
 @end

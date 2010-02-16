@@ -220,8 +220,9 @@ static NSMutableArray *g_filters = nil;
 
 - (void)_saveFilter:(LPFilter *)filter{
 	NSError *error;
-	if (![filter save:&error])
+	if (![filter saveToDirectory:[self _filtersPath] error:&error]){
 		NSLog(@"%@", [error description]);
+	}
 }
 
 - (void)_destroyFilter:(LPFilter *)filter{

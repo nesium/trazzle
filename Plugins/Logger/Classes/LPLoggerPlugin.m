@@ -50,7 +50,7 @@
 	if (self = [super init]){
 		m_controller = aController;
 		
-		m_filterController = [[LPFilterController alloc] init];
+		m_filterController = [[LPFilterWindowController alloc] init];
 		[m_filterController window];
 		
 		[aController.sharedGateway registerService:[[[LoggingService alloc] initWithDelegate:self] 

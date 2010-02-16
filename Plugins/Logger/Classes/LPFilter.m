@@ -48,6 +48,7 @@
 			NSLocalizedFailureReasonErrorKey, nil];
 		*error = [NSError errorWithDomain:@"TrazzleErrorDomain" code:-1 userInfo:errorUserInfo];
         [errorString release];
+		[self release];
 		return nil;
     }
 	[self _setPath:path];
@@ -99,16 +100,18 @@
 	return m_isDirty;
 }
 
-- (BOOL)save:(NSError **)error{
+- (BOOL)saveToDirectory:(NSString *)aDir error:(NSError **)error{
 	if (m_wantsRenaming)
 		[self unlink:error];
 	if ([self path] == nil){
 		NSString *proposedFilename = [[[self name] normalizedFilename] 
 			stringByAppendingPathExtension:kFilterFileExtension];
-		[self _setPath:[[NSFileManager defaultManager] 
-			nextAvailableFilenameAtPath:[TRAZZLE_APP_SUPPORT stringByAppendingPathComponent:@"Filters"] 
-			proposedFilename:proposedFilename]];
+		NSString *filename = [[NSFileManager defaultManager] 
+			nextAvailableFilenameAtPath:aDir 
+			proposedFilename:proposedFilename];
+		[self _setPath:[aDir stringByAppendingPathComponent:filename]];
 	}
+	NSLog(@"path: %@", m_path);
 	return [self _writeToFile:[self path] error:error];
 }
 

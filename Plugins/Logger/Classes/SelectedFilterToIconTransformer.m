@@ -7,12 +7,12 @@
 //
 
 #import "SelectedFilterToIconTransformer.h"
-#import "LPFilterController.h"
+#import "LPFilterWindowController.h"
 
 
 @implementation SelectedFilterToIconTransformer
 
-- (id)initWithFilterController:(LPFilterController *)filterController{
+- (id)initWithFilterController:(LPFilterWindowController *)filterController{
 	if (self = [super init]){
 		m_filterController = filterController;
 	}

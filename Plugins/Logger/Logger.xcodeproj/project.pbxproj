@@ -30,7 +30,7 @@
 		2C09271610D3039B00FFDDD8 /* LogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0B35C105C4773000222E7 /* LogMessage.m */; };
 		2C09271710D3039B00FFDDD8 /* LPExistingFilesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA62C97107118B600ECCE70 /* LPExistingFilesCache.m */; };
 		2C09271810D3039C00FFDDD8 /* LPFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEFB40F3E578200AA982D /* LPFilter.m */; };
-		2C09271910D3039D00FFDDD8 /* LPFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterController.m */; };
+		2C09271910D3039D00FFDDD8 /* LPFilterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterWindowController.m */; };
 		2C09271A10D3039E00FFDDD8 /* LPFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C78D87010406EB20064CACC /* LPFilterModel.m */; };
 		2C09271B10D3039F00FFDDD8 /* LPMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5582560F33D6A80011B31A /* LPMessageModel.m */; };
 		2C09271C10D303A000FFDDD8 /* LPPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEEFE8E1073B69A003B3734 /* LPPreferencesViewController.m */; };
@@ -90,8 +90,9 @@
 		2C78D87110406EB20064CACC /* LPFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C78D87010406EB20064CACC /* LPFilterModel.m */; };
 		2C96976B103F085100297687 /* LPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96976A103F085100297687 /* LPSession.m */; };
 		2CA62C98107118B600ECCE70 /* LPExistingFilesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA62C97107118B600ECCE70 /* LPExistingFilesCache.m */; };
-		2CBFEF7A0F3E4F7400AA982D /* LPFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterController.m */; };
+		2CBFEF7A0F3E4F7400AA982D /* LPFilterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterWindowController.m */; };
 		2CBFEFB50F3E578200AA982D /* LPFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEFB40F3E578200AA982D /* LPFilter.m */; };
+		2CC7D5D410D80FFC00002260 /* NSFileManager+LPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE9072C10D70DAA004085C9 /* NSFileManager+LPAdditions.m */; };
 		2CDA11751041E1EF008338CF /* tab_on_icon_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11731041E1EF008338CF /* tab_on_icon_disconnected.png */; };
 		2CDA11761041E1EF008338CF /* tab_off_icon_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11741041E1EF008338CF /* tab_off_icon_disconnected.png */; };
 		2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE3248C0F61CF1F004BB7CF /* libssl.dylib */; };
@@ -216,8 +217,8 @@
 		2C96976A103F085100297687 /* LPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSession.m; sourceTree = "<group>"; };
 		2CA62C96107118B600ECCE70 /* LPExistingFilesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPExistingFilesCache.h; sourceTree = "<group>"; };
 		2CA62C97107118B600ECCE70 /* LPExistingFilesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPExistingFilesCache.m; sourceTree = "<group>"; };
-		2CBFEF780F3E4F7400AA982D /* LPFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFilterController.h; sourceTree = "<group>"; };
-		2CBFEF790F3E4F7400AA982D /* LPFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilterController.m; sourceTree = "<group>"; };
+		2CBFEF780F3E4F7400AA982D /* LPFilterWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFilterWindowController.h; sourceTree = "<group>"; };
+		2CBFEF790F3E4F7400AA982D /* LPFilterWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilterWindowController.m; sourceTree = "<group>"; };
 		2CBFEFAB0F3E562000AA982D /* ZZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZConstants.h; path = ../../Application/Classes/ZZConstants.h; sourceTree = SOURCE_ROOT; };
 		2CBFEFB30F3E578200AA982D /* LPFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFilter.h; sourceTree = "<group>"; };
 		2CBFEFB40F3E578200AA982D /* LPFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilter.m; sourceTree = "<group>"; };
@@ -547,8 +548,8 @@
 				2CBFEFB40F3E578200AA982D /* LPFilter.m */,
 				2C78D86F10406EB20064CACC /* LPFilterModel.h */,
 				2C78D87010406EB20064CACC /* LPFilterModel.m */,
-				2CBFEF780F3E4F7400AA982D /* LPFilterController.h */,
-				2CBFEF790F3E4F7400AA982D /* LPFilterController.m */,
+				2CBFEF780F3E4F7400AA982D /* LPFilterWindowController.h */,
+				2CBFEF790F3E4F7400AA982D /* LPFilterWindowController.m */,
 				2C0422070F3E72B700726781 /* NumericPredicateTemplate.h */,
 				2C0422080F3E72B700726781 /* NumericPredicateTemplate.m */,
 				2C04220B0F3E72C400726781 /* PredicateEditorDarkBackground.h */,
@@ -789,7 +790,7 @@
 				2C09271610D3039B00FFDDD8 /* LogMessage.m in Sources */,
 				2C09271710D3039B00FFDDD8 /* LPExistingFilesCache.m in Sources */,
 				2C09271810D3039C00FFDDD8 /* LPFilter.m in Sources */,
-				2C09271910D3039D00FFDDD8 /* LPFilterController.m in Sources */,
+				2C09271910D3039D00FFDDD8 /* LPFilterWindowController.m in Sources */,
 				2C09271A10D3039E00FFDDD8 /* LPFilterModel.m in Sources */,
 				2C09271B10D3039F00FFDDD8 /* LPMessageModel.m in Sources */,
 				2C09271C10D303A000FFDDD8 /* LPPreferencesViewController.m in Sources */,
@@ -835,7 +836,7 @@
 				496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */,
 				2C65AE1D0F328A57005D7A61 /* LoggingViewController.m in Sources */,
 				2C5582590F33D6A80011B31A /* LPMessageModel.m in Sources */,
-				2CBFEF7A0F3E4F7400AA982D /* LPFilterController.m in Sources */,
+				2CBFEF7A0F3E4F7400AA982D /* LPFilterWindowController.m in Sources */,
 				2CBFEFB50F3E578200AA982D /* LPFilter.m in Sources */,
 				2C0421AE0F3E655300726781 /* NSMMenuController.m in Sources */,
 				2C0422090F3E72B700726781 /* NumericPredicateTemplate.m in Sources */,
@@ -861,6 +862,7 @@
 				2C4960D61087B759007BAC58 /* FileObservingService.m in Sources */,
 				2C67187C10D460EE005310C2 /* LPMMCfgFile.m in Sources */,
 				2C67189510D467B3005310C2 /* LPTailTask.m in Sources */,
+				2CC7D5D410D80FFC00002260 /* NSFileManager+LPAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
