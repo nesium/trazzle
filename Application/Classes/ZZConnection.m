@@ -66,8 +66,10 @@
 	m_connectionParams = params;
 	
 	[m_swfURL release];
-	m_swfURL = [[self _normalizeSWFURL:[NSURL URLWithString:
-		[m_connectionParams objectForKey:@"swfURL"]]] retain];
+	// flash is very rude when it comes to swf urls (see _normalizeSWFURL too)
+	NSString *urlString = [m_connectionParams objectForKey:@"swfURL"];
+	urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+	m_swfURL = [[self _normalizeSWFURL:[NSURL URLWithString:urlString]] retain];
 	
 	if ([m_delegate respondsToSelector:@selector(connectionDidReceiveConnectionSignature:)])
 		[m_delegate connectionDidReceiveConnectionSignature:self];
