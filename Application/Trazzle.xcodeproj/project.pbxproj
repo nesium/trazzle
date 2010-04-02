@@ -53,6 +53,7 @@
 		2CDA11281041DBDE008338CF /* tabbar_close_on_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11261041DBDE008338CF /* tabbar_close_on_up.png */; };
 		2CEEDBB9106ACCB700D46C84 /* ZZTabBarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEEDBB8106ACCB700D46C84 /* ZZTabBarControl.m */; };
 		2CF0B37B105C5BAD000222E7 /* ZZCoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0B37A105C5BAD000222E7 /* ZZCoreService.m */; };
+		2CF2BCF211655BC300C23985 /* Inspector.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C485F2D1062D4B7009818EE /* Inspector.trazzlePlugin */; };
 		2CF39FE30CF8E23600A1B9A9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */; };
 		2CF39FF60CF8E5CA00A1B9A9 /* ZZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF39FF50CF8E5CA00A1B9A9 /* ZZAppDelegate.m */; };
 		2CF4FB0C107981D8003BA6B3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 2CF4FB0B107981D8003BA6B3 /* dsa_pub.pem */; };
@@ -139,6 +140,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				2CF2BCF211655BC300C23985 /* Inspector.trazzlePlugin in CopyFiles */,
 				2C8CFECD105AA067002C246F /* PerformanceMonitor.trazzlePlugin in CopyFiles */,
 				2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */,
 			);

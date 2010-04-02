@@ -61,6 +61,30 @@
 			withSize:(NSSize){[width floatValue], [height floatValue]} fromGateway:gateway];
 }
 
+- (oneway void)gateway:(AMFRemoteGateway *)gateway logBMP:(NSData *)bmpData width:(NSNumber *)width 
+	height:(NSNumber *)height{
+	NSString *filename = [NSString stringWithFormat:@"/tmp/trazzle_%@.png", [NSObject uuid]];
+	
+	CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)bmpData);
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGImageRef image = CGImageCreate([width intValue], [height intValue], 8, 32, 
+		4 * [width intValue], colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst, dataProvider, NULL, 
+		NO, kCGRenderingIntentDefault);
+	CGImageDestinationRef imageDestination = CGImageDestinationCreateWithURL(
+		(CFURLRef)[NSURL fileURLWithPath:filename], CFSTR("public.png"), 1, NULL);
+	CGImageDestinationAddImage(imageDestination, image, NULL);
+	CGImageDestinationFinalize(imageDestination);
+	
+	CFRelease(imageDestination);
+	CGDataProviderRelease(dataProvider);
+	CGColorSpaceRelease(colorSpace);
+	CGImageRelease(image);
+	
+	if ([m_delegate respondsToSelector:@selector(loggingService:didReceivePNG:withSize:fromGateway:)])
+		[m_delegate loggingService:self didReceivePNG:filename 
+			withSize:(NSSize){[width floatValue], [height floatValue]} fromGateway:gateway];
+}
+
 - (oneway void)gateway:(AMFRemoteGateway *)gateway addI18NKey:(NSString *)key 
 	toFile:(NSString *)path{
 	NSStringEncoding encoding;
