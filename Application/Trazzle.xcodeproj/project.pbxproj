@@ -20,6 +20,7 @@
 		2C1D6DC70F34F82F00EA8975 /* statusbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D6DC60F34F82F00EA8975 /* statusbar_icon.png */; };
 		2C1D6DDE0F34FA4000EA8975 /* statusbar_icon_alternate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D6DDD0F34FA4000EA8975 /* statusbar_icon_alternate.png */; };
 		2C1F223C0FF57C730035F2DE /* ZZApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F223B0FF57C730035F2DE /* ZZApplication.m */; };
+		2C2160CA116961F600A59B60 /* FileManager.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C2160C9116961DD00A59B60 /* FileManager.trazzlePlugin */; };
 		2C2EC3A00ECE303F005785E2 /* ZZPlugInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC39F0ECE303F005785E2 /* ZZPlugInController.m */; };
 		2C54D7FD0F3A068200264CC9 /* tabbar_activetab_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FA0F3A068200264CC9 /* tabbar_activetab_right.png */; };
 		2C54D7FE0F3A068200264CC9 /* tabbar_activetab_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FB0F3A068200264CC9 /* tabbar_activetab_middle.png */; };
@@ -68,18 +69,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2C2160C8116961DD00A59B60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8D576316048677EA00EA77CD;
+			remoteInfo = FileManager;
+		};
+		2C2160F01169632300A59B60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D57630D048677EA00EA77CD;
+			remoteInfo = FileManager;
+		};
 		2C485F2C1062D4B7009818EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C485F281062D4B7009818EE /* Inspector.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 8D576316048677EA00EA77CD;
-			remoteInfo = Inspector;
-		};
-		2C485F2F1062D4E1009818EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C485F281062D4B7009818EE /* Inspector.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D57630D048677EA00EA77CD;
 			remoteInfo = Inspector;
 		};
 		2C65AD9D0F32813F005D7A61 /* PBXContainerItemProxy */ = {
@@ -143,6 +151,7 @@
 				2CF2BCF211655BC300C23985 /* Inspector.trazzlePlugin in CopyFiles */,
 				2C8CFECD105AA067002C246F /* PerformanceMonitor.trazzlePlugin in CopyFiles */,
 				2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */,
+				2C2160CA116961F600A59B60 /* FileManager.trazzlePlugin in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +194,7 @@
 		2C1D6DDD0F34FA4000EA8975 /* statusbar_icon_alternate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusbar_icon_alternate.png; sourceTree = "<group>"; };
 		2C1F223A0FF57C730035F2DE /* ZZApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZApplication.h; sourceTree = "<group>"; };
 		2C1F223B0FF57C730035F2DE /* ZZApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZApplication.m; sourceTree = "<group>"; };
+		2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FileManager.xcodeproj; path = ../Plugins/FileManager/FileManager.xcodeproj; sourceTree = SOURCE_ROOT; };
 		2C2EC39E0ECE303F005785E2 /* ZZPlugInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPlugInController.h; sourceTree = "<group>"; };
 		2C2EC39F0ECE303F005785E2 /* ZZPlugInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPlugInController.m; sourceTree = "<group>"; };
 		2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tests-Info.plist"; path = "Resources/Tests-Info.plist"; sourceTree = "<group>"; };
@@ -324,6 +334,7 @@
 				2CAD39C80F6F059A00D390D9 /* Builder.xcodeproj */,
 				2C8CFEC4105AA03C002C246F /* PerformanceMonitor.xcodeproj */,
 				2C485F281062D4B7009818EE /* Inspector.xcodeproj */,
+				2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */,
 			);
 			name = Trazzle;
 			sourceTree = "<group>";
@@ -403,6 +414,14 @@
 			);
 			name = Images;
 			path = Resources/Images;
+			sourceTree = "<group>";
+		};
+		2C2160C5116961DD00A59B60 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C2160C9116961DD00A59B60 /* FileManager.trazzlePlugin */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		2C485F291062D4B7009818EE /* Products */ = {
@@ -562,7 +581,7 @@
 			dependencies = (
 				496AF0A30F321FE50049FB23 /* PBXTargetDependency */,
 				2C8CFECC105AA056002C246F /* PBXTargetDependency */,
-				2C485F301062D4E1009818EE /* PBXTargetDependency */,
+				2C2160F11169632300A59B60 /* PBXTargetDependency */,
 			);
 			name = Trazzle;
 			productInstallPath = "$(HOME)/Applications";
@@ -589,6 +608,10 @@
 					ProjectRef = 2CAD39C80F6F059A00D390D9 /* Builder.xcodeproj */;
 				},
 				{
+					ProductGroup = 2C2160C5116961DD00A59B60 /* Products */;
+					ProjectRef = 2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */;
+				},
+				{
 					ProductGroup = 2C485F291062D4B7009818EE /* Products */;
 					ProjectRef = 2C485F281062D4B7009818EE /* Inspector.xcodeproj */;
 				},
@@ -610,6 +633,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		2C2160C9116961DD00A59B60 /* FileManager.trazzlePlugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FileManager.trazzlePlugin;
+			remoteRef = 2C2160C8116961DD00A59B60 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		2C485F2D1062D4B7009818EE /* Inspector.trazzlePlugin */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -756,10 +786,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2C485F301062D4E1009818EE /* PBXTargetDependency */ = {
+		2C2160F11169632300A59B60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Inspector;
-			targetProxy = 2C485F2F1062D4E1009818EE /* PBXContainerItemProxy */;
+			name = FileManager;
+			targetProxy = 2C2160F01169632300A59B60 /* PBXContainerItemProxy */;
 		};
 		2C8CFECC105AA056002C246F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
