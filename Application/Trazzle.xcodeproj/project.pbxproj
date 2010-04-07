@@ -20,7 +20,6 @@
 		2C1D6DC70F34F82F00EA8975 /* statusbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D6DC60F34F82F00EA8975 /* statusbar_icon.png */; };
 		2C1D6DDE0F34FA4000EA8975 /* statusbar_icon_alternate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D6DDD0F34FA4000EA8975 /* statusbar_icon_alternate.png */; };
 		2C1F223C0FF57C730035F2DE /* ZZApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F223B0FF57C730035F2DE /* ZZApplication.m */; };
-		2C2160CA116961F600A59B60 /* FileManager.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C2160C9116961DD00A59B60 /* FileManager.trazzlePlugin */; };
 		2C2EC3A00ECE303F005785E2 /* ZZPlugInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC39F0ECE303F005785E2 /* ZZPlugInController.m */; };
 		2C54D7FD0F3A068200264CC9 /* tabbar_activetab_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FA0F3A068200264CC9 /* tabbar_activetab_right.png */; };
 		2C54D7FE0F3A068200264CC9 /* tabbar_activetab_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FB0F3A068200264CC9 /* tabbar_activetab_middle.png */; };
@@ -54,7 +53,6 @@
 		2CDA11281041DBDE008338CF /* tabbar_close_on_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA11261041DBDE008338CF /* tabbar_close_on_up.png */; };
 		2CEEDBB9106ACCB700D46C84 /* ZZTabBarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEEDBB8106ACCB700D46C84 /* ZZTabBarControl.m */; };
 		2CF0B37B105C5BAD000222E7 /* ZZCoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0B37A105C5BAD000222E7 /* ZZCoreService.m */; };
-		2CF2BCF211655BC300C23985 /* Inspector.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C485F2D1062D4B7009818EE /* Inspector.trazzlePlugin */; };
 		2CF39FE30CF8E23600A1B9A9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF39FE20CF8E23600A1B9A9 /* WebKit.framework */; };
 		2CF39FF60CF8E5CA00A1B9A9 /* ZZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF39FF50CF8E5CA00A1B9A9 /* ZZAppDelegate.m */; };
 		2CF4FB0C107981D8003BA6B3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 2CF4FB0B107981D8003BA6B3 /* dsa_pub.pem */; };
@@ -74,13 +72,6 @@
 			containerPortal = 2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 8D576316048677EA00EA77CD;
-			remoteInfo = FileManager;
-		};
-		2C2160F01169632300A59B60 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D57630D048677EA00EA77CD;
 			remoteInfo = FileManager;
 		};
 		2C485F2C1062D4B7009818EE /* PBXContainerItemProxy */ = {
@@ -148,10 +139,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				2CF2BCF211655BC300C23985 /* Inspector.trazzlePlugin in CopyFiles */,
 				2C8CFECD105AA067002C246F /* PerformanceMonitor.trazzlePlugin in CopyFiles */,
 				2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */,
-				2C2160CA116961F600A59B60 /* FileManager.trazzlePlugin in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,7 +570,6 @@
 			dependencies = (
 				496AF0A30F321FE50049FB23 /* PBXTargetDependency */,
 				2C8CFECC105AA056002C246F /* PBXTargetDependency */,
-				2C2160F11169632300A59B60 /* PBXTargetDependency */,
 			);
 			name = Trazzle;
 			productInstallPath = "$(HOME)/Applications";
@@ -786,11 +774,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2C2160F11169632300A59B60 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FileManager;
-			targetProxy = 2C2160F01169632300A59B60 /* PBXContainerItemProxy */;
-		};
 		2C8CFECC105AA056002C246F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PerformanceMonitor;

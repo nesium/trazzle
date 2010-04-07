@@ -81,5 +81,11 @@
 	<true/>
 	<key>FRFeedbackReporter.targetURL</key>
 	<string>http://www.nesium.com/feedback/%@</string>
+	<key>ZZMinSWCVersion</key>
+	<integer>1</integer>
+	<key>ZZMinSWCMarketingVersion</key>
+	<string>1.5.1</string>
+	<key>ZZSWCDownloadURL</key>
+	<string>http://github.com/nesium/trazzlelib-as3/downloads</string>
 </dict>
 </plist>

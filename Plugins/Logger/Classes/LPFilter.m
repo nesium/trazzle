@@ -111,15 +111,15 @@
 			proposedFilename:proposedFilename];
 		[self _setPath:[aDir stringByAppendingPathComponent:filename]];
 	}
-	NSLog(@"path: %@", m_path);
 	return [self _writeToFile:[self path] error:error];
 }
 
 - (BOOL)unlink:(NSError **)error{
 	BOOL isDir;
 	NSFileManager *fm = [NSFileManager defaultManager];
-	if (![fm fileExistsAtPath:[self path] isDirectory:&isDir] || isDir)
+	if (![fm fileExistsAtPath:[self path] isDirectory:&isDir] || isDir){
 		return NO;
+	}
 	BOOL success = [fm removeItemAtPath:[self path] error:error];
 	if (success){
 		[self _setPath:nil];
@@ -153,6 +153,19 @@
 		[errorString release];
 		return NO;
 	}
+	
+	NSFileManager *fm = [NSFileManager defaultManager];
+	NSString *folder = [path stringByDeletingLastPathComponent];
+	BOOL isDir;
+	if (![fm fileExistsAtPath:folder isDirectory:&isDir] || !isDir){
+		NSError *dirError = nil;
+		BOOL success = [fm createDirectoryAtPath:folder withIntermediateDirectories:YES 
+			attributes:nil error:&dirError];
+		if (!success){
+			NSLog(@"Could not create filters directory. %@", dirError);
+		}
+	}
+	
 	BOOL success = [data writeToFile:path options:0 error:error];
 	if (success)
 		m_isDirty = NO;

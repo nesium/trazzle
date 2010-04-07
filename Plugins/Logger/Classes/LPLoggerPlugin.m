@@ -166,21 +166,6 @@
 		pathForResource:@"LoggingIcon" ofType:@"png"]] autorelease];
 }
 
-//
-//- (void)_handleCommandMessage:(CommandMessage *)msg fromClient:(LoggingClient *)client
-//{
-//	if (msg.type == kCommandActionTypeStartFileMonitoring)
-//	{
-//		[[FileMonitor sharedMonitor] addObserver:client 
-//			forFileAtPath:[msg.attributes objectForKey:@"path"]];
-//	}
-//	else if (msg.type == kCommandActionTypeStopFileMonitoring)
-//	{
-//		[[FileMonitor sharedMonitor] removeObserver:client 
-//			forFileAtPath:[msg.attributes objectForKey:@"path"]];
-//	}
-//}
-
 
 
 #pragma mark -

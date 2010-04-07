@@ -179,7 +179,7 @@ static NSMutableArray *g_filters = nil;
 		NSString *filterPath = [[self _filtersPath] stringByAppendingPathComponent:file];
 		LPFilter *filter = [[LPFilter alloc] initWithContentsOfFile:filterPath error:&error];
 		if (filter == nil){
-			NSLog(@"%@", [error description]);
+			NSLog(@"Could not load filter. %@", [error description]);
 			[filter release];
 			continue;
 		}
@@ -219,16 +219,16 @@ static NSMutableArray *g_filters = nil;
 }
 
 - (void)_saveFilter:(LPFilter *)filter{
-	NSError *error;
+	NSError *error = nil;
 	if (![filter saveToDirectory:[self _filtersPath] error:&error]){
-		NSLog(@"%@", [error description]);
+		NSLog(@"Error saving filter (%@). %@", [filter path], [error description]);
 	}
 }
 
 - (void)_destroyFilter:(LPFilter *)filter{
-	NSError *error;
+	NSError *error = nil;
 	if (![filter unlink:&error])
-		NSLog(@"%@", [error description]);
+		NSLog(@"Error unlinking filter (%@). %@", [filter path], [error description]);
 }
 
 - (NSPredicate *)_defaultPredicate{

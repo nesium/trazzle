@@ -65,6 +65,20 @@
 	[m_connectionParams release];
 	m_connectionParams = params;
 	
+	if ([[params objectForKey:@"version"] intValue] < 
+		[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"ZZMinSWCVersion"] intValue]){
+		NSString *msg = [NSString stringWithFormat:@"You're using an outdated version (%@) of \
+TrazzleLib. At least %@ is required. Please make sure you're using the most recent version.", 
+		([params objectForKey:@"marketingVersion"] ? [params objectForKey:@"marketingVersion"] : @"< 1.5.1"), 
+		[[[NSBundle mainBundle] infoDictionary] objectForKey:@"ZZMinSWCMarketingVersion"]];
+		NSInteger result = NSRunAlertPanel(@"Incompatible TrazzleLib SWC detected", msg, @"Take me to Github", @"Cancel", nil);
+		if (result == NSAlertDefaultReturn){
+			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:
+				[[[NSBundle mainBundle] infoDictionary] objectForKey:@"ZZSWCDownloadURL"]]];
+		}
+		[self disconnect];
+	}
+	
 	[m_swfURL release];
 	// flash is very rude when it comes to swf urls (see _normalizeSWFURL too)
 	NSString *urlString = [m_connectionParams objectForKey:@"swfURL"];

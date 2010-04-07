@@ -24,7 +24,6 @@
 	message.levelName = logMessage.levelName;
 	message.timestamp = logMessage.timestamp;
 	message.encodeHTML = logMessage.encodeHTML;
-	
 	if ([logMessage.stacktrace isKindOfClass:[NSString class]]){
 		NSArray *stacktrace = [StackTraceParser parseAS3StackTrace:logMessage.stacktrace];
 		if (logMessage.stackIndex >= 0 && logMessage.stackIndex < [stacktrace count]){
@@ -138,5 +137,10 @@
 	[coder encodeObject:levelName forKey:@"levelName"];
 	[coder encodeDouble:(timestamp * 1000) forKey:@"timestamp"];
 	[coder encodeInt32:stackIndex forKey:@"stackIndex"];
+}
+
+- (NSString *)description{
+	return [NSString stringWithFormat:@"<%@ = 0x%08X> message: %@, encodeHTML: %d, stacktrace: %@, levelName: %@, timestamp: %f, stackIndex: %d", 
+		[self class], (long)self, message, encodeHTML, stacktrace, levelName, timestamp, stackIndex];
 }
 @end
