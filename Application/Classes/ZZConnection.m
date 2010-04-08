@@ -65,7 +65,7 @@
 	[m_connectionParams release];
 	m_connectionParams = params;
 	
-	if ([[params objectForKey:@"version"] intValue] < 
+	if (!m_isLegacyConnection && [[params objectForKey:@"version"] intValue] < 
 		[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"ZZMinSWCVersion"] intValue]){
 		NSString *msg = [NSString stringWithFormat:@"You're using an outdated version (%@) of \
 TrazzleLib. At least %@ is required. Please make sure you're using the most recent version.", 
