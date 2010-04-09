@@ -9,8 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface NSMMenuController : NSObject
-{
+@interface NSMMenuController : NSObject{
 	uint32_t m_insertionIndex;
 	NSMutableArray *m_menuItems;
 	NSArray *m_content;
@@ -24,7 +23,6 @@
 @property (nonatomic, retain) NSString *titleKey;
 @property (nonatomic, assign) SEL defaultAction;
 @property (nonatomic, retain) id defaultTarget;
-
 - (id)initWithMenu:(NSMenu *)menu;
 - (void)setContent:(NSArrayController *)controller;
 @end
