@@ -20,6 +20,8 @@
 		2C1D6DC70F34F82F00EA8975 /* statusbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D6DC60F34F82F00EA8975 /* statusbar_icon.png */; };
 		2C1D6DDE0F34FA4000EA8975 /* statusbar_icon_alternate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D6DDD0F34FA4000EA8975 /* statusbar_icon_alternate.png */; };
 		2C1F223C0FF57C730035F2DE /* ZZApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F223B0FF57C730035F2DE /* ZZApplication.m */; };
+		2C2E75C41171434D009D94C8 /* CocoaAMF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2E75C31171434D009D94C8 /* CocoaAMF.framework */; };
+		2C2E75E7117143C3009D94C8 /* CocoaAMF.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C2E75C31171434D009D94C8 /* CocoaAMF.framework */; };
 		2C2EC3A00ECE303F005785E2 /* ZZPlugInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EC39F0ECE303F005785E2 /* ZZPlugInController.m */; };
 		2C54D7FD0F3A068200264CC9 /* tabbar_activetab_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FA0F3A068200264CC9 /* tabbar_activetab_right.png */; };
 		2C54D7FE0F3A068200264CC9 /* tabbar_activetab_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C54D7FB0F3A068200264CC9 /* tabbar_activetab_middle.png */; };
@@ -27,23 +29,11 @@
 		2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */; };
 		2C6920511072C1CC00D20740 /* AAPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6920501072C1CC00D20740 /* AAPreferencesWindowController.m */; };
 		2C7D43F61077920D00EB4725 /* FRFeedbackReporter.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2C7D43F51077920D00EB4725 /* FRFeedbackReporter.sh */; };
-		2C8C05E5105B1729002C246F /* AMF.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05CA105B1729002C246F /* AMF.m */; };
-		2C8C05E6105B1729002C246F /* AMFActionMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05CC105B1729002C246F /* AMFActionMessage.m */; };
-		2C8C05E7105B1729002C246F /* AMFArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05CE105B1729002C246F /* AMFArchiver.m */; };
-		2C8C05E8105B1729002C246F /* AMFDebugUnarchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05D0105B1729002C246F /* AMFDebugUnarchiver.m */; };
-		2C8C05E9105B1729002C246F /* AMFDuplexGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05D2105B1729002C246F /* AMFDuplexGateway.m */; };
-		2C8C05EA105B1729002C246F /* AMFGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05D4105B1729002C246F /* AMFGateway.m */; };
-		2C8C05EB105B1729002C246F /* AMFRemotingCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05D6105B1729002C246F /* AMFRemotingCall.m */; };
-		2C8C05EC105B1729002C246F /* AMFUnarchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05D8105B1729002C246F /* AMFUnarchiver.m */; };
-		2C8C05ED105B1729002C246F /* ASObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05DA105B1729002C246F /* ASObject.m */; };
-		2C8C05EE105B1729002C246F /* FlexDataTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05DC105B1729002C246F /* FlexDataTypes.m */; };
-		2C8C05EF105B1729002C246F /* NSInvocation-AMFExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05DE105B1729002C246F /* NSInvocation-AMFExtensions.m */; };
-		2C8C05F0105B1729002C246F /* NSObject-AMFExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C05E0105B1729002C246F /* NSObject-AMFExtensions.m */; };
-		2C8C0604105B181E002C246F /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C0602105B181E002C246F /* AsyncSocket.m */; };
 		2C8C0670105B2831002C246F /* ZZConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C066F105B2831002C246F /* ZZConnection.m */; };
 		2C8CFECD105AA067002C246F /* PerformanceMonitor.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C8CFEC9105AA03D002C246F /* PerformanceMonitor.trazzlePlugin */; };
 		2C93A5390F3906A60050CD51 /* ZZTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C93A5370F3906A60050CD51 /* ZZTabStyle.m */; };
 		2C93A55F0F390BD40050CD51 /* tabbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C93A55E0F390BD40050CD51 /* tabbar_background.png */; };
+		2CB9CBCF116FFF170023EACC /* Inspector.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C485F2D1062D4B7009818EE /* Inspector.trazzlePlugin */; };
 		2CCF87090E22B19D00B8CE88 /* trazzle.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CCF87080E22B19D00B8CE88 /* trazzle.icns */; };
 		2CDA0FF01041AFF4008338CF /* ZZWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA0FEF1041AFF4008338CF /* ZZWindow.m */; };
 		2CDA110F1041DA8E008338CF /* tabbar_close_off_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA110C1041DA8E008338CF /* tabbar_close_off_over.png */; };
@@ -109,6 +99,13 @@
 			remoteGlobalIDString = 8D5B49B6048680CD000E48DA;
 			remoteInfo = Builder;
 		};
+		2CB9CBCD116FFF0D0023EACC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C485F281062D4B7009818EE /* Inspector.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D57630D048677EA00EA77CD;
+			remoteInfo = Inspector;
+		};
 		2CFA552A0D6B943E00F5DFE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -139,6 +136,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				2CB9CBCF116FFF170023EACC /* Inspector.trazzlePlugin in CopyFiles */,
 				2C8CFECD105AA067002C246F /* PerformanceMonitor.trazzlePlugin in CopyFiles */,
 				2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */,
 			);
@@ -150,6 +148,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2C2E75E7117143C3009D94C8 /* CocoaAMF.framework in CopyFiles */,
 				2C10A998107545F800EAED60 /* FeedbackReporter.framework in CopyFiles */,
 				2C0D620E105EAAF10024BC52 /* BWToolkitFramework.framework in CopyFiles */,
 				496AF0400F320B4E0049FB23 /* Sparkle.framework in CopyFiles */,
@@ -165,7 +164,6 @@
 		13E42FBA07B3F13500E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A37F4B7FDCFA73011CA2CEA /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = MainMenu.nib; path = Resources/English.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Credits.rtf; path = Resources/English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2C0D6204105EA9B10024BC52 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
@@ -184,6 +182,7 @@
 		2C1F223A0FF57C730035F2DE /* ZZApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZApplication.h; sourceTree = "<group>"; };
 		2C1F223B0FF57C730035F2DE /* ZZApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZApplication.m; sourceTree = "<group>"; };
 		2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FileManager.xcodeproj; path = ../Plugins/FileManager/FileManager.xcodeproj; sourceTree = SOURCE_ROOT; };
+		2C2E75C31171434D009D94C8 /* CocoaAMF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAMF.framework; path = Frameworks/CocoaAMF.framework; sourceTree = "<group>"; };
 		2C2EC39E0ECE303F005785E2 /* ZZPlugInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPlugInController.h; sourceTree = "<group>"; };
 		2C2EC39F0ECE303F005785E2 /* ZZPlugInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPlugInController.m; sourceTree = "<group>"; };
 		2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tests-Info.plist"; path = "Resources/Tests-Info.plist"; sourceTree = "<group>"; };
@@ -196,32 +195,6 @@
 		2C6920501072C1CC00D20740 /* AAPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPreferencesWindowController.m; sourceTree = "<group>"; };
 		2C7D43F51077920D00EB4725 /* FRFeedbackReporter.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = FRFeedbackReporter.sh; path = Resources/FRFeedbackReporter.sh; sourceTree = "<group>"; };
 		2C87B4570D8733F10065FC08 /* ZZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZConstants.h; sourceTree = "<group>"; };
-		2C8C05C9105B1729002C246F /* AMF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMF.h; sourceTree = "<group>"; };
-		2C8C05CA105B1729002C246F /* AMF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMF.m; sourceTree = "<group>"; };
-		2C8C05CB105B1729002C246F /* AMFActionMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFActionMessage.h; sourceTree = "<group>"; };
-		2C8C05CC105B1729002C246F /* AMFActionMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFActionMessage.m; sourceTree = "<group>"; };
-		2C8C05CD105B1729002C246F /* AMFArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFArchiver.h; sourceTree = "<group>"; };
-		2C8C05CE105B1729002C246F /* AMFArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFArchiver.m; sourceTree = "<group>"; };
-		2C8C05CF105B1729002C246F /* AMFDebugUnarchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFDebugUnarchiver.h; sourceTree = "<group>"; };
-		2C8C05D0105B1729002C246F /* AMFDebugUnarchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFDebugUnarchiver.m; sourceTree = "<group>"; };
-		2C8C05D1105B1729002C246F /* AMFDuplexGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFDuplexGateway.h; sourceTree = "<group>"; };
-		2C8C05D2105B1729002C246F /* AMFDuplexGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFDuplexGateway.m; sourceTree = "<group>"; };
-		2C8C05D3105B1729002C246F /* AMFGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFGateway.h; sourceTree = "<group>"; };
-		2C8C05D4105B1729002C246F /* AMFGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFGateway.m; sourceTree = "<group>"; };
-		2C8C05D5105B1729002C246F /* AMFRemotingCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFRemotingCall.h; sourceTree = "<group>"; };
-		2C8C05D6105B1729002C246F /* AMFRemotingCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFRemotingCall.m; sourceTree = "<group>"; };
-		2C8C05D7105B1729002C246F /* AMFUnarchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFUnarchiver.h; sourceTree = "<group>"; };
-		2C8C05D8105B1729002C246F /* AMFUnarchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFUnarchiver.m; sourceTree = "<group>"; };
-		2C8C05D9105B1729002C246F /* ASObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASObject.h; sourceTree = "<group>"; };
-		2C8C05DA105B1729002C246F /* ASObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASObject.m; sourceTree = "<group>"; };
-		2C8C05DB105B1729002C246F /* FlexDataTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexDataTypes.h; sourceTree = "<group>"; };
-		2C8C05DC105B1729002C246F /* FlexDataTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlexDataTypes.m; sourceTree = "<group>"; };
-		2C8C05DD105B1729002C246F /* NSInvocation-AMFExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation-AMFExtensions.h"; sourceTree = "<group>"; };
-		2C8C05DE105B1729002C246F /* NSInvocation-AMFExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation-AMFExtensions.m"; sourceTree = "<group>"; };
-		2C8C05DF105B1729002C246F /* NSObject-AMFExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-AMFExtensions.h"; sourceTree = "<group>"; };
-		2C8C05E0105B1729002C246F /* NSObject-AMFExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-AMFExtensions.m"; sourceTree = "<group>"; };
-		2C8C0601105B181E002C246F /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
-		2C8C0602105B181E002C246F /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		2C8C066E105B2831002C246F /* ZZConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZConnection.h; sourceTree = "<group>"; };
 		2C8C066F105B2831002C246F /* ZZConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZConnection.m; sourceTree = "<group>"; };
 		2C8CFEC4105AA03C002C246F /* PerformanceMonitor.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PerformanceMonitor.xcodeproj; path = ../Plugins/PerformanceMonitor/PerformanceMonitor.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -272,6 +245,7 @@
 				496AF03C0F320B3B0049FB23 /* PSMTabBarControl.framework in Frameworks */,
 				2C0D6205105EA9B10024BC52 /* BWToolkitFramework.framework in Frameworks */,
 				2C10A98F1075453E00EAED60 /* FeedbackReporter.framework in Frameworks */,
+				2C2E75C41171434D009D94C8 /* CocoaAMF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +255,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C2E75C31171434D009D94C8 /* CocoaAMF.framework */,
 				2C10A98E1075453E00EAED60 /* FeedbackReporter.framework */,
 				2C0D6204105EA9B10024BC52 /* BWToolkitFramework.framework */,
 				496AF0380F320B3B0049FB23 /* Sparkle.framework */,
@@ -365,7 +340,6 @@
 				2C7D43F51077920D00EB4725 /* FRFeedbackReporter.sh */,
 				2C4300A60D15F5E9006C57D7 /* Tests-Info.plist */,
 				2C03583A0D1C568C007C1A48 /* Images */,
-				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
@@ -436,51 +410,8 @@
 			isa = PBXGroup;
 			children = (
 				2C69204E1072C16900D20740 /* AAUtils */,
-				2C8C05FF105B181E002C246F /* AsyncSocket */,
-				2C8C05C8105B1729002C246F /* CocoaAMF */,
 			);
 			path = Libraries;
-			sourceTree = "<group>";
-		};
-		2C8C05C8105B1729002C246F /* CocoaAMF */ = {
-			isa = PBXGroup;
-			children = (
-				2C8C05C9105B1729002C246F /* AMF.h */,
-				2C8C05CA105B1729002C246F /* AMF.m */,
-				2C8C05CB105B1729002C246F /* AMFActionMessage.h */,
-				2C8C05CC105B1729002C246F /* AMFActionMessage.m */,
-				2C8C05CD105B1729002C246F /* AMFArchiver.h */,
-				2C8C05CE105B1729002C246F /* AMFArchiver.m */,
-				2C8C05CF105B1729002C246F /* AMFDebugUnarchiver.h */,
-				2C8C05D0105B1729002C246F /* AMFDebugUnarchiver.m */,
-				2C8C05D1105B1729002C246F /* AMFDuplexGateway.h */,
-				2C8C05D2105B1729002C246F /* AMFDuplexGateway.m */,
-				2C8C05D3105B1729002C246F /* AMFGateway.h */,
-				2C8C05D4105B1729002C246F /* AMFGateway.m */,
-				2C8C05D5105B1729002C246F /* AMFRemotingCall.h */,
-				2C8C05D6105B1729002C246F /* AMFRemotingCall.m */,
-				2C8C05D7105B1729002C246F /* AMFUnarchiver.h */,
-				2C8C05D8105B1729002C246F /* AMFUnarchiver.m */,
-				2C8C05D9105B1729002C246F /* ASObject.h */,
-				2C8C05DA105B1729002C246F /* ASObject.m */,
-				2C8C05DB105B1729002C246F /* FlexDataTypes.h */,
-				2C8C05DC105B1729002C246F /* FlexDataTypes.m */,
-				2C8C05DD105B1729002C246F /* NSInvocation-AMFExtensions.h */,
-				2C8C05DE105B1729002C246F /* NSInvocation-AMFExtensions.m */,
-				2C8C05DF105B1729002C246F /* NSObject-AMFExtensions.h */,
-				2C8C05E0105B1729002C246F /* NSObject-AMFExtensions.m */,
-			);
-			name = CocoaAMF;
-			path = CocoaAMF/CocoaAMF;
-			sourceTree = "<group>";
-		};
-		2C8C05FF105B181E002C246F /* AsyncSocket */ = {
-			isa = PBXGroup;
-			children = (
-				2C8C0601105B181E002C246F /* AsyncSocket.h */,
-				2C8C0602105B181E002C246F /* AsyncSocket.m */,
-			);
-			path = AsyncSocket;
 			sourceTree = "<group>";
 		};
 		2C8CFEC5105AA03C002C246F /* Products */ = {
@@ -570,6 +501,7 @@
 			dependencies = (
 				496AF0A30F321FE50049FB23 /* PBXTargetDependency */,
 				2C8CFECC105AA056002C246F /* PBXTargetDependency */,
+				2CB9CBCE116FFF0D0023EACC /* PBXTargetDependency */,
 			);
 			name = Trazzle;
 			productInstallPath = "$(HOME)/Applications";
@@ -749,19 +681,6 @@
 				2C93A5390F3906A60050CD51 /* ZZTabStyle.m in Sources */,
 				2C1F223C0FF57C730035F2DE /* ZZApplication.m in Sources */,
 				2CDA0FF01041AFF4008338CF /* ZZWindow.m in Sources */,
-				2C8C05E5105B1729002C246F /* AMF.m in Sources */,
-				2C8C05E6105B1729002C246F /* AMFActionMessage.m in Sources */,
-				2C8C05E7105B1729002C246F /* AMFArchiver.m in Sources */,
-				2C8C05E8105B1729002C246F /* AMFDebugUnarchiver.m in Sources */,
-				2C8C05E9105B1729002C246F /* AMFDuplexGateway.m in Sources */,
-				2C8C05EA105B1729002C246F /* AMFGateway.m in Sources */,
-				2C8C05EB105B1729002C246F /* AMFRemotingCall.m in Sources */,
-				2C8C05EC105B1729002C246F /* AMFUnarchiver.m in Sources */,
-				2C8C05ED105B1729002C246F /* ASObject.m in Sources */,
-				2C8C05EE105B1729002C246F /* FlexDataTypes.m in Sources */,
-				2C8C05EF105B1729002C246F /* NSInvocation-AMFExtensions.m in Sources */,
-				2C8C05F0105B1729002C246F /* NSObject-AMFExtensions.m in Sources */,
-				2C8C0604105B181E002C246F /* AsyncSocket.m in Sources */,
 				2C8C0670105B2831002C246F /* ZZConnection.m in Sources */,
 				2CF0B37B105C5BAD000222E7 /* ZZCoreService.m in Sources */,
 				2CEEDBB9106ACCB700D46C84 /* ZZTabBarControl.m in Sources */,
@@ -778,6 +697,11 @@
 			isa = PBXTargetDependency;
 			name = PerformanceMonitor;
 			targetProxy = 2C8CFECB105AA056002C246F /* PBXContainerItemProxy */;
+		};
+		2CB9CBCE116FFF0D0023EACC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Inspector;
+			targetProxy = 2CB9CBCD116FFF0D0023EACC /* PBXContainerItemProxy */;
 		};
 		2CFA552B0D6B943E00F5DFE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -806,14 +730,6 @@
 				2A37F4B7FDCFA73011CA2CEA /* MainMenu.nib */,
 			);
 			name = MainMenu.nib;
-			sourceTree = "<group>";
-		};
-		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A37F4BAFDCFA73011CA2CEA /* Credits.rtf */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -901,6 +817,7 @@
 				GCC_PREFIX_HEADER = Trazzle_Prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = Trazzle;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -926,6 +843,7 @@
 				GCC_PREFIX_HEADER = Trazzle_Prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = Trazzle;
 				STRIP_STYLE = debugging;
 				VERSIONING_SYSTEM = "apple-generic";

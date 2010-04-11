@@ -10,8 +10,7 @@
 #import <Sparkle/SUUpdater.h>
 #import <objc/objc-runtime.h>
 #import <FeedbackReporter/FRFeedbackReporter.h>
-#import "AMFDuplexGateway.h"
-#import "AsyncSocket.h"
+#import <CocoaAMF/CocoaAMF.h>
 #import "ZZWindowController.h"
 #import "ZZPlugInController.h"
 #import "ZZTrazzlePlugIn.h"

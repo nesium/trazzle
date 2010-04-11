@@ -7,8 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AsyncSocket.h"
-#import "AMFDuplexGateway.h"
+#import <CocoaAMF/CocoaAMF.h>
 
 
 @interface ZZConnection : NSObject

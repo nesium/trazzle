@@ -16,10 +16,17 @@
 
 - (id)initWithPlugInController:(ZZPlugInController *)aController{
 	if (self = [super init]){
+		NSLog(@"Inspector loaded");
+		m_windowController = [[IPInspectorWindowController alloc] init];
 		m_controller = aController;
 		[[m_controller sharedGateway] registerService:[[[IPInspectionService alloc] 
 			initWithDelegate:self] autorelease] withName:@"InspectionService"];
 	}
 	return self;
+}
+
+- (void)inspectionService:(IPInspectionService *)service shouldInspectObject:(id)anObject 
+	forGateway:(AMFRemoteGateway *)gateway{
+	[m_windowController displayObject:anObject];
 }
 @end

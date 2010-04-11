@@ -19,6 +19,7 @@
 		2C8CFF19105AA469002C246F /* PMMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CFF18105AA469002C246F /* PMMainWindowController.m */; };
 		2C8CFFC6105AAC99002C246F /* PMStatsViewLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CFFC5105AAC99002C246F /* PMStatsViewLayer.m */; };
 		2C8CFFCE105AADEA002C246F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8CFFCD105AADEA002C246F /* QuartzCore.framework */; };
+		2C93E8EA11714A0700A26ED6 /* CocoaAMF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C93E8E911714A0700A26ED6 /* CocoaAMF.framework */; };
 		8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */; };
 		8D5B49A804867FD3000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B49A704867FD3000E48DA /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		2C8CFFC4105AAC99002C246F /* PMStatsViewLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMStatsViewLayer.h; sourceTree = "<group>"; };
 		2C8CFFC5105AAC99002C246F /* PMStatsViewLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMStatsViewLayer.m; sourceTree = "<group>"; };
 		2C8CFFCD105AADEA002C246F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2C93E8E911714A0700A26ED6 /* CocoaAMF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAMF.framework; path = ../../Application/Frameworks/CocoaAMF.framework; sourceTree = SOURCE_ROOT; };
 		8D576316048677EA00EA77CD /* PerformanceMonitor.trazzlePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceMonitor.trazzlePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D576317048677EA00EA77CD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +62,7 @@
 				8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */,
 				2C8CFF0C105AA348002C246F /* Cocoa.framework in Frameworks */,
 				2C8CFFCE105AADEA002C246F /* QuartzCore.framework in Frameworks */,
+				2C93E8EA11714A0700A26ED6 /* CocoaAMF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +83,7 @@
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				2C93E8E911714A0700A26ED6 /* CocoaAMF.framework */,
 				0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */,
 				2C8CFF0B105AA348002C246F /* Cocoa.framework */,
 				2C8CFFCD105AADEA002C246F /* QuartzCore.framework */,
@@ -241,6 +245,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Application/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -257,6 +265,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Application/Frameworks\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";

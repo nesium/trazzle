@@ -7,12 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AMFDuplexGateway.h"
+#import <CocoaAMF/CocoaAMF.h>
 
 
-@interface IPInspectionService : NSObject
-{
-	id m_delegate;
+@interface IPInspectionService : NSObject{
+	NSObject *m_delegate;
 }
 - (id)initWithDelegate:(id)aDelegate;
+@end
+
+
+@interface NSObject (IPInspectionServiceDelegate)
+- (void)inspectionService:(IPInspectionService *)service shouldInspectObject:(id)anObject 
+	forGateway:(AMFRemoteGateway *)gateway;
 @end

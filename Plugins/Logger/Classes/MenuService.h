@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AMFDuplexGateway.h"
+#import <CocoaAMF/CocoaAMF.h>
 
 
 @interface MenuService : NSObject

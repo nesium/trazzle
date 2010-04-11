@@ -11,19 +11,20 @@
 
 @implementation IPInspectionService
 
-- (id)initWithDelegate:(id)aDelegate
-{
-	if (self = [super init])
-	{
+- (id)initWithDelegate:(id)aDelegate{
+	if (self = [super init]){
 		m_delegate = aDelegate;
 	}
 	return self;
 }
 
 - (oneway void)gateway:(AMFRemoteGateway *)gateway inspectObject:(NSObject *)obj 
-	metadata:(NSObject *)metadata
-{
+	metadata:(NSObject *)metadata{
+	NSLog(@"%@", [obj className]);
 	NSLog(@"%@", obj);
 	NSLog(@"%@", metadata);
+	if ([m_delegate respondsToSelector:@selector(inspectionService:shouldInspectObject:forGateway:)]){
+		[m_delegate inspectionService:self shouldInspectObject:obj forGateway:gateway];
+	}
 }
 @end

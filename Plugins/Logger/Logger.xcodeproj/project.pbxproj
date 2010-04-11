@@ -88,6 +88,7 @@
 		2C69201D1072677000D20740 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C69201C1072677000D20740 /* Preferences.xib */; };
 		2C6A61D910358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C6A61D810358234001B43B4 /* SearchBarSearchFieldDeleteButtonAlternate.png */; };
 		2C78D87110406EB20064CACC /* LPFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C78D87010406EB20064CACC /* LPFilterModel.m */; };
+		2C93E8C0117149A000A26ED6 /* CocoaAMF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C93E8BF117149A000A26ED6 /* CocoaAMF.framework */; };
 		2C96976B103F085100297687 /* LPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C96976A103F085100297687 /* LPSession.m */; };
 		2CA62C98107118B600ECCE70 /* LPExistingFilesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA62C97107118B600ECCE70 /* LPExistingFilesCache.m */; };
 		2CBFEF7A0F3E4F7400AA982D /* LPFilterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFEF790F3E4F7400AA982D /* LPFilterWindowController.m */; };
@@ -213,6 +214,7 @@
 		2C78D86F10406EB20064CACC /* LPFilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFilterModel.h; sourceTree = "<group>"; };
 		2C78D87010406EB20064CACC /* LPFilterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFilterModel.m; sourceTree = "<group>"; };
 		2C8D2CC70EAD49090020E651 /* LPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPConstants.h; sourceTree = "<group>"; };
+		2C93E8BF117149A000A26ED6 /* CocoaAMF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAMF.framework; path = ../../Application/Frameworks/CocoaAMF.framework; sourceTree = SOURCE_ROOT; };
 		2C969769103F085100297687 /* LPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPSession.h; sourceTree = "<group>"; };
 		2C96976A103F085100297687 /* LPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPSession.m; sourceTree = "<group>"; };
 		2CA62C96107118B600ECCE70 /* LPExistingFilesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPExistingFilesCache.h; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
 				496AF1300F333BD90049FB23 /* WebKit.framework in Frameworks */,
 				2CE3248D0F61CF1F004BB7CF /* libssl.dylib in Frameworks */,
+				2C93E8C0117149A000A26ED6 /* CocoaAMF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +360,7 @@
 		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C93E8BF117149A000A26ED6 /* CocoaAMF.framework */,
 				2CE3248C0F61CF1F004BB7CF /* libssl.dylib */,
 				496AF12F0F333BD90049FB23 /* WebKit.framework */,
 				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,

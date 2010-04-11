@@ -7,10 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <CocoaAMF/CocoaAMF.h>
 #import "ZZTrazzlePlugIn.h"
 #import "LPMessageModel.h"
 #import "LoggingViewController.h"
-#import "AMFDuplexGateway.h"
 #import "LoggingService.h"
 #import "FileMonitor.h"
 #import "MenuService.h"

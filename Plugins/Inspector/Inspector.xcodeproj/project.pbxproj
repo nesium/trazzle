@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2E73D911712779009D94C8 /* IPTransparentOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2E73D811712779009D94C8 /* IPTransparentOutlineView.m */; };
+		2C2E7421117128A7009D94C8 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2E7420117128A7009D94C8 /* BWToolkitFramework.framework */; };
+		2C2E760011714483009D94C8 /* CocoaAMF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2E75FF11714483009D94C8 /* CocoaAMF.framework */; };
 		2C485F0A1062D3D3009818EE /* IPInspectorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C485F091062D3D3009818EE /* IPInspectorPlugin.m */; };
 		2C485F251062D4A9009818EE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C485F241062D4A9009818EE /* Cocoa.framework */; };
 		2C485F471062D5B2009818EE /* IPInspectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C485F461062D5B2009818EE /* IPInspectionService.m */; };
+		2CB9CBBE116FFC4F0023EACC /* InspectorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB9CBBD116FFC4F0023EACC /* InspectorWindow.xib */; };
+		2CB9CBE8116FFF670023EACC /* IPInspectorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB9CBE7116FFF670023EACC /* IPInspectorWindowController.m */; };
 		8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */; };
 		8D5B49A804867FD3000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B49A704867FD3000E48DA /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -17,12 +22,19 @@
 /* Begin PBXFileReference section */
 		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
+		2C2E73D711712779009D94C8 /* IPTransparentOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPTransparentOutlineView.h; sourceTree = "<group>"; };
+		2C2E73D811712779009D94C8 /* IPTransparentOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPTransparentOutlineView.m; sourceTree = "<group>"; };
+		2C2E7420117128A7009D94C8 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../Application/Frameworks/BWToolkitFramework.framework; sourceTree = SOURCE_ROOT; };
+		2C2E75FF11714483009D94C8 /* CocoaAMF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAMF.framework; path = ../../Application/Frameworks/CocoaAMF.framework; sourceTree = SOURCE_ROOT; };
 		2C485F081062D3D3009818EE /* IPInspectorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPInspectorPlugin.h; sourceTree = "<group>"; };
 		2C485F091062D3D3009818EE /* IPInspectorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPInspectorPlugin.m; sourceTree = "<group>"; };
 		2C485F0C1062D44F009818EE /* ZZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZConstants.h; path = ../../Application/Classes/ZZConstants.h; sourceTree = SOURCE_ROOT; };
 		2C485F241062D4A9009818EE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2C485F451062D5B2009818EE /* IPInspectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPInspectionService.h; sourceTree = "<group>"; };
 		2C485F461062D5B2009818EE /* IPInspectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPInspectionService.m; sourceTree = "<group>"; };
+		2CB9CBBD116FFC4F0023EACC /* InspectorWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InspectorWindow.xib; sourceTree = "<group>"; };
+		2CB9CBE6116FFF670023EACC /* IPInspectorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPInspectorWindowController.h; sourceTree = "<group>"; };
+		2CB9CBE7116FFF670023EACC /* IPInspectorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPInspectorWindowController.m; sourceTree = "<group>"; };
 		8D576316048677EA00EA77CD /* Inspector.trazzlePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Inspector.trazzlePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D576317048677EA00EA77CD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -34,6 +46,8 @@
 			files = (
 				8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */,
 				2C485F251062D4A9009818EE /* Cocoa.framework in Frameworks */,
+				2C2E7421117128A7009D94C8 /* BWToolkitFramework.framework in Frameworks */,
+				2C2E760011714483009D94C8 /* CocoaAMF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +68,8 @@
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				2C2E75FF11714483009D94C8 /* CocoaAMF.framework */,
+				2C2E7420117128A7009D94C8 /* BWToolkitFramework.framework */,
 				0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */,
 				2C485F241062D4A9009818EE /* Cocoa.framework */,
 			);
@@ -65,6 +81,7 @@
 			children = (
 				8D576317048677EA00EA77CD /* Info.plist */,
 				8D5B49A704867FD3000E48DA /* InfoPlist.strings */,
+				2CB9CBBD116FFC4F0023EACC /* InspectorWindow.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -75,7 +92,11 @@
 				2C485F0C1062D44F009818EE /* ZZConstants.h */,
 				2C485F081062D3D3009818EE /* IPInspectorPlugin.h */,
 				2C485F091062D3D3009818EE /* IPInspectorPlugin.m */,
+				2CB9CBE6116FFF670023EACC /* IPInspectorWindowController.h */,
+				2CB9CBE7116FFF670023EACC /* IPInspectorWindowController.m */,
 				2C485F441062D578009818EE /* AMF Services */,
+				2C2E73D711712779009D94C8 /* IPTransparentOutlineView.h */,
+				2C2E73D811712779009D94C8 /* IPTransparentOutlineView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -141,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49A804867FD3000E48DA /* InfoPlist.strings in Resources */,
+				2CB9CBBE116FFC4F0023EACC /* InspectorWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +175,8 @@
 			files = (
 				2C485F0A1062D3D3009818EE /* IPInspectorPlugin.m in Sources */,
 				2C485F471062D5B2009818EE /* IPInspectionService.m in Sources */,
+				2CB9CBE8116FFF670023EACC /* IPInspectorWindowController.m in Sources */,
+				2C2E73D911712779009D94C8 /* IPTransparentOutlineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,10 +199,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Application/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					../../Application/Classes,
+					"../../Application/Libraries/**",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				PRODUCT_NAME = Inspector;
@@ -191,7 +223,15 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Application/Frameworks\"",
+				);
 				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					../../Application/Classes,
+					"../../Application/Libraries/**",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				PRODUCT_NAME = Inspector;

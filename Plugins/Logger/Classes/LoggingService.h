@@ -7,11 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AMFDuplexGateway.h"
+#import <CocoaAMF/CocoaAMF.h>
 #import "LogMessage.h"
 #import "StackTraceItem.h"
 #import "MessageParser.h"
-#import "NSObject-AMFExtensions.h"
 
 
 @interface LoggingService : NSObject

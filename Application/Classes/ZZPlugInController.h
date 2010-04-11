@@ -7,8 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AMFDuplexGateway.h"
-#import "AsyncSocket.h"
+#import <CocoaAMF/CocoaAMF.h>
 #import "ZZConnection.h"
 
 @class ZZWindowController;
