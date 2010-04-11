@@ -22,10 +22,8 @@
 #pragma mark -
 #pragma mark Initialization & Deallocation
 
-- (id)initWithRemote:(id)remote delegate:(id)delegate
-{
-	if (self = [super init])
-	{
+- (id)initWithRemote:(id)remote delegate:(id)delegate{
+	if (self = [super init]){
 		m_remote = [remote retain];
 		m_delegate = delegate;
 		m_isLegacyConnection = [remote isMemberOfClass:[AsyncSocket class]];
@@ -38,8 +36,7 @@
 	return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 	[m_remote release];
 	[m_pluginStorage release];
 	[m_connectionParams release];
@@ -52,15 +49,13 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (NSMutableDictionary *)storageForPluginWithName:(NSString *)name
-{
+- (NSMutableDictionary *)storageForPluginWithName:(NSString *)name{
 	if ([m_pluginStorage objectForKey:name] == nil)
 		[m_pluginStorage setObject:[NSMutableDictionary dictionary] forKey:name];
 	return [m_pluginStorage objectForKey:name];
 }
 
-- (void)setConnectionParams:(NSDictionary *)params
-{
+- (void)setConnectionParams:(NSDictionary *)params{
 	[params retain];
 	[m_connectionParams release];
 	m_connectionParams = params;
@@ -89,20 +84,17 @@ TrazzleLib. At least %@ is required. Please make sure you're using the most rece
 		[m_delegate connectionDidReceiveConnectionSignature:self];
 }
 
-- (NSString *)applicationName
-{
+- (NSString *)applicationName{
 	return [m_connectionParams objectForKey:@"applicationName"];
 }
 
-- (void)sendString:(NSString *)msg
-{
+- (void)sendString:(NSString *)msg{
 	if (!m_isLegacyConnection) return;
 	NSData *data = [[msg stringByAppendingString:@"\0"] dataUsingEncoding:NSUTF8StringEncoding];
 	[(AsyncSocket *)m_remote writeData:data withTimeout:-1 tag:0];
 }
 
-- (void)disconnect
-{
+- (void)disconnect{
 	if ([m_remote isMemberOfClass:[AsyncSocket class]])
 		[(AsyncSocket *)m_remote disconnectAfterReadingAndWriting];
 	else 
@@ -114,13 +106,11 @@ TrazzleLib. At least %@ is required. Please make sure you're using the most rece
 #pragma mark -
 #pragma mark Private methods
 
-- (void)_continueReading
-{
+- (void)_continueReading{
 	[(AsyncSocket *)m_remote readDataToData:[AsyncSocket ZeroData] withTimeout:-1 tag:0];	
 }
 
-- (NSURL *)_normalizeSWFURL:(NSURL *)url
-{
+- (NSURL *)_normalizeSWFURL:(NSURL *)url{
 	// this is out of our range
 	if (![url isFileURL])
 		return url;
@@ -150,19 +140,16 @@ TrazzleLib. At least %@ is required. Please make sure you're using the most rece
 	HFSUniStr255 volumeName;
 	uint32_t index = 1;
 	while (FSGetVolumeInfo(kFSInvalidVolumeRefNum, index++, &actualVolume, kFSVolInfoFSInfo, &info, 
-		&volumeName, NULL) != nsvErr)
-	{
+		&volumeName, NULL) != nsvErr){
 		NSString *volName = [NSString stringWithCharacters:volumeName.unicode 
 			length:volumeName.length];
-		if ([volName isEqualToString:[pathComponents objectAtIndex:1]])
-		{
+		if ([volName isEqualToString:[pathComponents objectAtIndex:1]]){
 			NSString *validPath = [NSString stringWithFormat:@"file:///%@", 
 				[NSString pathWithComponents:[pathComponents subarrayWithRange:
 					(NSRange){2, [pathComponents count] - 2}]]];
 			return [NSURL URLWithString:validPath];
 		}
 	}
-	
 	return url;
 }
 
@@ -171,16 +158,13 @@ TrazzleLib. At least %@ is required. Please make sure you're using the most rece
 #pragma mark -
 #pragma mark AsyncSocket delegate methods
 
-- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
-{
+- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port{
 	[self _continueReading];
 }
 
-- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
-{
+- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
 	NSString *message = [NSString stringWithUTF8String:[data bytes]];
-	if ([message isEqualToString:@"<policy-file-request/>"])
-	{
+	if ([message isEqualToString:@"<policy-file-request/>"]){
 		[self sendString:@"<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\"/>\
 </cross-domain-policy>\0"];
 		return;
@@ -192,8 +176,7 @@ TrazzleLib. At least %@ is required. Please make sure you're using the most rece
 	[self _continueReading];
 }
 
-- (void)onSocketDidDisconnect:(AsyncSocket *)sock
-{
+- (void)onSocketDidDisconnect:(AsyncSocket *)sock{
 	if ([m_delegate respondsToSelector:@selector(connectionDidDisconnect:)])
 		[m_delegate connectionDidDisconnect:self];
 }

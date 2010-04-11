@@ -27,6 +27,8 @@
 #pragma mark Public methods
 
 - (void)displayObject:(id)object{
+	// force window loading
+	self.window;
 	[m_rootObject release];
 	m_rootObject = [[IPObjectWrapper alloc] initWithObject:object];
 	[m_outlineView reloadData];
