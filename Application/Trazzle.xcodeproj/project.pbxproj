@@ -33,6 +33,7 @@
 		2C8CFECD105AA067002C246F /* PerformanceMonitor.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C8CFEC9105AA03D002C246F /* PerformanceMonitor.trazzlePlugin */; };
 		2C93A5390F3906A60050CD51 /* ZZTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C93A5370F3906A60050CD51 /* ZZTabStyle.m */; };
 		2C93A55F0F390BD40050CD51 /* tabbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C93A55E0F390BD40050CD51 /* tabbar_background.png */; };
+		2C93EBD111717CCD00A26ED6 /* Inspector.trazzlePlugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C485F2D1062D4B7009818EE /* Inspector.trazzlePlugin */; };
 		2CCF87090E22B19D00B8CE88 /* trazzle.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CCF87080E22B19D00B8CE88 /* trazzle.icns */; };
 		2CDA0FF01041AFF4008338CF /* ZZWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA0FEF1041AFF4008338CF /* ZZWindow.m */; };
 		2CDA110F1041DA8E008338CF /* tabbar_close_off_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CDA110C1041DA8E008338CF /* tabbar_close_off_over.png */; };
@@ -91,6 +92,13 @@
 			remoteGlobalIDString = 8D57630D048677EA00EA77CD;
 			remoteInfo = PerformanceMonitor;
 		};
+		2C93EBCF11717CC300A26ED6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C485F281062D4B7009818EE /* Inspector.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D57630D048677EA00EA77CD /* Inspector */;
+			remoteInfo = Inspector;
+		};
 		2CAD39CC0F6F059A00D390D9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2CAD39C80F6F059A00D390D9 /* Builder.xcodeproj */;
@@ -128,6 +136,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				2C93EBD111717CCD00A26ED6 /* Inspector.trazzlePlugin in CopyFiles */,
 				2C8CFECD105AA067002C246F /* PerformanceMonitor.trazzlePlugin in CopyFiles */,
 				2C65AC8D0F3251C7005D7A61 /* Logger.trazzlePlugin in CopyFiles */,
 			);
@@ -492,6 +501,7 @@
 			dependencies = (
 				496AF0A30F321FE50049FB23 /* PBXTargetDependency */,
 				2C8CFECC105AA056002C246F /* PBXTargetDependency */,
+				2C93EBD011717CC300A26ED6 /* PBXTargetDependency */,
 			);
 			name = Trazzle;
 			productInstallPath = "$(HOME)/Applications";
@@ -687,6 +697,11 @@
 			isa = PBXTargetDependency;
 			name = PerformanceMonitor;
 			targetProxy = 2C8CFECB105AA056002C246F /* PBXContainerItemProxy */;
+		};
+		2C93EBD011717CC300A26ED6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Inspector;
+			targetProxy = 2C93EBCF11717CC300A26ED6 /* PBXContainerItemProxy */;
 		};
 		2CFA552B0D6B943E00F5DFE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

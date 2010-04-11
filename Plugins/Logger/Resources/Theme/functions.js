@@ -10,20 +10,16 @@ var kLPMessageTypeConnectionSignature = 6;
 var kLPMessageTypeException = 7;
 var kLPMessageTypeBitmap = 8;
 
-onload = function()
-{
+onload = function(){
 	logList = document.getElementById('logMessageList');
 }
 
-function appendMessages(messages)
-{
+function appendMessages(messages){
 	var html = '';
 	var addTextmateLinks = window.TrazzleBridge.textMateLinksEnabled();
-	for (var i = 0; i < messages.length; i++)
-	{
+	for (var i = 0; i < messages.length; i++){
 		var message = messages[i];
-		switch (message.messageType)
-		{
+		switch (message.messageType){
 			case kLPMessageTypeSocket:
 			case kLPMessageTypeException:
 				html += logMessageToHTML(message, addTextmateLinks);
@@ -35,28 +31,24 @@ function appendMessages(messages)
 	appendHTML(html);
 }
 
-function logMessageToHTML(message, addTextmateLinks)
-{
+function logMessageToHTML(message, addTextmateLinks){
 	var html = '';
 	html += '<li class="trace' + (message.visible ? '' : ' hidden') + 
 		'" id="traceItem' + message.index + '">';
 	html += '<div class="arrow">';
-	if (message.stacktrace)
-	{
+	if (message.stacktrace){
 		html += '<a href="javascript:toggleStacktrace(' + message.index + ');" class="arrow">';
 		html += '&nbsp;';
 		html += '</a>';
-	}
-	else
-	{
+	}else{
 		html += '&nbsp;';
 	}
 	html += '</div>';
 	html += '<div class="lineno">' + (message.index + 1) + '</div>';
 	html += '<div class="timestamp">' + message.formattedTimestamp() + '</div>';
+	html += '<div class="more_detail"><a href="#"></a></div>';
 	html += '<div class="content ' + message.levelName + '">';
-	if (addTextmateLinks && message.line > -1 && message.fileExists)
-	{
+	if (addTextmateLinks && message.line > -1 && message.fileExists){
 		html += '<a class="tm_link" href="txmt://open/?url=file://' + escape(message.file) + 
 			'&line=' + message.line + '">';
 	}
@@ -65,16 +57,14 @@ function logMessageToHTML(message, addTextmateLinks)
 	if (message.line > -1)
 		html += '(' + message.line + ') '; 
 	html += message.message;
-	if (addTextmateLinks && message.line > -1)
-	{
+	if (addTextmateLinks && message.line > -1){
 		html += '</a>';
 	}
 	html += '</div></li>';
 	return html;
 }
 
-function messageToHTML(message)
-{
+function messageToHTML(message){
 	var html = '';
 	var cssClass = message.messageType == kLPMessageTypeSystem 
 		? "system_message" 
@@ -86,8 +76,7 @@ function messageToHTML(message)
 	return html;
 }
 
-function appendHTML(html)
-{
+function appendHTML(html){
 	var shouldScroll = scrollThumbIsAtBottom();
 	var range = document.createRange();
 	range.selectNode(logList);
@@ -96,107 +85,76 @@ function appendHTML(html)
 	if (shouldScroll) scrollToBottom();
 }
 
-function scrollThumbIsAtBottom()
-{
-//	TrazzleBridge.log(
-//		'scrollTop: ' + document.body.scrollTop + 
-//		', clientHeight: ' + document.body.clientHeight + 
-//		', offsetHeight: ' + document.body.offsetHeight + 
-//		', scrollWidth: ' + document.body.scrollWidth + 
-//		', innerWidth: ' + window.innerWidth + 
-//		', innerHeight: ' + window.innerHeight + 
-//		', scrollHeight: ' + document.body.scrollHeight + 
-//		', scrollTop: ' + document.body.scrollTop + 
-//		', scrollLeft: ' + document.body.scrollLeft + 
-//		', scrollTopDif: ' + (document.body.scrollTop - window.innerHeight) + 
-//		', dings: ' + (document.body.scrollHeight - document.body.scrollTop));
-//	
-//	return document.body.scrollTop + window.innerHeight == document.body.offsetHeight || 
-//	document.body.offsetHeight < window.innerHeight;
+function scrollThumbIsAtBottom(){
 	return document.body.scrollHeight - window.innerHeight - document.body.scrollTop <= 0;
 }
 
-function scrollToBottom()
-{
+function scrollToBottom(){
 	document.body.scrollTop = document.body.offsetHeight;
 }
 
-function showMessagesWithIndexes(indexes)
-{
+function showMessagesWithIndexes(indexes){
 	var shouldScroll = scrollThumbIsAtBottom();
 	var i = indexes.length;
-	while (i--)
-	{
+	while (i--){
 		logList.childNodes[indexes[i]].style.display = 'block';
 	}
 	if (shouldScroll) scrollToBottom();
 }
 
-function hideMessagesWithIndexes(indexes)
-{
+function hideMessagesWithIndexes(indexes){
 	var shouldScroll = scrollThumbIsAtBottom();
 	var i = indexes.length;
-	while (i--)
-	{
+	while (i--){
 		logList.childNodes[indexes[i]].style.display = 'none';
 	}
 	if (shouldScroll) scrollToBottom();
 }
 
-function removeMessagesWithIndexes(indexes)
-{
+function removeMessagesWithIndexes(indexes){
 	var shouldScroll = scrollThumbIsAtBottom();
 	var i = indexes.length;
-	while (i--)
-	{
+	while (i--){
 		logList.removeChild(logList.childNodes[indexes[i]]);
 	}
 	if (shouldScroll) scrollToBottom();
 }
 
-function clearAllMessages()
-{
+function clearAllMessages(){
 	var i = logList.childNodes.length;
-	while (i--)
-	{
+	while (i--){
 		logList.removeChild(logList.childNodes[i]);
 	}
 }
 
 
-function toggleStacktrace(id)
-{
+function toggleStacktrace(id){
 	var elem = document.getElementById('traceItem' + id);
 	var subListItems = elem.getElementsByTagName('ul');
 	var i = subListItems.length;
 	
-	while (i--)
-	{
+	while (i--){
 		var ul = subListItems[i];
-		if (ul.className == 'stacktrace')
-		{
+		if (ul.className == 'stacktrace'){
 			removeClassFromElement(elem, 'expanded');
 			elem.removeChild(ul);
 			return;
 		}
 	}
-
+	
 	var addTextmateLinks = window.TrazzleBridge.textMateLinksEnabled();
 	var message = window.TrazzleBridge.messageWithIndex(id);
 	var html = '<ul class="stacktrace">';
-	for (i = 0; i < message.stacktrace.length; i++)
-	{
+	for (i = 0; i < message.stacktrace.length; i++){
 		var stackItem = message.stacktrace[i];
 		html += '<li>';
-		if (addTextmateLinks)
-		{
+		if (addTextmateLinks){
 			html += '<a class="tm_link" href="txmt://open/?url=file://' + escape(stackItem.file) + 
 				'&line=' + stackItem.line + '">';
 		}
 		html += stackItem.shortClassName + '.' + stackItem.method + 
 			' (' + stackItem.line + ')';
-		if (addTextmateLinks)
-		{
+		if (addTextmateLinks){
 			html += '</a>';
 		}
 		html += '</li>';
@@ -210,14 +168,11 @@ function toggleStacktrace(id)
 	addClassToElement(elem, 'expanded');
 }
 
-function removeClassFromElement(elem, clazz)
-{
+function removeClassFromElement(elem, clazz){
 	var parts = elem.className.split(' ');
 	var i = parts.length;
-	while (i--)
-	{
-		if (parts[i] == clazz)
-		{
+	while (i--){
+		if (parts[i] == clazz){
 			parts.splice(i, 1);
 			break;
 		}
@@ -225,7 +180,6 @@ function removeClassFromElement(elem, clazz)
 	elem.className = parts.join(' ');
 }
 
-function addClassToElement(elem, clazz)
-{
+function addClassToElement(elem, clazz){
 	elem.className += ' ' + clazz;
 }
