@@ -1,5 +1,4 @@
-body
-{
+body{
 	font: 10px Monaco;
 	margin: 0;
 	padding: 0;
@@ -7,93 +6,91 @@ body
 	color: #fff;
 }
 
-a
-{
+a{
 	text-decoration: none;
 	color: #fff;
 }
 
-ol, ul
-{
+ol, ul{
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-.trace, .system_message, .flashlog_message
-{
+.trace, .system_message, .flashlog_message{
 	line-height: 14px;
-	margin-left: 115px;
+	margin-left: 133px;
 }
 
-.system_message
-{
+.system_message{
 	color: #767676;
 	font-style: italic;
 }
 
-.flashlog_message
-{
+.flashlog_message{
 	color: #767676;
 }
 
-a.tm_link:hover
-{
+a.tm_link:hover{
 	text-decoration: underline;
 }
 
-.arrow
-{
+.arrow{
 	width: 12px;
 	height: 14px;
 }
 
-div.arrow
-{
+div.arrow{
 	float: left;
-	margin-left: -112px;
+	margin-left: -130px;
 }
 
-a.arrow
-{
+a.arrow{
 	background: transparent url(arrow_collapsed.gif) no-repeat 0 50%;
 	display: block;
 }
 
-li.trace.expanded a.arrow
-{
+li.trace.expanded a.arrow{
 	background-image: url(arrow_expanded.gif);
 }
 
-.hidden
-{
+.hidden{
 	display: none;
 }
 
-.content
-{
+.content{
 	padding-left: 5px;
 }
 
-.lineno
-{
-	width: 35px;
+.lineno{
+	width: 30px;
 	text-align: right;
 	float: left;
-	margin-left: -106px;
+	margin-left: -119px;
 	color: #454545;
 }
 
-.timestamp
-{
+.timestamp{
 	float: left;
-	margin-left: -61px;
+	margin-left: -79px;
 	color: #696969;
 	width: 63px;
 }
 
-.stacktrace
-{
+.more_detail{
+	margin-left: -20px;
+	width: 16px;
+	float: left;
+}
+
+.more_detail a{
+	background: transparent url(loupe.gif) no-repeat 50% 2px;
+	display: block;
+	width: 16px;
+	height: 14px;
+}
+
+.stacktrace{
 	border-top: 1px solid #2a2526;
 	border-bottom: 1px solid #2a2526;
 	background-color: #120d0d;
@@ -104,48 +101,39 @@ li.trace.expanded a.arrow
 
 
 
-
 /*
 * Log level support
 */
-.debug, .debug a
-{
+.debug, .debug a{
 	color: #a6e22e;
 }
 
-.info, .info a
-{
+.info, .info a{
 	color: #66d9ef;
 }
 
-.notice, .notice a
-{
+.notice, .notice a{
 	color: #ae81ff;
 }
 
-.warning, .warning a
-{
+.warning, .warning a{
 	color: #e6db74;
 }
 
-.error, .error a
-{
+.error, .error a{
 	color: #fd971f;
 }
 
-.critical, .critical a
-{
+.critical, .critical a{
 	color: #f92672;
 }
 
-.fatal, .fatal a
-{
+.fatal, .fatal a{
 	color: #000;
 	background-color: #fff;
 }
 
-.exception, .exception a
-{
+.exception, .exception a{
 	color: #fff;
 	background-color: #8d0017;
 }
