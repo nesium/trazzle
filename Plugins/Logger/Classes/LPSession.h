@@ -19,8 +19,7 @@
 #import "NSPointerArray+LPAdditions.h"
 
 
-@interface LPSession : NSObject <TrazzleTabViewDelegate>
-{
+@interface LPSession : NSObject <TrazzleTabViewDelegate>{
 	ZZPlugInController *m_controller;
 	id m_tab;
 	NSPointerArray *m_representedObjects;

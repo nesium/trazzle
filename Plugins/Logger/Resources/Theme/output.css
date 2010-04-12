@@ -48,6 +48,11 @@ div.arrow{
 a.arrow{
 	background: transparent url(arrow_collapsed.gif) no-repeat 0 50%;
 	display: block;
+	opacity: 0.6;
+}
+
+a.arrow:hover{
+	opacity: 1.0;
 }
 
 li.trace.expanded a.arrow{
@@ -88,6 +93,11 @@ li.trace.expanded a.arrow{
 	display: block;
 	width: 16px;
 	height: 14px;
+	opacity: 0.6;
+}
+
+.more_detail a:hover{
+	opacity: 1.0;
 }
 
 .stacktrace{

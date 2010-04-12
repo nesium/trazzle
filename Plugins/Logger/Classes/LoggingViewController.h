@@ -12,8 +12,7 @@
 
 @class WebViewController;
 
-@interface LoggingViewController : NSViewController 
-{
+@interface LoggingViewController : NSViewController{
 	IBOutlet WebView *m_webView;
 	IBOutlet NSView *m_searchBar;
 	IBOutlet NSSearchField *m_searchField;
@@ -45,4 +44,6 @@
 - (AbstractMessage *)loggingViewController:(LoggingViewController *)controller 
 	messageWithIndex:(uint32_t)index;
 - (void)loggingViewControllerWebViewIsReady:(LoggingViewController *)controller;
+- (void)loggingViewController:(LoggingViewController *)controller 
+	showDetailForMessageWithIndex:(uint32_t)index;
 @end

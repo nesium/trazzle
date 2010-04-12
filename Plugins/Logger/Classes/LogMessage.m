@@ -10,7 +10,7 @@
 
 @implementation LogMessage
 
-@synthesize levelName, level, stacktrace, encodeHTML, index, connectionTimestamp;
+@synthesize levelName, level, stacktrace, encodeHTML, index, connectionTimestamp, complexObject;
 static NSArray *kLPLogLevels;
 
 #pragma mark -
@@ -33,6 +33,7 @@ static NSArray *kLPLogLevels;
 - (void)dealloc{
 	[levelName release];
 	[stacktrace release];
+	[complexObject release];
 	[super dealloc];
 }
 
@@ -75,6 +76,10 @@ static NSArray *kLPLogLevels;
 	return fileExists;
 }
 
+- (BOOL)hasComplexObject{
+	return complexObject != nil;
+}
+
 
 
 #pragma mark -
@@ -88,13 +93,16 @@ static NSArray *kLPLogLevels;
 		name == "index" ||
 		name == "timestamp" || 
 		name == "formattedTimestamp" || 
-		name == "fileExists"){
+		name == "fileExists" || 
+		name == "complexObject" || 
+		name == "hasComplexObject"){
 		return NO;
 	}
 	return [super isKeyExcludedFromWebScript:name];
 }
 
 + (BOOL)isSelectorExcludedFromWebScript:(SEL)sel{
-	return !(sel == @selector(formattedTimestamp));
+	return !(sel == @selector(formattedTimestamp) || 
+		sel == @selector(hasComplexObject));
 }
 @end

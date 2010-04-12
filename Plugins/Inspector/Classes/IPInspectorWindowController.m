@@ -21,19 +21,46 @@
 	return self;
 }
 
+- (void)dealloc{
+	[m_outlineView release];
+	[m_textView release];
+	[m_rootObject release];
+	[super dealloc];
+}
+
 
 
 #pragma mark -
 #pragma mark Public methods
 
-- (void)displayObject:(id)object{
+- (void)displayObject:(id)object warpOrigin:(NSPoint)warpOrigin{
 	// force window loading
 	self.window;
+	m_warpOrigin = warpOrigin;
 	[m_rootObject release];
-	m_rootObject = [[IPObjectWrapper alloc] initWithObject:object];
-	[m_outlineView reloadData];
-	[m_outlineView expandItem:m_rootObject];
-	[self showWindow:self];
+	m_rootObject = nil;
+
+	NSRect contentViewFrame = [[self.window contentView] bounds];
+	if ([object isKindOfClass:[NSXMLDocument class]]){
+		[m_outlineView removeFromSuperview];
+		[[m_textView enclosingScrollView] setFrame:contentViewFrame];
+		[[self.window contentView] addSubview:[m_textView enclosingScrollView]];
+		NSXMLDocument *xml = (NSXMLDocument *)object;
+		[m_textView setString:
+			[xml XMLStringWithOptions:NSXMLNodeCompactEmptyElement | NSXMLNodePrettyPrint]];
+	}else{
+		m_rootObject = [[IPObjectWrapper alloc] initWithObject:object];
+		[[m_textView enclosingScrollView] removeFromSuperview];
+		[m_outlineView setFrame:contentViewFrame];
+		[[self.window contentView] addSubview:m_outlineView];
+		[m_outlineView reloadData];
+		[m_outlineView expandItem:m_rootObject];
+	}
+	
+	if (![self.window isVisible]){
+		[self showWindow:self];
+		[(IPWarpWindow *)self.window warpFromPoint:warpOrigin];
+	}
 }
 
 
@@ -42,7 +69,14 @@
 #pragma mark NSWindowController methods
 
 - (void)windowDidLoad{
+	[m_outlineView retain];
+	[m_textView retain];
 	[self.window setLevel:NSNormalWindowLevel];
+}
+
+- (BOOL)windowShouldClose:(id)sender{
+	[(IPWarpWindow *)self.window warpToPoint:m_warpOrigin];
+	return NO;
 }
 
 - (NSString *)windowFrameAutosaveName{
@@ -52,7 +86,7 @@
 
 
 #pragma mark -
-#pragma mark NSOutlineViewDelegate methods
+#pragma mark NSOutlineViewDataSource methods
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item{
 	if (item == nil)
@@ -86,6 +120,19 @@
 		return [(IPObjectWrapper *)item objectClassName];
 	}
 	return @"";
+}
+
+
+#pragma mark -
+#pragma mark NSOutlineViewDelegate methods
+
+- (void)outlineView:(NSOutlineView *)ov willDisplayOutlineCell:(NSButtonCell *)cell 
+	forTableColumn:(NSTableColumn *)tableColumn item:(id)item{
+//	NSImage *icon = [[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] 
+//		pathForResource:@"DisclosureTriangleSelected" ofType:@"png"]];
+//	[cell setImage:icon];
+//	[cell setAlternateImage:icon];
+//	[icon release];
 }
 @end
 

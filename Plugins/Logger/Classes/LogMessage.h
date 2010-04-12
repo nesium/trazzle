@@ -17,6 +17,7 @@
 	BOOL encodeHTML;
 	NSArray *stacktrace;
 	NSTimeInterval connectionTimestamp;
+	NSObject *complexObject;
 	BOOL fileExists;
 	BOOL m_didLookupFile;
 }
@@ -26,5 +27,7 @@
 @property (nonatomic, assign) BOOL encodeHTML;
 @property (nonatomic, assign) NSTimeInterval connectionTimestamp;
 @property (nonatomic, readonly) BOOL fileExists;
+@property (nonatomic, retain) NSObject *complexObject;
 - (NSString *)formattedTimestamp;
+- (BOOL)hasComplexObject;
 @end

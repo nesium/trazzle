@@ -16,4 +16,6 @@
 	ZZPlugInController *m_controller;
 	IPInspectorWindowController *m_windowController;
 }
+- (void)inspectObject:(NSObject *)anObject windowTitle:(NSString *)windowTitle 
+	fromPoint:(NSPoint)aPoint;
 @end

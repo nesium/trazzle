@@ -16,7 +16,6 @@
 
 - (id)initWithPlugInController:(ZZPlugInController *)aController{
 	if (self = [super init]){
-		NSLog(@"Inspector loaded");
 		m_windowController = [[IPInspectorWindowController alloc] init];
 		m_controller = aController;
 		[[m_controller sharedGateway] registerService:[[[IPInspectionService alloc] 
@@ -27,6 +26,10 @@
 
 - (void)inspectionService:(IPInspectionService *)service shouldInspectObject:(id)anObject 
 	forGateway:(AMFRemoteGateway *)gateway{
-	[m_windowController displayObject:anObject];
+}
+
+- (void)inspectObject:(NSObject *)anObject windowTitle:(NSString *)windowTitle 
+	fromPoint:(NSPoint)aPoint{
+	[m_windowController displayObject:anObject warpOrigin:aPoint];
 }
 @end

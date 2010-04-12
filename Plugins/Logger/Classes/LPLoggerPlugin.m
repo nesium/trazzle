@@ -49,6 +49,7 @@
 - (id)initWithPlugInController:(ZZPlugInController *)aController{
 	if (self = [super init]){
 		m_controller = aController;
+		m_inspectorPlugin = nil;
 		
 		m_filterController = [[LPFilterWindowController alloc] init];
 		[m_filterController window];
@@ -98,6 +99,7 @@
 
 - (void)dealloc{
 	[m_filterController release];
+	[m_inspectorPlugin release];
 	[super dealloc];
 }
 
