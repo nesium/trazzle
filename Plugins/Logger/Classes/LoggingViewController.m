@@ -258,6 +258,13 @@
 		valueForKey:kShowTextMateLinks] boolValue];
 }
 
+- (void)showDetailForMessageWithIndex:(NSNumber *)index{
+	if ([m_delegate respondsToSelector:
+		@selector(loggingViewController:showDetailForMessageWithIndex:)]){
+		[m_delegate loggingViewController:self showDetailForMessageWithIndex:[index intValue]];
+	}
+}
+
 
 
 #pragma mark -
@@ -265,7 +272,7 @@
 
 + (BOOL)isSelectorExcludedFromWebScript:(SEL)sel{
 	return !(sel == @selector(messageWithIndex:) || sel == @selector(log:) || 
-		sel == @selector(textMateLinksEnabled));
+		sel == @selector(textMateLinksEnabled) || sel == @selector(showDetailForMessageWithIndex:));
 }
 
 + (NSString *)webScriptNameForSelector:(SEL)sel{
@@ -273,6 +280,8 @@
 		return @"messageWithIndex";
 	else if (sel == @selector(log:))
 		return @"log";
+	else if (sel == @selector(showDetailForMessageWithIndex:))
+		return @"showDetailForMessageWithIndex";
     return nil;
 }
 @end

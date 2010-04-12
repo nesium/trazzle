@@ -22,6 +22,7 @@
 // triggered by legacy connections
 - (void)trazzleDidReceiveMessage:(NSString *)msg forConnection:(ZZConnection *)conn;
 - (void)prefPane:(NSViewController **)viewController icon:(NSImage **)icon;
+- (void)trazzleDidLoadPlugIns:(NSDictionary *)plugIns;
 @end
 
 @protocol TrazzleTabViewDelegate

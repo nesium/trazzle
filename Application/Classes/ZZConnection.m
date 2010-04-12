@@ -17,7 +17,8 @@
 
 @synthesize isLegacyConnection=m_isLegacyConnection, 
 			remote=m_remote, 
-			swfURL=m_swfURL;
+			swfURL=m_swfURL, 
+			connectionParams=m_connectionParams;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation

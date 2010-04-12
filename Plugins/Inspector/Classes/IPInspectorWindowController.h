@@ -8,6 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 #import <CocoaAMF/CocoaAMF.h>
+#import "IPWarpWindow.h"
+
+@class IPObjectWrapper;
+
+@interface IPInspectorWindowController : NSWindowController{
+	IBOutlet NSTextView *m_textView;
+	IBOutlet NSOutlineView *m_outlineView;
+	IPObjectWrapper *m_rootObject;
+	NSPoint m_warpOrigin;
+}
+- (void)displayObject:(id)object warpOrigin:(NSPoint)warpOrigin;
+@end
+
+
 
 @interface IPObjectWrapper : NSObject{
 	NSArray *m_children;
@@ -20,13 +34,4 @@
 @property (readonly) NSArray *children;
 @property (readonly) NSString *value;
 - (BOOL)hasChildren;
-@end
-
-
-
-@interface IPInspectorWindowController : NSWindowController{
-	IBOutlet NSOutlineView *m_outlineView;
-	IPObjectWrapper *m_rootObject;
-}
-- (void)displayObject:(id)object;
 @end

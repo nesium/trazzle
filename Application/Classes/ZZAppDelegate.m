@@ -121,7 +121,8 @@
 #pragma mark Private methods
 
 - (void)_loadPlugins{
-	m_loadedPlugins = [[NSMutableArray alloc] init];
+	NSMutableArray *loadedPlugins = [NSMutableArray array];
+	NSMutableDictionary *pluginRegistry = [NSMutableDictionary dictionary];
 	NSString *pluginsPath = [[NSBundle mainBundle] builtInPlugInsPath];
 	NSArray *plugins = [[NSFileManager defaultManager] directoryContentsAtPath:pluginsPath];
 
@@ -146,9 +147,23 @@
 			
 			NSObject <ZZTrazzlePlugIn> *plugin = [[prinClass alloc] 
 				initWithPlugInController:plugInController];
-			[m_loadedPlugins addObject:plugin];
+			[loadedPlugins addObject:plugin];
+			[pluginRegistry setObject:plugin forKey:[[pluginBundle infoDictionary] 
+				objectForKey:(NSString *)kCFBundleIdentifierKey]];
 			[plugin release];
 			[plugInController release];
+		}
+	}
+	
+	m_loadedPlugins = [loadedPlugins copy];
+	m_pluginRegistry = [pluginRegistry copy];
+	for (ZZPlugInController *plugInController in m_plugInControllers){
+		objc_msgSend(plugInController, @selector(_setRegisteredPlugIns:), m_pluginRegistry);
+	}
+	
+	for (NSObject <ZZTrazzlePlugIn> *plugin in m_loadedPlugins){
+		if ([plugin respondsToSelector:@selector(trazzleDidLoadPlugIns:)]){
+			[plugin trazzleDidLoadPlugIns:m_pluginRegistry];
 		}
 	}
 }

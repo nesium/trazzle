@@ -28,6 +28,7 @@
 	NSString *levelName;
 	NSTimeInterval timestamp;
 	uint32_t stackIndex;
+	NSObject *complexObject;
 }
 @property (nonatomic, retain) NSString *message;
 @property (nonatomic, assign) BOOL encodeHTML;
@@ -35,6 +36,7 @@
 @property (nonatomic, retain) NSString *levelName;
 @property (nonatomic, assign) NSTimeInterval timestamp;
 @property (nonatomic, assign) uint32_t stackIndex;
+@property (nonatomic, retain) NSObject *complexObject;
 @end
 
 @interface NSObject (LoggingServiceDelegate)

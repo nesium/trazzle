@@ -32,5 +32,6 @@
 	LPTailTask *m_tailTask;
 	BOOL m_autoSelectTab;
 	LPFilterWindowController *m_filterController;
+	NSObject *m_inspectorPlugin;
 }
 @end

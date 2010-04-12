@@ -41,7 +41,8 @@
 		m_isPristine = YES;
 		m_isDisconnected = YES;
 		m_isMixed = NO;
-		m_representedObjects = [[NSPointerArray alloc] initWithOptions:NSPointerFunctionsZeroingWeakMemory];
+		m_representedObjects = [[NSPointerArray alloc] 
+			initWithOptions:NSPointerFunctionsZeroingWeakMemory];
 		
 		m_filterModel = [[LPFilterModel alloc] init];
 		
@@ -237,6 +238,26 @@
 
 - (void)loggingViewControllerWebViewIsReady:(LoggingViewController *)controller{
 	if (!m_isReady) self.isReady = YES;
+}
+
+- (void)loggingViewController:(LoggingViewController *)controller 
+	showDetailForMessageWithIndex:(uint32_t)index{
+	AbstractMessage *msg = [m_messageModel messageWithIndex:index];
+	if (![msg isKindOfClass:[LogMessage class]])
+		return;
+	
+	NSWindow *win = [[m_loggingViewController view] window];
+	NSPoint windowWarpOrigin = [win frame].origin;
+	windowWarpOrigin.x += 120.0f; // x-position of loupe icon
+	windowWarpOrigin.y += NSMidY([win frame]);
+	
+	NSObject *inspectorPlugIn = [m_controller.registeredPlugIns 
+		objectForKey:@"net.trazzle.Inspector"];
+	SEL inspectSelector = @selector(inspectObject:windowTitle:fromPoint:);
+	if ([inspectorPlugIn respondsToSelector:inspectSelector]){
+		objc_msgSend(inspectorPlugIn, inspectSelector, [(LogMessage *)msg complexObject], 
+			@"Hello World", windowWarpOrigin);
+	}
 }
 
 

@@ -24,6 +24,9 @@
 	message.levelName = logMessage.levelName;
 	message.timestamp = logMessage.timestamp;
 	message.encodeHTML = logMessage.encodeHTML;
+	message.complexObject = logMessage.complexObject == [NSNull null] 
+		? nil 
+		: logMessage.complexObject;
 	if ([logMessage.stacktrace isKindOfClass:[NSString class]]){
 		NSArray *stacktrace = [StackTraceParser parseAS3StackTrace:logMessage.stacktrace];
 		if (logMessage.stackIndex >= 0 && logMessage.stackIndex < [stacktrace count]){
@@ -109,12 +112,13 @@
 
 @implementation FlashLogMessage
 
-@synthesize message, encodeHTML, stacktrace, levelName, timestamp, stackIndex;
+@synthesize message, encodeHTML, stacktrace, levelName, timestamp, stackIndex, complexObject;
 
 - (void)dealloc{
 	[message release];
 	[stacktrace release];
 	[levelName release];
+	[complexObject release];
 	[super dealloc];
 }
 
@@ -126,6 +130,7 @@
 		self.levelName = [coder decodeObjectForKey:@"levelName"];
 		self.timestamp = [coder decodeDoubleForKey:@"timestamp"] / 1000;
 		self.stackIndex = [coder decodeInt32ForKey:@"stackIndex"];
+		self.complexObject = [coder decodeObjectForKey:@"complexObject"];
 	}
 	return self;
 }
@@ -137,6 +142,7 @@
 	[coder encodeObject:levelName forKey:@"levelName"];
 	[coder encodeDouble:(timestamp * 1000) forKey:@"timestamp"];
 	[coder encodeInt32:stackIndex forKey:@"stackIndex"];
+	[coder encodeObject:complexObject forKey:@"complexObject"];
 }
 
 - (NSString *)description{

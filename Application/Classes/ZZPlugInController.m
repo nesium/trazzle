@@ -20,7 +20,8 @@
 
 @synthesize sharedGateway=m_sharedGateway, 
 			sharedLegacyConnection=m_sharedLegacyConnection, 
-			connectedClients=m_connectedClients;
+			connectedClients=m_connectedClients, 
+			registeredPlugIns=m_registeredPlugIns;
 
 #pragma mark -
 #pragma mark Initialization & Deallocation
@@ -29,6 +30,7 @@
 	gateway:(AMFDuplexGateway *)gateway legacyConnection:(AsyncSocket *)legacyConnection 
 	connectedClients:(NSArray *)connectedClients{
 	if (self = [super init]){
+		m_registeredPlugIns = nil;
 		m_statusItem = nil;
 		m_plugInBundle = [bundle retain];
 		m_windowController = controller;
@@ -114,5 +116,9 @@
 		[menu release];
 	}
 	return m_statusItem;
+}
+
+- (void)_setRegisteredPlugIns:(NSDictionary *)plugIns{
+	m_registeredPlugIns = plugIns;
 }
 @end

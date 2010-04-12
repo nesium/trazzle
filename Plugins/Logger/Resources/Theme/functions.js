@@ -46,7 +46,10 @@ function logMessageToHTML(message, addTextmateLinks){
 	html += '</div>';
 	html += '<div class="lineno">' + (message.index + 1) + '</div>';
 	html += '<div class="timestamp">' + message.formattedTimestamp() + '</div>';
-	html += '<div class="more_detail"><a href="#"></a></div>';
+	if (message.hasComplexObject()){
+		html += '<div class="more_detail"><a href="javascript:showDetail(' + message.index + 
+			');"></a></div>';
+	}
 	html += '<div class="content ' + message.levelName + '">';
 	if (addTextmateLinks && message.line > -1 && message.fileExists){
 		html += '<a class="tm_link" href="txmt://open/?url=file://' + escape(message.file) + 
@@ -166,6 +169,10 @@ function toggleStacktrace(id){
     var documentFragment = range.createContextualFragment(html);
     elem.appendChild(documentFragment);
 	addClassToElement(elem, 'expanded');
+}
+
+function showDetail(id){
+	window.TrazzleBridge.showDetailForMessageWithIndex(id);
 }
 
 function removeClassFromElement(elem, clazz){

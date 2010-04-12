@@ -26,7 +26,8 @@
 	NSMutableArray *m_connectedClients;
 	AsyncSocket *m_socket;
 	AMFDuplexGateway *m_gateway;
-	NSMutableArray *m_loadedPlugins;
+	NSArray *m_loadedPlugins;
+	NSDictionary *m_pluginRegistry;
 	NSMutableArray *m_plugInControllers;
 	ZZWindowController *m_windowController;
 	AAPreferencesWindowController *m_prefsWindowController;
