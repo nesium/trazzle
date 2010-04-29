@@ -21,10 +21,12 @@
 	ZZWindowController *m_windowController;
 	NSStatusItem *m_statusItem;
 	NSBundle *m_plugInBundle;
+	NSDictionary *m_registeredPlugIns;
 }
 @property (nonatomic, readonly) AMFDuplexGateway *sharedGateway;
 @property (nonatomic, readonly) AsyncSocket *sharedLegacyConnection;
 @property (nonatomic, readonly) NSArray *connectedClients;
+@property (nonatomic, readonly) NSDictionary *registeredPlugIns;
 
 - (id)initWithPlugInBundle:(NSBundle *)bundle windowController:(ZZWindowController *)controller 
 	gateway:(AMFDuplexGateway *)gateway legacyConnection:(AsyncSocket *)legacyConnection 

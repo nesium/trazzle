@@ -131,6 +131,20 @@
 - (void)trazzleDidReceiveSignatureForConnection:(ZZConnection *)conn{
 	LPSession *session = [self _sessionForSwfURL:conn.swfURL];
 	[session addConnection:conn];
+	
+	NSDictionary *playerParams = [conn.connectionParams objectForKey:@"player"];
+	if (!playerParams)
+		return;
+	NSString *playerVersion = [playerParams objectForKey:@"version"];
+	BOOL isDebugger = [[playerParams objectForKey:@"isDebugger"] boolValue];
+	NSMutableString *msg = [NSMutableString string];
+	[msg appendFormat:@"Player Version: %@.", playerVersion];
+	[msg appendFormat:@" Is Debug Player: %@.", isDebugger ? @"Yes" : @"<span class='error'>No</span>"];
+	if (!isDebugger){
+		[msg appendFormat:@"<br/>In order to enable the complete feature set of Trazzle, you should use the Debug Player."];
+	}
+	AbstractMessage *message = [AbstractMessage messageWithType:kLPMessageTypeSystem message:msg];
+	[self _handleMessage:message fromConnection:conn];
 }
 
 - (void)trazzleDidReceiveMessage:(NSString *)message forConnection:(ZZConnection *)conn{

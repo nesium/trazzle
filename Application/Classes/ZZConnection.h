@@ -23,6 +23,7 @@
 @property (nonatomic, readonly) id remote;
 @property (nonatomic, readonly) NSURL *swfURL;
 @property (nonatomic, readonly) NSString *applicationName;
+@property (nonatomic, readonly) NSDictionary *connectionParams;
 - (id)initWithRemote:(id)remote delegate:(id)delegate;
 - (void)setConnectionParams:(NSDictionary *)params;
 - (NSMutableDictionary *)storageForPluginWithName:(NSString *)name;
