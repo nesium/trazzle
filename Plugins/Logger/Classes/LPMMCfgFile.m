@@ -11,6 +11,10 @@
 NSString *const kMMCfgGlobalPath = @"/Library/Application Support/Macromedia/mm.cfg";
 NSString *const kMMCfgLocalPath = @"~/mm.cfg";
 
+@interface LPMMCfgFile (Private)
+- (void)_loadContentsOfFile:(NSString *)aPath error:(NSError **)error;
+@end
+
 @implementation LPMMCfgFile
 
 #pragma mark -
@@ -25,29 +29,7 @@ NSString *const kMMCfgLocalPath = @"~/mm.cfg";
 
 - (id)initWithContentsOfFile:(NSString *)aPath error:(NSError **)error{
 	if (self = [self init]){
-		NSMutableString *contents = [NSMutableString stringWithContentsOfFile:aPath 
-			encoding:NSUTF8StringEncoding error:error];
-		if (!contents){
-			[self release];
-			return nil;
-		}
-		[contents replaceOccurrencesOfString:@"\r" withString:@"\n" options:0 
-			range:(NSRange){0, [contents length]}];		
-		[contents replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:0 
-			range:(NSRange){0, [contents length]}];
-		NSArray *lines = [contents componentsSeparatedByString:@"\n"];
-		NSCharacterSet *wsSet = [NSCharacterSet whitespaceCharacterSet];
-		for (NSString *line in lines){
-			NSRange equalSignRange = [line rangeOfString:@"="];
-			if (equalSignRange.location == NSNotFound)
-				continue;
-			NSString *key = [line substringToIndex:equalSignRange.location];
-			NSString *value = [line substringFromIndex:equalSignRange.location + 
-				equalSignRange.length];
-			key = [key stringByTrimmingCharactersInSet:wsSet];
-			value = [value stringByTrimmingCharactersInSet:wsSet];
-			[m_settings setObject:value forKey:key];
-		}
+		[self _loadContentsOfFile:aPath error:error];
 	}
 	return self;
 }
@@ -93,5 +75,35 @@ NSString *const kMMCfgLocalPath = @"~/mm.cfg";
 
 - (void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues{
 	[m_settings setValuesForKeysWithDictionary:keyedValues];
+}
+
+
+
+#pragma mark -
+#pragma mark Private methods
+
+- (void)_loadContentsOfFile:(NSString *)aPath error:(NSError **)error{
+	NSMutableString *contents = [NSMutableString stringWithContentsOfFile:aPath 
+		encoding:NSUTF8StringEncoding error:error];
+	if (!contents){
+		return;
+	}
+	[contents replaceOccurrencesOfString:@"\r" withString:@"\n" options:0 
+		range:(NSRange){0, [contents length]}];		
+	[contents replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:0 
+		range:(NSRange){0, [contents length]}];
+	NSArray *lines = [contents componentsSeparatedByString:@"\n"];
+	NSCharacterSet *wsSet = [NSCharacterSet whitespaceCharacterSet];
+	for (NSString *line in lines){
+		NSRange equalSignRange = [line rangeOfString:@"="];
+		if (equalSignRange.location == NSNotFound)
+			continue;
+		NSString *key = [line substringToIndex:equalSignRange.location];
+		NSString *value = [line substringFromIndex:equalSignRange.location + 
+			equalSignRange.length];
+		key = [key stringByTrimmingCharactersInSet:wsSet];
+		value = [value stringByTrimmingCharactersInSet:wsSet];
+		[m_settings setObject:value forKey:key];
+	}
 }
 @end
