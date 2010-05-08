@@ -44,8 +44,6 @@
 		2C09272410D303A800FFDDD8 /* SearchBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFEDA311034A254004375AE /* SearchBarViewController.m */; };
 		2C09272510D303A900FFDDD8 /* SelectedFilterToIconTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */; };
 		2C09272610D303A900FFDDD8 /* StackTraceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0B360105C4773000222E7 /* StackTraceItem.m */; };
-		2C09273B10D3048B00FFDDD8 /* MGRecessedPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0B20EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m */; };
-		2C09273C10D3048C00FFDDD8 /* MGScopeBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0B40EBE7C5200B9BA96 /* MGScopeBar.m */; };
 		2C09273D10D3048D00FFDDD8 /* NSMMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0421AD0F3E655300726781 /* NSMMenuController.m */; };
 		2C09273E10D3048E00FFDDD8 /* RSVerticallyCenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C04220E0F3E72D200726781 /* RSVerticallyCenteredTextFieldCell.m */; };
 		2C09273F10D3048E00FFDDD8 /* UKFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CCB3C0EABBF1F003EE952 /* UKFileWatcher.m */; };
@@ -56,8 +54,6 @@
 		2C09275410D304A700FFDDD8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496AF12F0F333BD90049FB23 /* WebKit.framework */; };
 		2C10A92C10750D8D00EAED60 /* LoggingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10A92B10750D8D00EAED60 /* LoggingIcon.png */; };
 		2C159B340F3EF67A00321454 /* SelectedFilterToIconTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */; };
-		2C19E0B60EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0B20EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m */; };
-		2C19E0B70EBE7C5200B9BA96 /* MGScopeBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C19E0B40EBE7C5200B9BA96 /* MGScopeBar.m */; };
 		2C4960D61087B759007BAC58 /* FileObservingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4960D51087B759007BAC58 /* FileObservingService.m */; };
 		2C4CCA960EABA5FC003EE952 /* LPLoggerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CCA950EABA5FC003EE952 /* LPLoggerPlugin.m */; };
 		2C4CCAF10EABB42B003EE952 /* ButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C4CCAEC0EABB42B003EE952 /* ButtonBackground.png */; };
@@ -158,11 +154,6 @@
 		2C10A92B10750D8D00EAED60 /* LoggingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoggingIcon.png; sourceTree = "<group>"; };
 		2C159B320F3EF67A00321454 /* SelectedFilterToIconTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedFilterToIconTransformer.h; sourceTree = "<group>"; };
 		2C159B330F3EF67A00321454 /* SelectedFilterToIconTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedFilterToIconTransformer.m; sourceTree = "<group>"; };
-		2C19E0B10EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGRecessedPopUpButtonCell.h; sourceTree = "<group>"; };
-		2C19E0B20EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGRecessedPopUpButtonCell.m; sourceTree = "<group>"; };
-		2C19E0B30EBE7C5200B9BA96 /* MGScopeBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGScopeBar.h; sourceTree = "<group>"; };
-		2C19E0B40EBE7C5200B9BA96 /* MGScopeBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGScopeBar.m; sourceTree = "<group>"; };
-		2C19E0B50EBE7C5200B9BA96 /* MGScopeBarDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGScopeBarDelegateProtocol.h; sourceTree = "<group>"; };
 		2C4960D41087B759007BAC58 /* FileObservingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileObservingService.h; sourceTree = "<group>"; };
 		2C4960D51087B759007BAC58 /* FileObservingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileObservingService.m; sourceTree = "<group>"; };
 		2C4CCA940EABA5FC003EE952 /* LPLoggerPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLoggerPlugin.h; sourceTree = "<group>"; };
@@ -399,23 +390,10 @@
 			path = NSMUtils;
 			sourceTree = "<group>";
 		};
-		2C19E0B00EBE7C5200B9BA96 /* MGScopeBar */ = {
-			isa = PBXGroup;
-			children = (
-				2C19E0B10EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.h */,
-				2C19E0B20EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m */,
-				2C19E0B30EBE7C5200B9BA96 /* MGScopeBar.h */,
-				2C19E0B40EBE7C5200B9BA96 /* MGScopeBar.m */,
-				2C19E0B50EBE7C5200B9BA96 /* MGScopeBarDelegateProtocol.h */,
-			);
-			path = MGScopeBar;
-			sourceTree = "<group>";
-		};
 		2C4CCA8A0EABA3C9003EE952 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
 				2C0421A80F3E625900726781 /* NSMUtils */,
-				2C19E0B00EBE7C5200B9BA96 /* MGScopeBar */,
 				2C4CCB3A0EABBF1F003EE952 /* UKKQueue */,
 			);
 			path = Libraries;
@@ -808,8 +786,6 @@
 				2C09272410D303A800FFDDD8 /* SearchBarViewController.m in Sources */,
 				2C09272510D303A900FFDDD8 /* SelectedFilterToIconTransformer.m in Sources */,
 				2C09272610D303A900FFDDD8 /* StackTraceItem.m in Sources */,
-				2C09273B10D3048B00FFDDD8 /* MGRecessedPopUpButtonCell.m in Sources */,
-				2C09273C10D3048C00FFDDD8 /* MGScopeBar.m in Sources */,
 				2C09273D10D3048D00FFDDD8 /* NSMMenuController.m in Sources */,
 				2C09273E10D3048E00FFDDD8 /* RSVerticallyCenteredTextFieldCell.m in Sources */,
 				2C09273F10D3048E00FFDDD8 /* UKFileWatcher.m in Sources */,
@@ -835,8 +811,6 @@
 				2C4CCB450EABBF1F003EE952 /* UKFNSubscribeFileWatcher.m in Sources */,
 				2C4CCB470EABBF1F003EE952 /* UKKQueue.m in Sources */,
 				2C4CCB480EABBF1F003EE952 /* UKMainThreadProxy.m in Sources */,
-				2C19E0B60EBE7C5200B9BA96 /* MGRecessedPopUpButtonCell.m in Sources */,
-				2C19E0B70EBE7C5200B9BA96 /* MGScopeBar.m in Sources */,
 				496AF06B0F321D070049FB23 /* NSString+LPStringAdditions.m in Sources */,
 				2C65AE1D0F328A57005D7A61 /* LoggingViewController.m in Sources */,
 				2C5582590F33D6A80011B31A /* LPMessageModel.m in Sources */,

@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PMStatsViewLayer.h"
 #import "PMStatsSessionViewLayer.h"
-#import "AGProcess.h"
 #import "PMMonitoringService.h"
 #import "ZZPlugInController.h"
 

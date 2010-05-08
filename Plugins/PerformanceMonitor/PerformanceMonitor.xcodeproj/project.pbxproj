@@ -12,7 +12,6 @@
 		2C8C0160105AE217002C246F /* PMStatsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C015F105AE217002C246F /* PMStatsData.m */; };
 		2C8C017D105AE578002C246F /* NSColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C017C105AE578002C246F /* NSColor+Additions.m */; };
 		2C8C029C105AFB66002C246F /* PMStatsSessionViewLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C029B105AFB66002C246F /* PMStatsSessionViewLayer.m */; };
-		2C8C03D2105B0855002C246F /* AGProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C03D1105B0855002C246F /* AGProcess.m */; };
 		2C8CFEBF105A9FA8002C246F /* PMPerformanceMonitorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CFEBE105A9FA8002C246F /* PMPerformanceMonitorPlugin.m */; };
 		2C8CFF0C105AA348002C246F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8CFF0B105AA348002C246F /* Cocoa.framework */; };
 		2C8CFF15105AA384002C246F /* MonitorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8CFF14105AA384002C246F /* MonitorWindow.xib */; };
@@ -37,8 +36,6 @@
 		2C8C017C105AE578002C246F /* NSColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Additions.m"; sourceTree = "<group>"; };
 		2C8C029A105AFB66002C246F /* PMStatsSessionViewLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMStatsSessionViewLayer.h; sourceTree = "<group>"; };
 		2C8C029B105AFB66002C246F /* PMStatsSessionViewLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMStatsSessionViewLayer.m; sourceTree = "<group>"; };
-		2C8C03D0105B0855002C246F /* AGProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGProcess.h; sourceTree = "<group>"; };
-		2C8C03D1105B0855002C246F /* AGProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGProcess.m; sourceTree = "<group>"; };
 		2C8CFEBD105A9FA8002C246F /* PMPerformanceMonitorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPerformanceMonitorPlugin.h; sourceTree = "<group>"; };
 		2C8CFEBE105A9FA8002C246F /* PMPerformanceMonitorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPerformanceMonitorPlugin.m; sourceTree = "<group>"; };
 		2C8CFEC2105A9FBD002C246F /* ZZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZConstants.h; path = ../../Application/Classes/ZZConstants.h; sourceTree = SOURCE_ROOT; };
@@ -149,8 +146,6 @@
 		2C1A7AD4105D075B0043CD55 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				2C8C03D0105B0855002C246F /* AGProcess.h */,
-				2C8C03D1105B0855002C246F /* AGProcess.m */,
 				2C8C017B105AE578002C246F /* NSColor+Additions.h */,
 				2C8C017C105AE578002C246F /* NSColor+Additions.m */,
 				2C1A7DC4105D567A0043CD55 /* NSNumber+FileSize.h */,
@@ -220,7 +215,6 @@
 				2C8C0160105AE217002C246F /* PMStatsData.m in Sources */,
 				2C8C017D105AE578002C246F /* NSColor+Additions.m in Sources */,
 				2C8C029C105AFB66002C246F /* PMStatsSessionViewLayer.m in Sources */,
-				2C8C03D2105B0855002C246F /* AGProcess.m in Sources */,
 				2C1A7AD1105D07140043CD55 /* PMMonitoringService.m in Sources */,
 				2C1A7DC6105D567A0043CD55 /* NSNumber+FileSize.m in Sources */,
 			);
