@@ -10,9 +10,9 @@
 		2C2E73D911712779009D94C8 /* IPTransparentOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2E73D811712779009D94C8 /* IPTransparentOutlineView.m */; };
 		2C2E7421117128A7009D94C8 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2E7420117128A7009D94C8 /* BWToolkitFramework.framework */; };
 		2C2E760011714483009D94C8 /* CocoaAMF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2E75FF11714483009D94C8 /* CocoaAMF.framework */; };
+		2C32C8B61195EC3F007E15A2 /* NSMTweeningFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C32C8B31195EC3F007E15A2 /* NSMTweeningFunctions.m */; };
+		2C32C8B71195EC3F007E15A2 /* NSNumber+NSMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C32C8B51195EC3F007E15A2 /* NSNumber+NSMAdditions.m */; };
 		2C3837C611729F4100CCE1AB /* IPWarpWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3837C511729F4100CCE1AB /* IPWarpWindow.m */; };
-		2C3838761172A0CC00CCE1AB /* NSMTweeningFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3838731172A0CC00CCE1AB /* NSMTweeningFunctions.m */; };
-		2C3838771172A0CC00CCE1AB /* NSNumber+NSMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3838751172A0CC00CCE1AB /* NSNumber+NSMAdditions.m */; };
 		2C485F0A1062D3D3009818EE /* IPInspectorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C485F091062D3D3009818EE /* IPInspectorPlugin.m */; };
 		2C485F251062D4A9009818EE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C485F241062D4A9009818EE /* Cocoa.framework */; };
 		2C485F471062D5B2009818EE /* IPInspectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C485F461062D5B2009818EE /* IPInspectionService.m */; };
@@ -30,13 +30,13 @@
 		2C2E73D811712779009D94C8 /* IPTransparentOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPTransparentOutlineView.m; sourceTree = "<group>"; };
 		2C2E7420117128A7009D94C8 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../Application/Frameworks/BWToolkitFramework.framework; sourceTree = SOURCE_ROOT; };
 		2C2E75FF11714483009D94C8 /* CocoaAMF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAMF.framework; path = ../../Application/Frameworks/CocoaAMF.framework; sourceTree = SOURCE_ROOT; };
+		2C32C8B21195EC3F007E15A2 /* NSMTweeningFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMTweeningFunctions.h; sourceTree = "<group>"; };
+		2C32C8B31195EC3F007E15A2 /* NSMTweeningFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMTweeningFunctions.m; sourceTree = "<group>"; };
+		2C32C8B41195EC3F007E15A2 /* NSNumber+NSMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NSMAdditions.h"; sourceTree = "<group>"; };
+		2C32C8B51195EC3F007E15A2 /* NSNumber+NSMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+NSMAdditions.m"; sourceTree = "<group>"; };
 		2C3837C411729F4100CCE1AB /* IPWarpWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPWarpWindow.h; sourceTree = "<group>"; };
 		2C3837C511729F4100CCE1AB /* IPWarpWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPWarpWindow.m; sourceTree = "<group>"; };
 		2C38385411729FEC00CCE1AB /* CGSPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSPrivate.h; sourceTree = "<group>"; };
-		2C3838721172A0CC00CCE1AB /* NSMTweeningFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMTweeningFunctions.h; path = ../../Application/Libraries/nsm_utils/Foundation/NSMTweeningFunctions.h; sourceTree = SOURCE_ROOT; };
-		2C3838731172A0CC00CCE1AB /* NSMTweeningFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSMTweeningFunctions.m; path = ../../Application/Libraries/nsm_utils/Foundation/NSMTweeningFunctions.m; sourceTree = SOURCE_ROOT; };
-		2C3838741172A0CC00CCE1AB /* NSNumber+NSMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNumber+NSMAdditions.h"; path = "../../Application/Libraries/nsm_utils/Foundation/NSNumber+NSMAdditions.h"; sourceTree = SOURCE_ROOT; };
-		2C3838751172A0CC00CCE1AB /* NSNumber+NSMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+NSMAdditions.m"; path = "../../Application/Libraries/nsm_utils/Foundation/NSNumber+NSMAdditions.m"; sourceTree = SOURCE_ROOT; };
 		2C485F081062D3D3009818EE /* IPInspectorPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPInspectorPlugin.h; sourceTree = "<group>"; };
 		2C485F091062D3D3009818EE /* IPInspectorPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPInspectorPlugin.m; sourceTree = "<group>"; };
 		2C485F0C1062D44F009818EE /* ZZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZZConstants.h; path = ../../Application/Classes/ZZConstants.h; sourceTree = SOURCE_ROOT; };
@@ -139,19 +139,18 @@
 			children = (
 				2C38386A1172A0B800CCE1AB /* nsm_utils */,
 			);
-			name = Libraries;
-			path = Classes;
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 		2C38386A1172A0B800CCE1AB /* nsm_utils */ = {
 			isa = PBXGroup;
 			children = (
-				2C3838721172A0CC00CCE1AB /* NSMTweeningFunctions.h */,
-				2C3838731172A0CC00CCE1AB /* NSMTweeningFunctions.m */,
-				2C3838741172A0CC00CCE1AB /* NSNumber+NSMAdditions.h */,
-				2C3838751172A0CC00CCE1AB /* NSNumber+NSMAdditions.m */,
+				2C32C8B21195EC3F007E15A2 /* NSMTweeningFunctions.h */,
+				2C32C8B31195EC3F007E15A2 /* NSMTweeningFunctions.m */,
+				2C32C8B41195EC3F007E15A2 /* NSNumber+NSMAdditions.h */,
+				2C32C8B51195EC3F007E15A2 /* NSNumber+NSMAdditions.m */,
 			);
-			name = nsm_utils;
+			path = nsm_utils;
 			sourceTree = "<group>";
 		};
 		2C485F441062D578009818EE /* AMF Services */ = {
@@ -232,8 +231,8 @@
 				2CB9CBE8116FFF670023EACC /* IPInspectorWindowController.m in Sources */,
 				2C2E73D911712779009D94C8 /* IPTransparentOutlineView.m in Sources */,
 				2C3837C611729F4100CCE1AB /* IPWarpWindow.m in Sources */,
-				2C3838761172A0CC00CCE1AB /* NSMTweeningFunctions.m in Sources */,
-				2C3838771172A0CC00CCE1AB /* NSNumber+NSMAdditions.m in Sources */,
+				2C32C8B61195EC3F007E15A2 /* NSMTweeningFunctions.m in Sources */,
+				2C32C8B71195EC3F007E15A2 /* NSNumber+NSMAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

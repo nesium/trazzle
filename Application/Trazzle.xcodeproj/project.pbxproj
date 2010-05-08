@@ -56,6 +56,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2C32C8911195EB7E007E15A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C485F281062D4B7009818EE /* Inspector.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D57630D048677EA00EA77CD /* Inspector */;
+			remoteInfo = Inspector;
+		};
 		2C485F2C1062D4B7009818EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C485F281062D4B7009818EE /* Inspector.xcodeproj */;
@@ -458,6 +465,7 @@
 			dependencies = (
 				496AF0A30F321FE50049FB23 /* PBXTargetDependency */,
 				2C8CFECC105AA056002C246F /* PBXTargetDependency */,
+				2C32C8921195EB7E007E15A2 /* PBXTargetDependency */,
 			);
 			name = Trazzle;
 			productInstallPath = "$(HOME)/Applications";
@@ -627,6 +635,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2C32C8921195EB7E007E15A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Inspector;
+			targetProxy = 2C32C8911195EB7E007E15A2 /* PBXContainerItemProxy */;
+		};
 		2C8CFECC105AA056002C246F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PerformanceMonitor;
