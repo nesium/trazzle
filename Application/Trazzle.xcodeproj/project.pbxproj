@@ -56,13 +56,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2C2160C8116961DD00A59B60 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8D576316048677EA00EA77CD;
-			remoteInfo = FileManager;
-		};
 		2C485F2C1062D4B7009818EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C485F281062D4B7009818EE /* Inspector.xcodeproj */;
@@ -90,13 +83,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8D57630D048677EA00EA77CD;
 			remoteInfo = PerformanceMonitor;
-		};
-		2CAD39CC0F6F059A00D390D9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2CAD39C80F6F059A00D390D9 /* Builder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8D5B49B6048680CD000E48DA;
-			remoteInfo = Builder;
 		};
 		2CFA552A0D6B943E00F5DFE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -172,7 +158,6 @@
 		2C1D6DDD0F34FA4000EA8975 /* statusbar_icon_alternate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusbar_icon_alternate.png; sourceTree = "<group>"; };
 		2C1F223A0FF57C730035F2DE /* ZZApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZApplication.h; sourceTree = "<group>"; };
 		2C1F223B0FF57C730035F2DE /* ZZApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZApplication.m; sourceTree = "<group>"; };
-		2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FileManager.xcodeproj; path = ../Plugins/FileManager/FileManager.xcodeproj; sourceTree = SOURCE_ROOT; };
 		2C2E75C31171434D009D94C8 /* CocoaAMF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAMF.framework; path = Frameworks/CocoaAMF.framework; sourceTree = "<group>"; };
 		2C2EC39E0ECE303F005785E2 /* ZZPlugInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPlugInController.h; sourceTree = "<group>"; };
 		2C2EC39F0ECE303F005785E2 /* ZZPlugInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPlugInController.m; sourceTree = "<group>"; };
@@ -192,7 +177,6 @@
 		2C93A5370F3906A60050CD51 /* ZZTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZTabStyle.m; sourceTree = "<group>"; };
 		2C93A5380F3906A60050CD51 /* ZZTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZTabStyle.h; sourceTree = "<group>"; };
 		2C93A55E0F390BD40050CD51 /* tabbar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_background.png; sourceTree = "<group>"; };
-		2CAD39C80F6F059A00D390D9 /* Builder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Builder.xcodeproj; path = ../Plugins/Builder/Builder.xcodeproj; sourceTree = SOURCE_ROOT; };
 		2CCF87080E22B19D00B8CE88 /* trazzle.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = trazzle.icns; sourceTree = "<group>"; };
 		2CDA0FEE1041AFF4008338CF /* ZZWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZWindow.h; sourceTree = "<group>"; };
 		2CDA0FEF1041AFF4008338CF /* ZZWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZWindow.m; sourceTree = "<group>"; };
@@ -286,10 +270,8 @@
 				2C8C03FE105B1710002C246F /* Libraries */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				496AF09C0F321FDB0049FB23 /* Logger.xcodeproj */,
-				2CAD39C80F6F059A00D390D9 /* Builder.xcodeproj */,
 				2C8CFEC4105AA03C002C246F /* PerformanceMonitor.xcodeproj */,
 				2C485F281062D4B7009818EE /* Inspector.xcodeproj */,
-				2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */,
 			);
 			name = Trazzle;
 			sourceTree = "<group>";
@@ -370,14 +352,6 @@
 			path = Resources/Images;
 			sourceTree = "<group>";
 		};
-		2C2160C5116961DD00A59B60 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2C2160C9116961DD00A59B60 /* FileManager.trazzlePlugin */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		2C485F291062D4B7009818EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,14 +383,6 @@
 			isa = PBXGroup;
 			children = (
 				2C8CFEC9105AA03D002C246F /* PerformanceMonitor.trazzlePlugin */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2CAD39C90F6F059A00D390D9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2CAD39CD0F6F059A00D390D9 /* Builder.trazzlePlugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -514,14 +480,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 2CAD39C90F6F059A00D390D9 /* Products */;
-					ProjectRef = 2CAD39C80F6F059A00D390D9 /* Builder.xcodeproj */;
-				},
-				{
-					ProductGroup = 2C2160C5116961DD00A59B60 /* Products */;
-					ProjectRef = 2C2160C4116961DD00A59B60 /* FileManager.xcodeproj */;
-				},
-				{
 					ProductGroup = 2C485F291062D4B7009818EE /* Products */;
 					ProjectRef = 2C485F281062D4B7009818EE /* Inspector.xcodeproj */;
 				},
@@ -543,13 +501,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		2C2160C9116961DD00A59B60 /* FileManager.trazzlePlugin */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = FileManager.trazzlePlugin;
-			remoteRef = 2C2160C8116961DD00A59B60 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		2C485F2D1062D4B7009818EE /* Inspector.trazzlePlugin */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -569,13 +520,6 @@
 			fileType = wrapper.cfbundle;
 			path = PerformanceMonitor.trazzlePlugin;
 			remoteRef = 2C8CFEC8105AA03D002C246F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2CAD39CD0F6F059A00D390D9 /* Builder.trazzlePlugin */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = Builder.trazzlePlugin;
-			remoteRef = 2CAD39CC0F6F059A00D390D9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		496AF0A10F321FDB0049FB23 /* Logger.trazzlePlugin */ = {
