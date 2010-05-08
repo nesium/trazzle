@@ -144,7 +144,7 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2C0D6204105EA9B10024BC52 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
-		2C10A8991074E26700EAED60 /* UpdatePreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatePreferences.xib; sourceTree = "<group>"; };
+		2C10A8991074E26700EAED60 /* UpdatePreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UpdatePreferences.xib; path = Resources/Xibs/UpdatePreferences.xib; sourceTree = "<group>"; };
 		2C10A89C1074E31E00EAED60 /* ZZUpdatePreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZUpdatePreferencesViewController.h; sourceTree = "<group>"; };
 		2C10A89D1074E31E00EAED60 /* ZZUpdatePreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZUpdatePreferencesViewController.m; sourceTree = "<group>"; };
 		2C10A8C31074EC7800EAED60 /* NSDate+AAAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+AAAdditions.h"; sourceTree = "<group>"; };
